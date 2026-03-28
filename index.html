@@ -800,7 +800,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <span>⚡</span> Quick Index <span class="ng-arrow">▶</span>
       </div>
       <div class="nav-items open">
-        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 15 topics</span>
+        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 16 topics</span>
       </div>
     </div>
 
@@ -819,6 +819,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <span class="nav-item" onclick="jumpTo('faq-adult')"><span class="ni-dot"></span>Adult Content</span>
         <span class="nav-item" onclick="jumpTo('faq-rules')"><span class="ni-dot"></span>Rules &amp; Reporting</span>
         <span class="nav-item" onclick="jumpTo('faq-voice')"><span class="ni-dot"></span>Voice &amp; Audio</span>
+        <span class="nav-item" onclick="jumpTo('faq-invisible')"><span class="ni-dot"></span>Invisible Avatar</span>
         <span class="nav-item" onclick="jumpTo('faq-free-avatar')"><span class="ni-dot"></span>Free Good Avatar</span>
       </div>
     </div>
@@ -885,7 +886,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     <h1>Resident Support Guide</h1>
     <p>Searchable reference for SL Mentors — covering frequent questions, key in-world locations, and ready-to-use scripts for helping new residents.</p>
     <div class="stat-row">
-      <div class="stat-chip"><span class="sc-val">11</span><span class="sc-lbl">FAQs</span></div>
+      <div class="stat-chip"><span class="sc-val">12</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
       <div class="stat-chip"><span class="sc-val">6</span><span class="sc-lbl">Scripts</span></div>
     </div>
@@ -977,6 +978,15 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <div class="qi-arrow">›</div>
       </div>
 
+      <div class="qi-card qi-purple" data-search="invisible avatar hidden avatars toggle shortcut" onclick="jumpTo('faq-invisible')">
+        <div class="qi-icon">👻</div>
+        <div class="qi-info">
+          <div class="qi-title">Invisible Avatar</div>
+          <div class="qi-sub">Hidden avatars, toggle fix</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
       <div class="qi-card qi-gold" data-search="landmarks welcome hub sandbox help island" onclick="jumpTo('sec-landmarks')">
         <div class="qi-icon">📍</div>
         <div class="qi-info">
@@ -1039,7 +1049,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     <div class="section-hdr">
       <div class="sec-icon si-b">❓</div>
       <div class="sec-title">FAQs &amp; Answers</div>
-      <div class="sec-count">11 entries</div>
+      <div class="sec-count">12 entries</div>
     </div>
     <div class="faq-list">
 
@@ -1355,14 +1365,40 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <div class="faq-body">
           <div class="steps">
             <div class="step"><div class="sn">1</div><div><strong>Me → Preferences → Sound &amp; Media</strong> — confirm Voice enabled and correct devices selected.</div></div>
-            <div class="step"><div class="sn">2</div><div>Confirm the region/parcel allows voice — check the voice dot indicator near the minimap.</div></div>
+            <div class="step"><div class="sn">2</div><div>Confirm the region/parcel allows voice — click the <strong>sound icon</strong> in the top toolbar to open the sound settings panel. Voice will appear at the bottom of the dropdown with an <strong>Enable Voice Chat</strong> toggle.</div></div>
             <div class="step"><div class="sn">3</div><div>Check system audio — ensure SL isn't muted at the OS level.</div></div>
-            <div class="step"><div class="sn">4</div><div>Click the <strong>microphone icon</strong> in the toolbar to toggle voice on/off.</div></div>
+            <div class="step"><div class="sn">4</div><div>In the sound panel, make sure the <strong>Voice</strong> slider is turned up and not muted.</div></div>
             <div class="step"><div class="sn">5</div><div>Relog — voice sometimes fails on the initial login.</div></div>
           </div>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>
-            <p>Firestorm users: toggling <strong>Preferences → Sound &amp; Media → Enable Voice</strong> off and on resolves most intermittent drop-outs.</p>
+            <p>The sound icon in the toolbar (top bar, next to the clock) opens a dropdown with sliders for Master, Buttons, Ambient, Sounds, Music, Media, and Voice. If voice isn't working, check that the Voice slider is up and the Enable Voice Chat option is toggled on. Firestorm users: toggling <strong>Preferences → Sound &amp; Media → Enable Voice</strong> off and on also resolves most intermittent drop-outs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item edge-app" id="faq-invisible" data-search="invisible avatar can't see hidden avatars toggle hide all avatars ctrl alt shift 4 crowded event vendors rez">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">My avatar is invisible / I can't see other avatars.</span>
+          <span class="faq-tag t-app">Appearance</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>There are two different situations here — a resident whose avatar is invisible to others, and the shortcut that intentionally hides all avatars.</p>
+          <p><strong>Avatar invisible to others (unintentional):</strong></p>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div>Try <strong>Avatar → Avatar Health → Rebake Textures</strong> (<code>Ctrl+Alt+R</code> on PC, <code>Ctrl+Option+R</code> on Mac).</div></div>
+            <div class="step"><div class="sn">2</div><div>Use <strong>Avatar → Avatar Welcome Pack</strong> and wear a fresh complete avatar.</div></div>
+            <div class="step"><div class="sn">3</div><div>Change regions or relog entirely.</div></div>
+          </div>
+          <p style="margin-top:12px;"><strong>All avatars hidden (intentional toggle):</strong></p>
+          <p>There is a shortcut that hides <em>all</em> avatars in the scene — including your own. This is useful at crowded events to let vendors and objects rez more quickly, but it can confuse residents who trigger it accidentally.</p>
+          <div class="steps">
+            <div class="step"><div class="sn">💡</div><div><strong>Mac:</strong> <code>Shift + Option + Command + 4</code><br><strong>PC:</strong> <code>Ctrl + Alt + Shift + 4</code><br>Press the same combination again to bring all avatars back.</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>If a resident says everyone has disappeared including themselves, this shortcut is almost certainly the cause. It's a toggle — one press hides everyone, the same shortcut brings them all back. Remind them it hides <em>all</em> avatars, not just theirs, and is commonly used at busy events to improve performance.</p>
           </div>
         </div>
       </div>
