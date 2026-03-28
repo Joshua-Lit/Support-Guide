@@ -166,7 +166,7 @@ body::after {
   background: var(--bg3);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 8px 10px 8px 30px;
+  padding: 8px 28px 8px 30px;
   color: var(--text-hi);
   font-family: 'Share Tech Mono', 'Courier New', monospace;
   font-size: 12px;
@@ -175,6 +175,17 @@ body::after {
 }
 #global-search:focus { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-dim); }
 #global-search::placeholder { color: var(--text-dim); }
+#search-clear {
+  position: absolute; right: 8px; top: 50%;
+  transform: translateY(-50%);
+  background: none; border: none; cursor: pointer;
+  color: var(--text-dim); font-size: 11px; line-height: 1;
+  padding: 2px 3px; border-radius: 3px;
+  display: none;
+  transition: color 0.15s, background 0.15s;
+}
+#search-clear:hover { color: var(--text-hi); background: var(--border); }
+#search-clear.visible { display: block; }
 #search-count {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
   font-size: 10px;
@@ -765,6 +776,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     <div class="search-inner">
       <span class="search-icon">//</span>
       <input type="text" id="global-search" placeholder="search guide..." autocomplete="off" spellcheck="false">
+      <button id="search-clear" onclick="clearSearch()" title="Clear search">✕</button>
     </div>
     <div id="search-count"></div>
   </div>
@@ -1675,9 +1687,10 @@ function copyText(btn) {
   });
 }
 
-const srch = document.getElementById('global-search');
-const cnt  = document.getElementById('search-count');
-const nr   = document.getElementById('no-results');
+const srch   = document.getElementById('global-search');
+const cnt    = document.getElementById('search-count');
+const nr     = document.getElementById('no-results');
+const clrBtn = document.getElementById('search-clear');
 
 function n(s) { return s.toLowerCase().replace(/[^a-z0-9 ]/g,' '); }
 
@@ -1696,9 +1709,8 @@ function addMarks(el, terms) {
   });
 }
 
-srch.addEventListener('input', function() {
-  const raw = this.value;
-  const q   = n(raw);
+function doSearch(raw) {
+  const q     = n(raw);
   const cards = document.querySelectorAll('[data-search]');
   let hits = 0;
   cards.forEach(el => { el.classList.remove('hidden'); clearMarks(el); });
@@ -1723,6 +1735,18 @@ srch.addEventListener('input', function() {
 
   cnt.textContent = hits > 0 ? hits + ' result' + (hits !== 1 ? 's' : '') + ' found' : '';
   nr.style.display = hits === 0 ? 'block' : 'none';
+}
+
+function clearSearch() {
+  srch.value = '';
+  clrBtn.classList.remove('visible');
+  doSearch('');
+  srch.focus();
+}
+
+srch.addEventListener('input', function() {
+  clrBtn.classList.toggle('visible', this.value.length > 0);
+  doSearch(this.value);
 });
 </script>
 </body>
