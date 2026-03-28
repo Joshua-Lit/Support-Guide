@@ -855,6 +855,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <span class="nav-item" onclick="jumpTo('sc-closing')"><span class="ni-dot"></span>Wrapping Up</span>
         <span class="nav-item" onclick="jumpTo('sc-meshbody')"><span class="ni-dot"></span>Explaining Mesh Bodies</span>
         <span class="nav-item" onclick="jumpTo('sc-adult')"><span class="ni-dot"></span>Age Verification</span>
+        <span class="nav-item" onclick="jumpTo('sc-movelock')"><span class="ni-dot"></span>MoveLock / Being Pushed</span>
         <span class="nav-item" onclick="jumpTo('sc-sffl')"><span class="ni-dot"></span>Second Friends for Life</span>
       </div>
     </div>
@@ -891,7 +892,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     <div class="stat-row">
       <div class="stat-chip"><span class="sc-val">12</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip"><span class="sc-val">11</span><span class="sc-lbl">Landmarks</span></div>
-      <div class="stat-chip"><span class="sc-val">8</span><span class="sc-lbl">Scripts</span></div>
+      <div class="stat-chip"><span class="sc-val">9</span><span class="sc-lbl">Scripts</span></div>
     </div>
   </div>
 
@@ -1337,7 +1338,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
       </div>
 
 
-      <div class="faq-item edge-rul" id="faq-rules" data-search="abuse report AR griefer harassment community standards tos ban block mute screenshot">
+      <div class="faq-item edge-rul" id="faq-rules" data-search="abuse report AR griefer harassment community standards tos ban block mute screenshot movelock pushing">
         <div class="faq-q" onclick="tog(this)">
           <span class="faq-q-text">Someone is harassing me / griefing. What do I do?</span>
           <span class="faq-tag t-rul">Rules</span>
@@ -1351,9 +1352,34 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
             <div class="step"><div class="sn">4</div><div><strong>Document</strong> — take screenshots with <code>Ctrl+Shift+S</code>.</div></div>
           </div>
           <p>As a mentor, <strong>do not intervene directly</strong> with griefers — report only.</p>
-          <div class="tip-box">
+
+          <p style="margin-top:14px;"><strong>If someone is pushing you — use MoveLock</strong></p>
+          <p>A MoveLock anchors your avatar to a spot, preventing others from pushing you around.</p>
+
+          <div class="steps">
+            <div class="step"><div class="sn">🔥</div><div><strong>Firestorm:</strong> Built-in MoveLock — toggle with <code>Ctrl+Alt+P</code> (PC) or <code>Command+Option+P</code> (Mac). No extra items needed.</div></div>
+            <div class="step"><div class="sn">👁</div><div><strong>Official SL Viewer:</strong> No built-in MoveLock. Wear a scripted HUD from the Marketplace instead:</div></div>
+          </div>
+
+          <div class="tier-table" style="margin-top:10px;">
+            <div class="tier-row tier-header">
+              <div class="tier-name">HUD</div>
+              <div class="tier-price">Price</div>
+              <div class="tier-price">Notes</div>
+            </div>
+            <div class="tier-row">
+              <div class="tier-name"><span class="tier-icon">⭐</span><div><strong>[CI] Movelock</strong><div class="tier-desc">Copy/Modify/Transfer. Works in no-script areas if activated elsewhere.</div></div></div>
+              <div class="tier-price tier-free">L$0</div>
+              <div class="tier-price" style="font-size:11px;color:var(--text-mid);">Locks when standing still — you can still move freely</div>
+            </div>
+          </div>
+          <div class="mp-links" style="margin-top:10px;">
+            <a class="mp-btn" href="https://marketplace.secondlife.com/products/search?search%5Bmaturity%5D%5B%5D=general&search%5Bmaturity%5D%5B%5D=moderate&search%5Bkeywords%5D=movelock" target="_blank">Search Movelock on Marketplace</a>
+          </div>
+
+          <div class="tip-box" style="margin-top:14px;">
             <div class="tip-label">// Mentor Tip</div>
-            <p>Blocking is local to the viewer only — it doesn't globally ban the user. Only Linden Lab can do that via the AR process.</p>
+            <p>Blocking is local to the viewer only — it doesn't globally ban the user. Only Linden Lab can do that via the AR process. Also remind residents to <strong>disable their MoveLock</strong> before sitting on furniture, riding vehicles, or teleporting — it can cause unexpected snapping back to a previous position.</p>
           </div>
         </div>
       </div>
@@ -1534,7 +1560,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     <div class="section-hdr">
       <div class="sec-icon si-t">📋</div>
       <div class="sec-title">Mentor Tips &amp; Scripts</div>
-      <div class="sec-count">8 scripts</div>
+      <div class="sec-count">9 scripts</div>
     </div>
     <div class="script-list">
 
@@ -1673,6 +1699,31 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
             <button class="copy-btn" onclick="copyText(this)">COPY</button>
           </div>
           <p>Never assume age based on how someone presents their avatar or how they write. The confirmation must be explicit and in chat.</p>
+        </div>
+      </div>
+
+      <div class="sc-card" id="sc-movelock" data-search="movelock pushed around griefing being bumped lock avatar in place firestorm HUD">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Helping a Resident Being Pushed Around</span>
+          <span class="sc-cat">Griefing</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>If a resident is being pushed or bumped by others, a <strong>MoveLock</strong> anchors their avatar in place, preventing others from moving them. Here's what to tell them:</p>
+          <div class="say-block">
+            <div class="say-label">// Firestorm users</div>
+            <div class="say-text">Firestorm has a built-in MoveLock — just press <strong>Ctrl+Alt+P</strong> (PC) or <strong>Command+Option+P</strong> (Mac) to toggle it on. When enabled it locks you in place so no one can push you. Press the same shortcut to turn it off.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// Official SL Viewer users</div>
+            <div class="say-text">The official SL viewer doesn't have a built-in MoveLock, but you can get a free one from the Marketplace. The [CI] Movelock is a great free option — wear it as a HUD and it locks you in place whenever you're standing still, so you can still move freely.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="mp-links">
+            <a class="mp-btn" href="https://marketplace.secondlife.com/p/CI-Movelock-14/478109" target="_blank">[CI] Movelock — Free on Marketplace</a>
+          </div>
+          <p style="margin-top:10px;">Remind them to <strong>disable MoveLock before sitting, riding vehicles, or teleporting</strong> — otherwise they may snap back to their previous position unexpectedly.</p>
         </div>
       </div>
 
