@@ -605,15 +605,14 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .vid-card {
   background:var(--panel); border:1px solid var(--border); border-radius:10px;
   padding:14px 16px; display:flex; align-items:center; gap:14px;
-  text-decoration:none; transition:border-color 0.2s, transform 0.15s;
-  position:relative;
+  position:relative; transition:border-color 0.2s;
 }
 .vid-card::before {
   content:''; position:absolute; left:0; top:0; bottom:0;
   width:6px; background:var(--border2); border-radius:10px 0 0 10px;
   transition:background 0.2s;
 }
-.vid-card:hover { border-color:var(--c-coral); transform:translateY(-2px); }
+.vid-card:hover { border-color:var(--c-coral); }
 .vid-card:hover::before { background:var(--c-coral); }
 .vid-thumb {
   width:42px; height:42px; flex-shrink:0;
@@ -1839,64 +1838,71 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
       <div class="sec-title">Video Links</div>
       <div class="sec-count">7 tutorials</div>
     </div>
-    <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">Useful tutorial videos to share with residents. Links open in a new browser tab.</p>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">Click <strong>Copy</strong> to copy the link, then paste it directly to the resident in chat.</p>
     <div class="vid-grid">
 
-      <a class="vid-card" href="https://youtu.be/SVMvYaOt_PA" target="_blank" data-search="customizing avatar shape appearance tutorial video">
+      <div class="vid-card" data-search="customizing avatar shape appearance tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
           <div class="vid-title">Customizing Your Avatar Shape</div>
           <div class="vid-sub">youtu.be/SVMvYaOt_PA</div>
         </div>
-      </a>
+        <button class="copy-btn" onclick="copyVid(this,'https://youtu.be/SVMvYaOt_PA')">COPY</button>
+      </div>
 
-      <a class="vid-card" href="https://www.youtube.com/watch?v=hRwavBUbhFY" target="_blank" data-search="shopping buying linden dollars L$ marketplace tutorial video">
+      <div class="vid-card" data-search="shopping buying linden dollars L$ marketplace tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
           <div class="vid-title">Shopping &amp; Buying L$</div>
           <div class="vid-sub">youtube.com/watch?v=hRwavBUbhFY</div>
         </div>
-      </a>
+        <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=hRwavBUbhFY')">COPY</button>
+      </div>
 
-      <a class="vid-card" href="https://www.youtube.com/watch?v=lS-0s2-pa-c" target="_blank" data-search="bakes on mesh BOM skin texture tutorial video">
+      <div class="vid-card" data-search="bakes on mesh BOM skin texture tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
           <div class="vid-title">Bakes on Mesh</div>
           <div class="vid-sub">youtube.com/watch?v=lS-0s2-pa-c</div>
         </div>
-      </a>
+        <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=lS-0s2-pa-c')">COPY</button>
+      </div>
 
-      <a class="vid-card" href="https://www.youtube.com/watch?v=ajDa4EUATJw" target="_blank" data-search="communicating chat voice groups IM tutorial video">
+      <div class="vid-card" data-search="communicating chat voice groups IM tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
           <div class="vid-title">Communicating</div>
           <div class="vid-sub">youtube.com/watch?v=ajDa4EUATJw</div>
         </div>
-      </a>
+        <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=ajDa4EUATJw')">COPY</button>
+      </div>
 
-      <a class="vid-card" href="https://www.youtube.com/watch?v=HQFwFCrJ8ek" target="_blank" data-search="music media streaming audio video player tutorial">
+      <div class="vid-card" data-search="music media streaming audio video player tutorial">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
           <div class="vid-title">Music &amp; Media</div>
           <div class="vid-sub">youtube.com/watch?v=HQFwFCrJ8ek</div>
         </div>
-      </a>
+        <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=HQFwFCrJ8ek')">COPY</button>
+      </div>
 
-      <a class="vid-card" href="https://www.youtube.com/watch?v=38RbaCL8pnU" target="_blank" data-search="how to get help support resources tutorial video">
+      <div class="vid-card" data-search="how to get help support resources tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
           <div class="vid-title">How to Get Help</div>
           <div class="vid-sub">youtube.com/watch?v=38RbaCL8pnU</div>
         </div>
-      </a>
+        <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=38RbaCL8pnU')">COPY</button>
+      </div>
 
-      <a class="vid-card" href="https://www.youtube.com/watch?v=kJO20YelMPo" target="_blank" data-search="games gaming activities fun tutorial video">
+      <div class="vid-card" data-search="games gaming activities fun tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
           <div class="vid-title">Games</div>
           <div class="vid-sub">youtube.com/watch?v=kJO20YelMPo</div>
         </div>
-      </a>
+        <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=kJO20YelMPo')">COPY</button>
+      </div>
 
     </div>
   </section>
@@ -2042,6 +2048,14 @@ function jumpTo(id) {
   if (el.classList.contains('faq-item') || el.classList.contains('sc-card')) {
     el.classList.add('open');
   }
+}
+
+function copyVid(btn, url) {
+  navigator.clipboard.writeText(url).then(() => {
+    btn.textContent = '✓ OK';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('ok'); }, 2200);
+  });
 }
 
 function copyText(btn) {
