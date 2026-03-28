@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SL Mentor Guide</title>
+<style>
+  /* Load fonts from Google with swap so layout never breaks if blocked */
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Inter:wght@300;400;500;600&display=swap');
+</style>
+<style>
+:root {
+  --bg:       #080b14;
+  --bg2:      #0c1020;
+  --bg3:      #10152a;
+  --panel:    #121830;
+  --panel2:   #161d38;
+  --border:   #1e2d52;
+  --border2:  #2a3f70;
+  --blue:     #3d7fff;
+  --blue-dim: rgba(61,127,255,0.12);
+  --blue-glow:rgba(61,127,255,0.25);
+  --teal:     #5effc8;
+  --teal-dim: rgba(94,255,200,0.1);
+  --gold:     #ffc654;
+  --gold-dim: rgba(255,198,84,0.1);
+  --purple:   #a78bff;
+  --red:      #ff5a5a;
+  --text:     #b8cae8;
+  --text-dim: #5a7099;
+  --text-hi:  #e8f0ff;
+  --text-mid: #8aa0cc;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(61,127,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(61,127,255,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 15% 25%, rgba(94,255,200,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 42% 8%,  rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 68% 55%, rgba(61,127,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 82% 18%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 93% 72%, rgba(94,255,200,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 6%  88%, rgba(167,139,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 92%, rgba(255,255,255,0.2) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#app { display: flex; min-height: 100vh; position: relative; z-index: 1; }
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+/* ═══ SIDEBAR ═══ */
+#sidebar {
+  width: 258px;
+  min-width: 258px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: visible;
+}
+
+.logo {
+  padding: 20px 18px 16px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: visible;
+}
+.logo::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue), var(--teal), transparent);
+  overflow: hidden;
+}
+.logo-row {
+  font-family: 'Orbitron', 'Courier New', monospace;
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: var(--blue);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  overflow: visible;
+}
+.logo-hex {
+  width: 30px; height: 30px;
+  background: var(--blue-dim);
+  border: 1px solid rgba(61,127,255,0.5);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.logo-sub {
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 6px;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+}
+
+.search-wrap { padding: 12px 14px; border-bottom: 1px solid var(--border); }
+.search-inner { position: relative; }
+.search-icon {
+  position: absolute; left: 10px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-dim); font-size: 11px;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  pointer-events: none;
+}
+#global-search {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px 8px 30px;
+  color: var(--text-hi);
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+#global-search:focus { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-dim); }
+#global-search::placeholder { color: var(--text-dim); }
+#search-count {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--teal);
+  padding: 5px 2px 0;
+  min-height: 18px;
+}
+
+.nav { flex: 1; padding: 6px 0 20px; }
+.nav-group { margin-bottom: 2px; }
+.nav-group-hdr {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s;
+}
+.nav-group-hdr:hover { color: var(--text-mid); }
+.nav-group-hdr .ng-arrow { margin-left: auto; font-size: 9px; transition: transform 0.2s; }
+.nav-group-hdr.open .ng-arrow { transform: rotate(90deg); }
+.nav-items { display: none; }
+.nav-items.open { display: block; }
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px 6px 30px;
+  font-size: 12px;
+  color: var(--text-dim);
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: all 0.15s;
+  text-decoration: none;
+}
+.nav-item:hover { color: var(--text); border-left-color: var(--border2); background: rgba(61,127,255,0.05); }
+.nav-item.active { color: var(--blue); border-left-color: var(--blue); background: var(--blue-dim); }
+.ni-dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+
+.sidebar-status {
+  border-top: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.status-text { font-family:'Share Tech Mono','Courier New',monospace; font-size:9px; color:var(--text-dim); }
+
+/* ═══ MAIN ═══ */
+#main { flex:1; padding:40px 52px 100px; overflow-x:hidden; min-width:0; }
+
+.page-hdr {
+  margin-bottom: 40px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.page-hdr::after {
+  content:''; position:absolute; bottom:-1px; left:0;
+  width:100px; height:1px;
+  background: linear-gradient(90deg, var(--blue), transparent);
+}
+.eyebrow {
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:10px;
+  color:var(--teal); letter-spacing:3px; text-transform:uppercase;
+  margin-bottom:8px;
+}
+.page-hdr h1 {
+  font-family:'Orbitron','Courier New',monospace; font-size:1.75rem;
+  font-weight:700; color:var(--text-hi); letter-spacing:1px; line-height:1.2;
+}
+.page-hdr p { color:var(--text-dim); margin-top:10px; font-size:13px; max-width:580px; }
+.stat-row { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+.stat-chip {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:6px; padding:6px 14px;
+  display:flex; align-items:center; gap:8px;
+}
+.sc-val { font-family:'Orbitron','Courier New',monospace; font-size:14px; font-weight:600; color:var(--blue); }
+.sc-lbl { font-size:11px; color:var(--text-dim); }
+
+.section { margin-bottom:56px; scroll-margin-top:24px; }
+
+.section-hdr {
+  display:flex; align-items:center; gap:14px;
+  margin-bottom:22px; padding-bottom:14px;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.section-hdr::after {
+  content:''; position:absolute; bottom:-1px; left:0;
+  width:50px; height:1px; background:var(--teal);
+}
+.sec-icon {
+  width:36px; height:36px; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; flex-shrink:0;
+}
+.si-b { background:var(--blue-dim); border:1px solid rgba(61,127,255,0.3); }
+.si-g { background:var(--gold-dim); border:1px solid rgba(255,198,84,0.3); }
+.si-t { background:var(--teal-dim); border:1px solid rgba(94,255,200,0.3); }
+.sec-title { font-family:'Orbitron','Courier New',monospace; font-size:1rem; font-weight:600; color:var(--text-hi); letter-spacing:1px; }
+.sec-count {
+  margin-left:auto;
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:10px;
+  color:var(--text-dim); background:var(--panel);
+  border:1px solid var(--border); border-radius:4px; padding:2px 8px;
+}
+
+#no-results { display:none; text-align:center; padding:80px 0; color:var(--text-dim); }
+.nr-code { font-family:'Share Tech Mono','Courier New',monospace; font-size:2.5rem; color:var(--border2); margin-bottom:12px; }
+
+/* ═══ FAQ ═══ */
+.faq-list { display:flex; flex-direction:column; gap:8px; }
+
+.faq-item {
+  background:var(--panel); border:1px solid var(--border); border-radius:10px;
+  overflow:hidden; transition:border-color 0.2s, box-shadow 0.2s;
+  position:relative;
+}
+.faq-item::before {
+  content:''; position:absolute; left:0; top:0; bottom:0;
+  width:3px; background:var(--border2); transition:background 0.2s, box-shadow 0.2s;
+}
+.faq-item:hover { border-color:var(--border2); }
+.faq-item:hover::before { background:var(--blue); }
+.faq-item.open { border-color:rgba(61,127,255,0.35); box-shadow:0 4px 24px rgba(0,0,0,0.35); }
+.faq-item.open::before { background:var(--blue); }
+.faq-item.hidden { display:none; }
+
+.faq-q {
+  display:flex; align-items:center; gap:12px;
+  padding:14px 16px 14px 20px;
+  cursor:pointer; user-select:none;
+}
+.faq-q-text { flex:1; font-size:13px; font-weight:500; color:var(--text-hi); line-height:1.4; }
+
+.faq-tag {
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:9px;
+  letter-spacing:1px; padding:3px 8px; border-radius:4px;
+  white-space:nowrap; flex-shrink:0;
+}
+.t-app { color:var(--purple); background:rgba(167,139,255,0.1); border:1px solid rgba(167,139,255,0.25); }
+.t-inv { color:var(--gold);   background:var(--gold-dim);        border:1px solid rgba(255,198,84,0.25); }
+.t-mov { color:var(--teal);   background:var(--teal-dim);        border:1px solid rgba(94,255,200,0.25); }
+.t-eco { color:var(--gold);   background:var(--gold-dim);        border:1px solid rgba(255,198,84,0.25); }
+.t-grp { color:var(--blue);   background:var(--blue-dim);        border:1px solid rgba(61,127,255,0.25); }
+.t-lnd { color:var(--teal);   background:var(--teal-dim);        border:1px solid rgba(94,255,200,0.25); }
+.t-acc { color:var(--blue);   background:var(--blue-dim);        border:1px solid rgba(61,127,255,0.25); }
+.t-rul { color:var(--red);    background:rgba(255,90,90,0.08);   border:1px solid rgba(255,90,90,0.25); }
+.t-aud { color:var(--purple); background:rgba(167,139,255,0.1);  border:1px solid rgba(167,139,255,0.25); }
+
+.faq-tog {
+  width:22px; height:22px; border-radius:50%;
+  border:1px solid var(--border2);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--text-dim); font-size:15px; line-height:1;
+  flex-shrink:0; transition:all 0.2s;
+}
+.faq-item.open .faq-tog { transform:rotate(45deg); border-color:var(--blue); color:var(--blue); background:var(--blue-dim); }
+
+.faq-body {
+  display:none; padding:16px 20px 18px 20px;
+  border-top:1px solid var(--border);
+}
+.faq-item.open .faq-body { display:block; }
+
+.faq-body p { font-size:13px; color:var(--text); margin-bottom:10px; line-height:1.7; }
+.faq-body p:last-child { margin-bottom:0; }
+.faq-body strong { color:var(--text-hi); font-weight:600; }
+.faq-body code {
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:11px;
+  background:var(--bg3); border:1px solid var(--border);
+  border-radius:4px; padding:1px 6px; color:var(--gold);
+}
+
+.steps {
+  background:var(--bg3); border:1px solid var(--border);
+  border-radius:8px; padding:12px 14px; margin:10px 0;
+  display:flex; flex-direction:column; gap:8px;
+}
+.step { display:flex; gap:10px; align-items:flex-start; font-size:12.5px; color:var(--text); }
+.sn {
+  width:20px; height:20px; border-radius:50%;
+  background:var(--blue-dim); border:1px solid rgba(61,127,255,0.4);
+  color:var(--blue); font-family:'Share Tech Mono','Courier New',monospace; font-size:10px;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:1px;
+}
+
+.tip-box {
+  background:rgba(94,255,200,0.04); border-left:2px solid var(--teal);
+  border-radius:0 6px 6px 0; padding:10px 14px; margin-top:12px;
+}
+.tip-label {
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:9px;
+  color:var(--teal); letter-spacing:2px; text-transform:uppercase; margin-bottom:5px;
+}
+.tip-box p { font-size:12.5px; color:var(--text-mid); margin:0; }
+
+/* ═══ LANDMARKS ═══ */
+.lm-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(285px,1fr)); gap:14px; }
+
+.lm-card {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:10px; padding:18px 20px;
+  transition:border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  position:relative; overflow:hidden;
+}
+.lm-card::after {
+  content:''; position:absolute; top:0; right:0;
+  width:70px; height:70px;
+  background:radial-gradient(circle at top right, rgba(255,198,84,0.06), transparent 70%);
+  pointer-events:none;
+}
+.lm-card:hover { border-color:rgba(255,198,84,0.5); transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,0.4); }
+.lm-card.hidden { display:none; }
+
+.lm-name { font-family:'Orbitron','Courier New',monospace; font-size:12px; font-weight:600; color:var(--gold); margin-bottom:6px; }
+.lm-region { font-family:'Share Tech Mono','Courier New',monospace; font-size:10px; color:var(--text-dim); margin-bottom:10px; word-break:break-all; }
+.lm-desc { font-size:12.5px; color:var(--text); line-height:1.55; margin-bottom:14px; }
+.lm-badges { display:flex; flex-wrap:wrap; gap:5px; }
+.lm-badge {
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:9px;
+  letter-spacing:1px; padding:2px 8px; border-radius:3px; text-transform:uppercase;
+}
+.b-help    { color:var(--teal);   background:var(--teal-dim);            border:1px solid rgba(94,255,200,0.2); }
+.b-social  { color:var(--blue);   background:var(--blue-dim);            border:1px solid rgba(61,127,255,0.2); }
+.b-shop    { color:var(--gold);   background:var(--gold-dim);            border:1px solid rgba(255,198,84,0.2); }
+.b-info    { color:var(--purple); background:rgba(167,139,255,0.08);    border:1px solid rgba(167,139,255,0.2); }
+.b-sandbox { color:#ff9a6b;       background:rgba(255,154,107,0.08);    border:1px solid rgba(255,154,107,0.2); }
+.b-mentor  { color:var(--teal);   background:var(--teal-dim);            border:1px solid rgba(94,255,200,0.2); }
+
+/* ═══ SCRIPTS ═══ */
+.script-list { display:flex; flex-direction:column; gap:10px; }
+
+.sc-card {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:10px; overflow:hidden;
+  transition:border-color 0.2s; position:relative;
+}
+.sc-card::before {
+  content:''; position:absolute; left:0; top:0; bottom:0;
+  width:3px; background:var(--border2); transition:background 0.2s;
+}
+.sc-card:hover { border-color:var(--border2); }
+.sc-card:hover::before { background:var(--teal); }
+.sc-card.open { border-color:rgba(94,255,200,0.3); }
+.sc-card.open::before { background:var(--teal); }
+.sc-card.hidden { display:none; }
+
+.sc-hdr {
+  display:flex; align-items:center; gap:12px;
+  padding:14px 16px 14px 20px;
+  cursor:pointer; user-select:none;
+}
+.sc-title { flex:1; font-size:13px; font-weight:500; color:var(--text-hi); }
+.sc-cat {
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:9px;
+  letter-spacing:1px; padding:3px 8px; border-radius:4px;
+  color:var(--teal); background:var(--teal-dim);
+  border:1px solid rgba(94,255,200,0.25); white-space:nowrap;
+}
+.sc-tog {
+  width:22px; height:22px; border-radius:50%;
+  border:1px solid var(--border2);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--text-dim); font-size:15px; line-height:1;
+  flex-shrink:0; transition:all 0.2s;
+}
+.sc-card.open .sc-tog { transform:rotate(45deg); border-color:var(--teal); color:var(--teal); background:var(--teal-dim); }
+
+.sc-body {
+  display:none; padding:16px 20px 18px 20px;
+  border-top:1px solid var(--border);
+}
+.sc-card.open .sc-body { display:block; }
+.sc-body p { font-size:13px; color:var(--text); margin-bottom:10px; line-height:1.7; }
+.sc-body p:last-child { margin-bottom:0; }
+.sc-body strong { color:var(--text-hi); font-weight:600; }
+
+.say-block {
+  background:var(--bg3); border:1px solid var(--border);
+  border-left:2px solid var(--blue); border-radius:0 8px 8px 0;
+  padding:12px 14px; margin:12px 0; position:relative;
+}
+.say-label {
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:9px;
+  color:var(--blue); letter-spacing:2px; text-transform:uppercase; margin-bottom:6px;
+}
+.say-text {
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:12px;
+  color:var(--gold); line-height:1.6; white-space:pre-wrap;
+  padding-right:52px;
+}
+.copy-btn {
+  position:absolute; top:10px; right:10px;
+  background:var(--blue-dim); border:1px solid rgba(61,127,255,0.3);
+  color:var(--blue); border-radius:5px; padding:3px 10px;
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:9px;
+  letter-spacing:1px; cursor:pointer; transition:all 0.15s;
+}
+.copy-btn:hover { background:rgba(61,127,255,0.22); }
+.copy-btn.ok { color:var(--teal); border-color:rgba(94,255,200,0.3); background:var(--teal-dim); }
+
+.bullets {
+  background:var(--bg3); border:1px solid var(--border);
+  border-radius:8px; padding:12px 14px; margin-top:10px;
+  display:flex; flex-direction:column; gap:7px;
+}
+.bullet { display:flex; gap:10px; align-items:flex-start; font-size:12.5px; color:var(--text); }
+.bullet::before { content:'▸'; color:var(--teal); flex-shrink:0; margin-top:1px; font-size:11px; }
+
+mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; padding:0 2px; }
+
+@media (max-width:880px) {
+  #sidebar { width:220px; min-width:220px; }
+  #main { padding:28px 24px 80px; }
+}
+@media (max-width:640px) {
+  #app { flex-direction:column; }
+  #sidebar { width:100%; height:auto; position:relative; }
+  .nav { display:none; }
+  #main { padding:20px 14px 60px; }
+  .page-hdr h1 { font-size:1.3rem; }
+}
+
+/* ═══ SECTION ICON — purple ═══ */
+.si-p { background:rgba(167,139,255,0.1); border:1px solid rgba(167,139,255,0.3); }
+
+/* ═══ QUICK INDEX ═══ */
+.qi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 10px;
+}
+.qi-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  position: relative;
+}
+.qi-card:hover {
+  border-color: var(--blue);
+  background: var(--blue-dim);
+  transform: translateY(-2px);
+}
+.qi-card.hidden { display: none; }
+.qi-icon { font-size: 20px; flex-shrink: 0; width: 24px; text-align: center; }
+.qi-info { flex: 1; min-width: 0; }
+.qi-title { font-size: 12.5px; font-weight: 600; color: var(--text-hi); line-height: 1.3; }
+.qi-sub   { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+.qi-arrow {
+  font-size: 18px;
+  color: var(--text-dim);
+  transition: color 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+.qi-card:hover .qi-arrow { color: var(--blue); transform: translateX(3px); }
+
+/* ═══ CLARA ═══ */
+.clara-intro {
+  font-size:13px; color:var(--text-mid); line-height:1.7;
+  margin-bottom:22px; max-width:680px;
+}
+.clara-steps { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.clara-step {
+  background:var(--panel); border:1px solid var(--border); border-radius:10px;
+  padding:18px 20px; display:flex; gap:18px; align-items:flex-start;
+  transition:border-color 0.2s;
+}
+.clara-step:hover { border-color:var(--border2); }
+.clara-letter {
+  font-family:'Orbitron','Courier New',monospace;
+  font-size:1.6rem; font-weight:900;
+  width:52px; height:52px; flex-shrink:0;
+  border:1px solid; border-radius:10px;
+  display:flex; align-items:center; justify-content:center; letter-spacing:0;
+}
+.clara-content { flex:1; min-width:0; }
+.clara-name { font-size:14px; font-weight:600; color:var(--text-hi); margin-bottom:4px; }
+.clara-alt { font-size:11px; color:var(--text-dim); font-weight:400; }
+.clara-goal { font-size:12.5px; color:var(--text-mid); margin-bottom:10px; line-height:1.5; }
+.clara-action {
+  background:var(--bg3); border:1px solid var(--border); border-radius:7px;
+  padding:10px 13px; font-size:12.5px; color:var(--text); line-height:1.6;
+}
+.clara-action-label {
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:9px;
+  color:var(--text-dim); letter-spacing:2px; text-transform:uppercase; margin-bottom:5px;
+}
+.clara-examples { display:flex; flex-direction:column; gap:6px; margin-top:10px; }
+.clara-example {
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:11.5px;
+  color:var(--gold); background:var(--bg3); border:1px solid var(--border);
+  border-left:2px solid rgba(255,198,84,0.5); border-radius:0 6px 6px 0;
+  padding:7px 12px; line-height:1.5;
+}
+.clara-proscons { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:4px; }
+.clara-pro-col, .clara-con-col {
+  background:var(--panel); border:1px solid var(--border); border-radius:10px;
+  padding:16px 18px; display:flex; flex-direction:column; gap:12px;
+}
+.clara-col-hdr {
+  font-family:'Orbitron','Courier New',monospace;
+  font-size:11px; font-weight:700; letter-spacing:1px;
+  padding-bottom:10px; border-bottom:1px solid var(--border);
+}
+.pro-hdr { color:var(--teal); }
+.con-hdr { color:var(--red); }
+.clara-pc-item { display:flex; flex-direction:column; gap:3px; }
+.clara-pc-title { font-size:12.5px; font-weight:600; color:var(--text-hi); }
+.clara-pc-desc  { font-size:12px; color:var(--text-mid); line-height:1.55; }
+.warn-item .clara-pc-title { color:var(--red); }
+@media (max-width:700px) {
+  .clara-proscons { grid-template-columns:1fr; }
+  .clara-step { flex-direction:column; gap:12px; }
+  .clara-letter { width:42px; height:42px; font-size:1.3rem; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- ══════════════════════ SIDEBAR ══════════════════════ -->
+<nav id="sidebar">
+  <div class="logo">
+    <div class="logo-row"><div class="logo-hex">⬡</div>SL MENTOR</div>
+    <div class="logo-sub">Resident Support Reference</div>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-inner">
+      <span class="search-icon">//</span>
+      <input type="text" id="global-search" placeholder="search guide..." autocomplete="off" spellcheck="false">
+    </div>
+    <div id="search-count"></div>
+  </div>
+
+  <div class="nav">
+
+    <div class="nav-group">
+      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+        <span>⚡</span> Quick Index <span class="ng-arrow">▶</span>
+      </div>
+      <div class="nav-items open">
+        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All topics</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+        <span>❓</span> FAQs &amp; Answers <span class="ng-arrow">▶</span>
+      </div>
+      <div class="nav-items open">
+        <span class="nav-item" onclick="jumpTo('faq-appearance')"><span class="ni-dot"></span>Avatar Appearance</span>
+        <span class="nav-item" onclick="jumpTo('faq-inventory')"><span class="ni-dot"></span>Inventory Issues</span>
+        <span class="nav-item" onclick="jumpTo('faq-movement')"><span class="ni-dot"></span>Movement &amp; Teleport</span>
+        <span class="nav-item" onclick="jumpTo('faq-economy')"><span class="ni-dot"></span>Economy &amp; L$</span>
+        <span class="nav-item" onclick="jumpTo('faq-groups')"><span class="ni-dot"></span>Groups &amp; Chat</span>
+        <span class="nav-item" onclick="jumpTo('faq-land')"><span class="ni-dot"></span>Land &amp; Parcels</span>
+        <span class="nav-item" onclick="jumpTo('faq-account')"><span class="ni-dot"></span>Account &amp; Membership</span>
+        <span class="nav-item" onclick="jumpTo('faq-rules')"><span class="ni-dot"></span>Rules &amp; Reporting</span>
+        <span class="nav-item" onclick="jumpTo('faq-voice')"><span class="ni-dot"></span>Voice &amp; Audio</span>
+        <span class="nav-item" onclick="jumpTo('faq-free-avatar')"><span class="ni-dot"></span>Free Good Avatar</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+        <span>📍</span> Landmark Directory <span class="ng-arrow">▶</span>
+      </div>
+      <div class="nav-items open">
+        <span class="nav-item" onclick="jumpTo('lm-welcome')"><span class="ni-dot"></span>Welcome Hub</span>
+        <span class="nav-item" onclick="jumpTo('lm-sandbox')"><span class="ni-dot"></span>Linden Sandbox</span>
+        <span class="nav-item" onclick="jumpTo('lm-helpisle')"><span class="ni-dot"></span>Help Island Public</span>
+        <span class="nav-item" onclick="jumpTo('lm-freedove')"><span class="ni-dot"></span>The Free Dove</span>
+        <span class="nav-item" onclick="jumpTo('lm-belli')"><span class="ni-dot"></span>Bellisseria Hub</span>
+        <span class="nav-item" onclick="jumpTo('lm-meshbody')"><span class="ni-dot"></span>Mesh Body Stores</span>
+        <span class="nav-item" onclick="jumpTo('lm-dest')"><span class="ni-dot"></span>Destination Guide</span>
+        <span class="nav-item" onclick="jumpTo('lm-mentors')"><span class="ni-dot"></span>SL Mentors HQ</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+        <span>📋</span> Tips &amp; Scripts <span class="ng-arrow">▶</span>
+      </div>
+      <div class="nav-items open">
+        <span class="nav-item" onclick="jumpTo('sc-greeting')"><span class="ni-dot"></span>Greeting a Resident</span>
+        <span class="nav-item" onclick="jumpTo('sc-overwhelmed')"><span class="ni-dot"></span>Overwhelmed Resident</span>
+        <span class="nav-item" onclick="jumpTo('sc-dontknow')"><span class="ni-dot"></span>When You Don't Know</span>
+        <span class="nav-item" onclick="jumpTo('sc-difficult')"><span class="ni-dot"></span>Difficult Residents</span>
+        <span class="nav-item" onclick="jumpTo('sc-closing')"><span class="ni-dot"></span>Wrapping Up</span>
+        <span class="nav-item" onclick="jumpTo('sc-meshbody')"><span class="ni-dot"></span>Explaining Mesh Bodies</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+        <span>🕊️</span> CLARA Method <span class="ng-arrow">▶</span>
+      </div>
+      <div class="nav-items open">
+        <span class="nav-item" onclick="jumpTo('sec-clara')"><span class="ni-dot"></span>Overview</span>
+        <span class="nav-item" onclick="jumpTo('clara-c')"><span class="ni-dot"></span>C — Centre Yourself</span>
+        <span class="nav-item" onclick="jumpTo('clara-l')"><span class="ni-dot"></span>L — Listen</span>
+        <span class="nav-item" onclick="jumpTo('clara-a1')"><span class="ni-dot"></span>A — Affirm</span>
+        <span class="nav-item" onclick="jumpTo('clara-r')"><span class="ni-dot"></span>R — Respond</span>
+        <span class="nav-item" onclick="jumpTo('clara-a2')"><span class="ni-dot"></span>A — Add / Adjust</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sidebar-status">
+    <div class="status-dot"></div>
+    <div class="status-text">GUIDE ONLINE — SL MENTORS</div>
+  </div>
+</nav>
+
+<!-- ══════════════════════ MAIN ══════════════════════ -->
+<main id="main">
+
+  <div class="page-hdr">
+    <div class="eyebrow">// SECOND LIFE MENTOR REFERENCE</div>
+    <h1>Resident Support Guide</h1>
+    <p>Searchable reference for SL Mentors — covering frequent questions, key in-world locations, and ready-to-use scripts for helping new residents.</p>
+    <div class="stat-row">
+      <div class="stat-chip"><span class="sc-val">10</span><span class="sc-lbl">FAQs</span></div>
+      <div class="stat-chip"><span class="sc-val">8</span><span class="sc-lbl">Landmarks</span></div>
+      <div class="stat-chip"><span class="sc-val">6</span><span class="sc-lbl">Scripts</span></div>
+    </div>
+  </div>
+
+  <div id="no-results">
+    <div class="nr-code">// 404</div>
+    <p>No results found. Try a different search term.</p>
+  </div>
+
+  <!-- ══════ QUICK INDEX ══════ -->
+  <section class="section" id="sec-index" data-section>
+    <div class="section-hdr">
+      <div class="sec-icon si-b">⚡</div>
+      <div class="sec-title">Quick Index</div>
+      <div class="sec-count">Jump to any topic</div>
+    </div>
+    <div class="qi-grid">
+
+      <div class="qi-card" data-search="avatar appearance shape skin attachments cloud grey" onclick="jumpTo('faq-appearance')">
+        <div class="qi-icon">👤</div>
+        <div class="qi-info">
+          <div class="qi-title">Avatar Appearance</div>
+          <div class="qi-sub">Shape, skin, attachments</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card" data-search="inventory lost missing items folder trash" onclick="jumpTo('faq-inventory')">
+        <div class="qi-icon">🎒</div>
+        <div class="qi-info">
+          <div class="qi-title">Inventory Issues</div>
+          <div class="qi-sub">Lost, missing, sorting</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card" data-search="movement teleport flying stuck tp" onclick="jumpTo('faq-movement')">
+        <div class="qi-icon">🚀</div>
+        <div class="qi-info">
+          <div class="qi-title">Movement &amp; Teleports</div>
+          <div class="qi-sub">Flying, TP issues, stuck</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card" data-search="linden dollars economy buying money transactions" onclick="jumpTo('faq-economy')">
+        <div class="qi-icon">💰</div>
+        <div class="qi-info">
+          <div class="qi-title">Economy &amp; L$</div>
+          <div class="qi-sub">Buying L$, transactions</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card" data-search="groups chat voice notifications join" onclick="jumpTo('faq-groups')">
+        <div class="qi-icon">💬</div>
+        <div class="qi-info">
+          <div class="qi-title">Groups &amp; Chat</div>
+          <div class="qi-sub">Join, voice, notifications</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card" data-search="land parcels renting buying mainland" onclick="jumpTo('faq-land')">
+        <div class="qi-icon">🏡</div>
+        <div class="qi-info">
+          <div class="qi-title">Land &amp; Parcels</div>
+          <div class="qi-sub">Renting, buying, mainland</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card" data-search="account premium basic membership tier" onclick="jumpTo('faq-account')">
+        <div class="qi-icon">🔑</div>
+        <div class="qi-info">
+          <div class="qi-title">Account &amp; Membership</div>
+          <div class="qi-sub">Premium, basic, tiers</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card" data-search="rules abuse griefer report AR ToS" onclick="jumpTo('faq-rules')">
+        <div class="qi-icon">🛡️</div>
+        <div class="qi-info">
+          <div class="qi-title">Rules &amp; Reporting</div>
+          <div class="qi-sub">AR, griefers, ToS</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card" data-search="free avatar good look legacy body mike head firestorm" onclick="jumpTo('faq-free-avatar')">
+        <div class="qi-icon">✨</div>
+        <div class="qi-info">
+          <div class="qi-title">Free Good Avatar</div>
+          <div class="qi-sub">Legacy body, Mike Head</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card" data-search="landmarks welcome hub sandbox help island" onclick="jumpTo('sec-landmarks')">
+        <div class="qi-icon">📍</div>
+        <div class="qi-info">
+          <div class="qi-title">Key Landmarks</div>
+          <div class="qi-sub">Help areas, hubs, sandboxes</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card" data-search="mentor scripts greetings phrases tips" onclick="jumpTo('sec-scripts')">
+        <div class="qi-icon">📋</div>
+        <div class="qi-info">
+          <div class="qi-title">Mentor Scripts</div>
+          <div class="qi-sub">Greetings, common responses</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card" data-search="clara method de-escalation nonviolent communication empathy" onclick="jumpTo('sec-clara')">
+        <div class="qi-icon">🕊️</div>
+        <div class="qi-info">
+          <div class="qi-title">CLARA Method</div>
+          <div class="qi-sub">De-escalation framework</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════ SECTION 1 — FAQs ══════ -->
+  <section class="section" id="sec-faqs" data-section>
+    <div class="section-hdr">
+      <div class="sec-icon si-b">❓</div>
+      <div class="sec-title">FAQs &amp; Answers</div>
+      <div class="sec-count">10 entries</div>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item" id="faq-appearance" data-search="avatar appearance shape skin bake fail cloud grey ruth rebake textures attachments hud">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">My avatar looks like a cloud / grey blob — how do I fix it?</span>
+          <span class="faq-tag t-app">Appearance</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>This is a <strong>bake fail</strong> — your avatar textures haven't loaded properly.</p>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div>Wait 30 seconds — resolves itself on slow connections.</div></div>
+            <div class="step"><div class="sn">2</div><div><strong>Avatar menu → Avatar Health → Refresh Attachments</strong></div></div>
+            <div class="step"><div class="sn">3</div><div><strong>Avatar → Avatar Health → Rebake Textures</strong> (shortcut: <code>Ctrl+Alt+R</code>)</div></div>
+            <div class="step"><div class="sn">4</div><div>Still grey? Change to a different region, or relog entirely.</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>If stuck as "Ruth" (old default), have them wear a complete outfit from Library: <strong>Inventory → Library → Avatars</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" data-search="attachment hud won't attach disappearing lag attach point skeleton reset">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">My attachment / HUD won't attach or keeps disappearing.</span>
+          <span class="faq-tag t-app">Appearance</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>Usually caused by <strong>inventory not fully loading</strong> or high sim lag.</p>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div>Check <strong>Inventory → Recent</strong> — wait for the spinning wheel to stop.</div></div>
+            <div class="step"><div class="sn">2</div><div>Right-click the item → <strong>Attach To</strong> → choose attach point manually.</div></div>
+            <div class="step"><div class="sn">3</div><div>If vanished: <strong>Edit → Detach Object</strong> — it may have attached off-screen.</div></div>
+            <div class="step"><div class="sn">4</div><div>Relog on a quieter, lower-traffic region.</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>If a HUD seems lost, try <strong>Avatar → Avatar Health → Reset Skeleton &amp; Animations</strong> and relog.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-inventory" data-search="inventory lost missing items folder trash recent received marketplace redeliver">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">I can't find items in my inventory — items seem missing.</span>
+          <span class="faq-tag t-inv">Inventory</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>Items are rarely truly lost. Work through these steps:</p>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div>Use the <strong>inventory search bar</strong> — try partial names or creator names.</div></div>
+            <div class="step"><div class="sn">2</div><div>Check the <strong>Recent</strong> and <strong>Received Items</strong> tabs.</div></div>
+            <div class="step"><div class="sn">3</div><div>Check the <strong>Trash</strong> folder — items can end up there accidentally.</div></div>
+            <div class="step"><div class="sn">4</div><div>Recently purchased? Check <strong>Recent Items</strong> or the <strong>Objects</strong> subfolder.</div></div>
+            <div class="step"><div class="sn">5</div><div>Firestorm: <strong>Avatar → Avatar Health → Clear Inventory Cache</strong>, then relog.</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>Marketplace purchases can be re-delivered at no charge from the resident's order history at marketplace.secondlife.com.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-movement" data-search="teleport failed error stuck unable move flying ghost avatar home sit stand">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">Teleport failed / I'm stuck and can't move.</span>
+          <span class="faq-tag t-mov">Movement</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>Teleport failures are common under high server load.</p>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div>Wait 60 seconds — ghost avatars need time to catch up.</div></div>
+            <div class="step"><div class="sn">2</div><div>Teleport home: <strong>World → Teleport Home</strong>.</div></div>
+            <div class="step"><div class="sn">3</div><div>If stuck in place: <strong>sit</strong> on a nearby object, then <strong>stand</strong>.</div></div>
+            <div class="step"><div class="sn">4</div><div>Last resort: secondlife.com → <strong>My Account → Return Home</strong>.</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>Remind newcomers about flying: <code>Page Up</code> to ascend, <code>Page Down</code> to descend, <code>F</code> to toggle fly mode (viewer-dependent).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-economy" data-search="linden dollars buy purchase exchange lindens transaction stipend lindex earn work premium">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">How do I get Linden Dollars (L$)?</span>
+          <span class="faq-tag t-eco">Economy</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div><strong>Buy L$:</strong> Me → Buy L$ in viewer, or via LindeX on secondlife.com. Rate: approx <code>250–270 L$ per US$1</code>.</div></div>
+            <div class="step"><div class="sn">2</div><div><strong>Earn in-world:</strong> Work as host, DJ, model, scripter, or builder — many roles pay L$/hour.</div></div>
+            <div class="step"><div class="sn">3</div><div><strong>Premium stipend:</strong> Premium members receive a weekly L$ allowance automatically.</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>Failed purchase? Direct residents to <strong>Help → Support Portal → Billing</strong>. Never ask for or accept L$ as a mentor.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-groups" data-search="group join leave chat voice notifications spam limit 42 70 activate tag">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">How do groups work? I'm getting too many notifications.</span>
+          <span class="faq-tag t-grp">Groups</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p><strong>Limits:</strong> Free accounts can join up to <code>42</code> groups; Premium up to <code>70</code>.</p>
+          <p><strong>Joining:</strong> Search via <em>People → Groups → Search</em> or click a group sign in-world.</p>
+          <p><strong>Silencing notices:</strong> Right-click the group → <strong>Edit</strong> → uncheck <strong>Receive Notices</strong>.</p>
+          <p><strong>Active tag:</strong> Only one group tag shows at a time — click the group → press <strong>Activate</strong>.</p>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>Newcomers often accidentally leave important groups. Remind them to check <em>People → Groups</em> regularly.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-land" data-search="land parcel rent buy mainland homestead region linden home premium bellisseria houseboat">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">How do I get my own land / place to live?</span>
+          <span class="faq-tag t-lnd">Land</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p><strong>Linden Homes (Premium):</strong> Premium members get a free Linden Home — themes include Bellisseria, Traditional, Houseboats, Stilt Houses. Claim via <em>secondlife.com → My Account → Get a Linden Home</em>.</p>
+          <p><strong>Renting from estates:</strong> Many estate owners rent parcels for L$/week. Search <em>Land Rental</em> on Marketplace or in-world classifieds.</p>
+          <p><strong>Buying mainland:</strong> Requires Premium and uses the L$ land auction system. Not recommended for newcomers.</p>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>Newcomers often confuse "renting" (paying L$ to a private landlord) with "owning" (paying tier to Linden Lab). Always clarify the difference.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-account" data-search="premium basic account upgrade membership tier stipend benefits plus 42 70 groups free">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">What's the difference between Basic and Premium membership?</span>
+          <span class="faq-tag t-acc">Account</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <div class="steps">
+            <div class="step"><div class="sn">🔓</div><div><strong>Basic (Free):</strong> Full world access, 42 groups, Marketplace, L$ buying. Cannot own land or claim a Linden Home.</div></div>
+            <div class="step"><div class="sn">⭐</div><div><strong>Premium:</strong> ~300 L$/week stipend, free Linden Home, 70 groups, Premium sandboxes, 24/7 live chat support.</div></div>
+            <div class="step"><div class="sn">💎</div><div><strong>Premium Plus:</strong> Higher stipend, more groups, additional perks — designed for power users.</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>Encourage newcomers to explore the free tier fully before upgrading — most features are available at no cost.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-rules" data-search="abuse report AR griefer harassment community standards tos ban block mute screenshot">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">Someone is harassing me / griefing. What do I do?</span>
+          <span class="faq-tag t-rul">Rules</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div><strong>Mute/Block</strong> immediately: right-click avatar → <strong>Block</strong>.</div></div>
+            <div class="step"><div class="sn">2</div><div><strong>Move away</strong> — teleport to a different area or home.</div></div>
+            <div class="step"><div class="sn">3</div><div><strong>File an Abuse Report:</strong> Help → Report Abuse, choose category, describe what happened, submit.</div></div>
+            <div class="step"><div class="sn">4</div><div><strong>Document</strong> — take screenshots with <code>Ctrl+Shift+S</code>.</div></div>
+          </div>
+          <p>As a mentor, <strong>do not intervene directly</strong> with griefers — report only.</p>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>Blocking is local to the viewer only — it doesn't globally ban the user. Only Linden Lab can do that via the AR process.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-voice" data-search="voice chat not working microphone audio sound hear speaker input output firestorm preferences">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">Voice chat isn't working — I can't hear anyone.</span>
+          <span class="faq-tag t-aud">Audio</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div><strong>Me → Preferences → Sound &amp; Media</strong> — confirm Voice enabled and correct devices selected.</div></div>
+            <div class="step"><div class="sn">2</div><div>Confirm the region/parcel allows voice — check the voice dot indicator near the minimap.</div></div>
+            <div class="step"><div class="sn">3</div><div>Check system audio — ensure SL isn't muted at the OS level.</div></div>
+            <div class="step"><div class="sn">4</div><div>Click the <strong>microphone icon</strong> in the toolbar to toggle voice on/off.</div></div>
+            <div class="step"><div class="sn">5</div><div>Relog — voice sometimes fails on the initial login.</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>Firestorm users: toggling <strong>Preferences → Sound &amp; Media → Enable Voice</strong> off and on resolves most intermittent drop-outs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item" id="faq-free-avatar" data-search="free avatar good look legacy body shape clothes mike head firestorm welcome centre cost nothing budget newcomer appearance">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">How can I have a good avatar for free?</span>
+          <span class="faq-tag t-app">Appearance</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>You can put together a solid, modern-looking avatar without spending a single L$. Here's how:</p>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div><strong>Your starter body is already a Legacy body</strong> — this is a quality mesh body, so you're ahead of the game from day one.</div></div>
+            <div class="step"><div class="sn">2</div><div><strong>Adjust your shape:</strong> Right-click your avatar → <strong>Edit Shape</strong>. Tweak sliders for height, build, face — make it yours.</div></div>
+            <div class="step"><div class="sn">3</div><div><strong>Get the Mike Head</strong> from the <strong>Firestorm Welcome Centre</strong> — it's free, high quality, and pairs well with the Legacy body.</div></div>
+            <div class="step"><div class="sn">4</div><div><strong>Find free clothes</strong> — visit <em>The Free Dove</em> (search in World) or browse the Marketplace filtered by price: L$0.</div></div>
+            <div class="step"><div class="sn">5</div><div>Check <strong>Inventory → Library → Clothing</strong> for starter outfits that came with your account.</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>The <strong>Firestorm Welcome Centre</strong> is a goldmine for freebies — not just the Mike Head. Walk residents through it; there are skins, shapes, and outfits all at no cost. Make sure clothing is labelled as compatible with the <strong>Legacy body</strong> before they wear it.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════ SECTION 2 — LANDMARKS ══════ -->
+  <section class="section" id="sec-landmarks" data-section>
+    <div class="section-hdr">
+      <div class="sec-icon si-g">📍</div>
+      <div class="sec-title">Landmark Directory</div>
+      <div class="sec-count">8 locations</div>
+    </div>
+    <div class="lm-grid">
+
+      <div class="lm-card" id="lm-welcome" data-search="welcome hub help newcomers new residents orientation intro first steps tutorials">
+        <div class="lm-name">Welcome Hub</div>
+        <div class="lm-region">📌 World → Destination Guide → "Welcome"</div>
+        <div class="lm-desc">Primary Welcome Hub for new residents. Offers basic tutorials, freebie items, and community staff to assist newcomers getting their bearings.</div>
+        <div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">New Residents</span></div>
+      </div>
+
+      <div class="lm-card" id="lm-sandbox" data-search="sandbox build create objects rez free linden cordova public building practice">
+        <div class="lm-name">Linden Sandbox (Cordova)</div>
+        <div class="lm-region">📌 Search "Linden Sandbox" → Region: Cordova</div>
+        <div class="lm-desc">Official Linden Lab public sandbox. Residents can rez and build freely. Objects auto-return after a few hours — great for teaching building basics.</div>
+        <div class="lm-badges"><span class="lm-badge b-sandbox">Sandbox</span><span class="lm-badge b-info">Public</span></div>
+      </div>
+
+      <div class="lm-card" id="lm-helpisle" data-search="help island learning tutorials basic skills movement camera chat public">
+        <div class="lm-name">Help Island Public</div>
+        <div class="lm-region">📌 Search "Help Island Public" in World Search</div>
+        <div class="lm-desc">Dedicated island with interactive tutorial stations covering movement, camera controls, chatting, and core SL skills. Open to all residents.</div>
+        <div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">Tutorials</span></div>
+      </div>
+
+      <div class="lm-card" id="lm-freedove" data-search="shopping free items clothes avatar skin freebie clothes store budget newcomer">
+        <div class="lm-name">The Free Dove</div>
+        <div class="lm-region">📌 Search "The Free Dove" in World Search</div>
+        <div class="lm-desc">Long-running community store offering high-quality free clothing, skins, and avatar items. Ideal for newcomers who want to look great without spending L$.</div>
+        <div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-help">Free Items</span></div>
+      </div>
+
+      <div class="lm-card" id="lm-belli" data-search="bellisseria community hub social meet people newcomers premium linden homes houseboat">
+        <div class="lm-name">Bellisseria Community Hub</div>
+        <div class="lm-region">📌 Search "Bellisseria" in Destination Guide</div>
+        <div class="lm-desc">Central hub for the Bellisseria Linden Home community. Excellent for connecting with experienced, friendly residents and discovering regular events.</div>
+        <div class="lm-badges"><span class="lm-badge b-social">Social</span><span class="lm-badge b-info">Community</span></div>
+      </div>
+
+      <div class="lm-card" id="lm-meshbody" data-search="mesh body head appearance demo fitmesh bento maitreya legacy signature shopping demo try">
+        <div class="lm-name">Mesh Body Stores</div>
+        <div class="lm-region">📌 Search "Maitreya", "Legacy", or "Signature"</div>
+        <div class="lm-desc">Main stores for the most popular mesh bodies. Free demos available. Essential for avatar customisation — always try before buying. Demos are free!</div>
+        <div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-info">Mesh Body</span></div>
+      </div>
+
+      <div class="lm-card" id="lm-dest" data-search="events calendar music live performances dance destination guide linden curated weekly">
+        <div class="lm-name">Destination Guide / Events</div>
+        <div class="lm-region">📌 In-viewer: World → Destination Guide</div>
+        <div class="lm-desc">Linden Lab's curated guide listing featured locations, live events, music venues, and art spaces — updated regularly. Great for activity suggestions.</div>
+        <div class="lm-badges"><span class="lm-badge b-social">Events</span><span class="lm-badge b-info">Destinations</span></div>
+      </div>
+
+      <div class="lm-card" id="lm-mentors" data-search="mentor group sl mentors volunteer help coordinator training hq join group">
+        <div class="lm-name">SL Mentors Group HQ</div>
+        <div class="lm-region">📌 Search "SL Mentors" in Groups search</div>
+        <div class="lm-desc">The official Second Life Mentors group. Join to coordinate with other mentors, access shared resources, and attend training events and briefings.</div>
+        <div class="lm-badges"><span class="lm-badge b-mentor">Mentors</span><span class="lm-badge b-info">Volunteer</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════ SECTION 3 — SCRIPTS ══════ -->
+  <section class="section" id="sec-scripts" data-section>
+    <div class="section-hdr">
+      <div class="sec-icon si-t">📋</div>
+      <div class="sec-title">Mentor Tips &amp; Scripts</div>
+      <div class="sec-count">6 scripts</div>
+    </div>
+    <div class="script-list">
+
+      <div class="sc-card" id="sc-greeting" data-search="greeting welcome new resident introduce yourself first contact open say hello">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Greeting a New Resident</span>
+          <span class="sc-cat">Opening</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>Keep your opener friendly, brief, and non-intrusive. Many newcomers feel overwhelmed — don't flood them with information right away. Give them space to respond.</p>
+          <div class="say-block">
+            <div class="say-label">// Say in local or IM</div>
+            <div class="say-text">Hi there! Welcome to Second Life! 😊 I'm a Mentor volunteer — feel free to ask me anything, no question is too basic. Happy to help you get started!</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <p>If they don't respond, give it 2–3 minutes before a gentle follow-up. Some residents are still figuring out how to type in chat.</p>
+        </div>
+      </div>
+
+      <div class="sc-card" id="sc-overwhelmed" data-search="confused lost resident overwhelmed help too much information slow down step by step">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Resident Seems Confused or Overwhelmed</span>
+          <span class="sc-cat">Support</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>Slow down. Ask one question at a time. Mirror their pace — if they're typing slowly, don't flood them with walls of text. Identify one goal and focus on it entirely.</p>
+          <div class="say-block">
+            <div class="say-label">// Say in local or IM</div>
+            <div class="say-text">No worries at all — SL can feel overwhelming at first! Let's take it step by step. What's the one thing you'd most like to do right now?</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <p>If they can't articulate a goal, offer concrete options: explore somewhere new, customise their avatar, find people to meet.</p>
+        </div>
+      </div>
+
+      <div class="sc-card" id="sc-dontknow" data-search="question don't know answer resource refer knowledge base community wrong information">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">When You Don't Know the Answer</span>
+          <span class="sc-cat">Best Practice</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>It's always better to say you don't know than to give incorrect information. Misinformation causes real frustration — residents trust mentors.</p>
+          <div class="say-block">
+            <div class="say-label">// Say in local or IM</div>
+            <div class="say-text">That's a great question — I want to give you the right answer rather than guess. Let me find out / you can also check the SL Knowledge Base at community.secondlife.com.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="bullets">
+            <div class="bullet"><strong>community.secondlife.com</strong> — official knowledge base and Q&amp;A</div>
+            <div class="bullet"><strong>Second Life Answers</strong> — community forum for resident questions</div>
+            <div class="bullet"><strong>Firestorm Support Group</strong> (in-world) — viewer-specific issues</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sc-card" id="sc-difficult" data-search="rude difficult aggressive resident handle boundary mute block disengage abuse volunteer">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Handling Rude or Difficult Residents</span>
+          <span class="sc-cat">Boundaries</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>Mentors are volunteers. You are never obligated to tolerate abuse. Stay calm, remain professional, and disengage if needed — your wellbeing comes first.</p>
+          <div class="say-block">
+            <div class="say-label">// Say in local or IM</div>
+            <div class="say-text">I'm happy to help, but I do need us to keep the conversation respectful. If you'd like assistance, I'm here — otherwise I'll let you explore on your own.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <p>If they continue, simply stop responding. Mute them and report to a senior mentor or via AR if they are harassing others. <strong>Do not engage in arguments.</strong></p>
+        </div>
+      </div>
+
+      <div class="sc-card" id="sc-closing" data-search="close end wrap up conversation goodbye farewell finished done summary log">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Wrapping Up a Conversation</span>
+          <span class="sc-cat">Closing</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>End every interaction positively — even brief ones. Leave the door open for follow-up questions. A summary of what you covered helps them remember the steps.</p>
+          <div class="say-block">
+            <div class="say-label">// Say in local or IM</div>
+            <div class="say-text">Great talking with you! If you have any more questions later, just shout — mentors are usually around. Enjoy Second Life! 🌟</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <p>Log any recurring confusion patterns you notice — valuable feedback for the wider mentor team.</p>
+        </div>
+      </div>
+
+      <div class="sc-card" id="sc-meshbody" data-search="mesh body head appearance help confused shopping demo fitmesh bento maitreya legacy bom bakes">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Explaining Mesh Bodies to Newcomers</span>
+          <span class="sc-cat">Appearance</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>Mesh bodies are one of the most confusing topics for newcomers. Use a simple analogy before going into technical detail.</p>
+          <div class="say-block">
+            <div class="say-label">// Analogy to use</div>
+            <div class="say-text">Think of the default avatar as a basic mannequin. A mesh body is like a custom suit you wear over it — much better detail and fits modern clothing. Most popular are Maitreya (female) and Legacy or Signature (male). They cost L$ but free demos let you try before you buy!</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="bullets">
+            <div class="bullet">Mesh bodies need <strong>BOM (Bakes on Mesh)</strong> enabled for skin to display correctly.</div>
+            <div class="bullet">Clothing must be <strong>fitted/rigged for that specific body</strong> — not all clothes fit all bodies.</div>
+            <div class="bullet"><strong>Always demo first</strong> — demos are free and show exactly how it looks on your shape.</div>
+            <div class="bullet">Free alternative: search <strong>Ruth 2.0</strong> on the Marketplace.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════ SECTION 4 — CLARA ══════ -->
+  <section class="section" id="sec-clara" data-section>
+    <div class="section-hdr">
+      <div class="sec-icon si-p">🕊️</div>
+      <div class="sec-title">The CLARA Method</div>
+      <div class="sec-count">De-escalation framework</div>
+    </div>
+
+    <p class="clara-intro" data-search="clara method nonviolent communication de-escalation framework empathy dialogue mentor conflict centre listen affirm respond add">CLARA is a five-step framework for nonviolent communication and de-escalation. It shifts a conversation from a win-lose argument to a collaborative dialogue — ideal for mentors handling frustrated or confrontational residents.</p>
+
+    <div class="clara-steps">
+
+      <div class="clara-step" id="clara-c" data-search="clara centre yourself calm breath ground internal state fight flight anger">
+        <div class="clara-letter" style="color:var(--blue);border-color:rgba(61,127,255,0.4);background:var(--blue-dim);">C</div>
+        <div class="clara-content">
+          <div class="clara-name">Centre Yourself</div>
+          <div class="clara-goal">Before engaging with someone angry or confrontational, manage your own internal state first.</div>
+          <div class="clara-action">
+            <div class="clara-action-label">// Action</div>
+            Take a breath, ground yourself, and remind yourself that the other person's anger is likely about their own needs or fears — not a personal attack. <strong>If you aren't calm, you cannot calm someone else.</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="clara-step" id="clara-l" data-search="clara listen attention undivided feeling need heart issue rude irrational protect">
+        <div class="clara-letter" style="color:var(--teal);border-color:rgba(94,255,200,0.4);background:var(--teal-dim);">L</div>
+        <div class="clara-content">
+          <div class="clara-name">Listen</div>
+          <div class="clara-goal">Give the person your full, undivided attention without interrupting.</div>
+          <div class="clara-action">
+            <div class="clara-action-label">// Action</div>
+            Look for the feeling or need behind their words. Even if they are being rude or irrational — what are they trying to protect? What do they feel they have lost?
+          </div>
+        </div>
+      </div>
+
+      <div class="clara-step" id="clara-a1" data-search="clara affirm acknowledge validate connection defensive wall heard experience frustrated">
+        <div class="clara-letter" style="color:var(--purple);border-color:rgba(167,139,255,0.4);background:rgba(167,139,255,0.1);">A</div>
+        <div class="clara-content">
+          <div class="clara-name">Affirm <span class="clara-alt">(or Acknowledge)</span></div>
+          <div class="clara-goal">Find a point of connection or a feeling you can validate — to lower their defensive wall.</div>
+          <div class="clara-action">
+            <div class="clara-action-label">// Action</div>
+            This doesn't mean you agree with their logic. You are simply affirming their experience.
+          </div>
+          <div class="clara-examples">
+            <div class="clara-example">"I can hear how frustrated you are that the rules seem to have changed without warning."</div>
+            <div class="clara-example">"It makes sense that you feel ignored right now."</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clara-step" id="clara-r" data-search="clara respond address issue perspective I statements neutral tone blame specific">
+        <div class="clara-letter" style="color:var(--gold);border-color:rgba(255,198,84,0.4);background:var(--gold-dim);">R</div>
+        <div class="clara-content">
+          <div class="clara-name">Respond</div>
+          <div class="clara-goal">Only after affirming their feelings do you address the actual issue or provide information.</div>
+          <div class="clara-action">
+            <div class="clara-action-label">// Action</div>
+            Use "I" statements and keep your tone neutral. Avoid blame. Address the specific points they raised during the Listen phase.
+          </div>
+        </div>
+      </div>
+
+      <div class="clara-step" id="clara-a2" data-search="clara add ask adjust resources clarifying question resolution next step graceful exit">
+        <div class="clara-letter" style="color:var(--teal);border-color:rgba(94,255,200,0.4);background:var(--teal-dim);">A</div>
+        <div class="clara-content">
+          <div class="clara-name">Add <span class="clara-alt">(or Ask / Adjust)</span></div>
+          <div class="clara-goal">Wrap up by providing additional resources, asking a clarifying question, or adjusting the situation.</div>
+          <div class="clara-action">
+            <div class="clara-action-label">// Action</div>
+            Offer a next step that moves toward resolution or a graceful exit.
+          </div>
+          <div class="clara-examples">
+            <div class="clara-example">"Would it help if we looked at the guidelines together?"</div>
+            <div class="clara-example">"How can we make this right for both of us?"</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="clara-proscons" data-search="clara pros cons advantages disadvantages time emotional tax physical danger defuse hostility relationships clarity">
+      <div class="clara-pro-col">
+        <div class="clara-col-hdr pro-hdr">✔ Pros</div>
+        <div class="clara-pc-item">
+          <div class="clara-pc-title">Defuses Hostility</div>
+          <div class="clara-pc-desc">By affirming the other person, you stop the back-and-forth of an argument before it escalates.</div>
+        </div>
+        <div class="clara-pc-item">
+          <div class="clara-pc-title">Preserves Relationships</div>
+          <div class="clara-pc-desc">Builds a reputation for fairness and level-headedness — especially valuable in mentoring or leadership roles.</div>
+        </div>
+        <div class="clara-pc-item">
+          <div class="clara-pc-title">Clarity</div>
+          <div class="clara-pc-desc">Helps you get to the actual problem rather than just fighting about the surface anger.</div>
+        </div>
+      </div>
+      <div class="clara-con-col">
+        <div class="clara-col-hdr con-hdr">✘ Cons</div>
+        <div class="clara-pc-item">
+          <div class="clara-pc-title">Time-Consuming</div>
+          <div class="clara-pc-desc">Requires patience and can take longer than simply giving an order or walking away.</div>
+        </div>
+        <div class="clara-pc-item">
+          <div class="clara-pc-title">Emotional Tax</div>
+          <div class="clara-pc-desc">Requires you to absorb some of the other person's heat while staying cool yourself.</div>
+        </div>
+        <div class="clara-pc-item warn-item">
+          <div class="clara-pc-title">⚠ Not for Physical Danger</div>
+          <div class="clara-pc-desc">If a situation turns violent or physically unsafe, CLARA is not a substitute for removing yourself or seeking safety.</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+</div>
+
+<script>
+function tog(trigger) {
+  const card = trigger.parentElement;
+  card.classList.toggle('open');
+}
+
+function toggleNav(hdr) {
+  hdr.classList.toggle('open');
+  hdr.nextElementSibling.classList.toggle('open');
+}
+
+function jumpTo(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (el.classList.contains('faq-item') || el.classList.contains('sc-card')) {
+    el.classList.add('open');
+  }
+}
+
+function copyText(btn) {
+  const text = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ OK';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('ok'); }, 2200);
+  });
+}
+
+const srch = document.getElementById('global-search');
+const cnt  = document.getElementById('search-count');
+const nr   = document.getElementById('no-results');
+
+function n(s) { return s.toLowerCase().replace(/[^a-z0-9 ]/g,' '); }
+
+function clearMarks(el) {
+  el.querySelectorAll('mark').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+}
+
+function addMarks(el, terms) {
+  el.querySelectorAll('.faq-q-text,.lm-name,.lm-desc,.sc-title,.clara-name,.qi-title').forEach(t => {
+    let h = t.innerHTML;
+    terms.forEach(term => {
+      const re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')','gi');
+      h = h.replace(re,'<mark>$1</mark>');
+    });
+    t.innerHTML = h;
+  });
+}
+
+srch.addEventListener('input', function() {
+  const raw = this.value;
+  const q   = n(raw);
+  const cards = document.querySelectorAll('[data-search]');
+  let hits = 0;
+  cards.forEach(el => { el.classList.remove('hidden'); clearMarks(el); });
+
+  if (!q.trim()) {
+    cnt.textContent = '';
+    nr.style.display = 'none';
+    document.querySelectorAll('.section[data-section]').forEach(s => s.style.display = '');
+    return;
+  }
+
+  const terms = q.trim().split(/\s+/).filter(Boolean);
+  cards.forEach(el => {
+    const hay = n(el.dataset.search + ' ' + el.textContent);
+    if (terms.every(t => hay.includes(t))) { hits++; addMarks(el, terms); }
+    else el.classList.add('hidden');
+  });
+
+  document.querySelectorAll('.section[data-section]').forEach(sec => {
+    sec.style.display = sec.querySelectorAll('[data-search]:not(.hidden)').length ? '' : 'none';
+  });
+
+  cnt.textContent = hits > 0 ? hits + ' result' + (hits !== 1 ? 's' : '') + ' found' : '';
+  nr.style.display = hits === 0 ? 'block' : 'none';
+});
+</script>
+</body>
+</html>
