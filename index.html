@@ -816,7 +816,9 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <span>📍</span> Landmark Directory <span class="ng-arrow">▶</span>
       </div>
       <div class="nav-items open">
-        <span class="nav-item" onclick="jumpTo('lm-welcome')"><span class="ni-dot"></span>Welcome Hub</span>
+        <span class="nav-item" onclick="jumpTo('lm-welcome')"><span class="ni-dot"></span>Welcome Hub (Classic)</span>
+        <span class="nav-item" onclick="jumpTo('lm-learningcentre')"><span class="ni-dot"></span>Desktop Learning Centre</span>
+        <span class="nav-item" onclick="jumpTo('lm-campwich')"><span class="ni-dot"></span>Campwich Forest Lodge</span>
         <span class="nav-item" onclick="jumpTo('lm-sandbox')"><span class="ni-dot"></span>Linden Sandbox</span>
         <span class="nav-item" onclick="jumpTo('lm-helpisle')"><span class="ni-dot"></span>Help Island Public</span>
         <span class="nav-item" onclick="jumpTo('lm-freedove')"><span class="ni-dot"></span>The Free Dove</span>
@@ -874,7 +876,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     <p>Searchable reference for SL Mentors — covering frequent questions, key in-world locations, and ready-to-use scripts for helping new residents.</p>
     <div class="stat-row">
       <div class="stat-chip"><span class="sc-val">11</span><span class="sc-lbl">FAQs</span></div>
-      <div class="stat-chip"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
+      <div class="stat-chip"><span class="sc-val">12</span><span class="sc-lbl">Landmarks</span></div>
       <div class="stat-chip"><span class="sc-val">6</span><span class="sc-lbl">Scripts</span></div>
     </div>
   </div>
@@ -1319,15 +1321,29 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     <div class="section-hdr">
       <div class="sec-icon si-g">📍</div>
       <div class="sec-title">Landmark Directory</div>
-      <div class="sec-count">10 locations</div>
+      <div class="sec-count">12 locations</div>
     </div>
     <div class="lm-grid">
 
-      <div class="lm-card" id="lm-welcome" data-search="welcome hub help newcomers new residents orientation intro first steps tutorials">
+      <div class="lm-card" id="lm-welcome" data-search="welcome hub help newcomers new residents orientation intro classic legacy">
         <div class="lm-name">Welcome Hub</div>
-        <div class="lm-region">📌 World → Destination Guide → "Welcome"</div>
-        <div class="lm-desc">Primary Welcome Hub for new residents. Offers basic tutorials, freebie items, and community staff to assist newcomers getting their bearings.</div>
-        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">New Residents</span></div><a class="sl-btn" href="secondlife://Welcome/128/128/25">Open in SL</a></div>
+        <div class="lm-region">📌 secondlife://WelcomeHub/166/105/25</div>
+        <div class="lm-desc">Still a useful and relevant destination, but no longer the primary entry point for new residents. Worth knowing and visiting — many residents still pass through here.</div>
+        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">Classic</span></div><a class="sl-btn" href="secondlife://WelcomeHub/166/105/25">Open in SL</a></div>
+      </div>
+
+      <div class="lm-card" id="lm-learningcentre" data-search="desktop learning centre new residents entry point arrival first steps tutorials">
+        <div class="lm-name">Desktop Learning Centre</div>
+        <div class="lm-region">📌 secondlife://LearningCenterDT/162/102/153</div>
+        <div class="lm-desc">The primary entry point for new residents joining Second Life on desktop. This is where most new residents will arrive — a key location for mentors to be aware of.</div>
+        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">New Residents</span><span class="lm-badge b-info">Desktop</span></div><a class="sl-btn" href="secondlife://LearningCenterDT/162/102/153">Open in SL</a></div>
+      </div>
+
+      <div class="lm-card" id="lm-campwich" data-search="campwich forest lodge mobile users new residents entry point arrival first steps">
+        <div class="lm-name">Campwich Forest Lodge</div>
+        <div class="lm-region">📌 secondlife://Campwich Forest 1/140/120/28</div>
+        <div class="lm-desc">The primary entry point for new residents joining Second Life on mobile. Mentors supporting mobile users should be familiar with this location and its layout.</div>
+        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">New Residents</span><span class="lm-badge b-info">Mobile</span></div><a class="sl-btn" href="secondlife://Campwich%20Forest%201/140/120/28">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-sandbox" data-search="sandbox build create objects rez free linden cordova public building practice">
