@@ -31,6 +31,7 @@
   --c-teal:      #2dd4bf;  --c-teal-d:     rgba(45,212,191,0.12);
   --c-mint:      #34d399;  --c-mint-d:     rgba(52,211,153,0.12);
   --c-red:       #ef4444;  --c-red-d:      rgba(239,68,68,0.12);
+  --c-coral:     #ff6b4a;  --c-coral-d:    rgba(255,107,74,0.12);
   --c-fuchsia:   #e879f9;  --c-fuchsia-d:  rgba(232,121,249,0.12);
   /* legacy aliases kept for sidebar/UI chrome */
   --blue:     #4d9fff;  --blue-dim: rgba(77,159,255,0.12);  --blue-glow: rgba(77,159,255,0.25);
@@ -597,9 +598,58 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 }
 .sl-btn:hover { background:rgba(45,212,191,0.2); border-color:var(--c-teal); }
 .si-p { background:rgba(167,139,255,0.1); border:1px solid rgba(167,139,255,0.3); }
+.si-v { background:rgba(255,107,74,0.1); border:1px solid rgba(255,107,74,0.3); color:var(--c-coral); }
+
+/* ═══ VIDEO LINKS ═══ */
+.vid-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:10px; }
+.vid-card {
+  background:var(--panel); border:1px solid var(--border); border-radius:10px;
+  padding:14px 16px; display:flex; align-items:center; gap:14px;
+  text-decoration:none; transition:border-color 0.2s, transform 0.15s;
+  position:relative;
+}
+.vid-card::before {
+  content:''; position:absolute; left:0; top:0; bottom:0;
+  width:6px; background:var(--border2); border-radius:10px 0 0 10px;
+  transition:background 0.2s;
+}
+.vid-card:hover { border-color:var(--c-coral); transform:translateY(-2px); }
+.vid-card:hover::before { background:var(--c-coral); }
+.vid-thumb {
+  width:42px; height:42px; flex-shrink:0;
+  background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3);
+  border-radius:8px; display:flex; align-items:center; justify-content:center;
+  font-size:16px; color:var(--c-coral);
+}
+.vid-info { flex:1; min-width:0; }
+.vid-title { font-size:13px; font-weight:500; color:var(--text-hi); margin-bottom:3px; }
+.vid-sub { font-family:'Share Tech Mono','Courier New',monospace; font-size:9px; color:var(--text-dim); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
 /* ═══ QUICK INDEX ═══ */
-.mp-links { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+
+
+/* ═══ VIDEO LINKS ═══ */
+.video-grid { display:flex; flex-direction:column; gap:10px; }
+.video-card {
+  background:var(--panel); border:1px solid var(--border); border-radius:10px;
+  padding:16px 20px; display:flex; gap:18px; align-items:flex-start;
+  transition:border-color 0.2s;
+}
+.video-card:hover { border-color:var(--c-red); }
+.video-card.hidden { display:none; }
+.video-thumb {
+  width:52px; height:52px; flex-shrink:0;
+  background:rgba(255,90,90,0.1); border:1px solid rgba(255,90,90,0.3);
+  border-radius:10px; display:flex; align-items:center; justify-content:center;
+  font-size:20px; color:var(--c-red);
+}
+.video-info { flex:1; min-width:0; }
+.video-title { font-size:14px; font-weight:600; color:var(--text-hi); margin-bottom:5px; }
+.video-desc { font-size:12.5px; color:var(--text); line-height:1.55; margin-bottom:8px; }
+.video-meta {
+  font-family:'Share Tech Mono','Courier New',monospace; font-size:9px;
+  color:var(--text-dim); letter-spacing:1px; text-transform:uppercase;
+}
 .mp-btn {
   font-family:'Share Tech Mono','Courier New',monospace;
   font-size:9px; letter-spacing:1px; text-transform:uppercase;
@@ -703,6 +753,10 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-red:hover { border-color:var(--c-red); background:var(--c-red-d); }
 .qi-red:hover .qi-arrow { color:var(--c-red); }
 
+.qi-coral { border-left:6px solid rgba(255,107,74,0.5); }
+.qi-coral:hover { border-color:var(--c-coral); background:var(--c-coral-d); }
+.qi-coral:hover .qi-arrow { color:var(--c-coral); }
+
 /* qi-fuchsia retired — replaced by qi-adult */
 
 /* ═══ CLARA ═══ */
@@ -800,7 +854,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <span>⚡</span> Quick Index <span class="ng-arrow">▶</span>
       </div>
       <div class="nav-items open">
-        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 16 topics</span>
+        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 17 topics</span>
       </div>
     </div>
 
@@ -857,6 +911,22 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <span class="nav-item" onclick="jumpTo('sc-adult')"><span class="ni-dot"></span>Age Verification</span>
         <span class="nav-item" onclick="jumpTo('sc-movelock')"><span class="ni-dot"></span>MoveLock / Being Pushed</span>
         <span class="nav-item" onclick="jumpTo('sc-sffl')"><span class="ni-dot"></span>Second Friends for Life</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+        <span>▶</span> Video Links <span class="ng-arrow">▶</span>
+      </div>
+      <div class="nav-items open">
+        <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>All videos</span>
+        <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>Avatar Shape</span>
+        <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>Shopping &amp; Buying L$</span>
+        <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>Bakes on Mesh</span>
+        <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>Communicating</span>
+        <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>Music &amp; Media</span>
+        <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>How to Get Help</span>
+        <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>Games</span>
       </div>
     </div>
 
@@ -1036,6 +1106,15 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <div class="qi-arrow">›</div>
       </div>
 
+      <div class="qi-card qi-coral" data-search="video tutorials youtube avatar shape shopping bakes mesh communicating music media help" onclick="jumpTo('sec-videos')">
+        <div class="qi-icon">▶</div>
+        <div class="qi-info">
+          <div class="qi-title">Video Tutorials</div>
+          <div class="qi-sub">7 helpful YouTube guides</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
       <div class="qi-card qi-cyan" data-search="voice audio sound microphone chat hear" onclick="jumpTo('faq-voice')">
         <div class="qi-icon">🎙️</div>
         <div class="qi-info">
@@ -1044,6 +1123,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         </div>
         <div class="qi-arrow">›</div>
       </div>
+
 
     </div>
   </section>
@@ -1752,6 +1832,75 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     </div>
   </section>
 
+  <!-- ══════ SECTION 5 — VIDEOS ══════ -->
+  <section class="section" id="sec-videos" data-section>
+    <div class="section-hdr">
+      <div class="sec-icon si-v">▶</div>
+      <div class="sec-title">Video Links</div>
+      <div class="sec-count">7 tutorials</div>
+    </div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">Useful tutorial videos to share with residents. Links open in a new browser tab.</p>
+    <div class="vid-grid">
+
+      <a class="vid-card" href="https://youtu.be/SVMvYaOt_PA" target="_blank" data-search="customizing avatar shape appearance tutorial video">
+        <div class="vid-thumb">▶</div>
+        <div class="vid-info">
+          <div class="vid-title">Customizing Your Avatar Shape</div>
+          <div class="vid-sub">youtu.be/SVMvYaOt_PA</div>
+        </div>
+      </a>
+
+      <a class="vid-card" href="https://www.youtube.com/watch?v=hRwavBUbhFY" target="_blank" data-search="shopping buying linden dollars L$ marketplace tutorial video">
+        <div class="vid-thumb">▶</div>
+        <div class="vid-info">
+          <div class="vid-title">Shopping &amp; Buying L$</div>
+          <div class="vid-sub">youtube.com/watch?v=hRwavBUbhFY</div>
+        </div>
+      </a>
+
+      <a class="vid-card" href="https://www.youtube.com/watch?v=lS-0s2-pa-c" target="_blank" data-search="bakes on mesh BOM skin texture tutorial video">
+        <div class="vid-thumb">▶</div>
+        <div class="vid-info">
+          <div class="vid-title">Bakes on Mesh</div>
+          <div class="vid-sub">youtube.com/watch?v=lS-0s2-pa-c</div>
+        </div>
+      </a>
+
+      <a class="vid-card" href="https://www.youtube.com/watch?v=ajDa4EUATJw" target="_blank" data-search="communicating chat voice groups IM tutorial video">
+        <div class="vid-thumb">▶</div>
+        <div class="vid-info">
+          <div class="vid-title">Communicating</div>
+          <div class="vid-sub">youtube.com/watch?v=ajDa4EUATJw</div>
+        </div>
+      </a>
+
+      <a class="vid-card" href="https://www.youtube.com/watch?v=HQFwFCrJ8ek" target="_blank" data-search="music media streaming audio video player tutorial">
+        <div class="vid-thumb">▶</div>
+        <div class="vid-info">
+          <div class="vid-title">Music &amp; Media</div>
+          <div class="vid-sub">youtube.com/watch?v=HQFwFCrJ8ek</div>
+        </div>
+      </a>
+
+      <a class="vid-card" href="https://www.youtube.com/watch?v=38RbaCL8pnU" target="_blank" data-search="how to get help support resources tutorial video">
+        <div class="vid-thumb">▶</div>
+        <div class="vid-info">
+          <div class="vid-title">How to Get Help</div>
+          <div class="vid-sub">youtube.com/watch?v=38RbaCL8pnU</div>
+        </div>
+      </a>
+
+      <a class="vid-card" href="https://www.youtube.com/watch?v=kJO20YelMPo" target="_blank" data-search="games gaming activities fun tutorial video">
+        <div class="vid-thumb">▶</div>
+        <div class="vid-info">
+          <div class="vid-title">Games</div>
+          <div class="vid-sub">youtube.com/watch?v=kJO20YelMPo</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
   <!-- ══════ SECTION 4 — CLARA ══════ -->
   <section class="section" id="sec-clara" data-section>
     <div class="section-hdr">
@@ -1868,6 +2017,9 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     </div>
 
   </section>
+
+  <!-- ══════ SECTION 5 — VIDEO LINKS ══════ -->
+
 
 </main>
 </div>
