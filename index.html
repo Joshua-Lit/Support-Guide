@@ -599,6 +599,18 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .si-p { background:rgba(167,139,255,0.1); border:1px solid rgba(167,139,255,0.3); }
 
 /* ═══ QUICK INDEX ═══ */
+.mp-links { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+.mp-btn {
+  font-family:'Share Tech Mono','Courier New',monospace;
+  font-size:9px; letter-spacing:1px; text-transform:uppercase;
+  padding:4px 10px; border-radius:5px; text-decoration:none;
+  color:var(--c-amber); background:var(--c-amber-d);
+  border:1px solid rgba(255,229,102,0.35);
+  transition:background 0.15s, border-color 0.15s;
+  white-space:nowrap;
+}
+.mp-btn:hover { background:rgba(255,229,102,0.2); border-color:var(--c-amber); }
+
 .qi-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -819,9 +831,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <span class="nav-item" onclick="jumpTo('lm-welcome')"><span class="ni-dot"></span>Welcome Hub (Classic)</span>
         <span class="nav-item" onclick="jumpTo('lm-learningcentre')"><span class="ni-dot"></span>Desktop Learning Centre</span>
         <span class="nav-item" onclick="jumpTo('lm-campwich')"><span class="ni-dot"></span>Campwich Forest Lodge</span>
-        <span class="nav-item" onclick="jumpTo('lm-sandbox')"><span class="ni-dot"></span>Linden Sandbox</span>
-        <span class="nav-item" onclick="jumpTo('lm-helpisle')"><span class="ni-dot"></span>Help Island Public</span>
-        <span class="nav-item" onclick="jumpTo('lm-freedove')"><span class="ni-dot"></span>The Free Dove</span>
+        <span class="nav-item" onclick="jumpTo('lm-sandbox')"><span class="ni-dot"></span>Sandbox Welcome Area</span>
         <span class="nav-item" onclick="jumpTo('lm-belli')"><span class="ni-dot"></span>Bellisseria Hub</span>
         <span class="nav-item" onclick="jumpTo('lm-meshbody')"><span class="ni-dot"></span>Mesh Body Stores</span>
         <span class="nav-item" onclick="jumpTo('lm-dest')"><span class="ni-dot"></span>Destination Guide</span>
@@ -876,7 +886,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     <p>Searchable reference for SL Mentors — covering frequent questions, key in-world locations, and ready-to-use scripts for helping new residents.</p>
     <div class="stat-row">
       <div class="stat-chip"><span class="sc-val">11</span><span class="sc-lbl">FAQs</span></div>
-      <div class="stat-chip"><span class="sc-val">12</span><span class="sc-lbl">Landmarks</span></div>
+      <div class="stat-chip"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
       <div class="stat-chip"><span class="sc-val">6</span><span class="sc-lbl">Scripts</span></div>
     </div>
   </div>
@@ -1131,7 +1141,12 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
             <div class="step"><div class="sn">1</div><div><strong>Your starter body is already a Legacy body</strong> — this is a quality mesh body, so you're ahead of the game from day one.</div></div>
             <div class="step"><div class="sn">2</div><div><strong>Adjust your shape:</strong> Right-click your avatar → <strong>Edit Shape</strong>. Tweak sliders for height, build, face — make it yours.</div></div>
             <div class="step"><div class="sn">3</div><div>Visit the <strong>Firestorm Social Island New Resident Help Area</strong> and pick up a free head — <strong>Milena</strong> (female) or <strong>Mike</strong> (male). Both pair well with the Legacy body. <em>Note: these are free for residents under 90 days old only.</em></div></div>
-            <div class="step"><div class="sn">4</div><div><strong>Find free clothes</strong> — visit <em>The Free Dove</em> (search in World) or browse the Marketplace filtered by price: L$0.</div></div>
+            <div class="step"><div class="sn">4</div><div><strong>Find free &amp; cheap clothes</strong> — browse the Marketplace using these filtered links:
+              <div class="mp-links">
+                <a class="mp-btn" href="https://marketplace.secondlife.com/products/search?search%5Bprice_low%5D=0&search%5Bprice_high%5D=0" target="_blank">Marketplace — Free (L$0)</a>
+                <a class="mp-btn" href="https://marketplace.secondlife.com/products/search?search%5Bprice_low%5D=1&search%5Bprice_high%5D=1" target="_blank">Marketplace — L$1 items</a>
+              </div>
+            </div></div>
             <div class="step"><div class="sn">5</div><div>Check <strong>Inventory → Library → Clothing</strong> for starter outfits that came with your account.</div></div>
           </div>
           <div class="tip-box">
@@ -1321,7 +1336,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     <div class="section-hdr">
       <div class="sec-icon si-g">📍</div>
       <div class="sec-title">Landmark Directory</div>
-      <div class="sec-count">12 locations</div>
+      <div class="sec-count">10 locations</div>
     </div>
     <div class="lm-grid">
 
@@ -1346,25 +1361,11 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">New Residents</span><span class="lm-badge b-info">Mobile</span></div><a class="sl-btn" href="secondlife://Campwich%20Forest%201/140/120/28">Open in SL</a></div>
       </div>
 
-      <div class="lm-card" id="lm-sandbox" data-search="sandbox build create objects rez free linden cordova public building practice">
-        <div class="lm-name">Linden Sandbox (Cordova)</div>
-        <div class="lm-region">📌 Search "Linden Sandbox" → Region: Cordova</div>
-        <div class="lm-desc">Official Linden Lab public sandbox. Residents can rez and build freely. Objects auto-return after a few hours — great for teaching building basics.</div>
-        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-sandbox">Sandbox</span><span class="lm-badge b-info">Public</span></div><a class="sl-btn" href="secondlife://Cordova/128/128/25">Open in SL</a></div>
-      </div>
-
-      <div class="lm-card" id="lm-helpisle" data-search="help island learning tutorials basic skills movement camera chat public">
-        <div class="lm-name">Help Island Public</div>
-        <div class="lm-region">📌 Search "Help Island Public" in World Search</div>
-        <div class="lm-desc">Dedicated island with interactive tutorial stations covering movement, camera controls, chatting, and core SL skills. Open to all residents.</div>
-        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">Tutorials</span></div><a class="sl-btn" href="secondlife://Help%20Island%20Public/128/128/25">Open in SL</a></div>
-      </div>
-
-      <div class="lm-card" id="lm-freedove" data-search="shopping free items clothes avatar skin freebie clothes store budget newcomer">
-        <div class="lm-name">The Free Dove</div>
-        <div class="lm-region">📌 Search "The Free Dove" in World Search</div>
-        <div class="lm-desc">Long-running community store offering high-quality free clothing, skins, and avatar items. Ideal for newcomers who want to look great without spending L$.</div>
-        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-help">Free Items</span></div><a class="sl-btn" href="secondlife://The%20Free%20Dove/128/128/25">Open in SL</a></div>
+      <div class="lm-card" id="lm-sandbox" data-search="sandbox build create objects rez free public building practice welcome area">
+        <div class="lm-name">Sandbox Welcome Area</div>
+        <div class="lm-region">📌 secondlife://WelcomeHubSandbox/74/79/25</div>
+        <div class="lm-desc">Official Linden Lab public sandbox. Residents can rez and build freely. Objects auto-return after a few hours — great for teaching building basics and experimenting with objects.</div>
+        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-sandbox">Sandbox</span><span class="lm-badge b-info">Public</span></div><a class="sl-btn" href="secondlife://WelcomeHubSandbox/74/79/25">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-belli" data-search="bellisseria community hub social meet people newcomers premium linden homes houseboat">
