@@ -571,28 +571,29 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   background: var(--bg2);
   border-top: 1px solid var(--border);
   z-index: 100;
-  padding: 10px 24px;
+  padding: 14px 28px;
 }
 .footer-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 10px;
-  max-width: 100%;
+  gap: 16px;
 }
+.footer-left { display:flex; align-items:center; gap:14px; }
 .footer-text {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 10px;
+  font-size: 13px;
   letter-spacing: 1px;
   color: var(--text-dim);
   text-transform: uppercase;
 }
 .footer-divider {
   color: var(--border2);
-  font-size: 12px;
+  font-size: 16px;
 }
 .footer-link {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 10px;
+  font-size: 13px;
   color: var(--c-teal);
   text-decoration: none;
   letter-spacing: 0.5px;
@@ -600,15 +601,14 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 }
 .footer-link:hover { color: var(--c-skyblue); }
 .footer-top-btn {
-  margin-left: auto;
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 1px;
   color: var(--text-dim);
   background: none;
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 3px 8px;
+  padding: 6px 14px;
   cursor: pointer;
   transition: color 0.15s, border-color 0.15s;
 }
@@ -2176,10 +2176,13 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 
 <footer id="footer">
   <div class="footer-inner">
-    <span class="footer-text">SL Mentor Reference Guide</span>
-    <span class="footer-divider">·</span>
-    <a href="/cdn-cgi/l/email-protection#741e1b071c341e1b071c0115181d005a011f" class="footer-link">Suggestions? <span class="__cf_email__" data-cfemail="3a505549527a505549524f5b56534e144f51">[email&#160;protected]</span></a>
-    <button class="footer-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Scroll to top">↑ Top</button>
+    <div class="footer-left">
+      <span class="footer-text">SL Mentor Reference Guide</span>
+      <span class="footer-divider">·</span>
+      <a href="mailto:josh@joshualit.uk" class="footer-link" title="Send suggestions to josh@joshualit.uk"><span style="font-size:26px;vertical-align:middle;line-height:1;">✉</span><span style="vertical-align:middle;"> Suggestions</span></a>
+    </div>
+    <button class="footer-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Scroll to top"><span style="font-size:20px;line-height:1;vertical-align:middle;display:inline-block;transform:translateY(-1px);">⬆</span><span style="vertical-align:middle;"> Top</span></button>
+    <div></div>
   </div>
 </footer>
 
