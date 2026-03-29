@@ -599,6 +599,20 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   transition: color 0.15s;
 }
 .footer-link:hover { color: var(--c-skyblue); }
+.footer-top-btn {
+  margin-left: auto;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.footer-top-btn:hover { color: var(--c-teal); border-color: var(--c-teal); }
 
 /* ═══ MEMBERSHIP TIER TABLE ═══ */
 .tier-table { border:1px solid var(--border); border-radius:8px; overflow:hidden; margin:10px 0; }
@@ -2165,6 +2179,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     <span class="footer-text">SL Mentor Reference Guide</span>
     <span class="footer-divider">·</span>
     <a href="/cdn-cgi/l/email-protection#741e1b071c341e1b071c0115181d005a011f" class="footer-link">Suggestions? <span class="__cf_email__" data-cfemail="3a505549527a505549524f5b56534e144f51">[email&#160;protected]</span></a>
+    <button class="footer-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Scroll to top">↑ Top</button>
   </div>
 </footer>
 
