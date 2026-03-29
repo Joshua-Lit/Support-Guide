@@ -225,7 +225,7 @@ body {
 .status-text { font-family:'Share Tech Mono','Courier New',monospace; font-size:9px; color:var(--text-dim); }
 
 /* ═══ MAIN ═══ */
-#main { flex:1; padding:40px 52px 100px; overflow-x:hidden; min-width:0; }
+#main { flex:1; padding:40px 52px 40px; overflow-x:hidden; min-width:0; }
 
 .page-hdr {
   margin-bottom: 40px;
@@ -537,13 +537,13 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 
 @media (max-width:880px) {
   #sidebar { width:220px; min-width:220px; }
-  #main { padding:28px 24px 80px; }
+  #main { padding:28px 24px 28px; }
 }
 @media (max-width:640px) {
   #app { flex-direction:column; }
   #sidebar { width:100%; height:auto; position:relative; }
   .nav { display:none; }
-  #main { padding:20px 14px 60px; }
+  #main { padding:20px 14px 20px; }
   .page-hdr h1 { font-size:1.3rem; }
 }
 
@@ -566,7 +566,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 }
 #nav-toggle-btn:hover { color: var(--text); border-color: var(--border2); }
 #footer {
-  position: fixed;
+  position: static;
   bottom: 0; left: 0; right: 0;
   background: var(--bg2);
   border-top: 1px solid var(--border);
@@ -1000,7 +1000,9 @@ function copyText(btn) {
         <span class="nav-item" onclick="jumpTo('lm-campwich')"><span class="ni-dot"></span>Campwich Forest Lodge</span>
         <span class="nav-item" onclick="jumpTo('lm-sandbox')"><span class="ni-dot"></span>Sandbox Welcome Area</span>
         <span class="nav-item" onclick="jumpTo('lm-palomma')"><span class="ni-dot"></span>Palomma Plaza</span>
-        <span class="nav-item" onclick="jumpTo('lm-meshbody')"><span class="ni-dot"></span>Mesh Body Stores</span>
+        <span class="nav-item" onclick="jumpTo('lm-meshbody')"><span class="ni-dot"></span>Maitreya</span>
+        <span class="nav-item" onclick="jumpTo('lm-legacy')"><span class="ni-dot"></span>MeshBody Legacy</span>
+        <span class="nav-item" onclick="jumpTo('lm-lelutka')"><span class="ni-dot"></span>Lelutka</span>
         <span class="nav-item" onclick="jumpTo('lm-dest')"><span class="ni-dot"></span>Destination Guide</span>
         <span class="nav-item" onclick="jumpTo('lm-firestorm-social')"><span class="ni-dot"></span>Firestorm Social Island</span>
         <span class="nav-item" onclick="jumpTo('lm-voiceecho')"><span class="ni-dot"></span>Voice Echo Canyon</span>
@@ -1088,7 +1090,7 @@ function copyText(btn) {
     <p>Searchable reference for SL Mentors — covering frequent questions, key in-world locations, and ready-to-use scripts for helping new residents.</p>
     <div class="stat-row">
       <div class="stat-chip"><span class="sc-val">12</span><span class="sc-lbl">FAQs</span></div>
-      <div class="stat-chip"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
+      <div class="stat-chip"><span class="sc-val">12</span><span class="sc-lbl">Landmarks</span></div>
       <div class="stat-chip"><span class="sc-val">9</span><span class="sc-lbl">Scripts</span></div>
     </div>
   </div>
@@ -1687,7 +1689,7 @@ function copyText(btn) {
     <div class="section-hdr">
       <div class="sec-icon si-g">📍</div>
       <div class="sec-title">Landmark Directory</div>
-      <div class="sec-count">10 locations</div>
+      <div class="sec-count">12 locations</div>
     </div>
     <div class="lm-grid">
 
@@ -1726,11 +1728,25 @@ function copyText(btn) {
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-help">Free Items</span></div><a class="sl-btn" href="secondlife://Gallii/178/35/33">Open in SL</a></div>
       </div>
 
-      <div class="lm-card" id="lm-meshbody" data-search="mesh body head appearance demo fitmesh bento maitreya legacy signature shopping demo try">
-        <div class="lm-name">Mesh Body Stores</div>
-        <div class="lm-region">📌 Search "Maitreya", "Legacy", or "Signature"</div>
-        <div class="lm-desc">Main stores for the most popular mesh bodies. Free demos available. Essential for avatar customisation — always try before buying. Demos are free!</div>
-        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-info">Mesh Body</span></div><a class="sl-btn" href="secondlife://Maitreya%20Isle/128/128/25">Open in SL</a></div>
+      <div class="lm-card" id="lm-meshbody" data-search="maitreya mesh body lara larax appearance demo fitmesh bento shopping try">
+        <div class="lm-name">Maitreya</div>
+        <div class="lm-region">📌 secondlife://Maitreya%20Isle/128/128/25</div>
+        <div class="lm-desc">The Maitreya store — home of the Lara and LaraX mesh bodies, the most widely supported female mesh bodies in SL. Free demos available. Always try before buying.</div>
+        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-info">Free Demos</span></div><a class="sl-btn" href="secondlife://Maitreya%20Isle/128/128/25">Open in SL</a></div>
+      </div>
+
+      <div class="lm-card" id="lm-legacy" data-search="meshbody legacy mesh body perky petite special athletic classic male female demo shopping">
+        <div class="lm-name">MeshBody Legacy</div>
+        <div class="lm-region">📌 secondlife://The%20Shops/123/114/25</div>
+        <div class="lm-desc">Home of the Legacy mesh bodies — popular for both female (Perky, Petite, Special) and male (Athletic, Classic) avatars. Free demos available in-store.</div>
+        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-info">Free Demos</span></div><a class="sl-btn" href="secondlife://The%20Shops/123/114/25">Open in SL</a></div>
+      </div>
+
+      <div class="lm-card" id="lm-lelutka" data-search="lelutka mesh head face bento demo skins appliers popular heads store">
+        <div class="lm-name">Lelutka</div>
+        <div class="lm-region">📌 secondlife://LeLutka/118/134/24</div>
+        <div class="lm-desc">The most popular mesh head brand in SL. Free demos available in-store — always try before buying. Widely supported for skins, appliers, and animations.</div>
+        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-app">Appearance</span><span class="lm-badge b-info">Free Demos</span></div><a class="sl-btn" href="secondlife://LeLutka/118/134/24">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-dest" data-search="events calendar music live performances dance destination guide linden curated weekly">
@@ -1862,7 +1878,7 @@ function copyText(btn) {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-meshbody" data-search="mesh body head appearance help confused shopping demo fitmesh bento maitreya legacy bom bakes">
+      <div class="sc-card" id="sc-meshbody" data-search="mesh body head appearance help confused shopping demo fitmesh bento maitreya legacy reborn ebody bom bakes gianni jake belleza">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Explaining Mesh Bodies to Newcomers</span>
           <span class="sc-cat">Appearance</span>
@@ -1872,14 +1888,33 @@ function copyText(btn) {
           <p>Mesh bodies are one of the most confusing topics for newcomers. Use a simple analogy before going into technical detail.</p>
           <div class="say-block">
             <div class="say-label">// Analogy to use</div>
-            <div class="say-text">Think of the default avatar as a basic mannequin. A mesh body is like a custom suit you wear over it — much better detail and fits modern clothing. Most popular are Maitreya (female) and Legacy or Signature (male). They cost L$ but free demos let you try before you buy!</div>
+            <div class="say-text">Think of the default avatar as a basic mannequin. A mesh body is like a custom suit you wear over it — much better detail and fits modern clothing. They cost L$ but free demos let you try before you buy!</div>
             <button class="copy-btn" onclick="copyText(this)">COPY</button>
           </div>
+          <p style="margin-top:12px;"><strong>Popular female bodies:</strong></p>
           <div class="bullets">
+            <div class="bullet"><strong>Maitreya Lara / LaraX</strong> — the most widely supported, huge range of compatible clothing</div>
+            <div class="bullet"><strong>eBODY Reborn</strong> — very popular, great clothing support</div>
+            <div class="bullet"><strong>MeshBody Legacy</strong> (Perky, Petite, Special) — high quality with strong creator support</div>
+          </div>
+          <p style="margin-top:12px;"><strong>Popular male bodies:</strong></p>
+          <div class="bullets">
+            <div class="bullet"><strong>Legacy</strong> (Athletic / Classic)</div>
+            <div class="bullet"><strong>Belleza Jake</strong></div>
+            <div class="bullet"><strong>Signature Gianni</strong></div>
+          </div>
+          <p style="margin-top:12px;"><strong>Popular mesh heads:</strong></p>
+          <div class="bullets">
+            <div class="bullet"><strong>Lelutka</strong> — the most popular mesh heads, widely supported for skins and appliers. Demos available in-store:
+              <div class="mp-links" style="margin-top:6px;">
+                <a class="mp-btn" href="secondlife://LeLutka/118/134/24">Open Lelutka in SL</a>
+              </div>
+            </div>
+          </div>
+          <div class="bullets" style="margin-top:12px;">
             <div class="bullet">Mesh bodies need <strong>BOM (Bakes on Mesh)</strong> enabled for skin to display correctly.</div>
             <div class="bullet">Clothing must be <strong>fitted/rigged for that specific body</strong> — not all clothes fit all bodies.</div>
             <div class="bullet"><strong>Always demo first</strong> — demos are free and show exactly how it looks on your shape.</div>
-            <div class="bullet">Free alternative: search <strong>Ruth 2.0</strong> on the Marketplace.</div>
           </div>
         </div>
       </div>
@@ -2244,6 +2279,8 @@ function copyText(btn) {
 
 </main>
 
+</div>
+
 <footer id="footer">
   <div class="footer-inner">
     <div class="footer-left">
@@ -2255,8 +2292,6 @@ function copyText(btn) {
     <div></div>
   </div>
 </footer>
-
-</div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const srch   = document.getElementById('global-search');
