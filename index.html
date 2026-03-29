@@ -928,7 +928,6 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <span class="nav-item" onclick="jumpTo('lm-palomma')"><span class="ni-dot"></span>Palomma Plaza</span>
         <span class="nav-item" onclick="jumpTo('lm-meshbody')"><span class="ni-dot"></span>Mesh Body Stores</span>
         <span class="nav-item" onclick="jumpTo('lm-dest')"><span class="ni-dot"></span>Destination Guide</span>
-        <span class="nav-item" onclick="jumpTo('lm-mentors')"><span class="ni-dot"></span>SL Mentors HQ</span>
         <span class="nav-item" onclick="jumpTo('lm-firestorm-social')"><span class="ni-dot"></span>Firestorm Social Island</span>
         <span class="nav-item" onclick="jumpTo('lm-voiceecho')"><span class="ni-dot"></span>Voice Echo Canyon</span>
         <span class="nav-item" onclick="jumpTo('lm-adulthub')"><span class="ni-dot"></span>Adult Hub</span>
@@ -1014,7 +1013,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     <p>Searchable reference for SL Mentors — covering frequent questions, key in-world locations, and ready-to-use scripts for helping new residents.</p>
     <div class="stat-row">
       <div class="stat-chip"><span class="sc-val">12</span><span class="sc-lbl">FAQs</span></div>
-      <div class="stat-chip"><span class="sc-val">11</span><span class="sc-lbl">Landmarks</span></div>
+      <div class="stat-chip"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
       <div class="stat-chip"><span class="sc-val">9</span><span class="sc-lbl">Scripts</span></div>
     </div>
   </div>
@@ -1613,7 +1612,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     <div class="section-hdr">
       <div class="sec-icon si-g">📍</div>
       <div class="sec-title">Landmark Directory</div>
-      <div class="sec-count">11 locations</div>
+      <div class="sec-count">10 locations</div>
     </div>
     <div class="lm-grid">
 
@@ -1664,13 +1663,6 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <div class="lm-region">📌 In-viewer: World → Destination Guide</div>
         <div class="lm-desc">Linden Lab's curated guide listing featured locations, live events, music venues, and art spaces — updated regularly. Great for activity suggestions.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-social">Events</span><span class="lm-badge b-info">Destinations</span></div><a class="sl-btn" href="secondlife://destinations">Open in SL</a></div>
-      </div>
-
-      <div class="lm-card" id="lm-mentors" data-search="mentor group sl mentors volunteer help coordinator training hq join group">
-        <div class="lm-name">SL Mentors Group HQ</div>
-        <div class="lm-region">📌 Search "SL Mentors" in Groups search</div>
-        <div class="lm-desc">The official Second Life Mentors group. Join to coordinate with other mentors, access shared resources, and attend training events and briefings.</div>
-        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-mentor">Mentors</span><span class="lm-badge b-info">Volunteer</span></div><a class="sl-btn" href="secondlife:///app/group/search/list?query=SL%20Mentors">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-firestorm-social" data-search="firestorm social island new resident help area milena mike head free 90 days avatar">
@@ -2172,13 +2164,13 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   <div class="footer-inner">
     <span class="footer-text">SL Mentor Reference Guide</span>
     <span class="footer-divider">·</span>
-    <a href="mailto:josh@joshualit.uk" class="footer-link">Suggestions? josh@joshualit.uk</a>
+    <a href="/cdn-cgi/l/email-protection#741e1b071c341e1b071c0115181d005a011f" class="footer-link">Suggestions? <span class="__cf_email__" data-cfemail="3a505549527a505549524f5b56534e144f51">[email&#160;protected]</span></a>
   </div>
 </footer>
 
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function toggleAllNav() {
   const btn = document.getElementById('nav-toggle-btn');
   const headers = document.querySelectorAll('.nav-group-hdr');
@@ -2282,16 +2274,4 @@ function doSearch(raw) {
 }
 
 function clearSearch() {
-  srch.value = '';
-  clrBtn.classList.remove('visible');
-  doSearch('');
-  srch.focus();
-}
-
-srch.addEventListener('input', function() {
-  clrBtn.classList.toggle('visible', this.value.length > 0);
-  doSearch(this.value);
-});
-</script>
-</body>
-</html>
+  srch.value
