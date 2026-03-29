@@ -256,6 +256,7 @@ body {
   display:flex; align-items:center; gap:8px;
 }
 .sc-val { font-family:'Orbitron','Courier New',monospace; font-size:14px; font-weight:600; color:var(--blue); }
+.stat-chip:hover { border-color:var(--blue); background:var(--blue-dim); }
 .home-btn {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
   font-size: 12px;
@@ -1229,9 +1230,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <p>Searchable reference for SL Mentors — covering frequent questions, key in-world locations, and ready-to-use scripts for helping new residents.</p>
     <div class="stat-row">
       <button class="home-btn" onclick="clearSearch(); scrollToTop();" title="Return to top">⌂ Home</button>
-      <div class="stat-chip"><span class="sc-val">14</span><span class="sc-lbl">FAQs</span></div>
-      <div class="stat-chip"><span class="sc-val">12</span><span class="sc-lbl">Landmarks</span></div>
-      <div class="stat-chip"><span class="sc-val">10</span><span class="sc-lbl">Scripts</span></div>
+      <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">14</span><span class="sc-lbl">FAQs</span></div>
+      <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">12</span><span class="sc-lbl">Landmarks</span></div>
+      <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Scripts</span></div>
     </div>
   </div>
 
