@@ -23,7 +23,7 @@
   --c-violet:    #7B2CBF;  --c-violet-d:   rgba(123,44,191,0.12);
   --c-cyan:      #f0f4ff;  --c-cyan-d:     rgba(240,244,255,0.12);
   --c-white:     #f0f4ff;  --c-white-d:    rgba(240,244,255,0.08);
-  --c-adult:     #C51162;  --c-adult-d:    rgba(181,23,158,0.12);
+  --c-adult:     #C51162;  --c-adult-d:    rgba(197,17,98,0.12);
   --c-amber:     #FFB300;  --c-amber-d:    rgba(255,179,0,0.12);
   --c-lime:      #8AC926;  --c-lime-d:     rgba(138,201,38,0.12);
   --c-sky:       #1565C0;  --c-sky-d:      rgba(0,209,255,0.12);
@@ -370,8 +370,8 @@ body {
 .t-lnd { color:var(--c-orange);   background:var(--c-orange-d);   border:1px solid rgba(255,146,76,0.3); }
 .t-mov { color:var(--c-mint);     background:var(--c-mint-d);     border:1px solid rgba(82,210,115,0.3); }
 .t-rul { color:var(--c-red);      background:var(--c-red-d);      border:1px solid rgba(231,111,81,0.3); }
-.t-aud { color:var(--c-cyan);     background:var(--c-cyan-d);     border:1px solid rgba(34,211,238,0.3); }
-.t-sex { color:var(--c-adult);    background:var(--c-adult-d);    border:1px solid rgba(255,102,196,0.3); }
+.t-aud { color:var(--c-fuchsia);  background:var(--c-fuchsia-d);  border:1px solid rgba(197,17,98,0.3); }
+.t-sex { color:var(--c-adult);    background:var(--c-adult-d);    border:1px solid rgba(197,17,98,0.3); }
 
 .faq-tog {
   width:22px; height:22px; border-radius:50%;
@@ -754,13 +754,21 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-white:hover { border-color:var(--c-white); background:var(--c-white-d); }
 .qi-white:hover .qi-arrow { color:var(--c-white); }
 
-.qi-cyan { border-left:6px solid rgba(34,211,238,0.5); }
+.qi-cyan { border-left:6px solid rgba(240,244,255,0.5); }
 .qi-cyan:hover { border-color:var(--c-cyan); background:var(--c-cyan-d); }
 .qi-cyan:hover .qi-arrow { color:var(--c-cyan); }
 
-.qi-adult { border-left:6px solid rgba(255,102,196,0.5); }
+.qi-fuchsia { border-left:6px solid rgba(255,102,196,0.5); }
+.qi-fuchsia:hover { border-color:var(--c-fuchsia); background:var(--c-fuchsia-d); }
+.qi-fuchsia:hover .qi-arrow { color:var(--c-fuchsia); }
+
+.qi-adult { border-left:6px solid rgba(197,17,98,0.5); }
 .qi-adult:hover { border-color:var(--c-adult); background:var(--c-adult-d); }
 .qi-adult:hover .qi-arrow { color:var(--c-adult); }
+
+.qi-mint-blue { border-left:6px solid rgba(144,224,239,0.5); }
+.qi-mint-blue:hover { border-color:#90E0EF; background:rgba(144,224,239,0.12); }
+.qi-mint-blue:hover .qi-arrow { color:#90E0EF; }
 
 .qi-amber { border-left:6px solid rgba(255,179,0,0.5); }
 .qi-amber:hover { border-color:var(--c-amber); background:var(--c-amber-d); }
@@ -770,7 +778,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-lime:hover { border-color:var(--c-lime); background:var(--c-lime-d); }
 .qi-lime:hover .qi-arrow { color:var(--c-lime); }
 
-.qi-sky { border-left:6px solid rgba(0,209,255,0.5); }
+.qi-sky { border-left:6px solid rgba(21,101,192,0.5); }
 .qi-sky:hover { border-color:var(--c-sky); background:var(--c-sky-d); }
 .qi-sky:hover .qi-arrow { color:var(--c-sky); }
 
@@ -798,11 +806,11 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-mint:hover { border-color:var(--c-mint); background:var(--c-mint-d); }
 .qi-mint:hover .qi-arrow { color:var(--c-mint); }
 
-.qi-red { border-left:6px solid rgba(231,111,81,0.5); }
+.qi-red { border-left:6px solid rgba(255,82,82,0.5); }
 .qi-red:hover { border-color:var(--c-red); background:var(--c-red-d); }
 .qi-red:hover .qi-arrow { color:var(--c-red); }
 
-.qi-coral { border-left:6px solid rgba(255,89,94,0.5); }
+.qi-coral { border-left:6px solid rgba(213,0,0,0.5); }
 .qi-coral:hover { border-color:var(--c-coral); background:var(--c-coral-d); }
 .qi-coral:hover .qi-arrow { color:var(--c-coral); }
 
@@ -1171,7 +1179,7 @@ function copyText(btn) {
         <div class="qi-arrow">›</div>
       </div>
 
-      <div class="qi-card qi-purple" data-search="invisible avatar hidden avatars toggle shortcut" onclick="jumpTo('faq-invisible')">
+      <div class="qi-card qi-mint-blue" data-search="invisible avatar hidden avatars toggle shortcut" onclick="jumpTo('faq-invisible')">
         <div class="qi-icon">👻</div>
         <div class="qi-info">
           <div class="qi-title">Invisible Avatar</div>
@@ -1243,7 +1251,7 @@ function copyText(btn) {
         <div class="qi-arrow">›</div>
       </div>
 
-      <div class="qi-card qi-cyan" data-search="voice audio sound microphone chat hear" onclick="jumpTo('faq-voice')">
+      <div class="qi-card qi-fuchsia" data-search="voice audio sound microphone chat hear" onclick="jumpTo('faq-voice')">
         <div class="qi-icon">🎙️</div>
         <div class="qi-info">
           <div class="qi-title">Voice &amp; Audio</div>
@@ -1593,7 +1601,7 @@ function copyText(btn) {
       </div>
 
 
-      <div class="faq-item edge-aud-cyan" id="faq-voice" data-search="voice chat not working microphone audio sound hear speaker input output firestorm preferences">
+      <div class="faq-item edge-aud" id="faq-voice" data-search="voice chat not working microphone audio sound hear speaker input output firestorm preferences">
         <div class="faq-q" onclick="tog(this)">
           <span class="faq-q-text">Voice chat isn't working — I can't hear anyone.</span>
           <span class="faq-tag t-aud">Audio</span>
@@ -1750,7 +1758,7 @@ function copyText(btn) {
         <div class="lm-name">Adult Hub</div>
         <div class="lm-region">📌 Search "Adult Hub" in World Search</div>
         <div class="lm-desc">The central hub for adult content in Second Life. Direct residents here only after confirming they are 18 or over. Residents must also have Adult content enabled on their account.</div>
-        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge" style="color:var(--c-adult);background:var(--c-adult-d);border:1px solid rgba(255,102,196,0.25);">Adult</span><span class="lm-badge b-info">18+ Only</span></div><a class="sl-btn" href="secondlife://Adult%20Hub/128/128/25">Open in SL</a></div>
+        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge" style="color:var(--c-adult);background:var(--c-adult-d);border:1px solid rgba(197,17,98,0.25);">Adult</span><span class="lm-badge b-info">18+ Only</span></div><a class="sl-btn" href="secondlife://Adult%20Hub/128/128/25">Open in SL</a></div>
       </div>
 
     </div>
@@ -1879,7 +1887,7 @@ function copyText(btn) {
       <div class="sc-card" id="sc-adult" data-search="adult sex content age verify 18 confirmation hub mature explicit">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Age Verification Before Adult Content</span>
-          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(255,102,196,0.25);">Adult</span>
+          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(197,17,98,0.25);">Adult</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
