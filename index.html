@@ -460,7 +460,22 @@ body {
 .lm-card.hidden { display:none; }
 
 .lm-name { font-family:'Orbitron','Courier New',monospace; font-size:12px; font-weight:600; color:var(--gold); margin-bottom:6px; }
-.lm-region { font-family:'Share Tech Mono','Courier New',monospace; font-size:10px; color:var(--text-dim); margin-bottom:10px; word-break:break-all; }
+.lm-region { font-family:'Share Tech Mono','Courier New',monospace; font-size:10px; color:var(--text-dim); margin-bottom:10px; word-break:break-all; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.lm-copy-btn {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 2px 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.15s, border-color 0.15s;
+}
+.lm-copy-btn:hover { color: var(--c-gold); border-color: var(--c-gold); }
+.lm-copy-btn.ok { color: var(--c-teal); border-color: var(--c-teal); }
 .lm-desc { font-size:12.5px; color:var(--text); line-height:1.55; margin-bottom:14px; }
 .lm-badge {
   font-family:'Share Tech Mono','Courier New',monospace; font-size:9px;
@@ -1902,49 +1917,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <div class="lm-card" id="lm-welcome" data-search="welcome hub help newcomers new residents orientation intro classic legacy">
         <div class="lm-name">Welcome Hub</div>
-        <div class="lm-region">📌 secondlife://WelcomeHub/166/105/25</div>
+        <div class="lm-region"><span>📌 secondlife://WelcomeHub/166/105/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://WelcomeHub/166/105/25')" title="Copy SLURL">COPY</button></div>
         <div class="lm-desc">Still a useful and relevant destination, but no longer the primary entry point for new residents. Worth knowing and visiting — many residents still pass through here.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">Classic</span></div><a class="sl-btn" href="secondlife://WelcomeHub/166/105/25">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-learningcentre" data-search="desktop learning centre new residents entry point arrival first steps tutorials">
         <div class="lm-name">Desktop Learning Centre</div>
-        <div class="lm-region">📌 secondlife://LearningCenterDT/162/102/153</div>
+        <div class="lm-region"><span>📌 secondlife://LearningCenterDT/162/102/153</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://LearningCenterDT/162/102/153')" title="Copy SLURL">COPY</button></div>
         <div class="lm-desc">The primary entry point for new residents joining Second Life on desktop. This is where most new residents will arrive — a key location for mentors to be aware of.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">New Residents</span><span class="lm-badge b-info">Desktop</span></div><a class="sl-btn" href="secondlife://LearningCenterDT/162/102/153">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-sandbox" data-search="sandbox build create objects rez free public building practice welcome area">
         <div class="lm-name">Sandbox Welcome Area</div>
-        <div class="lm-region">📌 secondlife://WelcomeHubSandbox/74/79/25</div>
+        <div class="lm-region"><span>📌 secondlife://WelcomeHubSandbox/74/79/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://WelcomeHubSandbox/74/79/25')" title="Copy SLURL">COPY</button></div>
         <div class="lm-desc">Official Linden Lab public sandbox. Residents can rez and build freely. Objects auto-return after a few hours — great for teaching building basics and experimenting with objects.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-sandbox">Sandbox</span><span class="lm-badge b-info">Public</span></div><a class="sl-btn" href="secondlife://WelcomeHubSandbox/74/79/25">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-palomma" data-search="palomma plaza free dove fashion clothes skins shapes shoes hair jewelry makeup mens womens designer free gifts">
         <div class="lm-name">Palomma Plaza</div>
-        <div class="lm-region">📌 secondlife://Gallii/178/35/33</div>
+        <div class="lm-region"><span>📌 secondlife://Gallii/178/35/33</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://Gallii/178/35/33')" title="Copy SLURL">COPY</button></div>
         <div class="lm-desc">In memory of Free Dove and its founder Palomma Casanova — continuing the dream with free gifts from top SL designers. Fashion, clothes, skins, shapes, shoes, hair, jewellery, makeup, and more for both men and women.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-help">Free Items</span></div><a class="sl-btn" href="secondlife://Gallii/178/35/33">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-meshbody" data-search="maitreya mesh body lara larax appearance demo fitmesh bento shopping try">
         <div class="lm-name">Maitreya</div>
-        <div class="lm-region">📌 secondlife://Maitreya%20Isle/128/128/25</div>
+        <div class="lm-region"><span>📌 secondlife://Maitreya%20Isle/128/128/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://Maitreya Isle/128/128/25')" title="Copy SLURL">COPY</button></div>
         <div class="lm-desc">The Maitreya store — home of the Lara and LaraX mesh bodies, the most widely supported female mesh bodies in SL. Free demos available. Always try before buying.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-info">Free Demos</span></div><a class="sl-btn" href="secondlife://Maitreya%20Isle/128/128/25">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-legacy" data-search="meshbody legacy mesh body perky petite special athletic classic male female demo shopping">
         <div class="lm-name">MeshBody Legacy</div>
-        <div class="lm-region">📌 secondlife://The%20Shops/123/114/25</div>
+        <div class="lm-region"><span>📌 secondlife://The%20Shops/123/114/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://The Shops/123/114/25')" title="Copy SLURL">COPY</button></div>
         <div class="lm-desc">Home of the Legacy mesh bodies — popular for both female (Perky, Petite, Special) and male (Athletic, Classic) avatars. Free demos available in-store.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-info">Free Demos</span></div><a class="sl-btn" href="secondlife://The%20Shops/123/114/25">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-lelutka" data-search="lelutka mesh head face bento demo skins appliers popular heads store">
         <div class="lm-name">Lelutka</div>
-        <div class="lm-region">📌 secondlife://LeLutka/118/134/24</div>
+        <div class="lm-region"><span>📌 secondlife://LeLutka/118/134/24</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://LeLutka/118/134/24')" title="Copy SLURL">COPY</button></div>
         <div class="lm-desc">The most popular mesh head brand in SL. Free demos available in-store — always try before buying. Widely supported for skins, appliers, and animations.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-app">Appearance</span><span class="lm-badge b-info">Free Demos</span></div><a class="sl-btn" href="secondlife://LeLutka/118/134/24">Open in SL</a></div>
       </div>
@@ -1965,7 +1980,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <div class="lm-card" id="lm-voiceecho" data-search="voice echo canyon test voice working echo channel public region">
         <div class="lm-name">Voice Echo Canyon</div>
-        <div class="lm-region">📌 secondlife://Voice%20Echo%20Canyon/175/75/30</div>
+        <div class="lm-region"><span>📌 secondlife://Voice%20Echo%20Canyon/175/75/30</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://Voice Echo Canyon/175/75/30')" title="Copy SLURL">COPY</button></div>
         <div class="lm-desc">Public region for testing voice. Speak and you'll hear yourself through an echo channel — confirming voice is working. You will only hear yourself, not other residents. Not a sandbox.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Voice Test</span><span class="lm-badge b-info">Public</span></div><a class="sl-btn" href="secondlife://Voice%20Echo%20Canyon/175/75/30">Open in SL</a></div>
       </div>
