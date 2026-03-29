@@ -547,6 +547,59 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   .page-hdr h1 { font-size:1.3rem; }
 }
 
+.nav-collapse-row {
+  padding: 8px 14px 4px;
+  display: flex;
+  justify-content: flex-end;
+}
+#nav-toggle-btn {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+#nav-toggle-btn:hover { color: var(--text); border-color: var(--border2); }
+#footer {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  z-index: 100;
+  padding: 10px 24px;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+}
+.footer-text {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.footer-divider {
+  color: var(--border2);
+  font-size: 12px;
+}
+.footer-link {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 10px;
+  color: var(--c-teal);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: color 0.15s;
+}
+.footer-link:hover { color: var(--c-skyblue); }
+
 /* ═══ MEMBERSHIP TIER TABLE ═══ */
 .tier-table { border:1px solid var(--border); border-radius:8px; overflow:hidden; margin:10px 0; }
 .tier-row { display:grid; grid-template-columns:1fr 100px 100px; border-bottom:1px solid var(--border); }
@@ -830,21 +883,24 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   </div>
 
   <div class="nav">
+    <div class="nav-collapse-row">
+      <button id="nav-toggle-btn" onclick="toggleAllNav()" title="Expand all sections">⊞ Expand all</button>
+    </div>
 
     <div class="nav-group">
-      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>⚡</span> Quick Index <span class="ng-arrow">▶</span>
       </div>
-      <div class="nav-items open">
+      <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 18 topics</span>
       </div>
     </div>
 
     <div class="nav-group">
-      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>❓</span> FAQs &amp; Answers <span class="ng-arrow">▶</span>
       </div>
-      <div class="nav-items open">
+      <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('faq-appearance')"><span class="ni-dot"></span>Avatar Appearance</span>
         <span class="nav-item" onclick="jumpTo('faq-inventory')"><span class="ni-dot"></span>Inventory Issues</span>
         <span class="nav-item" onclick="jumpTo('faq-movement')"><span class="ni-dot"></span>Movement &amp; Teleport</span>
@@ -861,10 +917,10 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     </div>
 
     <div class="nav-group">
-      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>📍</span> Landmark Directory <span class="ng-arrow">▶</span>
       </div>
-      <div class="nav-items open">
+      <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('lm-welcome')"><span class="ni-dot"></span>Welcome Hub (Classic)</span>
         <span class="nav-item" onclick="jumpTo('lm-learningcentre')"><span class="ni-dot"></span>Desktop Learning Centre</span>
         <span class="nav-item" onclick="jumpTo('lm-campwich')"><span class="ni-dot"></span>Campwich Forest Lodge</span>
@@ -880,10 +936,10 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     </div>
 
     <div class="nav-group">
-      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>📋</span> Tips &amp; Scripts <span class="ng-arrow">▶</span>
       </div>
-      <div class="nav-items open">
+      <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('sc-greeting')"><span class="ni-dot"></span>Greeting a Resident</span>
         <span class="nav-item" onclick="jumpTo('sc-overwhelmed')"><span class="ni-dot"></span>Overwhelmed Resident</span>
         <span class="nav-item" onclick="jumpTo('sc-dontknow')"><span class="ni-dot"></span>When You Don't Know</span>
@@ -897,10 +953,10 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     </div>
 
     <div class="nav-group">
-      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>▶</span> Video Links <span class="ng-arrow">▶</span>
       </div>
-      <div class="nav-items open">
+      <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>All videos</span>
         <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>Avatar Shape</span>
         <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>Shopping &amp; Buying L$</span>
@@ -913,10 +969,10 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     </div>
 
     <div class="nav-group">
-      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>🌐</span> Useful Websites <span class="ng-arrow">▶</span>
       </div>
-      <div class="nav-items open">
+      <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>ShowBuzz — Live Events</span>
         <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Land Options</span>
         <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Marketplace</span>
@@ -928,10 +984,10 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     </div>
 
     <div class="nav-group">
-      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>🕊️</span> CLARA Method <span class="ng-arrow">▶</span>
       </div>
-      <div class="nav-items open">
+      <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('sec-clara')"><span class="ni-dot"></span>Overview</span>
         <span class="nav-item" onclick="jumpTo('clara-c')"><span class="ni-dot"></span>C — Centre Yourself</span>
         <span class="nav-item" onclick="jumpTo('clara-l')"><span class="ni-dot"></span>L — Listen</span>
@@ -2111,9 +2167,34 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 
 
 </main>
+
+<footer id="footer">
+  <div class="footer-inner">
+    <span class="footer-text">SL Mentor Reference Guide</span>
+    <span class="footer-divider">·</span>
+    <a href="mailto:josh@joshualit.uk" class="footer-link">Suggestions? josh@joshualit.uk</a>
+  </div>
+</footer>
+
 </div>
 
 <script>
+function toggleAllNav() {
+  const btn = document.getElementById('nav-toggle-btn');
+  const headers = document.querySelectorAll('.nav-group-hdr');
+  const anyOpen = [...headers].some(h => h.classList.contains('open'));
+  headers.forEach(hdr => {
+    if (anyOpen) {
+      hdr.classList.remove('open');
+      hdr.nextElementSibling.classList.remove('open');
+    } else {
+      hdr.classList.add('open');
+      hdr.nextElementSibling.classList.add('open');
+    }
+  });
+  btn.textContent = anyOpen ? '⊞ Expand all' : '⊟ Collapse all';
+}
+
 function tog(trigger) {
   const card = trigger.parentElement;
   card.classList.toggle('open');
