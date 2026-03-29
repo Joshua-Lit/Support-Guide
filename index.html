@@ -17,14 +17,15 @@
   --panel2:   #161d38;
   --border:   #1e2d52;
   --border2:  #2a3f70;
-  --c-elecblue:  #2979FF;  --c-elecblue-d: rgba(41,121,255,0.12);
+  --c-elecblue:  #448AFF;  --c-elecblue-d: rgba(68,138,255,0.12);
   --c-violet:    #AA00FF;  --c-violet-d:   rgba(170,0,255,0.12);
   --c-cyan:      #f0f4ff;  --c-cyan-d:     rgba(240,244,255,0.12);
   --c-white:     #f0f4ff;  --c-white-d:    rgba(240,244,255,0.08);
   --c-adult:     #C51162;  --c-adult-d:    rgba(197,17,98,0.12);
   --c-amber:     #FFB300;  --c-amber-d:    rgba(255,179,0,0.12);
   --c-lime:      #00C853;  --c-lime-d:     rgba(0,200,83,0.12);
-  --c-sky:       #1A47CC;  --c-sky-d:      rgba(26,71,204,0.12);
+  --c-sky:       #1565C0;  --c-sky-d:      rgba(21,101,192,0.12);
+  --c-skyblue:   #40C4FF;  --c-skyblue-d:  rgba(64,196,255,0.12);
   --c-rose:      #FF4081;  --c-rose-d:     rgba(255,64,129,0.12);
   --c-gold:      #FFEE58;  --c-gold-d:     rgba(255,238,88,0.12);
   --c-orange:    #FF6D00;  --c-orange-d:   rgba(255,109,0,0.12);
@@ -34,7 +35,7 @@
   --c-coral:     #D50000;  --c-coral-d:    rgba(213,0,0,0.12);
   --c-fuchsia:   #E040FB;  --c-fuchsia-d:  rgba(224,64,251,0.12);
   /* legacy aliases kept for sidebar/UI chrome */
-  --blue:     #4d9fff;  --blue-dim: rgba(41,121,255,0.12);  --blue-glow: rgba(41,121,255,0.25);
+  --blue:     #4d9fff;  --blue-dim: rgba(68,138,255,0.12);  --blue-glow: rgba(68,138,255,0.25);
   --teal:     #2dd4bf;  --teal-dim: rgba(29,233,182,0.1);
   --gold:     #fbbf24;  --gold-dim: rgba(255,238,88,0.1);
   --purple:   #AA00FF;
@@ -58,33 +59,6 @@ body {
   line-height: 1.65;
   min-height: 100vh;
   overflow-x: hidden;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(61,127,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(61,127,255,0.025) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-  z-index: 0;
-}
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    radial-gradient(1px 1px at 15% 25%, rgba(94,255,200,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 42% 8%,  rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 68% 55%, rgba(61,127,255,0.6) 0%, transparent 100%),
-    radial-gradient(1px 1px at 82% 18%, rgba(255,255,255,0.25) 0%, transparent 100%),
-    radial-gradient(1px 1px at 93% 72%, rgba(94,255,200,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 6%  88%, rgba(170,0,255,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 55% 92%, rgba(255,255,255,0.2) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
 }
 
 #app { display: flex; min-height: 100vh; position: relative; z-index: 1; }
@@ -330,7 +304,7 @@ body::after {
 /* Per-tag left edge colours */
 .faq-item.edge-acc::before { background:var(--border2); }
 .faq-item.edge-acc:hover::before, .faq-item.edge-acc.open::before { background:var(--c-elecblue); }
-.faq-item.edge-acc:hover, .faq-item.edge-acc.open { border-color:rgba(41,121,255,0.35); }
+.faq-item.edge-acc:hover, .faq-item.edge-acc.open { border-color:rgba(68,138,255,0.35); }
 
 .faq-item.edge-app::before { background:var(--border2); }
 .faq-item.edge-app:hover::before, .faq-item.edge-app.open::before { background:var(--c-violet); }
@@ -342,7 +316,7 @@ body::after {
 
 .faq-item.edge-grp::before { background:var(--border2); }
 .faq-item.edge-grp:hover::before, .faq-item.edge-grp.open::before { background:var(--c-sky); }
-.faq-item.edge-grp:hover, .faq-item.edge-grp.open { border-color:rgba(26,71,204,0.35); }
+.faq-item.edge-grp:hover, .faq-item.edge-grp.open { border-color:rgba(21,101,192,0.35); }
 
 .faq-item.edge-inv::before { background:var(--border2); }
 .faq-item.edge-inv:hover::before, .faq-item.edge-inv.open::before { background:var(--c-rose); }
@@ -386,10 +360,10 @@ body::after {
   letter-spacing:1px; padding:3px 8px; border-radius:4px;
   white-space:nowrap; flex-shrink:0;
 }
-.t-acc { color:var(--c-elecblue); background:var(--c-elecblue-d); border:1px solid rgba(41,121,255,0.3); }
+.t-acc { color:var(--c-elecblue); background:var(--c-elecblue-d); border:1px solid rgba(68,138,255,0.3); }
 .t-app { color:var(--c-violet);   background:var(--c-violet-d);   border:1px solid rgba(170,0,255,0.3); }
 .t-eco { color:var(--c-amber);    background:var(--c-amber-d);    border:1px solid rgba(255,179,0,0.3); }
-.t-grp { color:var(--c-sky);      background:var(--c-sky-d);      border:1px solid rgba(26,71,204,0.3); }
+.t-grp { color:var(--c-sky);      background:var(--c-sky-d);      border:1px solid rgba(21,101,192,0.3); }
 .t-inv { color:var(--c-rose);     background:var(--c-rose-d);     border:1px solid rgba(255,64,129,0.3); }
 .t-lnd { color:var(--c-orange);   background:var(--c-orange-d);   border:1px solid rgba(255,109,0,0.3); }
 .t-mov { color:var(--c-mint);     background:var(--c-mint-d);     border:1px solid rgba(105,240,174,0.3); }
@@ -599,6 +573,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .sl-btn:hover { background:rgba(29,233,182,0.2); border-color:var(--c-teal); }
 .si-p { background:rgba(170,0,255,0.1); border:1px solid rgba(170,0,255,0.3); }
 .si-v { background:rgba(213,0,0,0.1); border:1px solid rgba(213,0,0,0.3); color:var(--c-coral); }
+.si-w { background:rgba(64,196,255,0.1); border:1px solid rgba(64,196,255,0.3); color:var(--c-skyblue); }
 
 /* ═══ VIDEO LINKS ═══ */
 .vid-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:10px; }
@@ -696,7 +671,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-card:hover .qi-arrow { color: var(--blue); transform: translateX(3px); }
 
 /* Quick Index card colours — one per topic */
-.qi-elecblue { border-left:6px solid rgba(41,121,255,0.5); }
+.qi-elecblue { border-left:6px solid rgba(68,138,255,0.5); }
 .qi-elecblue:hover { border-color:var(--c-elecblue); background:var(--c-elecblue-d); }
 .qi-elecblue:hover .qi-arrow { color:var(--c-elecblue); }
 
@@ -724,7 +699,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-lime:hover { border-color:var(--c-lime); background:var(--c-lime-d); }
 .qi-lime:hover .qi-arrow { color:var(--c-lime); }
 
-.qi-sky { border-left:6px solid rgba(26,71,204,0.5); }
+.qi-sky { border-left:6px solid rgba(21,101,192,0.5); }
 .qi-sky:hover { border-color:var(--c-sky); background:var(--c-sky-d); }
 .qi-sky:hover .qi-arrow { color:var(--c-sky); }
 
@@ -743,6 +718,10 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-teal { border-left:6px solid rgba(29,233,182,0.5); }
 .qi-teal:hover { border-color:var(--c-teal); background:var(--c-teal-d); }
 .qi-teal:hover .qi-arrow { color:var(--c-teal); }
+
+.qi-skyblue { border-left:6px solid rgba(64,196,255,0.5); }
+.qi-skyblue:hover { border-color:var(--c-skyblue); background:var(--c-skyblue-d); }
+.qi-skyblue:hover .qi-arrow { color:var(--c-skyblue); }
 
 .qi-mint { border-left:6px solid rgba(105,240,174,0.5); }
 .qi-mint:hover { border-color:var(--c-mint); background:var(--c-mint-d); }
@@ -853,7 +832,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <span>⚡</span> Quick Index <span class="ng-arrow">▶</span>
       </div>
       <div class="nav-items open">
-        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 17 topics</span>
+        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 18 topics</span>
       </div>
     </div>
 
@@ -926,6 +905,21 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>Music &amp; Media</span>
         <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>How to Get Help</span>
         <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>Games</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-hdr open" onclick="toggleNav(this)">
+        <span>🌐</span> Useful Websites <span class="ng-arrow">▶</span>
+      </div>
+      <div class="nav-items open">
+        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>ShowBuzz — Live Events</span>
+        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Land Options</span>
+        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Marketplace</span>
+        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Knowledge Base</span>
+        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Destination Guide</span>
+        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>SL Music Events</span>
+        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Bellisseria Shopping</span>
       </div>
     </div>
 
@@ -1110,6 +1104,15 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
         <div class="qi-info">
           <div class="qi-title">Video Tutorials</div>
           <div class="qi-sub">7 helpful YouTube guides</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card qi-skyblue" data-search="useful websites showbuzz marketplace knowledge base destination music" onclick="jumpTo('sec-websites')">
+        <div class="qi-icon">🌐</div>
+        <div class="qi-info">
+          <div class="qi-title">Useful Websites</div>
+          <div class="qi-sub">External resources &amp; links</div>
         </div>
         <div class="qi-arrow">›</div>
       </div>
@@ -1902,6 +1905,82 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
           <div class="vid-sub">youtube.com/watch?v=kJO20YelMPo</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=kJO20YelMPo')">COPY</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════ SECTION 6 — USEFUL WEBSITES ══════ -->
+  <section class="section" id="sec-websites" data-section>
+    <div class="section-hdr">
+      <div class="sec-icon si-w">🌐</div>
+      <div class="sec-title">Useful Websites</div>
+      <div class="sec-count">7 links</div>
+    </div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">External resources to share with residents or use yourself. Click <strong>Copy</strong> to copy the URL for pasting into chat.</p>
+    <div class="vid-grid">
+
+      <div class="vid-card" data-search="showbuzz live music events grid happening now DJs performers venues">
+        <div class="vid-thumb">🎵</div>
+        <div class="vid-info">
+          <div class="vid-title">ShowBuzz — Live Events</div>
+          <div class="vid-sub">showbuzz.org</div>
+        </div>
+        <button class="copy-btn" onclick="copyVid(this,'https://showbuzz.org/')">COPY</button>
+      </div>
+
+      <div class="vid-card" data-search="second life land linden homes rent buy parcel options">
+        <div class="vid-thumb">🏡</div>
+        <div class="vid-info">
+          <div class="vid-title">Land Options</div>
+          <div class="vid-sub">secondlife.com/land</div>
+        </div>
+        <button class="copy-btn" onclick="copyVid(this,'https://secondlife.com/land')">COPY</button>
+      </div>
+
+      <div class="vid-card" data-search="marketplace shopping buy items clothes skins free L$0 L$1">
+        <div class="vid-thumb">🛒</div>
+        <div class="vid-info">
+          <div class="vid-title">Marketplace</div>
+          <div class="vid-sub">marketplace.secondlife.com</div>
+        </div>
+        <button class="copy-btn" onclick="copyVid(this,'https://marketplace.secondlife.com')">COPY</button>
+      </div>
+
+      <div class="vid-card" data-search="knowledge base help answers support community secondlife">
+        <div class="vid-thumb">📖</div>
+        <div class="vid-info">
+          <div class="vid-title">Knowledge Base &amp; Answers</div>
+          <div class="vid-sub">community.secondlife.com</div>
+        </div>
+        <button class="copy-btn" onclick="copyVid(this,'https://community.secondlife.com')">COPY</button>
+      </div>
+
+      <div class="vid-card" data-search="destination guide places explore featured locations events">
+        <div class="vid-thumb">📍</div>
+        <div class="vid-info">
+          <div class="vid-title">Destination Guide</div>
+          <div class="vid-sub">secondlife.com/destinations</div>
+        </div>
+        <button class="copy-btn" onclick="copyVid(this,'https://secondlife.com/destinations')">COPY</button>
+      </div>
+
+      <div class="vid-card" data-search="secondlife music live events calendar artists DJs performers schedule">
+        <div class="vid-thumb">🎤</div>
+        <div class="vid-info">
+          <div class="vid-title">SL Music Events Calendar</div>
+          <div class="vid-sub">secondlife.music</div>
+        </div>
+        <button class="copy-btn" onclick="copyVid(this,'https://www.secondlife.music/events')">COPY</button>
+      </div>
+
+      <div class="vid-card" data-search="bellisseria shopping community guide shops merchants commercial regions search filter teleport linden homes">
+        <div class="vid-thumb">🛍️</div>
+        <div class="vid-info">
+          <div class="vid-title">Bellisseria Shopping</div>
+          <div class="vid-sub">bellisseria.online</div>
+        </div>
+        <button class="copy-btn" onclick="copyVid(this,'https://bellisseria.online/')">COPY</button>
       </div>
 
     </div>
