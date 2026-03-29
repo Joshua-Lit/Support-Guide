@@ -24,19 +24,19 @@
   --c-cyan:      #f0f4ff;  --c-cyan-d:     rgba(240,244,255,0.12);
   --c-white:     #f0f4ff;  --c-white-d:    rgba(240,244,255,0.08);
   --c-gaming:    #90E0EF;  --c-gaming-d:   rgba(144,224,239,0.12);
-  --c-adult:     #C51162;  --c-adult-d:    rgba(197,17,98,0.12);
+  --c-adult:     #A00E50;  --c-adult-d:    rgba(160,14,80,0.12);
   --c-amber:     #FFB300;  --c-amber-d:    rgba(255,179,0,0.12);
   --c-lime:      #8AC926;  --c-lime-d:     rgba(138,201,38,0.12);
   --c-sky:       #1565C0;  --c-sky-d:      rgba(0,209,255,0.12);
   --c-skyblue:   #5E60CE;  --c-skyblue-d:  rgba(94,96,206,0.12);
-  --c-rose:      #F72585;  --c-rose-d:     rgba(247,37,133,0.12);
+  --c-rose:      #FF5CA8;  --c-rose-d:     rgba(255,92,168,0.12);
   --c-gold:      #FFEE58;  --c-gold-d:     rgba(255,238,88,0.12);
   --c-orange:    #FF924C;  --c-orange-d:   rgba(255,146,76,0.12);
   --c-teal:      #2EC4B6;  --c-teal-d:     rgba(46,196,182,0.12);
   --c-mint:      #52D273;  --c-mint-d:     rgba(82,210,115,0.12);
   --c-red:       #FF5252;  --c-red-d:      rgba(231,111,81,0.12);
   --c-coral:     #D50000;  --c-coral-d:    rgba(255,89,94,0.12);
-  --c-fuchsia:   #FF66C4;  --c-fuchsia-d:  rgba(255,102,196,0.12);
+  --c-fuchsia:   #FF99D6;  --c-fuchsia-d:  rgba(255,153,214,0.12);
   /* legacy aliases kept for sidebar/UI chrome */
   --blue:     #4d9fff;  --blue-dim: rgba(58,134,255,0.12);  --blue-glow: rgba(58,134,255,0.25);
   --teal:     #2dd4bf;  --teal-dim: rgba(46,196,182,0.1);
@@ -44,7 +44,7 @@
   --purple:   #7B2CBF;
   --red:      #ef4444;
   --orange:   #f97316;  --orange-dim: rgba(255,146,76,0.1);
-  --pink:     #e879f9;  --pink-dim:   rgba(255,102,196,0.1);
+  --pink:     #e879f9;  --pink-dim:   rgba(255,153,214,0.1);
   --text:     #b8cae8;
   --text-dim: #5a7099;
   --text-hi:  #e8f0ff;
@@ -180,7 +180,7 @@ body {
   gap: 8px;
   padding: 9px 16px;
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 2px;
   color: var(--text-dim);
   text-transform: uppercase;
@@ -337,7 +337,7 @@ body {
 
 .faq-item.edge-inv::before { background:var(--border2); }
 .faq-item.edge-inv:hover::before, .faq-item.edge-inv.open::before { background:var(--c-rose); }
-.faq-item.edge-inv:hover, .faq-item.edge-inv.open { border-color:rgba(247,37,133,0.35); }
+.faq-item.edge-inv:hover, .faq-item.edge-inv.open { border-color:rgba(255,92,168,0.35); }
 
 .faq-item.edge-lnd::before { background:var(--border2); }
 .faq-item.edge-lnd:hover::before, .faq-item.edge-lnd.open::before { background:var(--c-orange); }
@@ -357,7 +357,7 @@ body {
 
 .faq-item.edge-aud::before { background:var(--border2); }
 .faq-item.edge-aud:hover::before, .faq-item.edge-aud.open::before { background:var(--c-fuchsia); }
-.faq-item.edge-aud:hover, .faq-item.edge-aud.open { border-color:rgba(255,102,196,0.35); }
+.faq-item.edge-aud:hover, .faq-item.edge-aud.open { border-color:rgba(255,153,214,0.35); }
 
 .faq-item.edge-aud-cyan::before { background:var(--border2); }
 .faq-item.edge-aud-cyan:hover::before, .faq-item.edge-aud-cyan.open::before { background:var(--c-cyan); }
@@ -365,7 +365,7 @@ body {
 
 .faq-item.edge-sex::before { background:var(--border2); }
 .faq-item.edge-sex:hover::before, .faq-item.edge-sex.open::before { background:var(--c-adult); }
-.faq-item.edge-sex:hover, .faq-item.edge-sex.open { border-color:rgba(255,102,196,0.35); }
+.faq-item.edge-sex:hover, .faq-item.edge-sex.open { border-color:rgba(255,153,214,0.35); }
 
 .faq-item.open { box-shadow:0 4px 24px rgba(0,0,0,0.35); }
 
@@ -385,13 +385,13 @@ body {
 .t-app { color:var(--c-violet);   background:var(--c-violet-d);   border:1px solid rgba(123,44,191,0.3); }
 .t-eco { color:var(--c-amber);    background:var(--c-amber-d);    border:1px solid rgba(255,179,0,0.3); }
 .t-grp { color:var(--c-sky);      background:var(--c-sky-d);      border:1px solid rgba(0,209,255,0.3); }
-.t-inv { color:var(--c-rose);     background:var(--c-rose-d);     border:1px solid rgba(247,37,133,0.3); }
+.t-inv { color:var(--c-rose);     background:var(--c-rose-d);     border:1px solid rgba(255,92,168,0.3); }
 .t-lnd { color:var(--c-orange);   background:var(--c-orange-d);   border:1px solid rgba(255,146,76,0.3); }
 .t-mov { color:var(--c-mint);     background:var(--c-mint-d);     border:1px solid rgba(82,210,115,0.3); }
 .t-gaming { color:var(--c-gaming); background:var(--c-gaming-d); border:1px solid rgba(144,224,239,0.3); }
 .t-rul { color:var(--c-red);      background:var(--c-red-d);      border:1px solid rgba(231,111,81,0.3); }
-.t-aud { color:var(--c-fuchsia);  background:var(--c-fuchsia-d);  border:1px solid rgba(197,17,98,0.3); }
-.t-sex { color:var(--c-adult);    background:var(--c-adult-d);    border:1px solid rgba(197,17,98,0.3); }
+.t-aud { color:var(--c-fuchsia);  background:var(--c-fuchsia-d);  border:1px solid rgba(160,14,80,0.3); }
+.t-sex { color:var(--c-adult);    background:var(--c-adult-d);    border:1px solid rgba(160,14,80,0.3); }
 
 .faq-tog {
   width:22px; height:22px; border-radius:50%;
@@ -501,9 +501,9 @@ body {
   width:6px; background:var(--border2); transition:background 0.2s;
 }
 .sc-card:hover { border-color:var(--border2); }
-.sc-card:hover::before { background:var(--teal); }
-.sc-card.open { border-color:rgba(94,255,200,0.3); }
-.sc-card.open::before { background:var(--teal); }
+.sc-card:hover::before { background:var(--sc-color, var(--teal)); }
+.sc-card.open { border-color:var(--sc-color-a, rgba(46,196,182,0.3)); }
+.sc-card.open::before { background:var(--sc-color, var(--teal)); }
 .sc-card.hidden { display:none; }
 
 .sc-hdr {
@@ -525,7 +525,7 @@ body {
   color:var(--text-dim); font-size:15px; line-height:1;
   flex-shrink:0; transition:all 0.2s;
 }
-.sc-card.open .sc-tog { transform:rotate(45deg); border-color:var(--teal); color:var(--teal); background:var(--teal-dim); }
+.sc-card.open .sc-tog { transform:rotate(45deg); border-color:var(--sc-color, var(--teal)); color:var(--sc-color, var(--teal)); background:var(--sc-color-dim, var(--teal-dim)); }
 
 .sc-body {
   display:none; padding:16px 20px 18px 22px;
@@ -821,11 +821,11 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-cyan:hover { border-color:var(--c-cyan); background:var(--c-cyan-d); }
 .qi-cyan:hover .qi-arrow { color:var(--c-cyan); }
 
-.qi-fuchsia { border-left:6px solid rgba(255,102,196,0.5); }
+.qi-fuchsia { border-left:6px solid rgba(255,153,214,0.5); }
 .qi-fuchsia:hover { border-color:var(--c-fuchsia); background:var(--c-fuchsia-d); }
 .qi-fuchsia:hover .qi-arrow { color:var(--c-fuchsia); }
 
-.qi-adult { border-left:6px solid rgba(197,17,98,0.5); }
+.qi-adult { border-left:6px solid rgba(160,14,80,0.5); }
 .qi-adult:hover { border-color:var(--c-adult); background:var(--c-adult-d); }
 .qi-adult:hover .qi-arrow { color:var(--c-adult); }
 
@@ -849,7 +849,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-sky:hover { border-color:var(--c-sky); background:var(--c-sky-d); }
 .qi-sky:hover .qi-arrow { color:var(--c-sky); }
 
-.qi-rose { border-left:6px solid rgba(247,37,133,0.5); }
+.qi-rose { border-left:6px solid rgba(255,92,168,0.5); }
 .qi-rose:hover { border-color:var(--c-rose); background:var(--c-rose-d); }
 .qi-rose:hover .qi-arrow { color:var(--c-rose); }
 
@@ -1981,7 +1981,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="lm-name">Adult Hub</div>
         <div class="lm-region">📌 Search "Adult Hub" in World Search</div>
         <div class="lm-desc">The central hub for adult content in Second Life. Direct residents here only after confirming they are 18 or over. Residents must also have Adult content enabled on their account.</div>
-        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge" style="color:var(--c-adult);background:var(--c-adult-d);border:1px solid rgba(197,17,98,0.25);">Adult</span><span class="lm-badge b-info">18+ Only</span></div><a class="sl-btn" href="secondlife://Adult%20Hub/128/128/25">Open in SL</a></div>
+        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge" style="color:var(--c-adult);background:var(--c-adult-d);border:1px solid rgba(160,14,80,0.25);">Adult</span><span class="lm-badge b-info">18+ Only</span></div><a class="sl-btn" href="secondlife://Adult%20Hub/128/128/25">Open in SL</a></div>
       </div>
 
     </div>
@@ -1996,7 +1996,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="script-list">
 
-      <div class="sc-card" id="sc-greeting" data-search="greeting welcome new resident introduce yourself first contact open say hello">
+      <div class="sc-card" id="sc-greeting" style="--sc-color:var(--c-teal);--sc-color-a:rgba(46,196,182,0.3);--sc-color-dim:rgba(46,196,182,0.1);" data-search="greeting welcome new resident introduce yourself first contact open say hello">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Greeting a New Resident</span>
           <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(46,196,182,0.25);">Opening</span>
@@ -2013,7 +2013,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-overwhelmed" data-search="confused lost resident overwhelmed help too much information slow down step by step">
+      <div class="sc-card" id="sc-overwhelmed" style="--sc-color:var(--c-teal);--sc-color-a:rgba(46,196,182,0.3);--sc-color-dim:rgba(46,196,182,0.1);" data-search="confused lost resident overwhelmed help too much information slow down step by step">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Resident Seems Confused or Overwhelmed</span>
           <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(46,196,182,0.25);">Support</span>
@@ -2030,7 +2030,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-dontknow" data-search="question don't know answer resource refer knowledge base community wrong information">
+      <div class="sc-card" id="sc-dontknow" style="--sc-color:var(--c-teal);--sc-color-a:rgba(46,196,182,0.3);--sc-color-dim:rgba(46,196,182,0.1);" data-search="question don't know answer resource refer knowledge base community wrong information">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">When You Don't Know the Answer</span>
           <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(46,196,182,0.25);">Best Practice</span>
@@ -2051,7 +2051,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-difficult" data-search="rude difficult aggressive resident handle boundary mute block disengage abuse volunteer">
+      <div class="sc-card" id="sc-difficult" style="--sc-color:var(--c-red);--sc-color-a:rgba(231,111,81,0.3);--sc-color-dim:rgba(231,111,81,0.1);" data-search="rude difficult aggressive resident handle boundary mute block disengage abuse volunteer">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Handling Rude or Difficult Residents</span>
           <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(231,111,81,0.25);">Boundaries</span>
@@ -2068,7 +2068,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-closing" data-search="close end wrap up conversation goodbye farewell finished done summary log">
+      <div class="sc-card" id="sc-closing" style="--sc-color:var(--c-teal);--sc-color-a:rgba(46,196,182,0.3);--sc-color-dim:rgba(46,196,182,0.1);" data-search="close end wrap up conversation goodbye farewell finished done summary log">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Wrapping Up a Conversation</span>
           <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(46,196,182,0.25);">Closing</span>
@@ -2085,7 +2085,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-meshbody" data-search="mesh body head appearance help confused shopping demo fitmesh bento maitreya legacy reborn ebody bom bakes gianni jake belleza">
+      <div class="sc-card" id="sc-meshbody" style="--sc-color:var(--c-violet);--sc-color-a:rgba(123,44,191,0.3);--sc-color-dim:rgba(123,44,191,0.1);" data-search="mesh body head appearance help confused shopping demo fitmesh bento maitreya legacy reborn ebody bom bakes gianni jake belleza">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Explaining Mesh Bodies to Newcomers</span>
           <span class="sc-cat" style="color:var(--c-violet);background:var(--c-violet-d);border-color:rgba(123,44,191,0.25);">Appearance</span>
@@ -2127,10 +2127,10 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-adult" data-search="adult sex content age verify 18 confirmation hub mature explicit">
+      <div class="sc-card" id="sc-adult" style="--sc-color:var(--c-adult);--sc-color-a:rgba(160,14,80,0.3);--sc-color-dim:rgba(160,14,80,0.1);" data-search="adult sex content age verify 18 confirmation hub mature explicit">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Age Verification Before Adult Content</span>
-          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(197,17,98,0.25);">Adult</span>
+          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(160,14,80,0.25);">Adult</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2155,7 +2155,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-movelock" data-search="movelock pushed around griefing being bumped lock avatar in place firestorm HUD">
+      <div class="sc-card" id="sc-movelock" style="--sc-color:var(--c-red);--sc-color-a:rgba(231,111,81,0.3);--sc-color-dim:rgba(231,111,81,0.1);" data-search="movelock pushed around griefing being bumped lock avatar in place firestorm HUD">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Helping a Resident Being Pushed Around</span>
           <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(231,111,81,0.25);">Griefing</span>
@@ -2181,7 +2181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-gambling" data-search="gambling skill gaming game chance slots casino wagering payout explain resident curious">
+      <div class="sc-card" id="sc-gambling" style="--sc-color:var(--c-gaming);--sc-color-a:rgba(144,224,239,0.3);--sc-color-dim:rgba(144,224,239,0.1);" data-search="gambling skill gaming game chance slots casino wagering payout explain resident curious">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Explaining Gambling &amp; Skill Gaming</span>
           <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(231,111,81,0.25);">Rules</span>
@@ -2208,7 +2208,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-sffl" data-search="second friends for life group invite community social newcomer welcome friendly">
+      <div class="sc-card" id="sc-sffl" style="--sc-color:var(--c-mint);--sc-color-a:rgba(82,210,115,0.3);--sc-color-dim:rgba(82,210,115,0.1);" data-search="second friends for life group invite community social newcomer welcome friendly">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Inviting a Resident to Second Friends for Life</span>
           <span class="sc-cat" style="color:var(--c-mint);background:var(--c-mint-d);border-color:rgba(82,210,115,0.25);">Community</span>
