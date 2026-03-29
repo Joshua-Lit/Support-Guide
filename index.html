@@ -888,6 +888,37 @@ function scrollToTop() {
   document.getElementById('main').scrollTo({top:0, behavior:'smooth'});
   window.scrollTo({top:0, behavior:'smooth'});
 }
+function tog(trigger) {
+  const card = trigger.parentElement;
+  card.classList.toggle('open');
+}
+function toggleNav(hdr) {
+  hdr.classList.toggle('open');
+  hdr.nextElementSibling.classList.toggle('open');
+}
+function jumpTo(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (el.classList.contains('faq-item') || el.classList.contains('sc-card')) {
+    el.classList.add('open');
+  }
+}
+function copyVid(btn, url) {
+  navigator.clipboard.writeText(url).then(() => {
+    btn.textContent = '✓ OK';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('ok'); }, 2200);
+  });
+}
+function copyText(btn) {
+  const text = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ OK';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('ok'); }, 2200);
+  });
+}
 </script>
 </head>
 <body>
@@ -999,6 +1030,7 @@ function scrollToTop() {
         <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>Music &amp; Media</span>
         <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>How to Get Help</span>
         <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>Games</span>
+        <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>What is Bellisseria?</span>
       </div>
     </div>
 
@@ -1197,7 +1229,7 @@ function scrollToTop() {
         <div class="qi-icon">▶</div>
         <div class="qi-info">
           <div class="qi-title">Video Tutorials</div>
-          <div class="qi-sub">7 helpful YouTube guides</div>
+          <div class="qi-sub">8 helpful YouTube guides</div>
         </div>
         <div class="qi-arrow">›</div>
       </div>
@@ -1926,7 +1958,7 @@ function scrollToTop() {
     <div class="section-hdr">
       <div class="sec-icon si-v">▶</div>
       <div class="sec-title">Video Links</div>
-      <div class="sec-count">7 tutorials</div>
+      <div class="sec-count">8 tutorials</div>
     </div>
     <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">Click <strong>Copy</strong> to copy the link, then paste it directly to the resident in chat.</p>
     <div class="vid-grid">
@@ -1992,6 +2024,15 @@ function scrollToTop() {
           <div class="vid-sub">youtube.com/watch?v=kJO20YelMPo</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=kJO20YelMPo')">COPY</button>
+      </div>
+
+      <div class="vid-card" data-search="bellisseria what is linden homes community continent tutorial video">
+        <div class="vid-thumb">▶</div>
+        <div class="vid-info">
+          <div class="vid-title">What is Bellisseria?</div>
+          <div class="vid-sub">youtube.com/watch?v=gs2fKrGdBHA</div>
+        </div>
+        <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=gs2fKrGdBHA')">COPY</button>
       </div>
 
     </div>
@@ -2210,42 +2251,6 @@ function scrollToTop() {
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function tog(trigger) {
-  const card = trigger.parentElement;
-  card.classList.toggle('open');
-}
-
-function toggleNav(hdr) {
-  hdr.classList.toggle('open');
-  hdr.nextElementSibling.classList.toggle('open');
-}
-
-function jumpTo(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  if (el.classList.contains('faq-item') || el.classList.contains('sc-card')) {
-    el.classList.add('open');
-  }
-}
-
-function copyVid(btn, url) {
-  navigator.clipboard.writeText(url).then(() => {
-    btn.textContent = '✓ OK';
-    btn.classList.add('ok');
-    setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('ok'); }, 2200);
-  });
-}
-
-function copyText(btn) {
-  const text = btn.previousElementSibling.textContent.trim();
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = '✓ OK';
-    btn.classList.add('ok');
-    setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('ok'); }, 2200);
-  });
-}
-
 const srch   = document.getElementById('global-search');
 const cnt    = document.getElementById('search-count');
 const nr     = document.getElementById('no-results');
