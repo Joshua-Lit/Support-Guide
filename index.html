@@ -927,6 +927,69 @@ function copyText(btn) {
     setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('ok'); }, 2200);
   });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  const srch   = document.getElementById('global-search');
+  const cnt    = document.getElementById('search-count');
+  const nr     = document.getElementById('no-results');
+  const clrBtn = document.getElementById('search-clear');
+
+  function n(s) { return s.toLowerCase().replace(/[^a-z0-9 ]/g,' '); }
+
+  function clearMarks(el) {
+    el.querySelectorAll('mark').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+  }
+
+  function addMarks(el, terms) {
+    el.querySelectorAll('.faq-q-text,.lm-name,.lm-desc,.sc-title,.clara-name,.qi-title').forEach(t => {
+      let h = t.innerHTML;
+      terms.forEach(term => {
+        const re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')','gi');
+        h = h.replace(re,'<mark>$1</mark>');
+      });
+      t.innerHTML = h;
+    });
+  }
+
+  function doSearch(raw) {
+    const q     = n(raw);
+    const cards = document.querySelectorAll('[data-search]');
+    let hits = 0;
+    cards.forEach(el => { el.classList.remove('hidden'); clearMarks(el); });
+
+    if (!q.trim()) {
+      cnt.textContent = '';
+      nr.style.display = 'none';
+      document.querySelectorAll('.section[data-section]').forEach(s => s.style.display = '');
+      return;
+    }
+
+    const terms = q.trim().split(/\s+/).filter(Boolean);
+    cards.forEach(el => {
+      const hay = n(el.dataset.search + ' ' + el.textContent);
+      if (terms.every(t => hay.includes(t))) { hits++; addMarks(el, terms); }
+      else el.classList.add('hidden');
+    });
+
+    document.querySelectorAll('.section[data-section]').forEach(sec => {
+      sec.style.display = sec.querySelectorAll('[data-search]:not(.hidden)').length ? '' : 'none';
+    });
+
+    cnt.textContent = hits > 0 ? hits + ' result' + (hits !== 1 ? 's' : '') : '';
+    nr.style.display = hits === 0 ? 'block' : 'none';
+  }
+
+  srch.addEventListener('input', () => {
+    clrBtn.style.display = srch.value ? 'block' : 'none';
+    doSearch(srch.value);
+  });
+
+  clrBtn.addEventListener('click', () => {
+    srch.value = '';
+    clrBtn.style.display = 'none';
+    doSearch('');
+  });
+});
 </script>
 </head>
 <body>
@@ -2293,51 +2356,6 @@ function copyText(btn) {
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const srch   = document.getElementById('global-search');
-const cnt    = document.getElementById('search-count');
-const nr     = document.getElementById('no-results');
-const clrBtn = document.getElementById('search-clear');
 
-function n(s) { return s.toLowerCase().replace(/[^a-z0-9 ]/g,' '); }
-
-function clearMarks(el) {
-  el.querySelectorAll('mark').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
-}
-
-function addMarks(el, terms) {
-  el.querySelectorAll('.faq-q-text,.lm-name,.lm-desc,.sc-title,.clara-name,.qi-title').forEach(t => {
-    let h = t.innerHTML;
-    terms.forEach(term => {
-      const re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')','gi');
-      h = h.replace(re,'<mark>$1</mark>');
-    });
-    t.innerHTML = h;
-  });
-}
-
-function doSearch(raw) {
-  const q     = n(raw);
-  const cards = document.querySelectorAll('[data-search]');
-  let hits = 0;
-  cards.forEach(el => { el.classList.remove('hidden'); clearMarks(el); });
-
-  if (!q.trim()) {
-    cnt.textContent = '';
-    nr.style.display = 'none';
-    document.querySelectorAll('.section[data-section]').forEach(s => s.style.display = '');
-    return;
-  }
-
-  const terms = q.trim().split(/\s+/).filter(Boolean);
-  cards.forEach(el => {
-    const hay = n(el.dataset.search + ' ' + el.textContent);
-    if (terms.every(t => hay.includes(t))) { hits++; addMarks(el, terms); }
-    else el.classList.add('hidden');
-  });
-
-  document.querySelectorAll('.section[data-section]').forEach(sec => {
-    sec.style.display = sec.querySelectorAll('[data-search]:not(.hidden)').length ? '' : 'none';
-  });
-
-  cnt.textContent = hits > 0 ? hits
+</body>
+</html>
