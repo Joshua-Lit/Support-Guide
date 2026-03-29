@@ -255,6 +255,19 @@ body {
   display:flex; align-items:center; gap:8px;
 }
 .sc-val { font-family:'Orbitron','Courier New',monospace; font-size:14px; font-weight:600; color:var(--blue); }
+.home-btn {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.home-btn:hover { color: var(--c-teal); border-color: var(--c-teal); }
 .sc-lbl { font-size:11px; color:var(--text-dim); }
 
 .section { margin-bottom:56px; scroll-margin-top:24px; }
@@ -919,6 +932,25 @@ function copyVid(btn, url) {
     setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('ok'); }, 2200);
   });
 }
+function clearSearch() {
+  const srch   = document.getElementById('global-search');
+  const cnt    = document.getElementById('search-count');
+  const nr     = document.getElementById('no-results');
+  const clrBtn = document.getElementById('search-clear');
+  srch.value = '';
+  clrBtn.style.display = 'none';
+  cnt.textContent = '';
+  nr.style.display = 'none';
+  document.querySelectorAll('[data-search]').forEach(el => {
+    el.classList.remove('hidden');
+    el.querySelectorAll('.faq-q-text,.lm-name,.lm-desc,.sc-title,.clara-name,.qi-title').forEach(t => {
+      if (t.dataset.orig) { t.innerHTML = t.dataset.orig; delete t.dataset.orig; }
+    });
+  });
+  document.querySelectorAll('.section[data-section]').forEach(s => s.style.display = '');
+  srch.focus();
+}
+
 function copyText(btn) {
   const text = btn.previousElementSibling.textContent.trim();
   navigator.clipboard.writeText(text).then(() => {
@@ -937,12 +969,15 @@ document.addEventListener('DOMContentLoaded', function() {
   function n(s) { return s.toLowerCase().replace(/[^a-z0-9 ]/g,' '); }
 
   function clearMarks(el) {
-    el.querySelectorAll('mark').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+    el.querySelectorAll('.faq-q-text,.lm-name,.lm-desc,.sc-title,.clara-name,.qi-title').forEach(t => {
+      if (t.dataset.orig) { t.innerHTML = t.dataset.orig; delete t.dataset.orig; }
+    });
   }
 
   function addMarks(el, terms) {
     el.querySelectorAll('.faq-q-text,.lm-name,.lm-desc,.sc-title,.clara-name,.qi-title').forEach(t => {
-      let h = t.innerHTML;
+      if (!t.dataset.orig) t.dataset.orig = t.innerHTML;
+      let h = t.dataset.orig;
       terms.forEach(term => {
         const re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')','gi');
         h = h.replace(re,'<mark>$1</mark>');
@@ -1047,6 +1082,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="nav-item" onclick="jumpTo('faq-account')"><span class="ni-dot"></span>Account &amp; Membership</span>
         <span class="nav-item" onclick="jumpTo('faq-adult')"><span class="ni-dot"></span>Adult Content</span>
         <span class="nav-item" onclick="jumpTo('faq-rules')"><span class="ni-dot"></span>Rules &amp; Reporting</span>
+        <span class="nav-item" onclick="jumpTo('faq-ar')"><span class="ni-dot"></span>Filing an Abuse Report</span>
         <span class="nav-item" onclick="jumpTo('faq-voice')"><span class="ni-dot"></span>Voice &amp; Audio</span>
         <span class="nav-item" onclick="jumpTo('faq-invisible')"><span class="ni-dot"></span>Invisible Avatar</span>
         <span class="nav-item" onclick="jumpTo('faq-free-avatar')"><span class="ni-dot"></span>Free Good Avatar</span>
@@ -1152,7 +1188,8 @@ document.addEventListener('DOMContentLoaded', function() {
     <h1>Resident Support Guide</h1>
     <p>Searchable reference for SL Mentors — covering frequent questions, key in-world locations, and ready-to-use scripts for helping new residents.</p>
     <div class="stat-row">
-      <div class="stat-chip"><span class="sc-val">12</span><span class="sc-lbl">FAQs</span></div>
+      <button class="home-btn" onclick="clearSearch(); scrollToTop();" title="Return to top">⌂ Home</button>
+      <div class="stat-chip"><span class="sc-val">13</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip"><span class="sc-val">12</span><span class="sc-lbl">Landmarks</span></div>
       <div class="stat-chip"><span class="sc-val">9</span><span class="sc-lbl">Scripts</span></div>
     </div>
@@ -1334,7 +1371,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="section-hdr">
       <div class="sec-icon si-b">❓</div>
       <div class="sec-title">FAQs &amp; Answers</div>
-      <div class="sec-count">12 entries</div>
+      <div class="sec-count">13 entries</div>
     </div>
     <div class="faq-list">
 
@@ -1661,6 +1698,30 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="tip-box" style="margin-top:14px;">
             <div class="tip-label">// Mentor Tip</div>
             <p>Blocking is local to the viewer only — it doesn't globally ban the user. Only Linden Lab can do that via the AR process. Also remind residents to <strong>disable their MoveLock</strong> before sitting on furniture, riding vehicles, or teleporting — it can cause unexpected snapping back to a previous position.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="faq-item edge-rul" id="faq-ar" data-search="abuse report AR how to file submit griefer harasser report abuse help menu category description">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">How do I file an Abuse Report (AR)?</span>
+          <span class="faq-tag t-rul">Rules</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>An Abuse Report (AR) is the official way to report a resident or object to Linden Lab for violating the Community Standards or Terms of Service. Only Linden Lab can take action — mentors cannot.</p>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div><strong>Take a screenshot first</strong> — evidence helps. Use <code>Ctrl+Shift+S</code> (PC) or <code>Command+Shift+S</code> (Mac) to capture the screen.</div></div>
+            <div class="step"><div class="sn">2</div><div>Go to <strong>Help → Report Abuse</strong> in the viewer menu bar.</div></div>
+            <div class="step"><div class="sn">3</div><div><strong>Enter the offender's name</strong> — right-click their avatar and select <strong>Copy Name</strong> to get the exact username.</div></div>
+            <div class="step"><div class="sn">4</div><div><strong>Select a category</strong> — choose the closest match (e.g. Harassment, Disturbing the Peace, Fraud, Indecency).</div></div>
+            <div class="step"><div class="sn">5</div><div><strong>Write a clear description</strong> — include what happened, where, and when. Be factual and concise. Attach your screenshot if relevant.</div></div>
+            <div class="step"><div class="sn">6</div><div>Click <strong>Submit</strong>. You will not receive a direct response, but Linden Lab reviews all reports.</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>Remind residents that ARs are not instant — Linden Lab investigates in their own time. Blocking the offender is the fastest way to protect themselves right now. Also note: <strong>filing a false or malicious AR is itself a Terms of Service violation</strong>.</p>
           </div>
         </div>
       </div>
