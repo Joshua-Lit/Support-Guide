@@ -23,6 +23,7 @@
   --c-violet:    #7B2CBF;  --c-violet-d:   rgba(123,44,191,0.12);
   --c-cyan:      #f0f4ff;  --c-cyan-d:     rgba(240,244,255,0.12);
   --c-white:     #f0f4ff;  --c-white-d:    rgba(240,244,255,0.08);
+  --c-gaming:    #90E0EF;  --c-gaming-d:   rgba(144,224,239,0.12);
   --c-adult:     #C51162;  --c-adult-d:    rgba(197,17,98,0.12);
   --c-amber:     #FFB300;  --c-amber-d:    rgba(255,179,0,0.12);
   --c-lime:      #8AC926;  --c-lime-d:     rgba(138,201,38,0.12);
@@ -345,6 +346,10 @@ body {
 .faq-item.edge-mov:hover::before, .faq-item.edge-mov.open::before { background:var(--c-mint); }
 .faq-item.edge-mov:hover, .faq-item.edge-mov.open { border-color:rgba(82,210,115,0.35); }
 
+.faq-item.edge-gaming::before { background:var(--border2); }
+.faq-item.edge-gaming:hover::before, .faq-item.edge-gaming.open::before { background:var(--c-gaming); }
+.faq-item.edge-gaming:hover, .faq-item.edge-gaming.open { border-color:rgba(144,224,239,0.35); }
+
 .faq-item.edge-rul::before { background:var(--border2); }
 .faq-item.edge-rul:hover::before, .faq-item.edge-rul.open::before { background:var(--c-red); }
 .faq-item.edge-rul:hover, .faq-item.edge-rul.open { border-color:rgba(231,111,81,0.35); }
@@ -382,6 +387,7 @@ body {
 .t-inv { color:var(--c-rose);     background:var(--c-rose-d);     border:1px solid rgba(247,37,133,0.3); }
 .t-lnd { color:var(--c-orange);   background:var(--c-orange-d);   border:1px solid rgba(255,146,76,0.3); }
 .t-mov { color:var(--c-mint);     background:var(--c-mint-d);     border:1px solid rgba(82,210,115,0.3); }
+.t-gaming { color:var(--c-gaming); background:var(--c-gaming-d); border:1px solid rgba(144,224,239,0.3); }
 .t-rul { color:var(--c-red);      background:var(--c-red-d);      border:1px solid rgba(231,111,81,0.3); }
 .t-aud { color:var(--c-fuchsia);  background:var(--c-fuchsia-d);  border:1px solid rgba(197,17,98,0.3); }
 .t-sex { color:var(--c-adult);    background:var(--c-adult-d);    border:1px solid rgba(197,17,98,0.3); }
@@ -671,6 +677,34 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 }
 .vid-card:hover { border-color:var(--c-coral); }
 .vid-card:hover::before { background:var(--c-coral); }
+.xref {
+  margin-top: 12px;
+  padding: 7px 12px;
+  background: var(--panel2);
+  border-left: 3px solid var(--border2);
+  border-radius: 0 6px 6px 0;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.xref-link {
+  color: var(--c-teal);
+  text-decoration: none;
+  font-size: 11px;
+  transition: color 0.15s;
+}
+.xref-link:hover { color: #fff; text-decoration: underline; }
+.vid-title-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-hi);
+  text-decoration: none;
+  margin-bottom: 3px;
+  display: block;
+  transition: color 0.15s;
+}
+.vid-title-link:hover { color: var(--c-skyblue); text-decoration: underline; }
+.vid-title-link--video { color: var(--text-hi); }
+.vid-title-link--video:hover { color: var(--c-coral); }
 .vid-card.web:hover { border-color:var(--c-skyblue); }
 .vid-card.web:hover::before { background:var(--c-skyblue); }
 .vid-thumb {
@@ -763,9 +797,9 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-violet:hover { border-color:var(--c-violet); background:var(--c-violet-d); }
 .qi-violet:hover .qi-arrow { color:var(--c-violet); }
 
-.qi-white { border-left:6px solid rgba(240,244,255,0.5); }
-.qi-white:hover { border-color:var(--c-white); background:var(--c-white-d); }
-.qi-white:hover .qi-arrow { color:var(--c-white); }
+.qi-white { border-left:6px solid rgba(18,24,48,0.5); }
+.qi-white:hover { border-color:#121830; background:rgba(18,24,48,0.5); }
+.qi-white:hover .qi-arrow { color:#8090b0; }
 
 .qi-cyan { border-left:6px solid rgba(240,244,255,0.5); }
 .qi-cyan:hover { border-color:var(--c-cyan); background:var(--c-cyan-d); }
@@ -782,6 +816,10 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-mint-blue { border-left:6px solid rgba(144,224,239,0.5); }
 .qi-mint-blue:hover { border-color:#90E0EF; background:rgba(144,224,239,0.12); }
 .qi-mint-blue:hover .qi-arrow { color:#90E0EF; }
+
+.qi-gaming { border-left:6px solid rgba(144,224,239,0.5); }
+.qi-gaming:hover { border-color:var(--c-gaming); background:var(--c-gaming-d); }
+.qi-gaming:hover .qi-arrow { color:var(--c-gaming); }
 
 .qi-amber { border-left:6px solid rgba(255,179,0,0.5); }
 .qi-amber:hover { border-color:var(--c-amber); background:var(--c-amber-d); }
@@ -1064,7 +1102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span>⚡</span> Quick Index <span class="ng-arrow">▶</span>
       </div>
       <div class="nav-items">
-        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 18 topics</span>
+        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 19 topics</span>
       </div>
     </div>
 
@@ -1083,6 +1121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="nav-item" onclick="jumpTo('faq-adult')"><span class="ni-dot"></span>Adult Content</span>
         <span class="nav-item" onclick="jumpTo('faq-rules')"><span class="ni-dot"></span>Rules &amp; Reporting</span>
         <span class="nav-item" onclick="jumpTo('faq-ar')"><span class="ni-dot"></span>Filing an Abuse Report</span>
+        <span class="nav-item" onclick="jumpTo('faq-gambling')"><span class="ni-dot"></span>Gambling &amp; Skill Gaming</span>
         <span class="nav-item" onclick="jumpTo('faq-voice')"><span class="ni-dot"></span>Voice &amp; Audio</span>
         <span class="nav-item" onclick="jumpTo('faq-invisible')"><span class="ni-dot"></span>Invisible Avatar</span>
         <span class="nav-item" onclick="jumpTo('faq-free-avatar')"><span class="ni-dot"></span>Free Good Avatar</span>
@@ -1121,6 +1160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="nav-item" onclick="jumpTo('sc-closing')"><span class="ni-dot"></span>Wrapping Up</span>
         <span class="nav-item" onclick="jumpTo('sc-meshbody')"><span class="ni-dot"></span>Explaining Mesh Bodies</span>
         <span class="nav-item" onclick="jumpTo('sc-adult')"><span class="ni-dot"></span>Age Verification</span>
+        <span class="nav-item" onclick="jumpTo('sc-gambling')"><span class="ni-dot"></span>Gambling &amp; Skill Gaming</span>
         <span class="nav-item" onclick="jumpTo('sc-movelock')"><span class="ni-dot"></span>MoveLock / Being Pushed</span>
         <span class="nav-item" onclick="jumpTo('sc-sffl')"><span class="ni-dot"></span>Second Friends for Life</span>
       </div>
@@ -1189,9 +1229,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <p>Searchable reference for SL Mentors — covering frequent questions, key in-world locations, and ready-to-use scripts for helping new residents.</p>
     <div class="stat-row">
       <button class="home-btn" onclick="clearSearch(); scrollToTop();" title="Return to top">⌂ Home</button>
-      <div class="stat-chip"><span class="sc-val">13</span><span class="sc-lbl">FAQs</span></div>
+      <div class="stat-chip"><span class="sc-val">14</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip"><span class="sc-val">12</span><span class="sc-lbl">Landmarks</span></div>
-      <div class="stat-chip"><span class="sc-val">9</span><span class="sc-lbl">Scripts</span></div>
+      <div class="stat-chip"><span class="sc-val">10</span><span class="sc-lbl">Scripts</span></div>
     </div>
   </div>
 
@@ -1281,7 +1321,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="qi-arrow">›</div>
       </div>
 
-      <div class="qi-card qi-mint-blue" data-search="invisible avatar hidden avatars toggle shortcut" onclick="jumpTo('faq-invisible')">
+      <div class="qi-card qi-white" data-search="invisible avatar hidden avatars toggle shortcut" onclick="jumpTo('faq-invisible')">
         <div class="qi-icon">👻</div>
         <div class="qi-info">
           <div class="qi-title">Invisible Avatar</div>
@@ -1335,6 +1375,15 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="qi-arrow">›</div>
       </div>
 
+      <div class="qi-card qi-gaming" data-search="gambling skill gaming chance slots casino wagering payout region age 19" onclick="jumpTo('faq-gambling')">
+        <div class="qi-icon">🎮</div>
+        <div class="qi-info">
+          <div class="qi-title">Gaming &amp; Gambling</div>
+          <div class="qi-sub">Skill gaming, ToS rules</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
       <div class="qi-card qi-coral" data-search="video tutorials youtube avatar shape shopping bakes mesh communicating music media help" onclick="jumpTo('sec-videos')">
         <div class="qi-icon">▶</div>
         <div class="qi-info">
@@ -1371,7 +1420,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="section-hdr">
       <div class="sec-icon si-b">❓</div>
       <div class="sec-title">FAQs &amp; Answers</div>
-      <div class="sec-count">13 entries</div>
+      <div class="sec-count">14 entries</div>
     </div>
     <div class="faq-list">
 
@@ -1440,6 +1489,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="tip-label">// Mentor Tip</div>
             <p>If stuck as "Ruth" (the old default avatar), the quickest fix is the <strong>Avatar Welcome Pack</strong> — go to <strong>Avatar → Avatar Welcome Pack</strong> and have them choose a complete modern avatar.</p>
           </div>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-meshbody');return false;">Explaining Mesh Bodies script</a></div>
         </div>
       </div>
 
@@ -1556,6 +1606,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="tip-label">// Mentor Tip</div>
             <p>To avoid accidentally leaving groups, tell residents to activate <strong>None</strong> at the top of their groups list — this means no group is active, so they can't inadvertently trigger a group-related action. It's a simple habit that prevents a lot of confusion.</p>
           </div>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-sffl');return false;">Second Friends for Life script</a></div>
         </div>
       </div>
 
@@ -1699,6 +1750,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="tip-label">// Mentor Tip</div>
             <p>Blocking is local to the viewer only — it doesn't globally ban the user. Only Linden Lab can do that via the AR process. Also remind residents to <strong>disable their MoveLock</strong> before sitting on furniture, riding vehicles, or teleporting — it can cause unexpected snapping back to a previous position.</p>
           </div>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-movelock');return false;">MoveLock script</a> · <a class="xref-link" href="#" onclick="jumpTo('sc-difficult');return false;">Handling Difficult Residents</a></div>
         </div>
       </div>
 
@@ -1723,6 +1775,30 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="tip-label">// Mentor Tip</div>
             <p>Remind residents that ARs are not instant — Linden Lab investigates in their own time. Blocking the offender is the fastest way to protect themselves right now. Also note: <strong>filing a false or malicious AR is itself a Terms of Service violation</strong>.</p>
           </div>
+        </div>
+      </div>
+
+
+      <div class="faq-item edge-gaming" id="faq-gambling" data-search="gambling skill gaming game of chance slots poker casino wagering L$ payout skill region age 19 jurisdiction ban">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">Is gambling allowed in Second Life?</span>
+          <span class="faq-tag t-gaming">Gaming</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p><strong>Gambling (games of chance) is strictly prohibited in Second Life.</strong> Operating or playing any game of chance that pays out Linden Dollars — such as slots, poker, roulette, dice, or anything using random number generation — is a Terms of Service violation and can result in account suspension or termination.</p>
+          <p style="margin-top:12px;"><strong>Skill Gaming is different.</strong> Games whose outcome is determined by skill — not chance — are permitted under SL's Skill Gaming Policy, but with strict requirements:</p>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div>The game, its creator, its operator, and the region must all be <strong>approved by Linden Lab</strong>.</div></div>
+            <div class="step"><div class="sn">2</div><div>Skill Gaming can only take place in designated <strong>Skill Gaming Regions</strong>.</div></div>
+            <div class="step"><div class="sn">3</div><div>Players must be <strong>at least 19 years old</strong> — older than the 18+ requirement for adult content.</div></div>
+            <div class="step"><div class="sn">4</div><div>Access is <strong>restricted by jurisdiction</strong> — some countries and regions are not permitted. The viewer checks this automatically when entering a Skill Gaming Region.</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>If a resident asks where to find skill gaming, direct them to the in-world Destination Guide and search for "skill gaming" — or they can use <strong>World → Destination Guide</strong> in the viewer. If they seem to be describing a game of chance rather than skill, gently clarify the distinction and remind them that gambling is a ToS violation. As a mentor, do not direct residents to unverified gaming areas.</p>
+          </div>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-gambling');return false;">Explaining Gambling script</a></div>
         </div>
       </div>
 
@@ -1801,6 +1877,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="tip-label">// Mentor Tip</div>
             <p>Never assume age. The confirmation must come from the resident in chat — this protects both them and you. If they decline to answer or seem evasive, politely end the conversation on this topic.</p>
           </div>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-adult');return false;">Age Verification script</a></div>
         </div>
       </div>
 
@@ -1909,14 +1986,14 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="section-hdr">
       <div class="sec-icon si-t">📋</div>
       <div class="sec-title">Mentor Tips &amp; Scripts</div>
-      <div class="sec-count">9 scripts</div>
+      <div class="sec-count">10 scripts</div>
     </div>
     <div class="script-list">
 
       <div class="sc-card" id="sc-greeting" data-search="greeting welcome new resident introduce yourself first contact open say hello">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Greeting a New Resident</span>
-          <span class="sc-cat">Opening</span>
+          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(46,196,182,0.25);">Opening</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -1933,7 +2010,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="sc-card" id="sc-overwhelmed" data-search="confused lost resident overwhelmed help too much information slow down step by step">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Resident Seems Confused or Overwhelmed</span>
-          <span class="sc-cat">Support</span>
+          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(46,196,182,0.25);">Support</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -1950,7 +2027,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="sc-card" id="sc-dontknow" data-search="question don't know answer resource refer knowledge base community wrong information">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">When You Don't Know the Answer</span>
-          <span class="sc-cat">Best Practice</span>
+          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(46,196,182,0.25);">Best Practice</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -1971,7 +2048,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="sc-card" id="sc-difficult" data-search="rude difficult aggressive resident handle boundary mute block disengage abuse volunteer">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Handling Rude or Difficult Residents</span>
-          <span class="sc-cat">Boundaries</span>
+          <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(231,111,81,0.25);">Boundaries</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -1988,7 +2065,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="sc-card" id="sc-closing" data-search="close end wrap up conversation goodbye farewell finished done summary log">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Wrapping Up a Conversation</span>
-          <span class="sc-cat">Closing</span>
+          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(46,196,182,0.25);">Closing</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2005,7 +2082,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="sc-card" id="sc-meshbody" data-search="mesh body head appearance help confused shopping demo fitmesh bento maitreya legacy reborn ebody bom bakes gianni jake belleza">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Explaining Mesh Bodies to Newcomers</span>
-          <span class="sc-cat">Appearance</span>
+          <span class="sc-cat" style="color:var(--c-violet);background:var(--c-violet-d);border-color:rgba(123,44,191,0.25);">Appearance</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2040,6 +2117,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="bullet">Clothing must be <strong>fitted/rigged for that specific body</strong> — not all clothes fit all bodies.</div>
             <div class="bullet"><strong>Always demo first</strong> — demos are free and show exactly how it looks on your shape.</div>
           </div>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-appearance');return false;">Bake Fail FAQ</a></div>
         </div>
       </div>
 
@@ -2067,13 +2145,14 @@ document.addEventListener('DOMContentLoaded', function() {
             <button class="copy-btn" onclick="copyText(this)">COPY</button>
           </div>
           <p>Never assume age based on how someone presents their avatar or how they write. The confirmation must be explicit and in chat.</p>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-adult');return false;">Adult Content FAQ</a></div>
         </div>
       </div>
 
       <div class="sc-card" id="sc-movelock" data-search="movelock pushed around griefing being bumped lock avatar in place firestorm HUD">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Helping a Resident Being Pushed Around</span>
-          <span class="sc-cat">Griefing</span>
+          <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(231,111,81,0.25);">Griefing</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2092,13 +2171,41 @@ document.addEventListener('DOMContentLoaded', function() {
             <a class="mp-btn" href="https://marketplace.secondlife.com/p/CI-Movelock-14/478109" target="_blank">[CI] Movelock — Free on Marketplace</a>
           </div>
           <p style="margin-top:10px;">Remind them to <strong>disable MoveLock before sitting, riding vehicles, or teleporting</strong> — otherwise they may snap back to their previous position unexpectedly.</p>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-rules');return false;">Harassment FAQ</a></div>
+        </div>
+      </div>
+
+      <div class="sc-card" id="sc-gambling" data-search="gambling skill gaming game chance slots casino wagering payout explain resident curious">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Explaining Gambling &amp; Skill Gaming</span>
+          <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(231,111,81,0.25);">Rules</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>Residents often ask about gambling in SL — either out of curiosity or because they've seen casino-style areas in-world. Here's how to explain the distinction clearly.</p>
+          <div class="say-block">
+            <div class="say-label">// If they ask whether gambling is allowed</div>
+            <div class="say-text">Gambling — games of chance like slots, poker, or roulette — is not allowed in Second Life and is a Terms of Service violation. What is allowed is skill gaming, where the outcome depends on your ability rather than chance. Skill gaming regions are approved by Linden Lab, and you need to be 19 or older to access them. The viewer will check your age and location automatically when you try to enter.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// If they want to find skill gaming</div>
+            <div class="say-text">To find skill gaming areas, go to World → Destination Guide in the viewer and search for "skill gaming." Just keep in mind you'll need to be 19 or older and in a supported location — the viewer will let you know if you can't access a region.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// If they describe something that sounds like gambling</div>
+            <div class="say-text">That sounds like it could be a game of chance, which isn't permitted in Second Life. Playing or operating those games can lead to account suspension. If you're unsure whether a game is allowed, it's worth checking the Second Life Skill Gaming Policy on the wiki before playing.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-gambling');return false;">Gambling FAQ</a></div>
         </div>
       </div>
 
       <div class="sc-card" id="sc-sffl" data-search="second friends for life group invite community social newcomer welcome friendly">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Inviting a Resident to Second Friends for Life</span>
-          <span class="sc-cat">Community</span>
+          <span class="sc-cat" style="color:var(--c-mint);background:var(--c-mint-d);border-color:rgba(82,210,115,0.25);">Community</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2114,6 +2221,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <button class="copy-btn" onclick="copyText(this)">COPY</button>
           </div>
           <p>Always ask before sending the invite — don't assume everyone wants to join. If they seem hesitant, leave it open: <em>"No pressure at all — the offer stands whenever you're ready."</em> And if they join but later change their mind, they can leave the group at any time — in Firestorm go to <strong>Communicate → Groups</strong> (shortcut: <code>Command+Shift+G</code> on Mac, <code>Ctrl+Shift+G</code> on PC), right-click the group name and select <strong>Leave Group</strong>.</p>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-groups');return false;">Groups FAQ</a></div>
         </div>
       </div>
 
@@ -2133,7 +2241,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card" data-search="customizing avatar shape appearance tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
-          <div class="vid-title">Customizing Your Avatar Shape</div>
+          <a class="vid-title-link vid-title-link--video" href="https://youtu.be/SVMvYaOt_PA" target="_blank">Customizing Avatar Shape</a>
           <div class="vid-sub">youtu.be/SVMvYaOt_PA</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://youtu.be/SVMvYaOt_PA')">COPY</button>
@@ -2142,7 +2250,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card" data-search="shopping buying linden dollars L$ marketplace tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
-          <div class="vid-title">Shopping &amp; Buying L$</div>
+          <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=hRwavBUbhFY" target="_blank">Shopping &amp; Buying L$</a>
           <div class="vid-sub">youtube.com/watch?v=hRwavBUbhFY</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=hRwavBUbhFY')">COPY</button>
@@ -2151,7 +2259,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card" data-search="bakes on mesh BOM skin texture tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
-          <div class="vid-title">Bakes on Mesh</div>
+          <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=lS-0s2-pa-c" target="_blank">Bakes on Mesh</a>
           <div class="vid-sub">youtube.com/watch?v=lS-0s2-pa-c</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=lS-0s2-pa-c')">COPY</button>
@@ -2160,7 +2268,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card" data-search="communicating chat voice groups IM tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
-          <div class="vid-title">Communicating</div>
+          <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=ajDa4EUATJw" target="_blank">Communicating</a>
           <div class="vid-sub">youtube.com/watch?v=ajDa4EUATJw</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=ajDa4EUATJw')">COPY</button>
@@ -2169,7 +2277,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card" data-search="music media streaming audio video player tutorial">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
-          <div class="vid-title">Music &amp; Media</div>
+          <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=HQFwFCrJ8ek" target="_blank">Music &amp; Media</a>
           <div class="vid-sub">youtube.com/watch?v=HQFwFCrJ8ek</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=HQFwFCrJ8ek')">COPY</button>
@@ -2178,7 +2286,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card" data-search="how to get help support resources tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
-          <div class="vid-title">How to Get Help</div>
+          <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=38RbaCL8pnU" target="_blank">How to Get Help</a>
           <div class="vid-sub">youtube.com/watch?v=38RbaCL8pnU</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=38RbaCL8pnU')">COPY</button>
@@ -2187,7 +2295,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card" data-search="games gaming activities fun tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
-          <div class="vid-title">Games</div>
+          <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=kJO20YelMPo" target="_blank">Games</a>
           <div class="vid-sub">youtube.com/watch?v=kJO20YelMPo</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=kJO20YelMPo')">COPY</button>
@@ -2196,7 +2304,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card" data-search="bellisseria what is linden homes community continent tutorial video">
         <div class="vid-thumb">▶</div>
         <div class="vid-info">
-          <div class="vid-title">What is Bellisseria?</div>
+          <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=gs2fKrGdBHA" target="_blank">What is Bellisseria?</a>
           <div class="vid-sub">youtube.com/watch?v=gs2fKrGdBHA</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://www.youtube.com/watch?v=gs2fKrGdBHA')">COPY</button>
@@ -2218,7 +2326,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card web" data-search="showbuzz live music events grid happening now DJs performers venues">
         <div class="vid-thumb">🎵</div>
         <div class="vid-info">
-          <div class="vid-title">ShowBuzz — Live Events</div>
+          <a class="vid-title-link" href="https://showbuzz.org/" target="_blank">ShowBuzz — Live Events</a>
           <div class="vid-sub">showbuzz.org</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://showbuzz.org/')">COPY</button>
@@ -2227,7 +2335,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card web" data-search="second life land linden homes rent buy parcel options">
         <div class="vid-thumb">🏡</div>
         <div class="vid-info">
-          <div class="vid-title">Land Options</div>
+          <a class="vid-title-link" href="https://secondlife.com/land" target="_blank">Land Options</a>
           <div class="vid-sub">secondlife.com/land</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://secondlife.com/land')">COPY</button>
@@ -2236,7 +2344,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card web" data-search="marketplace shopping buy items clothes skins free L$0 L$1">
         <div class="vid-thumb">🛒</div>
         <div class="vid-info">
-          <div class="vid-title">Marketplace</div>
+          <a class="vid-title-link" href="https://marketplace.secondlife.com" target="_blank">Marketplace</a>
           <div class="vid-sub">marketplace.secondlife.com</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://marketplace.secondlife.com')">COPY</button>
@@ -2245,7 +2353,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card web" data-search="knowledge base help answers support community secondlife">
         <div class="vid-thumb">📖</div>
         <div class="vid-info">
-          <div class="vid-title">Knowledge Base &amp; Answers</div>
+          <a class="vid-title-link" href="https://community.secondlife.com" target="_blank">Knowledge Base &amp; Answers</a>
           <div class="vid-sub">community.secondlife.com</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://community.secondlife.com')">COPY</button>
@@ -2254,7 +2362,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card web" data-search="destination guide places explore featured locations events">
         <div class="vid-thumb">📍</div>
         <div class="vid-info">
-          <div class="vid-title">Destination Guide</div>
+          <a class="vid-title-link" href="https://secondlife.com/destinations" target="_blank">Destination Guide</a>
           <div class="vid-sub">secondlife.com/destinations</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://secondlife.com/destinations')">COPY</button>
@@ -2263,7 +2371,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card web" data-search="secondlife music live events calendar artists DJs performers schedule">
         <div class="vid-thumb">🎤</div>
         <div class="vid-info">
-          <div class="vid-title">SL Music Events Calendar</div>
+          <a class="vid-title-link" href="https://www.secondlife.music/events" target="_blank">SL Music Events Calendar</a>
           <div class="vid-sub">secondlife.music</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://www.secondlife.music/events')">COPY</button>
@@ -2272,7 +2380,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="vid-card web" data-search="bellisseria shopping community guide shops merchants commercial regions search filter teleport linden homes">
         <div class="vid-thumb">🛍️</div>
         <div class="vid-info">
-          <div class="vid-title">Bellisseria Shopping</div>
+          <a class="vid-title-link" href="https://bellisseria.online/" target="_blank">Bellisseria Shopping</a>
           <div class="vid-sub">bellisseria.online</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://bellisseria.online/')">COPY</button>
