@@ -884,6 +884,10 @@ function toggleAllNav() {
   });
   btn.textContent = anyOpen ? '⊟ Collapse all' : '⊞ Expand all';
 }
+function scrollToTop() {
+  document.getElementById('main').scrollTo({top:0, behavior:'smooth'});
+  window.scrollTo({top:0, behavior:'smooth'});
+}
 </script>
 </head>
 <body>
@@ -2196,9 +2200,9 @@ function toggleAllNav() {
     <div class="footer-left">
       <span class="footer-text">SL Mentor Reference Guide</span>
       <span class="footer-divider">·</span>
-      <a href="mailto:josh@joshualit.uk" class="footer-link" title="Send suggestions to josh@joshualit.uk"><span style="font-size:26px;vertical-align:middle;line-height:1;">✉</span><span style="vertical-align:middle;"> Suggestions</span></a>
+      <a href="/cdn-cgi/l/email-protection#90faffe3f8d0faffe3f8e5f1fcf9e4bee5fb" class="footer-link" title="Send suggestions to josh@joshualit.uk"><span style="font-size:26px;vertical-align:middle;line-height:1;">✉</span><span style="vertical-align:middle;"> Suggestions</span></a>
     </div>
-    <button class="footer-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Scroll to top"><span style="font-size:20px;line-height:1;vertical-align:middle;display:inline-block;transform:translateY(-1px);">⬆</span><span style="vertical-align:middle;"> Top</span></button>
+    <button class="footer-top-btn" onclick="scrollToTop()" title="Scroll to top"><span style="font-size:20px;line-height:1;vertical-align:middle;display:inline-block;transform:translateY(2px);">⬆</span><span style="vertical-align:middle;"> Top</span></button>
     <div></div>
   </div>
 </footer>
@@ -2288,9 +2292,4 @@ function doSearch(raw) {
     sec.style.display = sec.querySelectorAll('[data-search]:not(.hidden)').length ? '' : 'none';
   });
 
-  cnt.textContent = hits > 0 ? hits + ' result' + (hits !== 1 ? 's' : '') + ' found' : '';
-  nr.style.display = hits === 0 ? 'block' : 'none';
-}
-
-function clearSearch() {
-  srch.value
+  cnt.textContent = hits > 0 ? hits
