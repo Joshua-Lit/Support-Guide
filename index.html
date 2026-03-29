@@ -1000,6 +1000,12 @@ function copyText(btn) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  const link = document.getElementById('suggest-link');
+  if (link) {
+    const u = 'josh', d = 'joshualit.uk';
+    link.href = 'mailto:' + u + '@' + d;
+    link.title = 'Send suggestions to ' + u + '@' + d;
+  }
   const srch   = document.getElementById('global-search');
   const cnt    = document.getElementById('search-count');
   const nr     = document.getElementById('no-results');
@@ -2519,7 +2525,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="footer-left">
       <span class="footer-text">SL Mentor Reference Guide</span>
       <span class="footer-divider">·</span>
-      <a href="/cdn-cgi/l/email-protection#90faffe3f8d0faffe3f8e5f1fcf9e4bee5fb" class="footer-link" title="Send suggestions to josh@joshualit.uk"><span style="font-size:26px;vertical-align:middle;line-height:1;">✉</span><span style="vertical-align:middle;"> Suggestions</span></a>
+      <a href="#" class="footer-link" title="Send suggestions" id="suggest-link"><span style="font-size:26px;vertical-align:middle;line-height:1;">✉</span><span style="vertical-align:middle;"> Suggestions</span></a>
     </div>
     <button class="footer-top-btn" onclick="scrollToTop()" title="Scroll to top"><span style="font-size:20px;line-height:1;vertical-align:middle;display:inline-block;transform:translateY(2px);">⬆</span><span style="vertical-align:middle;"> Top</span></button>
     <div></div>
