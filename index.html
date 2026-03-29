@@ -868,6 +868,23 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   .clara-letter { width:42px; height:42px; font-size:1.3rem; }
 }
 </style>
+<script>
+function toggleAllNav() {
+  const btn = document.getElementById('nav-toggle-btn');
+  const headers = document.querySelectorAll('.nav-group-hdr');
+  const anyOpen = [...headers].some(h => h.classList.contains('open'));
+  headers.forEach(hdr => {
+    if (anyOpen) {
+      hdr.classList.remove('open');
+      hdr.nextElementSibling.classList.remove('open');
+    } else {
+      hdr.classList.add('open');
+      hdr.nextElementSibling.classList.add('open');
+    }
+  });
+  btn.textContent = anyOpen ? '⊟ Collapse all' : '⊞ Expand all';
+}
+</script>
 </head>
 <body>
 <div id="app">
@@ -2189,22 +2206,6 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-function toggleAllNav() {
-  const btn = document.getElementById('nav-toggle-btn');
-  const headers = document.querySelectorAll('.nav-group-hdr');
-  const anyOpen = [...headers].some(h => h.classList.contains('open'));
-  headers.forEach(hdr => {
-    if (anyOpen) {
-      hdr.classList.remove('open');
-      hdr.nextElementSibling.classList.remove('open');
-    } else {
-      hdr.classList.add('open');
-      hdr.nextElementSibling.classList.add('open');
-    }
-  });
-  btn.textContent = anyOpen ? '⊞ Expand all' : '⊟ Collapse all';
-}
-
 function tog(trigger) {
   const card = trigger.parentElement;
   card.classList.toggle('open');
