@@ -292,6 +292,7 @@ body {
 .si-b { background:var(--blue-dim); border:1px solid rgba(61,127,255,0.3); }
 .si-g { background:var(--gold-dim); border:1px solid rgba(255,198,84,0.3); }
 .si-t { background:var(--teal-dim); border:1px solid rgba(94,255,200,0.3); }
+.si-p { background:rgba(240,244,255,0.22); border:1px solid rgba(240,244,255,0.6); }
 .sec-title { font-family:'Orbitron','Courier New',monospace; font-size:1rem; font-weight:600; color:var(--text-hi); letter-spacing:1px; }
 .sec-count {
   margin-left:auto;
@@ -675,7 +676,6 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   white-space:nowrap; flex-shrink:0;
 }
 .sl-btn:hover { background:rgba(46,196,182,0.2); border-color:var(--c-teal); }
-.si-p { background:rgba(123,44,191,0.1); border:1px solid rgba(123,44,191,0.3); }
 .si-v { background:rgba(255,89,94,0.1); border:1px solid rgba(255,89,94,0.3); color:var(--c-coral); }
 .si-w { background:rgba(94,96,206,0.1); border:1px solid rgba(94,96,206,0.3); color:var(--c-skyblue); }
 
@@ -816,6 +816,10 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-white { border-left:6px solid rgba(18,24,48,0.5); }
 .qi-white:hover { border-color:#121830; background:rgba(18,24,48,0.5); }
 .qi-white:hover .qi-arrow { color:#8090b0; }
+
+.qi-clara { border-left:6px solid rgba(240,244,255,0.6); }
+.qi-clara:hover { border-color:#f0f4ff; background:rgba(240,244,255,0.08); }
+.qi-clara:hover .qi-arrow { color:#f0f4ff; }
 
 .qi-cyan { border-left:6px solid rgba(240,244,255,0.5); }
 .qi-cyan:hover { border-color:var(--c-cyan); background:var(--c-cyan-d); }
@@ -1296,7 +1300,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="qi-arrow">›</div>
       </div>
 
-      <div class="qi-card qi-white" data-search="clara method de-escalation nonviolent communication empathy" onclick="jumpTo('sec-clara')">
+      <div class="qi-card qi-clara" data-search="clara method de-escalation nonviolent communication empathy" onclick="jumpTo('sec-clara')">
         <div class="qi-icon">🕊️</div>
         <div class="qi-info">
           <div class="qi-title">CLARA Method</div>
