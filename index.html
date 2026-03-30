@@ -19,7 +19,7 @@
   --panel2:   #161d38;
   --border:   #1e2d52;
   --border2:  #2a3f70;
-  --c-elecblue:  #3A86FF;  --c-elecblue-d: rgba(58,134,255,0.12);
+  --c-elecblue:  #6AA3FF;  --c-elecblue-d: rgba(106,163,255,0.12);
   --c-violet:    #7B2CBF;  --c-violet-d:   rgba(123,44,191,0.12);
   --c-cyan:      #f0f4ff;  --c-cyan-d:     rgba(240,244,255,0.12);
   --c-white:     #f0f4ff;  --c-white-d:    rgba(240,244,255,0.08);
@@ -27,7 +27,7 @@
   --c-adult:     #A00E50;  --c-adult-d:    rgba(160,14,80,0.12);
   --c-amber:     #FFB300;  --c-amber-d:    rgba(255,179,0,0.12);
   --c-lime:      #8AC926;  --c-lime-d:     rgba(138,201,38,0.12);
-  --c-sky:       #1565C0;  --c-sky-d:      rgba(0,209,255,0.12);
+  --c-sky:       #0099BB;  --c-sky-d:      rgba(0,153,187,0.12);
   --c-skyblue:   #5E60CE;  --c-skyblue-d:  rgba(94,96,206,0.12);
   --c-rose:      #FF5CA8;  --c-rose-d:     rgba(255,92,168,0.12);
   --c-gold:      #FFEE58;  --c-gold-d:     rgba(255,238,88,0.12);
@@ -38,7 +38,7 @@
   --c-coral:     #D50000;  --c-coral-d:    rgba(255,89,94,0.12);
   --c-fuchsia:   #FF99D6;  --c-fuchsia-d:  rgba(255,153,214,0.12);
   /* legacy aliases kept for sidebar/UI chrome */
-  --blue:     #4d9fff;  --blue-dim: rgba(58,134,255,0.12);  --blue-glow: rgba(58,134,255,0.25);
+  --blue:     #4d9fff;  --blue-dim: rgba(106,163,255,0.12);  --blue-glow: rgba(106,163,255,0.25);
   --teal:     #2dd4bf;  --teal-dim: rgba(46,196,182,0.1);
   --gold:     #fbbf24;  --gold-dim: rgba(255,238,88,0.1);
   --purple:   #7B2CBF;
@@ -322,7 +322,7 @@ body {
 /* Per-tag left edge colours */
 .faq-item.edge-acc::before { background:var(--border2); }
 .faq-item.edge-acc:hover::before, .faq-item.edge-acc.open::before { background:var(--c-elecblue); }
-.faq-item.edge-acc:hover, .faq-item.edge-acc.open { border-color:rgba(58,134,255,0.35); }
+.faq-item.edge-acc:hover, .faq-item.edge-acc.open { border-color:rgba(106,163,255,0.35); }
 
 .faq-item.edge-app::before { background:var(--border2); }
 .faq-item.edge-app:hover::before, .faq-item.edge-app.open::before { background:var(--c-violet); }
@@ -334,7 +334,7 @@ body {
 
 .faq-item.edge-grp::before { background:var(--border2); }
 .faq-item.edge-grp:hover::before, .faq-item.edge-grp.open::before { background:var(--c-sky); }
-.faq-item.edge-grp:hover, .faq-item.edge-grp.open { border-color:rgba(0,209,255,0.35); }
+.faq-item.edge-grp:hover, .faq-item.edge-grp.open { border-color:rgba(0,153,187,0.35); }
 
 .faq-item.edge-inv::before { background:var(--border2); }
 .faq-item.edge-inv:hover::before, .faq-item.edge-inv.open::before { background:var(--c-rose); }
@@ -382,10 +382,10 @@ body {
   letter-spacing:1px; padding:3px 8px; border-radius:4px;
   white-space:nowrap; flex-shrink:0;
 }
-.t-acc { color:var(--c-elecblue); background:var(--c-elecblue-d); border:1px solid rgba(58,134,255,0.3); }
+.t-acc { color:var(--c-elecblue); background:var(--c-elecblue-d); border:1px solid rgba(106,163,255,0.3); }
 .t-app { color:var(--c-violet);   background:var(--c-violet-d);   border:1px solid rgba(123,44,191,0.3); }
 .t-eco { color:var(--c-amber);    background:var(--c-amber-d);    border:1px solid rgba(255,179,0,0.3); }
-.t-grp { color:var(--c-sky);      background:var(--c-sky-d);      border:1px solid rgba(0,209,255,0.3); }
+.t-grp { color:var(--c-sky);      background:var(--c-sky-d);      border:1px solid rgba(0,153,187,0.3); }
 .t-inv { color:var(--c-rose);     background:var(--c-rose-d);     border:1px solid rgba(255,92,168,0.3); }
 .t-lnd { color:var(--c-orange);   background:var(--c-orange-d);   border:1px solid rgba(255,146,76,0.3); }
 .t-mov { color:var(--c-mint);     background:var(--c-mint-d);     border:1px solid rgba(82,210,115,0.3); }
@@ -805,7 +805,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-card:hover .qi-arrow { color: var(--blue); transform: translateX(3px); }
 
 /* Quick Index card colours — one per topic */
-.qi-elecblue { border-left:6px solid rgba(58,134,255,0.5); }
+.qi-elecblue { border-left:6px solid rgba(106,163,255,0.5); }
 .qi-elecblue:hover { border-color:var(--c-elecblue); background:var(--c-elecblue-d); }
 .qi-elecblue:hover .qi-arrow { color:var(--c-elecblue); }
 
@@ -849,7 +849,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-lime:hover { border-color:var(--c-lime); background:var(--c-lime-d); }
 .qi-lime:hover .qi-arrow { color:var(--c-lime); }
 
-.qi-sky { border-left:6px solid rgba(21,101,192,0.5); }
+.qi-sky { border-left:6px solid rgba(0,153,187,0.5); }
 .qi-sky:hover { border-color:var(--c-sky); background:var(--c-sky-d); }
 .qi-sky:hover .qi-arrow { color:var(--c-sky); }
 
@@ -1184,6 +1184,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="nav-item" onclick="jumpTo('sc-closing')"><span class="ni-dot"></span>Wrapping Up</span>
         <span class="nav-item" onclick="jumpTo('sc-meshbody')"><span class="ni-dot"></span>Explaining Mesh Bodies</span>
         <span class="nav-item" onclick="jumpTo('sc-adult')"><span class="ni-dot"></span>Age Verification</span>
+        <span class="nav-item" onclick="jumpTo('sc-adulthub')"><span class="ni-dot"></span>What Can You Do at Adult Hub?</span>
         <span class="nav-item" onclick="jumpTo('sc-gambling')"><span class="ni-dot"></span>Gambling &amp; Skill Gaming</span>
         <span class="nav-item" onclick="jumpTo('sc-movelock')"><span class="ni-dot"></span>MoveLock / Being Pushed</span>
         <span class="nav-item" onclick="jumpTo('sc-sffl')"><span class="ni-dot"></span>Second Friends for Life</span>
@@ -1213,12 +1214,12 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>ShowBuzz — Live Events</span>
+        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>SL Music Events</span>
         <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Land Options</span>
         <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Marketplace</span>
+        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Bellisseria Shopping</span>
         <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Knowledge Base</span>
         <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Destination Guide</span>
-        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>SL Music Events</span>
-        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Bellisseria Shopping</span>
       </div>
     </div>
 
@@ -1255,7 +1256,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <button class="home-btn" onclick="clearSearch(); scrollToTop();" title="Return to top">⌂ Home</button>
       <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">14</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
-      <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Scripts</span></div>
+      <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">11</span><span class="sc-lbl">Scripts</span></div>
     </div>
   </div>
 
@@ -1984,7 +1985,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="lm-card" id="lm-adulthub" data-search="adult hub sex mature explicit content 18 over age verify">
         <div class="lm-name">Adult Hub</div>
         <div class="lm-region">📌 Search "Adult Hub" in World Search</div>
-        <div class="lm-desc">The central hub for adult content in Second Life. Direct residents here only after confirming they are 18 or over. Residents must also have Adult content enabled on their account.</div>
+        <div class="lm-desc">The central hub for adult content in Second Life. Direct residents here only after confirming they are 18 or over. Residents must also have Adult content enabled on their account. A space where newcomers can comfortably learn about adult interactions from mentors and connect with others.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge" style="color:var(--c-adult);background:var(--c-adult-d);border:1px solid rgba(160,14,80,0.25);">Adult</span><span class="lm-badge b-info">18+ Only</span></div><a class="sl-btn" href="secondlife://Adult%20Hub/128/128/25">Open in SL</a></div>
       </div>
 
@@ -1996,7 +1997,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="section-hdr">
       <div class="sec-icon si-t">📋</div>
       <div class="sec-title">Mentor Tips &amp; Scripts</div>
-      <div class="sec-count">10 scripts</div>
+      <div class="sec-count">11 scripts</div>
     </div>
     <div class="script-list">
 
@@ -2185,6 +2186,22 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
+      <div class="sc-card" id="sc-adulthub" style="--sc-color:var(--c-adult);--sc-color-a:rgba(160,14,80,0.3);--sc-color-dim:rgba(160,14,80,0.1);" data-search="adult hub what can you do newcomer explain adult content interactions mentors connect">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">What Can You Do at the Adult Hub?</span>
+          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(160,14,80,0.25);">Adult</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>Use this when a newcomer asks what the Adult Hub is for, after you have confirmed they are 18 or over.</p>
+          <div class="say-block">
+            <div class="say-label">// Explaining the Adult Hub</div>
+            <div class="say-text">The Adult Hub is a space where newcomers can comfortably learn about adult interactions from mentors and connect with others. It's a welcoming environment to explore that side of Second Life, ask questions, and meet people — all with the support of experienced mentors nearby.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+        </div>
+      </div>
+
       <div class="sc-card" id="sc-gambling" style="--sc-color:var(--c-gaming);--sc-color-a:rgba(144,224,239,0.3);--sc-color-dim:rgba(144,224,239,0.1);" data-search="gambling skill gaming game chance slots casino wagering payout explain resident curious">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Explaining Gambling &amp; Skill Gaming</span>
@@ -2342,6 +2359,15 @@ document.addEventListener('DOMContentLoaded', function() {
         <button class="copy-btn" onclick="copyVid(this,'https://showbuzz.org/')">COPY</button>
       </div>
 
+      <div class="vid-card web" data-search="secondlife music live events calendar artists DJs performers schedule">
+        <div class="vid-thumb">🎤</div>
+        <div class="vid-info">
+          <a class="vid-title-link" href="https://www.secondlife.music/events" target="_blank">SL Music Events Calendar</a>
+          <div class="vid-sub">secondlife.music</div>
+        </div>
+        <button class="copy-btn" onclick="copyVid(this,'https://www.secondlife.music/events')">COPY</button>
+      </div>
+
       <div class="vid-card web" data-search="second life land linden homes rent buy parcel options">
         <div class="vid-thumb">🏡</div>
         <div class="vid-info">
@@ -2360,6 +2386,15 @@ document.addEventListener('DOMContentLoaded', function() {
         <button class="copy-btn" onclick="copyVid(this,'https://marketplace.secondlife.com')">COPY</button>
       </div>
 
+      <div class="vid-card web" data-search="bellisseria shopping community guide shops merchants commercial regions search filter teleport linden homes">
+        <div class="vid-thumb">🛍️</div>
+        <div class="vid-info">
+          <a class="vid-title-link" href="https://bellisseria.online/" target="_blank">Bellisseria Shopping</a>
+          <div class="vid-sub">bellisseria.online</div>
+        </div>
+        <button class="copy-btn" onclick="copyVid(this,'https://bellisseria.online/')">COPY</button>
+      </div>
+
       <div class="vid-card web" data-search="knowledge base help answers support community secondlife">
         <div class="vid-thumb">📖</div>
         <div class="vid-info">
@@ -2376,24 +2411,6 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="vid-sub">secondlife.com/destinations</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://secondlife.com/destinations')">COPY</button>
-      </div>
-
-      <div class="vid-card web" data-search="secondlife music live events calendar artists DJs performers schedule">
-        <div class="vid-thumb">🎤</div>
-        <div class="vid-info">
-          <a class="vid-title-link" href="https://www.secondlife.music/events" target="_blank">SL Music Events Calendar</a>
-          <div class="vid-sub">secondlife.music</div>
-        </div>
-        <button class="copy-btn" onclick="copyVid(this,'https://www.secondlife.music/events')">COPY</button>
-      </div>
-
-      <div class="vid-card web" data-search="bellisseria shopping community guide shops merchants commercial regions search filter teleport linden homes">
-        <div class="vid-thumb">🛍️</div>
-        <div class="vid-info">
-          <a class="vid-title-link" href="https://bellisseria.online/" target="_blank">Bellisseria Shopping</a>
-          <div class="vid-sub">bellisseria.online</div>
-        </div>
-        <button class="copy-btn" onclick="copyVid(this,'https://bellisseria.online/')">COPY</button>
       </div>
 
     </div>
