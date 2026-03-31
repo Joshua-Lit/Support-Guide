@@ -19,32 +19,33 @@
   --panel2:   #161d38;
   --border:   #1e2d52;
   --border2:  #2a3f70;
-  --c-elecblue:  #6AA3FF;  --c-elecblue-d: rgba(106,163,255,0.12);
-  --c-violet:    #7B2CBF;  --c-violet-d:   rgba(123,44,191,0.12);
+  --c-elecblue:  #4D9FFF;  --c-elecblue-d: rgba(77,159,255,0.12);
+  --c-violet:    #AA44FF;  --c-violet-d:   rgba(170,68,255,0.12);
   --c-cyan:      #f0f4ff;  --c-cyan-d:     rgba(240,244,255,0.12);
   --c-white:     #f0f4ff;  --c-white-d:    rgba(240,244,255,0.08);
-  --c-gaming:    #90E0EF;  --c-gaming-d:   rgba(144,224,239,0.12);
-  --c-adult:     #A00E50;  --c-adult-d:    rgba(160,14,80,0.12);
+  --c-gaming:    #00E5FF;  --c-gaming-d:   rgba(0,229,255,0.12);
+  --c-mobile:    #FFF176;  --c-mobile-d:   rgba(255,241,118,0.12);
+  --c-adult:     #E91E8C;  --c-adult-d:    rgba(233,30,140,0.12);
   --c-amber:     #FFB300;  --c-amber-d:    rgba(255,179,0,0.12);
-  --c-lime:      #8AC926;  --c-lime-d:     rgba(138,201,38,0.12);
-  --c-sky:       #0099BB;  --c-sky-d:      rgba(0,153,187,0.12);
-  --c-skyblue:   #5E60CE;  --c-skyblue-d:  rgba(94,96,206,0.12);
+  --c-lime:      #AEEA00;  --c-lime-d:     rgba(174,234,0,0.12);
+  --c-sky:       #00D4FF;  --c-sky-d:      rgba(0,212,255,0.12);
+  --c-skyblue:   #7C7FFF;  --c-skyblue-d:  rgba(124,127,255,0.12);
   --c-rose:      #FF5CA8;  --c-rose-d:     rgba(255,92,168,0.12);
   --c-gold:      #FFEE58;  --c-gold-d:     rgba(255,238,88,0.12);
   --c-orange:    #FF924C;  --c-orange-d:   rgba(255,146,76,0.12);
-  --c-teal:      #2EC4B6;  --c-teal-d:     rgba(46,196,182,0.12);
-  --c-mint:      #52D273;  --c-mint-d:     rgba(82,210,115,0.12);
-  --c-red:       #FF5252;  --c-red-d:      rgba(231,111,81,0.12);
-  --c-coral:     #D50000;  --c-coral-d:    rgba(255,89,94,0.12);
-  --c-fuchsia:   #FF99D6;  --c-fuchsia-d:  rgba(255,153,214,0.12);
+  --c-teal:      #1DE9D5;  --c-teal-d:     rgba(29,233,213,0.12);
+  --c-mint:      #69FF47;  --c-mint-d:     rgba(105,255,71,0.12);
+  --c-red:       #FF5252;  --c-red-d:      rgba(255,82,82,0.12);
+  --c-coral:     #FF1744;  --c-coral-d:    rgba(255,23,68,0.12);
+  --c-fuchsia:   #FF5FD2;  --c-fuchsia-d:  rgba(255,95,210,0.12);
   /* legacy aliases kept for sidebar/UI chrome */
-  --blue:     #4d9fff;  --blue-dim: rgba(106,163,255,0.12);  --blue-glow: rgba(106,163,255,0.25);
-  --teal:     #2dd4bf;  --teal-dim: rgba(46,196,182,0.1);
+  --blue:     #4d9fff;  --blue-dim: rgba(77,159,255,0.12);  --blue-glow: rgba(77,159,255,0.25);
+  --teal:     #2dd4bf;  --teal-dim: rgba(29,233,213,0.1);
   --gold:     #fbbf24;  --gold-dim: rgba(255,238,88,0.1);
   --purple:   #7B2CBF;
   --red:      #ef4444;
   --orange:   #f97316;  --orange-dim: rgba(255,146,76,0.1);
-  --pink:     #e879f9;  --pink-dim:   rgba(255,153,214,0.1);
+  --pink:     #e879f9;  --pink-dim:   rgba(255,95,210,0.1);
   --text:     #b8cae8;
   --text-dim: #5a7099;
   --text-hi:  #e8f0ff;
@@ -293,6 +294,7 @@ body {
 .si-g { background:var(--gold-dim); border:1px solid rgba(255,198,84,0.3); }
 .si-t { background:var(--teal-dim); border:1px solid rgba(94,255,200,0.3); }
 .si-p { background:rgba(240,244,255,0.22); border:1px solid rgba(240,244,255,0.6); }
+.si-m { background:rgba(255,241,118,0.1); border:1px solid rgba(255,241,118,0.3); color:var(--c-mobile); }
 .sec-title { font-family:'Orbitron','Courier New',monospace; font-size:1rem; font-weight:600; color:var(--text-hi); letter-spacing:1px; }
 .sec-count {
   margin-left:auto;
@@ -315,58 +317,63 @@ body {
 .faq-item::before {
   content:''; position:absolute; left:0; top:0; bottom:0;
   width:6px; background:var(--border2); transition:background 0.2s, box-shadow 0.2s;
+  border-radius:10px 0 0 10px;
 }
 .faq-item:hover { border-color:var(--border2); }
 .faq-item.hidden { display:none; }
 
 /* Per-tag left edge colours */
 .faq-item.edge-acc::before { background:var(--border2); }
-.faq-item.edge-acc:hover::before, .faq-item.edge-acc.open::before { background:var(--c-elecblue); }
-.faq-item.edge-acc:hover, .faq-item.edge-acc.open { border-color:rgba(106,163,255,0.35); }
+.faq-item.edge-acc:hover::before, .faq-item.edge-acc.open::before { background: var(--c-elecblue); }
+.faq-item.edge-acc:hover, .faq-item.edge-acc.open { border-color:rgba(77,159,255,0.35); }
 
 .faq-item.edge-app::before { background:var(--border2); }
-.faq-item.edge-app:hover::before, .faq-item.edge-app.open::before { background:var(--c-violet); }
-.faq-item.edge-app:hover, .faq-item.edge-app.open { border-color:rgba(123,44,191,0.35); }
+.faq-item.edge-app:hover::before, .faq-item.edge-app.open::before { background: var(--c-violet); }
+.faq-item.edge-app:hover, .faq-item.edge-app.open { border-color:rgba(170,68,255,0.35); }
 
 .faq-item.edge-eco::before { background:var(--border2); }
-.faq-item.edge-eco:hover::before, .faq-item.edge-eco.open::before { background:var(--c-amber); }
+.faq-item.edge-eco:hover::before, .faq-item.edge-eco.open::before { background: var(--c-amber); }
 .faq-item.edge-eco:hover, .faq-item.edge-eco.open { border-color:rgba(255,179,0,0.35); }
 
 .faq-item.edge-grp::before { background:var(--border2); }
-.faq-item.edge-grp:hover::before, .faq-item.edge-grp.open::before { background:var(--c-sky); }
-.faq-item.edge-grp:hover, .faq-item.edge-grp.open { border-color:rgba(0,153,187,0.35); }
+.faq-item.edge-grp:hover::before, .faq-item.edge-grp.open::before { background: var(--c-sky); }
+.faq-item.edge-grp:hover, .faq-item.edge-grp.open { border-color:rgba(0,212,255,0.35); }
 
 .faq-item.edge-inv::before { background:var(--border2); }
-.faq-item.edge-inv:hover::before, .faq-item.edge-inv.open::before { background:var(--c-rose); }
+.faq-item.edge-inv:hover::before, .faq-item.edge-inv.open::before { background: var(--c-rose); }
 .faq-item.edge-inv:hover, .faq-item.edge-inv.open { border-color:rgba(255,92,168,0.35); }
 
 .faq-item.edge-lnd::before { background:var(--border2); }
-.faq-item.edge-lnd:hover::before, .faq-item.edge-lnd.open::before { background:var(--c-orange); }
+.faq-item.edge-lnd:hover::before, .faq-item.edge-lnd.open::before { background: var(--c-orange); }
 .faq-item.edge-lnd:hover, .faq-item.edge-lnd.open { border-color:rgba(255,146,76,0.35); }
 
 .faq-item.edge-mov::before { background:var(--border2); }
-.faq-item.edge-mov:hover::before, .faq-item.edge-mov.open::before { background:var(--c-mint); }
-.faq-item.edge-mov:hover, .faq-item.edge-mov.open { border-color:rgba(82,210,115,0.35); }
+.faq-item.edge-mov:hover::before, .faq-item.edge-mov.open::before { background: var(--c-mint); }
+.faq-item.edge-mov:hover, .faq-item.edge-mov.open { border-color:rgba(105,255,71,0.35); }
+
+.faq-item.edge-mob::before { background:var(--border2); }
+.faq-item.edge-mob:hover::before, .faq-item.edge-mob.open::before { background: linear-gradient(to bottom, #FFFFFF, #FFF176 25%, #FFD600 60%, #FF6D00); }
+.faq-item.edge-mob:hover, .faq-item.edge-mob.open { border-color:rgba(255,241,118,0.35); }
 
 .faq-item.edge-gaming::before { background:var(--border2); }
-.faq-item.edge-gaming:hover::before, .faq-item.edge-gaming.open::before { background:var(--c-gaming); }
-.faq-item.edge-gaming:hover, .faq-item.edge-gaming.open { border-color:rgba(144,224,239,0.35); }
+.faq-item.edge-gaming:hover::before, .faq-item.edge-gaming.open::before { background: var(--c-gaming); }
+.faq-item.edge-gaming:hover, .faq-item.edge-gaming.open { border-color:rgba(0,229,255,0.35); }
 
 .faq-item.edge-rul::before { background:var(--border2); }
-.faq-item.edge-rul:hover::before, .faq-item.edge-rul.open::before { background:var(--c-red); }
-.faq-item.edge-rul:hover, .faq-item.edge-rul.open { border-color:rgba(231,111,81,0.35); }
+.faq-item.edge-rul:hover::before, .faq-item.edge-rul.open::before { background: var(--c-red); }
+.faq-item.edge-rul:hover, .faq-item.edge-rul.open { border-color:rgba(255,82,82,0.35); }
 
 .faq-item.edge-aud::before { background:var(--border2); }
-.faq-item.edge-aud:hover::before, .faq-item.edge-aud.open::before { background:var(--c-fuchsia); }
-.faq-item.edge-aud:hover, .faq-item.edge-aud.open { border-color:rgba(255,153,214,0.35); }
+.faq-item.edge-aud:hover::before, .faq-item.edge-aud.open::before { background: var(--c-fuchsia); }
+.faq-item.edge-aud:hover, .faq-item.edge-aud.open { border-color:rgba(255,95,210,0.35); }
 
 .faq-item.edge-aud-cyan::before { background:var(--border2); }
 .faq-item.edge-aud-cyan:hover::before, .faq-item.edge-aud-cyan.open::before { background:var(--c-cyan); }
 .faq-item.edge-aud-cyan:hover, .faq-item.edge-aud-cyan.open { border-color:rgba(34,211,238,0.35); }
 
 .faq-item.edge-sex::before { background:var(--border2); }
-.faq-item.edge-sex:hover::before, .faq-item.edge-sex.open::before { background:var(--c-adult); }
-.faq-item.edge-sex:hover, .faq-item.edge-sex.open { border-color:rgba(255,153,214,0.35); }
+.faq-item.edge-sex:hover::before, .faq-item.edge-sex.open::before { background: var(--c-adult); }
+.faq-item.edge-sex:hover, .faq-item.edge-sex.open { border-color:rgba(255,95,210,0.35); }
 
 .faq-item.open { box-shadow:0 4px 24px rgba(0,0,0,0.35); }
 
@@ -382,17 +389,18 @@ body {
   letter-spacing:1px; padding:3px 8px; border-radius:4px;
   white-space:nowrap; flex-shrink:0;
 }
-.t-acc { color:var(--c-elecblue); background:var(--c-elecblue-d); border:1px solid rgba(106,163,255,0.3); }
-.t-app { color:var(--c-violet);   background:var(--c-violet-d);   border:1px solid rgba(123,44,191,0.3); }
+.t-acc { color:var(--c-elecblue); background:var(--c-elecblue-d); border:1px solid rgba(77,159,255,0.3); }
+.t-app { color:var(--c-violet);   background:var(--c-violet-d);   border:1px solid rgba(170,68,255,0.3); }
 .t-eco { color:var(--c-amber);    background:var(--c-amber-d);    border:1px solid rgba(255,179,0,0.3); }
-.t-grp { color:var(--c-sky);      background:var(--c-sky-d);      border:1px solid rgba(0,153,187,0.3); }
+.t-grp { color:var(--c-sky);      background:var(--c-sky-d);      border:1px solid rgba(0,212,255,0.3); }
 .t-inv { color:var(--c-rose);     background:var(--c-rose-d);     border:1px solid rgba(255,92,168,0.3); }
 .t-lnd { color:var(--c-orange);   background:var(--c-orange-d);   border:1px solid rgba(255,146,76,0.3); }
-.t-mov { color:var(--c-mint);     background:var(--c-mint-d);     border:1px solid rgba(82,210,115,0.3); }
-.t-gaming { color:var(--c-gaming); background:var(--c-gaming-d); border:1px solid rgba(144,224,239,0.3); }
-.t-rul { color:var(--c-red);      background:var(--c-red-d);      border:1px solid rgba(231,111,81,0.3); }
-.t-aud { color:var(--c-fuchsia);  background:var(--c-fuchsia-d);  border:1px solid rgba(160,14,80,0.3); }
-.t-sex { color:var(--c-adult);    background:var(--c-adult-d);    border:1px solid rgba(160,14,80,0.3); }
+.t-mov { color:var(--c-mint);     background:var(--c-mint-d);     border:1px solid rgba(105,255,71,0.3); }
+.t-mob { color:var(--c-mobile); background:var(--c-mobile-d); border:1px solid rgba(255,241,118,0.3); }
+.t-gaming { color:var(--c-gaming); background:var(--c-gaming-d); border:1px solid rgba(0,229,255,0.3); }
+.t-rul { color:var(--c-red);      background:var(--c-red-d);      border:1px solid rgba(255,82,82,0.3); }
+.t-aud { color:var(--c-fuchsia);  background:var(--c-fuchsia-d);  border:1px solid rgba(233,30,140,0.3); }
+.t-sex { color:var(--c-adult);    background:var(--c-adult-d);    border:1px solid rgba(233,30,140,0.3); }
 
 .faq-tog {
   width:22px; height:22px; border-radius:50%;
@@ -485,7 +493,7 @@ body {
 .b-help    { color:var(--teal);   background:var(--teal-dim);            border:1px solid rgba(94,255,200,0.2); }
 .b-social  { color:var(--blue);   background:var(--blue-dim);            border:1px solid rgba(61,127,255,0.2); }
 .b-shop    { color:var(--gold);   background:var(--gold-dim);            border:1px solid rgba(255,198,84,0.2); }
-.b-info    { color:var(--purple); background:rgba(123,44,191,0.08);    border:1px solid rgba(123,44,191,0.2); }
+.b-info    { color:var(--purple); background:rgba(170,68,255,0.08);    border:1px solid rgba(170,68,255,0.2); }
 .b-sandbox { color:#ff9a6b;       background:rgba(255,154,107,0.08);    border:1px solid rgba(255,154,107,0.2); }
 .b-mentor  { color:var(--teal);   background:var(--teal-dim);            border:1px solid rgba(94,255,200,0.2); }
 
@@ -503,7 +511,7 @@ body {
 }
 .sc-card:hover { border-color:var(--border2); }
 .sc-card:hover::before { background:var(--sc-color, var(--teal)); }
-.sc-card.open { border-color:var(--sc-color-a, rgba(46,196,182,0.3)); }
+.sc-card.open { border-color:var(--sc-color-a, rgba(29,233,213,0.3)); }
 .sc-card.open::before { background:var(--sc-color, var(--teal)); }
 .sc-card.hidden { display:none; }
 
@@ -671,13 +679,13 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   font-size:9px; letter-spacing:1px; text-transform:uppercase;
   padding:4px 10px; border-radius:5px; text-decoration:none;
   color:var(--c-teal); background:var(--c-teal-d);
-  border:1px solid rgba(46,196,182,0.35);
+  border:1px solid rgba(29,233,213,0.35);
   transition:background 0.15s, border-color 0.15s;
   white-space:nowrap; flex-shrink:0;
 }
-.sl-btn:hover { background:rgba(46,196,182,0.2); border-color:var(--c-teal); }
-.si-v { background:rgba(255,89,94,0.1); border:1px solid rgba(255,89,94,0.3); color:var(--c-coral); }
-.si-w { background:rgba(94,96,206,0.1); border:1px solid rgba(94,96,206,0.3); color:var(--c-skyblue); }
+.sl-btn:hover { background:rgba(29,233,213,0.2); border-color:var(--c-teal); }
+.si-v { background:rgba(255,23,68,0.1); border:1px solid rgba(255,23,68,0.3); color:var(--c-coral); }
+.si-w { background:rgba(124,127,255,0.1); border:1px solid rgba(124,127,255,0.3); color:var(--c-skyblue); }
 
 /* ═══ VIDEO LINKS ═══ */
 .vid-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:10px; }
@@ -725,7 +733,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .vid-card.web:hover::before { background:var(--c-skyblue); }
 .vid-thumb {
   width:42px; height:42px; flex-shrink:0;
-  background:rgba(231,111,81,0.1); border:1px solid rgba(231,111,81,0.3);
+  background:rgba(255,82,82,0.1); border:1px solid rgba(255,82,82,0.3);
   border-radius:8px; display:flex; align-items:center; justify-content:center;
   font-size:16px; color:var(--c-coral);
 }
@@ -785,6 +793,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s, transform 0.15s;
   position: relative;
+  overflow: hidden;
 }
 .qi-card:hover {
   border-color: var(--blue);
@@ -805,11 +814,11 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-card:hover .qi-arrow { color: var(--blue); transform: translateX(3px); }
 
 /* Quick Index card colours — one per topic */
-.qi-elecblue { border-left:6px solid rgba(106,163,255,0.5); }
+.qi-elecblue { border-left:6px solid rgba(77,159,255,0.5); }
 .qi-elecblue:hover { border-color:var(--c-elecblue); background:var(--c-elecblue-d); }
 .qi-elecblue:hover .qi-arrow { color:var(--c-elecblue); }
 
-.qi-violet { border-left:6px solid rgba(123,44,191,0.5); }
+.qi-violet { border-left:6px solid rgba(170,68,255,0.5); }
 .qi-violet:hover { border-color:var(--c-violet); background:var(--c-violet-d); }
 .qi-violet:hover .qi-arrow { color:var(--c-violet); }
 
@@ -825,31 +834,36 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-cyan:hover { border-color:var(--c-cyan); background:var(--c-cyan-d); }
 .qi-cyan:hover .qi-arrow { color:var(--c-cyan); }
 
-.qi-fuchsia { border-left:6px solid rgba(255,153,214,0.5); }
+.qi-fuchsia { border-left:6px solid rgba(255,95,210,0.5); }
 .qi-fuchsia:hover { border-color:var(--c-fuchsia); background:var(--c-fuchsia-d); }
 .qi-fuchsia:hover .qi-arrow { color:var(--c-fuchsia); }
 
-.qi-adult { border-left:6px solid rgba(160,14,80,0.5); }
+.qi-adult { border-left:6px solid rgba(233,30,140,0.5); }
 .qi-adult:hover { border-color:var(--c-adult); background:var(--c-adult-d); }
 .qi-adult:hover .qi-arrow { color:var(--c-adult); }
 
-.qi-mint-blue { border-left:6px solid rgba(144,224,239,0.5); }
-.qi-mint-blue:hover { border-color:#90E0EF; background:rgba(144,224,239,0.12); }
+.qi-mint-blue { border-left:6px solid rgba(0,229,255,0.5); }
+.qi-mint-blue:hover { border-color:#90E0EF; background:rgba(0,229,255,0.12); }
 .qi-mint-blue:hover .qi-arrow { color:#90E0EF; }
 
-.qi-gaming { border-left:6px solid rgba(144,224,239,0.5); }
+.qi-gaming { border-left:6px solid rgba(0,229,255,0.5); }
 .qi-gaming:hover { border-color:var(--c-gaming); background:var(--c-gaming-d); }
 .qi-gaming:hover .qi-arrow { color:var(--c-gaming); }
+
+.qi-mobile { border-left: none; background-image: none; }
+.qi-mobile:hover { border-color:var(--c-mobile); background:var(--c-mobile-d); }
+.qi-mobile:hover .qi-arrow { color:var(--c-mobile); }
+.qi-mobile::before { content:''; position:absolute; left:0; top:0; bottom:0; width:6px; background: linear-gradient(to bottom, #FFFFFF, #FFF176 25%, #FFD600 60%, #FF6D00); border-radius:10px 0 0 10px; }
 
 .qi-amber { border-left:6px solid rgba(255,179,0,0.5); }
 .qi-amber:hover { border-color:var(--c-amber); background:var(--c-amber-d); }
 .qi-amber:hover .qi-arrow { color:var(--c-amber); }
 
-.qi-lime { border-left:6px solid rgba(138,201,38,0.5); }
+.qi-lime { border-left:6px solid rgba(174,234,0,0.5); }
 .qi-lime:hover { border-color:var(--c-lime); background:var(--c-lime-d); }
 .qi-lime:hover .qi-arrow { color:var(--c-lime); }
 
-.qi-sky { border-left:6px solid rgba(0,153,187,0.5); }
+.qi-sky { border-left:6px solid rgba(0,212,255,0.5); }
 .qi-sky:hover { border-color:var(--c-sky); background:var(--c-sky-d); }
 .qi-sky:hover .qi-arrow { color:var(--c-sky); }
 
@@ -865,15 +879,15 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-orange:hover { border-color:var(--c-orange); background:var(--c-orange-d); }
 .qi-orange:hover .qi-arrow { color:var(--c-orange); }
 
-.qi-teal { border-left:6px solid rgba(46,196,182,0.5); }
+.qi-teal { border-left:6px solid rgba(29,233,213,0.5); }
 .qi-teal:hover { border-color:var(--c-teal); background:var(--c-teal-d); }
 .qi-teal:hover .qi-arrow { color:var(--c-teal); }
 
-.qi-skyblue { border-left:6px solid rgba(94,96,206,0.5); }
+.qi-skyblue { border-left:6px solid rgba(124,127,255,0.5); }
 .qi-skyblue:hover { border-color:var(--c-skyblue); background:var(--c-skyblue-d); }
 .qi-skyblue:hover .qi-arrow { color:var(--c-skyblue); }
 
-.qi-mint { border-left:6px solid rgba(82,210,115,0.5); }
+.qi-mint { border-left:6px solid rgba(105,255,71,0.5); }
 .qi-mint:hover { border-color:var(--c-mint); background:var(--c-mint-d); }
 .qi-mint:hover .qi-arrow { color:var(--c-mint); }
 
@@ -1128,7 +1142,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span>⚡</span> Quick Index <span class="ng-arrow">▶</span>
       </div>
       <div class="nav-items">
-        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 19 topics</span>
+        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 21 topics</span>
       </div>
     </div>
 
@@ -1159,8 +1173,9 @@ document.addEventListener('DOMContentLoaded', function() {
         <span>📍</span> Landmark Directory <span class="ng-arrow">▶</span>
       </div>
       <div class="nav-items">
-        <span class="nav-item" onclick="jumpTo('lm-welcome')"><span class="ni-dot"></span>Welcome Hub (Classic)</span>
+        <span class="nav-item" onclick="jumpTo('lm-welcome')"><span class="ni-dot"></span>Welcome Hub</span>
         <span class="nav-item" onclick="jumpTo('lm-learningcentre')"><span class="ni-dot"></span>Desktop Learning Centre</span>
+        <span class="nav-item" onclick="jumpTo('lm-campwich')"><span class="ni-dot"></span>Campwich Forest (Mobile)</span>
         <span class="nav-item" onclick="jumpTo('lm-sandbox')"><span class="ni-dot"></span>Sandbox Welcome Area</span>
         <span class="nav-item" onclick="jumpTo('lm-palomma')"><span class="ni-dot"></span>Palomma Plaza</span>
         <span class="nav-item" onclick="jumpTo('lm-meshbody')"><span class="ni-dot"></span>Maitreya</span>
@@ -1180,13 +1195,13 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="nav-item" onclick="jumpTo('sc-greeting')"><span class="ni-dot"></span>Greeting a Resident</span>
         <span class="nav-item" onclick="jumpTo('sc-overwhelmed')"><span class="ni-dot"></span>Overwhelmed Resident</span>
         <span class="nav-item" onclick="jumpTo('sc-dontknow')"><span class="ni-dot"></span>When You Don't Know</span>
-        <span class="nav-item" onclick="jumpTo('sc-difficult')"><span class="ni-dot"></span>Difficult Residents</span>
         <span class="nav-item" onclick="jumpTo('sc-closing')"><span class="ni-dot"></span>Wrapping Up</span>
         <span class="nav-item" onclick="jumpTo('sc-meshbody')"><span class="ni-dot"></span>Explaining Mesh Bodies</span>
+        <span class="nav-item" onclick="jumpTo('sc-difficult')"><span class="ni-dot"></span>Difficult Residents</span>
+        <span class="nav-item" onclick="jumpTo('sc-movelock')"><span class="ni-dot"></span>MoveLock / Being Pushed</span>
+        <span class="nav-item" onclick="jumpTo('sc-gambling')"><span class="ni-dot"></span>Gambling &amp; Skill Gaming</span>
         <span class="nav-item" onclick="jumpTo('sc-adult')"><span class="ni-dot"></span>Age Verification</span>
         <span class="nav-item" onclick="jumpTo('sc-adulthub')"><span class="ni-dot"></span>What Can You Do at Adult Hub?</span>
-        <span class="nav-item" onclick="jumpTo('sc-gambling')"><span class="ni-dot"></span>Gambling &amp; Skill Gaming</span>
-        <span class="nav-item" onclick="jumpTo('sc-movelock')"><span class="ni-dot"></span>MoveLock / Being Pushed</span>
         <span class="nav-item" onclick="jumpTo('sc-sffl')"><span class="ni-dot"></span>Second Friends for Life</span>
       </div>
     </div>
@@ -1225,6 +1240,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
+        <span>📱</span> SL Mobile App <span class="ng-arrow">▶</span>
+      </div>
+      <div class="nav-items">
+        <span class="nav-item" onclick="jumpTo('faq-mobile-basics')"><span class="ni-dot"></span>Mobile vs Desktop</span>
+        <span class="nav-item" onclick="jumpTo('faq-mobile-ar')"><span class="ni-dot"></span>Report Abuse on Mobile</span>
+        <span class="nav-item" onclick="jumpTo('lm-campwich')"><span class="ni-dot"></span>Campwich Forest</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>🕊️</span> CLARA Method <span class="ng-arrow">▶</span>
       </div>
       <div class="nav-items">
@@ -1254,6 +1280,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <p>Searchable reference for SL Mentors — covering frequent questions, key in-world locations, and ready-to-use scripts for helping new residents.</p>
     <div class="stat-row">
       <button class="home-btn" onclick="clearSearch(); scrollToTop();" title="Return to top">⌂ Home</button>
+      <div class="stat-chip" onclick="jumpTo('sec-mobile')" title="Go to Mobile" style="cursor:pointer;"><span class="sc-val">2</span><span class="sc-lbl">Mobile</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">14</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">11</span><span class="sc-lbl">Scripts</span></div>
@@ -1405,6 +1432,15 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="qi-info">
           <div class="qi-title">Gaming &amp; Gambling</div>
           <div class="qi-sub">Skill gaming, ToS rules</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card qi-mobile" data-search="mobile app ios android campwich controls differences abuse report" onclick="jumpTo('sec-mobile')">
+        <div class="qi-icon">📱</div>
+        <div class="qi-info">
+          <div class="qi-title">SL Mobile App</div>
+          <div class="qi-sub">Controls, differences, AR</div>
         </div>
         <div class="qi-arrow">›</div>
       </div>
@@ -1922,7 +1958,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="lm-card" id="lm-welcome" data-search="welcome hub help newcomers new residents orientation intro classic legacy">
         <div class="lm-name">Welcome Hub</div>
         <div class="lm-region"><span>📌 secondlife://WelcomeHub/166/105/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://WelcomeHub/166/105/25')" title="Copy SLURL">COPY</button></div>
-        <div class="lm-desc">Still a useful and relevant destination, but no longer the primary entry point for new residents. Worth knowing and visiting — many residents still pass through here.</div>
+        <div class="lm-desc">Still a useful and relevant destination. Worth knowing and visiting — many residents still pass through here.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">Classic</span></div><a class="sl-btn" href="secondlife://WelcomeHub/166/105/25">Open in SL</a></div>
       </div>
 
@@ -1931,6 +1967,13 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="lm-region"><span>📌 secondlife://LearningCenterDT/162/102/153</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://LearningCenterDT/162/102/153')" title="Copy SLURL">COPY</button></div>
         <div class="lm-desc">The primary entry point for new residents joining Second Life on desktop. This is where most new residents will arrive — a key location for mentors to be aware of.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">New Residents</span><span class="lm-badge b-info">Desktop</span></div><a class="sl-btn" href="secondlife://LearningCenterDT/162/102/153">Open in SL</a></div>
+      </div>
+
+      <div class="lm-card" id="lm-campwich" data-search="campwich forest mobile app entry point new residents arrival mobile users meeting location">
+        <div class="lm-name">Campwich Forest</div>
+        <div class="lm-region">📌 Mobile entry point &amp; Monthly Mobile User Group (MMUG)</div>
+        <div class="lm-desc">The entry point for new residents joining via the SL Mobile app. Also the location for the monthly Mobile User Group (MMUG) meeting, held the last Thursday of every month at 12:00 noon SLT.</div>
+        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge" style="color:var(--c-mobile);background:var(--c-mobile-d);border:1px solid rgba(255,241,118,0.25);">Mobile</span><span class="lm-badge b-info">New Residents</span><span class="lm-badge b-info">Mentors Only</span></div></div>
       </div>
 
       <div class="lm-card" id="lm-sandbox" data-search="sandbox build create objects rez free public building practice welcome area">
@@ -1986,7 +2029,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="lm-name">Adult Hub</div>
         <div class="lm-region">📌 Search "Adult Hub" in World Search</div>
         <div class="lm-desc">The central hub for adult content in Second Life. Direct residents here only after confirming they are 18 or over. Residents must also have Adult content enabled on their account. A space where newcomers can comfortably learn about adult interactions from mentors and connect with others.</div>
-        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge" style="color:var(--c-adult);background:var(--c-adult-d);border:1px solid rgba(160,14,80,0.25);">Adult</span><span class="lm-badge b-info">18+ Only</span></div><a class="sl-btn" href="secondlife://Adult%20Hub/128/128/25">Open in SL</a></div>
+        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge" style="color:var(--c-adult);background:var(--c-adult-d);border:1px solid rgba(233,30,140,0.25);">Adult</span><span class="lm-badge b-info">18+ Only</span></div><a class="sl-btn" href="secondlife://Adult%20Hub/128/128/25">Open in SL</a></div>
       </div>
 
     </div>
@@ -2001,10 +2044,10 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="script-list">
 
-      <div class="sc-card" id="sc-greeting" style="--sc-color:var(--c-teal);--sc-color-a:rgba(46,196,182,0.3);--sc-color-dim:rgba(46,196,182,0.1);" data-search="greeting welcome new resident introduce yourself first contact open say hello">
+      <div class="sc-card" id="sc-greeting" style="--sc-color:var(--c-teal);--sc-color-a:rgba(29,233,213,0.3);--sc-color-dim:rgba(29,233,213,0.1);" data-search="greeting welcome new resident introduce yourself first contact open say hello">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Greeting a New Resident</span>
-          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(46,196,182,0.25);">Opening</span>
+          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(29,233,213,0.25);">Opening</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2018,10 +2061,10 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-overwhelmed" style="--sc-color:var(--c-teal);--sc-color-a:rgba(46,196,182,0.3);--sc-color-dim:rgba(46,196,182,0.1);" data-search="confused lost resident overwhelmed help too much information slow down step by step">
+      <div class="sc-card" id="sc-overwhelmed" style="--sc-color:var(--c-teal);--sc-color-a:rgba(29,233,213,0.3);--sc-color-dim:rgba(29,233,213,0.1);" data-search="confused lost resident overwhelmed help too much information slow down step by step">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Resident Seems Confused or Overwhelmed</span>
-          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(46,196,182,0.25);">Support</span>
+          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(29,233,213,0.25);">Support</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2035,10 +2078,10 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-dontknow" style="--sc-color:var(--c-teal);--sc-color-a:rgba(46,196,182,0.3);--sc-color-dim:rgba(46,196,182,0.1);" data-search="question don't know answer resource refer knowledge base community wrong information">
+      <div class="sc-card" id="sc-dontknow" style="--sc-color:var(--c-teal);--sc-color-a:rgba(29,233,213,0.3);--sc-color-dim:rgba(29,233,213,0.1);" data-search="question don't know answer resource refer knowledge base community wrong information">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">When You Don't Know the Answer</span>
-          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(46,196,182,0.25);">Best Practice</span>
+          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(29,233,213,0.25);">Best Practice</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2056,27 +2099,10 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-difficult" style="--sc-color:var(--c-red);--sc-color-a:rgba(231,111,81,0.3);--sc-color-dim:rgba(231,111,81,0.1);" data-search="rude difficult aggressive resident handle boundary mute block disengage abuse volunteer">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Handling Rude or Difficult Residents</span>
-          <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(231,111,81,0.25);">Boundaries</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>Mentors are volunteers. You are never obligated to tolerate abuse. Stay calm, remain professional, and disengage if needed — your wellbeing comes first.</p>
-          <div class="say-block">
-            <div class="say-label">// Say in local or IM</div>
-            <div class="say-text">I'm happy to help, but I do need us to keep the conversation respectful. If you'd like assistance, I'm here — otherwise I'll let you explore on your own.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <p>If they continue, simply stop responding. Mute them and report to a senior mentor or via AR if they are harassing others. <strong>Do not engage in arguments.</strong></p>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-closing" style="--sc-color:var(--c-teal);--sc-color-a:rgba(46,196,182,0.3);--sc-color-dim:rgba(46,196,182,0.1);" data-search="close end wrap up conversation goodbye farewell finished done summary log">
+      <div class="sc-card" id="sc-closing" style="--sc-color:var(--c-teal);--sc-color-a:rgba(29,233,213,0.3);--sc-color-dim:rgba(29,233,213,0.1);" data-search="close end wrap up conversation goodbye farewell finished done summary log">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Wrapping Up a Conversation</span>
-          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(46,196,182,0.25);">Closing</span>
+          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(29,233,213,0.25);">Closing</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2090,10 +2116,10 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-meshbody" style="--sc-color:var(--c-violet);--sc-color-a:rgba(123,44,191,0.3);--sc-color-dim:rgba(123,44,191,0.1);" data-search="mesh body head appearance help confused shopping demo fitmesh bento maitreya legacy reborn ebody bom bakes gianni jake belleza">
+      <div class="sc-card" id="sc-meshbody" style="--sc-color:var(--c-violet);--sc-color-a:rgba(170,68,255,0.3);--sc-color-dim:rgba(170,68,255,0.1);" data-search="mesh body head appearance help confused shopping demo fitmesh bento maitreya legacy reborn ebody bom bakes gianni jake belleza">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Explaining Mesh Bodies to Newcomers</span>
-          <span class="sc-cat" style="color:var(--c-violet);background:var(--c-violet-d);border-color:rgba(123,44,191,0.25);">Appearance</span>
+          <span class="sc-cat" style="color:var(--c-violet);background:var(--c-violet-d);border-color:rgba(170,68,255,0.25);">Appearance</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2132,10 +2158,80 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-adult" style="--sc-color:var(--c-adult);--sc-color-a:rgba(160,14,80,0.3);--sc-color-dim:rgba(160,14,80,0.1);" data-search="adult sex content age verify 18 confirmation hub mature explicit">
+      <div class="sc-card" id="sc-difficult" style="--sc-color:var(--c-red);--sc-color-a:rgba(255,82,82,0.3);--sc-color-dim:rgba(255,82,82,0.1);" data-search="rude difficult aggressive resident handle boundary mute block disengage abuse volunteer">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Handling Rude or Difficult Residents</span>
+          <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(255,82,82,0.25);">Boundaries</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>Mentors are volunteers. You are never obligated to tolerate abuse. Stay calm, remain professional, and disengage if needed — your wellbeing comes first.</p>
+          <div class="say-block">
+            <div class="say-label">// Say in local or IM</div>
+            <div class="say-text">I'm happy to help, but I do need us to keep the conversation respectful. If you'd like assistance, I'm here — otherwise I'll let you explore on your own.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <p>If they continue, simply stop responding. Mute them and report to a senior mentor or via AR if they are harassing others. <strong>Do not engage in arguments.</strong></p>
+        </div>
+      </div>
+
+      <div class="sc-card" id="sc-movelock" style="--sc-color:var(--c-red);--sc-color-a:rgba(255,82,82,0.3);--sc-color-dim:rgba(255,82,82,0.1);" data-search="movelock pushed around griefing being bumped lock avatar in place firestorm HUD">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Helping a Resident Being Pushed Around</span>
+          <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(255,82,82,0.25);">Griefing</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>If a resident is being pushed or bumped by others, a <strong>MoveLock</strong> anchors their avatar in place, preventing others from moving them. Here's what to tell them:</p>
+          <div class="say-block">
+            <div class="say-label">// Firestorm users</div>
+            <div class="say-text">Firestorm has a built-in MoveLock — just press <strong>Ctrl+Alt+P</strong> (PC) or <strong>Command+Option+P</strong> (Mac) to toggle it on. When enabled it locks you in place so no one can push you. Press the same shortcut to turn it off.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// Official SL Viewer users</div>
+            <div class="say-text">The official SL viewer doesn't have a built-in MoveLock, but you can get a free one from the Marketplace. The [CI] Movelock is a great free option — wear it as a HUD and it locks you in place whenever you're standing still, so you can still move freely.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="mp-links">
+            <a class="mp-btn" href="https://marketplace.secondlife.com/p/CI-Movelock-14/478109" target="_blank">[CI] Movelock — Free on Marketplace</a>
+          </div>
+          <p style="margin-top:10px;">Remind them to <strong>disable MoveLock before sitting, riding vehicles, or teleporting</strong> — otherwise they may snap back to their previous position unexpectedly.</p>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-rules');return false;">Harassment FAQ</a></div>
+        </div>
+      </div>
+
+      <div class="sc-card" id="sc-gambling" style="--sc-color:var(--c-gaming);--sc-color-a:rgba(0,229,255,0.3);--sc-color-dim:rgba(0,229,255,0.1);" data-search="gambling skill gaming game chance slots casino wagering payout explain resident curious">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Explaining Gambling &amp; Skill Gaming</span>
+          <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(255,82,82,0.25);">Rules</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>Residents often ask about gambling in SL — either out of curiosity or because they've seen casino-style areas in-world. Here's how to explain the distinction clearly.</p>
+          <div class="say-block">
+            <div class="say-label">// If they ask whether gambling is allowed</div>
+            <div class="say-text">Gambling — games of chance like slots, poker, or roulette — is not allowed in Second Life and is a Terms of Service violation. What is allowed is skill gaming, where the outcome depends on your ability rather than chance. Skill gaming regions are approved by Linden Lab, and you need to be 19 or older to access them. The viewer will check your age and location automatically when you try to enter.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// If they want to find skill gaming</div>
+            <div class="say-text">To find skill gaming areas, go to World → Destination Guide in the viewer and search for "skill gaming." Just keep in mind you'll need to be 19 or older and in a supported location — the viewer will let you know if you can't access a region.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// If they describe something that sounds like gambling</div>
+            <div class="say-text">That sounds like it could be a game of chance, which isn't permitted in Second Life. Playing or operating those games can lead to account suspension. If you're unsure whether a game is allowed, it's worth checking the Second Life Skill Gaming Policy on the wiki before playing.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-gambling');return false;">Gambling FAQ</a></div>
+        </div>
+      </div>
+
+      <div class="sc-card" id="sc-adult" style="--sc-color:var(--c-adult);--sc-color-a:rgba(233,30,140,0.3);--sc-color-dim:rgba(233,30,140,0.1);" data-search="adult sex content age verify 18 confirmation hub mature explicit">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Age Verification Before Adult Content</span>
-          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(160,14,80,0.25);">Adult</span>
+          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(233,30,140,0.25);">Adult</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2160,36 +2256,10 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-movelock" style="--sc-color:var(--c-red);--sc-color-a:rgba(231,111,81,0.3);--sc-color-dim:rgba(231,111,81,0.1);" data-search="movelock pushed around griefing being bumped lock avatar in place firestorm HUD">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Helping a Resident Being Pushed Around</span>
-          <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(231,111,81,0.25);">Griefing</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>If a resident is being pushed or bumped by others, a <strong>MoveLock</strong> anchors their avatar in place, preventing others from moving them. Here's what to tell them:</p>
-          <div class="say-block">
-            <div class="say-label">// Firestorm users</div>
-            <div class="say-text">Firestorm has a built-in MoveLock — just press <strong>Ctrl+Alt+P</strong> (PC) or <strong>Command+Option+P</strong> (Mac) to toggle it on. When enabled it locks you in place so no one can push you. Press the same shortcut to turn it off.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// Official SL Viewer users</div>
-            <div class="say-text">The official SL viewer doesn't have a built-in MoveLock, but you can get a free one from the Marketplace. The [CI] Movelock is a great free option — wear it as a HUD and it locks you in place whenever you're standing still, so you can still move freely.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="mp-links">
-            <a class="mp-btn" href="https://marketplace.secondlife.com/p/CI-Movelock-14/478109" target="_blank">[CI] Movelock — Free on Marketplace</a>
-          </div>
-          <p style="margin-top:10px;">Remind them to <strong>disable MoveLock before sitting, riding vehicles, or teleporting</strong> — otherwise they may snap back to their previous position unexpectedly.</p>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-rules');return false;">Harassment FAQ</a></div>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-adulthub" style="--sc-color:var(--c-adult);--sc-color-a:rgba(160,14,80,0.3);--sc-color-dim:rgba(160,14,80,0.1);" data-search="adult hub what can you do newcomer explain adult content interactions mentors connect">
+      <div class="sc-card" id="sc-adulthub" style="--sc-color:var(--c-adult);--sc-color-a:rgba(233,30,140,0.3);--sc-color-dim:rgba(233,30,140,0.1);" data-search="adult hub what can you do newcomer explain adult content interactions mentors connect">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">What Can You Do at the Adult Hub?</span>
-          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(160,14,80,0.25);">Adult</span>
+          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(233,30,140,0.25);">Adult</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2202,37 +2272,10 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
-      <div class="sc-card" id="sc-gambling" style="--sc-color:var(--c-gaming);--sc-color-a:rgba(144,224,239,0.3);--sc-color-dim:rgba(144,224,239,0.1);" data-search="gambling skill gaming game chance slots casino wagering payout explain resident curious">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Explaining Gambling &amp; Skill Gaming</span>
-          <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(231,111,81,0.25);">Rules</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>Residents often ask about gambling in SL — either out of curiosity or because they've seen casino-style areas in-world. Here's how to explain the distinction clearly.</p>
-          <div class="say-block">
-            <div class="say-label">// If they ask whether gambling is allowed</div>
-            <div class="say-text">Gambling — games of chance like slots, poker, or roulette — is not allowed in Second Life and is a Terms of Service violation. What is allowed is skill gaming, where the outcome depends on your ability rather than chance. Skill gaming regions are approved by Linden Lab, and you need to be 19 or older to access them. The viewer will check your age and location automatically when you try to enter.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// If they want to find skill gaming</div>
-            <div class="say-text">To find skill gaming areas, go to World → Destination Guide in the viewer and search for "skill gaming." Just keep in mind you'll need to be 19 or older and in a supported location — the viewer will let you know if you can't access a region.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// If they describe something that sounds like gambling</div>
-            <div class="say-text">That sounds like it could be a game of chance, which isn't permitted in Second Life. Playing or operating those games can lead to account suspension. If you're unsure whether a game is allowed, it's worth checking the Second Life Skill Gaming Policy on the wiki before playing.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-gambling');return false;">Gambling FAQ</a></div>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-sffl" style="--sc-color:var(--c-mint);--sc-color-a:rgba(82,210,115,0.3);--sc-color-dim:rgba(82,210,115,0.1);" data-search="second friends for life group invite community social newcomer welcome friendly">
+      <div class="sc-card" id="sc-sffl" style="--sc-color:var(--c-mint);--sc-color-a:rgba(105,255,71,0.3);--sc-color-dim:rgba(105,255,71,0.1);" data-search="second friends for life group invite community social newcomer welcome friendly">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Inviting a Resident to Second Friends for Life</span>
-          <span class="sc-cat" style="color:var(--c-mint);background:var(--c-mint-d);border-color:rgba(82,210,115,0.25);">Community</span>
+          <span class="sc-cat" style="color:var(--c-mint);background:var(--c-mint-d);border-color:rgba(105,255,71,0.25);">Community</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2416,6 +2459,74 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </section>
 
+  <!-- ══════ SECTION 7 — MOBILE ══════ -->
+  <section class="section" id="sec-mobile" data-section>
+    <div class="section-hdr">
+      <div class="sec-icon si-m">📱</div>
+      <div class="sec-title">SL Mobile App</div>
+      <div class="sec-count">2 entries</div>
+    </div>
+
+    <div class="faq-item edge-mob" id="faq-mobile-basics" data-search="mobile app second life ios android campwich forest prima linden chatbot joystick controls voice language settings differences desktop">
+      <div class="faq-q" onclick="tog(this)">
+        <span class="faq-q-text">What's different about the SL Mobile app vs the desktop viewer?</span>
+        <span class="faq-tag t-mob">Mobile</span>
+        <span class="faq-tog">+</span>
+      </div>
+      <div class="faq-body">
+        <p>The SL Mobile app (Beta) is available free on iOS and Android. It offers a streamlined Second Life experience designed for touchscreens — but it works differently to the desktop viewer.</p>
+        <p style="margin-top:12px;"><strong>Key differences:</strong></p>
+        <div class="steps">
+          <div class="step"><div class="sn">🕹️</div><div><strong>Movement:</strong> One-handed virtual joystick. Camera controlled with familiar pinch and pan gestures.</div></div>
+          <div class="step"><div class="sn">👆</div><div><strong>Interaction:</strong> Single tap to interact with objects and avatars (no long press needed in current versions).</div></div>
+          <div class="step"><div class="sn">💬</div><div><strong>Object chat:</strong> Supported — bubble chat shows object names and messages from scripted objects.</div></div>
+          <div class="step"><div class="sn">🤖</div><div><strong>Prima Linden:</strong> New mobile users are greeted by Prima — an AI chatbot that responds to questions and helps newcomers get started.</div></div>
+          <div class="step"><div class="sn">🌐</div><div><strong>Language:</strong> Supports multiple languages — English, Spanish, Portuguese, French, German, Italian, Turkish, Russian, and Japanese. Change via <strong>Menu → Settings → General → Language</strong>.</div></div>
+          <div class="step"><div class="sn">📍</div><div><strong>Entry point:</strong> New residents joining via Mobile arrive at <strong>Campwich Forest</strong>, not the Welcome Hub.</div></div>
+        </div>
+        <p style="margin-top:12px;"><strong>Current limitations vs desktop:</strong></p>
+        <div class="bullets">
+          <div class="bullet">No inventory management (most-requested missing feature)</div>
+          <div class="bullet">Limited appearance/outfit tools</div>
+          <div class="bullet">No llDialog / scripted object menus (in progress)</div>
+          <div class="bullet">Voice setup more complex — improvements coming soon</div>
+          <div class="bullet">App can sometimes freeze when switching between apps on the device</div>
+        </div>
+        <div class="tip-box">
+          <div class="tip-label">// Mentor Tip</div>
+          <p>If a new resident seems confused by controls or missing features, always ask whether they're on Mobile or Desktop first — the experience is quite different. Mobile residents arrive at Campwich Forest, so they may need directions to get to you.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item edge-mob" id="faq-mobile-ar" data-search="mobile abuse report AR block report person tap three dots more profile iOS android">
+      <div class="faq-q" onclick="tog(this)">
+        <span class="faq-q-text">How do I report abuse or block someone on the Mobile app?</span>
+        <span class="faq-tag t-mob">Mobile</span>
+        <span class="faq-tog">+</span>
+      </div>
+      <div class="faq-body">
+        <p>The Abuse Report and Block options are available on Mobile but accessed differently to the desktop viewer.</p>
+        <p style="margin-top:12px;"><strong>From IM or Nearby Chat:</strong></p>
+        <div class="steps">
+          <div class="step"><div class="sn">1</div><div>Tap the <strong>… (three dots)</strong> next to the person's name in chat.</div></div>
+          <div class="step"><div class="sn">2</div><div>Choose <strong>Report Abuse</strong> or <strong>Block</strong> from the menu.</div></div>
+        </div>
+        <p style="margin-top:12px;"><strong>From Friends or Nearby People:</strong></p>
+        <div class="steps">
+          <div class="step"><div class="sn">1</div><div>Tap the person's name to open their profile.</div></div>
+          <div class="step"><div class="sn">2</div><div>Tap <strong>More</strong> in the top right of the profile.</div></div>
+          <div class="step"><div class="sn">3</div><div>Choose <strong>Report Abuse</strong> or <strong>Block</strong>.</div></div>
+        </div>
+        <div class="tip-box">
+          <div class="tip-label">// Mentor Tip</div>
+          <p>The process is the same on iOS and Android. If a mobile resident can't find these options, make sure they're on the latest version of the app — some earlier versions had limited reporting features.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
   <!-- ══════ SECTION 4 — CLARA ══════ -->
   <section class="section" id="sec-clara" data-section>
     <div class="section-hdr">
@@ -2453,7 +2564,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
 
       <div class="clara-step" id="clara-a1" data-search="clara affirm acknowledge validate connection defensive wall heard experience frustrated">
-        <div class="clara-letter" style="color:var(--purple);border-color:rgba(123,44,191,0.4);background:rgba(123,44,191,0.1);">A</div>
+        <div class="clara-letter" style="color:var(--purple);border-color:rgba(170,68,255,0.4);background:rgba(170,68,255,0.1);">A</div>
         <div class="clara-content">
           <div class="clara-name">Affirm <span class="clara-alt">(or Acknowledge)</span></div>
           <div class="clara-goal">Find a point of connection or a feeling you can validate — to lower their defensive wall.</div>
