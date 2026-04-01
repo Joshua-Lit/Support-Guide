@@ -281,7 +281,7 @@ body {
   gap: 6px;
   padding: 10px 8px;
   font-family: 'Share Tech Mono','Courier New',monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--text-dim);
@@ -319,6 +319,12 @@ body {
   transition: color 0.15s, border-color 0.15s;
 }
 .home-btn:hover { color: var(--c-teal); border-color: var(--c-teal); }
+.home-btn.active {
+  color: var(--c-teal);
+  border-color: var(--c-teal);
+  background: rgba(29,233,213,0.08);
+  cursor: default;
+}
 .sc-lbl { font-size:11px; color:var(--text-dim); }
 
 .section { margin-bottom:56px; scroll-margin-top:24px; }
@@ -360,7 +366,7 @@ body {
 .faq-item {
   background:var(--panel); border:1px solid var(--border); border-radius:10px;
   overflow:hidden; transition:border-color 0.2s, box-shadow 0.2s;
-  position:relative;
+  position:relative; margin-bottom:10px;
 }
 .faq-item::before {
   content:''; position:absolute; left:0; top:0; bottom:0;
@@ -1414,7 +1420,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <h1>Resident Support Guide</h1>
     <p>Searchable reference for SL Mentors — covering frequent questions, key in-world locations, and ready-to-use scripts for helping new residents.</p>
     <div class="stat-row">
-      <button class="home-btn" onclick="clearSearch(); scrollToTop();" title="Return to top">⌂ Home</button>
+      <button class="home-btn active" onclick="clearSearch(); scrollToTop();" title="You are here — Home">⌂ Home</button>
       <a class="stat-chip tech-chip" href="technical.html" title="Go to Technical Q&amp;A">⚙ Technical Q&amp;A</a>
       <div class="stat-chip" onclick="jumpTo('sec-mobile')" title="Go to Mobile" style="cursor:pointer;"><span class="sc-val">2</span><span class="sc-lbl">Mobile</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">14</span><span class="sc-lbl">FAQs</span></div>
