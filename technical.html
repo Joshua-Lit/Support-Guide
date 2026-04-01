@@ -537,6 +537,88 @@
     #page-header, .search-wrap, #main { padding-left: 20px; padding-right: 20px; }
   }
 
+  .sidebar-nav-toggle {
+    display: none;
+    width: 100%;
+    background: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    padding: 8px 18px;
+    color: var(--text-dim);
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.15s;
+  }
+  .sidebar-nav-toggle:hover { color: var(--text-hi); }
+  .sidebar-nav-toggle::after { content: ' ▼'; }
+  .sidebar-nav-toggle.open::after { content: ' ▲'; }
+  @media (max-width: 768px) {
+    .sidebar-nav-toggle { display: block; }
+    .sidebar-nav.mobile-open { display: block; }
+  }
+  @media (max-width: 768px) {
+    /* Stack sidebar above main */
+    #app { flex-direction: column; }
+
+    #sidebar {
+      width: 100%;
+      min-width: 0;
+      height: auto;
+      position: static;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      overflow-y: visible;
+    }
+
+    /* Collapse sidebar nav by default on mobile — show logo and page-nav only */
+    .sidebar-nav { display: none; }
+    .sidebar-logo { padding: 14px 18px; }
+
+    /* Page nav full width */
+    .page-nav { width: 100%; }
+    .page-nav-link { padding: 10px 12px; font-size: 11px; }
+
+    /* Main content */
+    #main { padding: 24px 16px 60px; }
+
+    /* Header */
+    .header-title { font-size: 1.3rem; }
+    .header-sub { font-size: 12px; }
+
+    /* Viewer columns stack */
+    .viewer-cols { grid-template-columns: 1fr; }
+
+    /* Flowchart buttons stack */
+    .fc-btn-grid { grid-template-columns: 1fr; }
+
+    /* Section headers */
+    .sec-hdr { flex-wrap: wrap; gap: 10px; }
+
+    /* Say blocks */
+    .say-text { padding-right: 0; padding-bottom: 36px; }
+    .say-block .copy-btn { top: auto; bottom: 10px; right: 12px; }
+
+    /* Modal */
+    #fc-modal-inner { margin: 8px; padding: 16px 12px 20px; }
+    #fc-modal-title { font-size: 0.85rem; }
+
+    /* Flowchart branches stack on mobile */
+    .fc-branch { grid-template-columns: 1fr !important; }
+    .fc-branch-col { width: 100%; }
+    .fc-node { max-width: 100% !important; width: 100% !important; }
+  }
+
+  /* Slightly wider phones and small tablets */
+  @media (max-width: 900px) and (min-width: 769px) {
+    #sidebar { width: 200px; min-width: 200px; }
+    #main { padding: 28px 28px 60px; }
+    .viewer-cols { grid-template-columns: 1fr; }
+  }
+
   /* ═══ FLOWCHART ═══ */
   .fc { font-family: 'Roboto', sans-serif; width:100%; overflow:hidden; }
   .fc-node {
@@ -693,7 +775,8 @@
     <a class="page-nav-link" href="index.html"><span class="pn-icon">🏠</span>Home</a>
     <a class="page-nav-link active" href="technical.html"><span class="pn-icon">⚙️</span>Technical Q&amp;A</a>
   </div>
-  <div class="sidebar-nav">
+  <button class="sidebar-nav-toggle" id="sidebar-nav-toggle" onclick="toggleSidebarNav()">Navigation</button>
+  <div class="sidebar-nav" id="sidebar-nav">
     <div class="nav-section-hdr">⚙️ Media &amp; Streaming</div>
     <a class="nav-link" onclick="jumpTo('qa-video-stream')"><span class="ni-dot"></span>Stream video to SL screen</a>
     <div class="nav-section-hdr">🔧 Both Viewers</div>
@@ -1417,9 +1500,24 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+function toggleSidebarNav() {
+  const nav = document.getElementById('sidebar-nav');
+  const btn = document.getElementById('sidebar-nav-toggle');
+  if (!nav || !btn) return;
+  nav.classList.toggle('mobile-open');
+  btn.classList.toggle('open');
+}
+
 function jumpTo(id) {
   const el = document.getElementById(id);
   if (el) { el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  // Close mobile nav if open
+  const nav = document.getElementById('sidebar-nav');
+  const btn = document.getElementById('sidebar-nav-toggle');
+  if (nav && nav.classList.contains('mobile-open')) {
+    nav.classList.remove('mobile-open');
+    if (btn) btn.classList.remove('open');
+  }
 }
 
 function tog(trigger) {
