@@ -188,9 +188,9 @@
   }
   .header-eyebrow {
     font-family: 'Share Tech Mono', 'Courier New', monospace;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 3px;
-    color: var(--text-dim);
+    color: var(--c-tech);
     text-transform: uppercase;
     margin-bottom: 8px;
   }
@@ -746,6 +746,10 @@
 
   /* ═══ STAT ROW ═══ */
   .stat-row { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; align-items:center; }
+  .stat-chip { background:var(--panel); border:1px solid var(--border); border-radius:6px; padding:5px 12px; display:flex; align-items:center; gap:6px; }
+  .stat-chip:hover { border-color:var(--blue); background:var(--blue-dim); }
+  .sc-val { font-family:'Oxanium','Courier New',monospace; font-size:12px; font-weight:600; color:var(--blue); }
+  .sc-lbl { font-size:11px; color:var(--text-dim); }
   .home-btn {
     font-family: 'Share Tech Mono', 'Courier New', monospace;
     font-size: 12px;
@@ -764,15 +768,16 @@
   .home-btn:hover { color: var(--c-teal); border-color: var(--c-teal); }
   .tech-chip-active {
     font-family: 'Share Tech Mono', 'Courier New', monospace;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 1px;
     color: var(--c-tech);
     background: var(--c-tech-d);
-    border: 1px solid rgba(167,139,255,0.4);
+    border: 1px solid rgba(167,139,255,0.5);
     border-radius: 6px;
     padding: 5px 12px;
     display: inline-flex;
     align-items: center;
+    cursor: default;
   }
   /* ═══ FLOWCHART MODAL ═══ */
   .fc-btn-grid {
@@ -862,6 +867,9 @@
     <div class="stat-row">
       <a class="home-btn" href="index.html">⌂ Home</a>
       <span class="tech-chip-active">⚙ Technical Q&amp;A</span>
+      <div class="stat-chip" onclick="document.getElementById('qa-video-stream').scrollIntoView({behavior:'smooth'})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">9</span><span class="sc-lbl">Q&amp;As</span></div>
+      <div class="stat-chip" onclick="document.getElementById('sec-flowcharts').scrollIntoView({behavior:'smooth'})" title="Go to Flowcharts" style="cursor:pointer;"><span class="sc-val">3</span><span class="sc-lbl">Flowcharts</span></div>
+      <div class="stat-chip" onclick="document.getElementById('qa-head-mouse').scrollIntoView({behavior:'smooth'})" title="Go to Firestorm Settings" style="cursor:pointer;border-color:rgba(255,100,50,0.4);"><span class="sc-val" style="color:var(--c-fs);">6</span><span class="sc-lbl">Firestorm</span></div>
     </div>
   </div>
 
@@ -1262,7 +1270,7 @@
   </div>
 
   <!-- FLOWCHARTS SECTION -->
-  <div class="sec-hdr" style="margin-top:40px;">
+  <div class="sec-hdr" style="margin-top:40px;" id="sec-flowcharts">
     <div class="sec-icon">🔀</div>
     <div class="sec-title">Diagnostic Flowcharts</div>
   </div>
