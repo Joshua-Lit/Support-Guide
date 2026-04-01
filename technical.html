@@ -269,6 +269,9 @@
     transition: border-color 0.2s;
     margin-bottom: 12px;
   }
+  .qa-card.open {
+    overflow: visible;
+  }
   .qa-card::before {
     content: '';
     position: absolute;
@@ -598,6 +601,66 @@
   .fc-sep { border:none; border-top: 1px dashed var(--border2); margin: 16px auto; max-width:700px; }
   .fc-merge { text-align:center; color:var(--text-dim); font-size:11px; letter-spacing:1px; font-family:'Share Tech Mono',monospace; margin:4px 0; }
   .fc-note { font-size:11px; color:var(--text-mid); text-align:center; margin-top:4px; }
+
+  .page-nav {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-nav-link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 8px;
+    font-family: 'Share Tech Mono','Courier New',monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .page-nav-link:hover { color: var(--text-hi); background: var(--blue-dim); }
+  .page-nav-link.active { color: var(--blue); border-bottom-color: var(--blue); background: var(--blue-dim); }
+  .pn-icon { font-size: 13px; }
+
+  /* ═══ FLOWCHART MODAL ═══ */
+  .fc-btn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+    margin-top: 4px;
+  }
+  .fc-btn {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 6px solid var(--c-tech);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    text-align: left;
+    width: 100%;
+  }
+  .fc-btn:hover { border-color:var(--c-tech); background:var(--c-tech-d); transform:translateY(-2px); }
+  .fc-btn-icon { font-size: 24px; flex-shrink: 0; }
+  .fc-btn-info { flex: 1; }
+  .fc-btn-title { font-size:13px; font-weight:500; color:var(--text-hi); line-height:1.3; margin-bottom:3px; }
+  .fc-btn-sub { font-family:'Share Tech Mono','Courier New',monospace; font-size:9px; letter-spacing:1px; color:var(--text-dim); text-transform:uppercase; }
+  .fc-btn-arrow { color:var(--c-tech); font-size:20px; flex-shrink:0; }
+  #fc-modal { display:none; position:fixed; inset:0; background:rgba(4,6,14,0.92); z-index:9999; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+  #fc-modal.open { display:block; }
+  #fc-modal-inner { background:var(--panel); border:1px solid var(--border2); border-radius:12px; margin:24px auto; max-width:1100px; padding:28px 32px 36px; position:relative; }
+  #fc-modal-title { font-family:'Orbitron','Courier New',monospace; font-size:1rem; font-weight:600; color:var(--text-hi); letter-spacing:1px; margin-bottom:16px; padding-right:40px; }
+  #fc-modal-close { position:absolute; top:20px; right:20px; background:var(--panel2); border:1px solid var(--border2); border-radius:6px; color:var(--text-dim); font-size:18px; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:color 0.15s, border-color 0.15s; }
+  #fc-modal-close:hover { color:var(--text-hi); border-color:var(--text-mid); }
+  #fc-modal-body { overflow-x:auto; }
+  @media (max-width:640px) { #fc-modal-inner { margin:10px; padding:18px 14px 24px; } }
 </style>
 </head>
 <body>
@@ -612,6 +675,10 @@
     </div>
     <div class="sidebar-logo-sub">Mentor Reference — Technical</div>
   </div>
+  <div class="page-nav">
+    <a class="page-nav-link" href="index.html"><span class="pn-icon">🏠</span>Home</a>
+    <a class="page-nav-link active" href="technical.html"><span class="pn-icon">⚙️</span>Technical Q&amp;A</a>
+  </div>
   <div class="sidebar-nav">
     <div class="nav-section-hdr">⚙️ Media &amp; Streaming</div>
     <a class="nav-link" onclick="jumpTo('qa-video-stream')"><span class="ni-dot"></span>Stream video to SL screen</a>
@@ -622,12 +689,14 @@
     <a class="nav-link" onclick="jumpTo('qa-script-particles')"><span class="ni-dot"></span>Turn off script particles</a>
     <a class="nav-link" onclick="jumpTo('qa-pay-confirm')"><span class="ni-dot"></span>Confirm before paying</a>
     <a class="nav-link" onclick="jumpTo('qa-spam-protection')"><span class="ni-dot"></span>Spam / griefing protection</a>
+    <a class="nav-link" onclick="jumpTo('qa-clean-install')"><span class="ni-dot"></span>Clean install Firestorm</a>
     <div class="nav-section-hdr">⌨️ Shortcuts</div>
     <a class="nav-link" onclick="jumpTo('qa-shortcuts')"><span class="ni-dot"></span>Useful keyboard shortcuts</a>
     <div class="nav-section-hdr">🔀 Flowcharts</div>
-    <a class="nav-link" onclick="jumpTo('qa-bake-fail')"><span class="ni-dot"></span>Bake fail / cloud avatar</a>
+    <a class="nav-link" onclick="openModal('bake-fail','Bake Fail / Cloud / Grey Avatar')"><span class="ni-dot"></span>Bake fail / cloud avatar</a>
+    <a class="nav-link" onclick="openModal('tp-fail','Teleport Failure')"><span class="ni-dot"></span>Teleport failure</a>
+    <a class="nav-link" onclick="openModal('inventory-loss','Missing Inventory Items')"><span class="ni-dot"></span>Missing inventory items</a>
   </div>
-  <a class="sidebar-home" href="index.html">← Back to Main Guide</a>
 </nav>
 
 <main id="main">
@@ -875,6 +944,11 @@
           <div class="vc-label">🔷 SL Viewer</div>
           <div class="vc-col-body">
             <p>No dedicated spam protection tab. Use <strong>Preferences → Privacy → Block List</strong> to manually block griefing objects and residents.</p>
+            <div class="say-block">
+              <div class="say-label">// What to tell the resident</div>
+              <div class="say-text">Go to Preferences → Privacy → Block List. From there you can manually add the griefing object or avatar to your block list to stop receiving messages from it.</div>
+              <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            </div>
           </div>
         </div>
         <div class="viewer-col vc-fs">
@@ -887,6 +961,68 @@
               <div class="bullet"><strong>Unblock all spam sources</strong> — clears all blocked sources.</div>
             </div>
             <p style="margin-top:6px;">Also has <strong>Texture Lag Protection</strong> to hide large high-texture objects — useful against texture griefing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="qa-card" id="qa-clean-install" data-search="clean install firestorm reinstall uninstall settings cache wipe fresh start problems viewer broken">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">How do I do a clean install of Firestorm?</span>
+      <span class="qa-tag">Viewer</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <p>A clean install is more than just uninstalling and reinstalling — it also removes cached settings and files that may be causing problems. It's not needed for routine updates, but is worth trying when the viewer is behaving unexpectedly.</p>
+      <div class="tip-box" style="margin-bottom:14px;">
+        <div class="tip-label">// Note</div>
+        <p>For a normal update, a clean install is not required. Only do this when experiencing persistent issues that other fixes haven't resolved.</p>
+      </div>
+      <div class="viewer-cols">
+        <div class="viewer-col vc-sl">
+          <div class="vc-label">🔷 SL Viewer</div>
+          <div class="vc-col-body">
+            <p><strong>Back up first</strong> — note that uninstalling deletes chat and IM logs. Save them first if needed.</p>
+            <div class="steps">
+              <div class="step"><div class="sn">1</div><div><strong>Delete cache files:</strong><br>
+                Windows: delete contents of <code>AppData\Local\SecondLife</code> and <code>AppData\Roaming\SecondLife</code><br>
+                Mac: delete <code>~/Library/Caches/SecondLife</code></div></div>
+              <div class="step"><div class="sn">2</div><div><strong>Uninstall the viewer:</strong><br>
+                Windows: Settings → Apps → Second Life → Uninstall<br>
+                Mac: Drag Second Life from Applications to Trash</div></div>
+              <div class="step"><div class="sn">3</div><div><strong>Download and reinstall</strong> the latest version from <a href="https://secondlife.com/support/downloads/" target="_blank">secondlife.com/support/downloads</a></div></div>
+              <div class="step"><div class="sn">4</div><div><strong>Log into a quiet region</strong> and test before restoring any saved settings.</div></div>
+            </div>
+            <div class="tip-box">
+              <div class="tip-label">// Note</div>
+              <p>To show hidden folders on Windows: File Explorer → View → check Hidden items.</p>
+            </div>
+          </div>
+        </div>
+        <div class="viewer-col vc-fs">
+          <div class="vc-label">🔶 Firestorm — 12-Step Clean Install</div>
+          <div class="vc-col-body">
+            <div class="steps">
+              <div class="step"><div class="sn">1</div><div>Download the latest installer from the <a href="https://www.firestormviewer.org/downloads/" target="_blank">Firestorm downloads page</a>. Only use the official site.</div></div>
+              <div class="step"><div class="sn">2</div><div><strong>Back up chat transcripts</strong> (recommended) — move them out of your settings folder before deleting it.</div></div>
+              <div class="step"><div class="sn">3</div><div><strong>Back up settings</strong> (recommended) — do this before wiping so you can restore them later.</div></div>
+              <div class="step"><div class="sn">4</div><div><strong>Delete settings</strong> — launch Firestorm (don't log in), go to <strong>Viewer menu → Preferences → Network &amp; Files → Directories → Open Settings Folder</strong>. Close viewer, go up one folder and delete everything in the Firestorm* folder.</div></div>
+              <div class="step"><div class="sn">5</div><div><strong>Clear cache</strong> — only when needed. The viewer often does this automatically.</div></div>
+              <div class="step"><div class="sn">6</div><div><strong>Remove the application</strong> — Windows: Settings → Apps → Firestorm → Uninstall. Mac: Drag Firestorm from Applications to Trash. Linux: Delete the install directory.</div></div>
+              <div class="step"><div class="sn">7</div><div><strong>Install Firestorm</strong> — run the downloaded installer. When offered the option to launch immediately, choose <strong>No</strong>.</div></div>
+              <div class="step"><div class="sn">8</div><div><strong>Whitelist in antivirus</strong> — add Firestorm's files and folders to your antivirus before launching. See <a href="https://wiki.firestormviewer.org/antivirus_whitelisting" target="_blank">antivirus whitelisting guide</a>. Also turn off VPN.</div></div>
+              <div class="step"><div class="sn">9</div><div><strong>Log in</strong> to a quiet region (Hippo Hollow, Aich or Hatton). Don't change any settings yet — just test.</div></div>
+              <div class="step"><div class="sn">10</div><div><strong>Restore settings</strong> if the viewer is working correctly, then relog.</div></div>
+              <div class="step"><div class="sn">11</div><div><strong>Restore chat logs</strong> — copy (don't move) logs into the folder named for your account. Repeat for each alt.</div></div>
+              <div class="step"><div class="sn">12</div><div><strong>Log back in</strong> and confirm everything is working. Note: graphics settings are not restored automatically.</div></div>
+            </div>
+            <div class="say-block">
+              <div class="say-label">// What to tell the resident</div>
+              <div class="say-text">If you're having persistent issues with Firestorm, a clean install might help. It's more involved than a normal reinstall — you also need to delete your settings and cache. The full 12-step guide is on the Firestorm wiki: wiki.firestormviewer.org/fs_clean_install</div>
+              <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            </div>
           </div>
         </div>
       </div>
@@ -960,16 +1096,37 @@
     <div class="sec-icon">🔀</div>
     <div class="sec-title">Diagnostic Flowcharts</div>
   </div>
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">Click a flowchart to open it as a full-screen overlay.</p>
 
-  <div class="qa-card" id="qa-bake-fail" data-search="bake fail cloud avatar grey blurry invisible orange cloud texture rebake fix diagnose troubleshoot">
-    <div class="qa-q" onclick="tog(this)">
-      <span class="qa-q-text">How do I diagnose and fix a bake fail / cloud / grey avatar?</span>
-      <span class="qa-tag">Flowchart</span>
-      <span class="qa-tog">+</span>
-    </div>
-    <div class="qa-body">
-      <p>Use this flowchart to diagnose what kind of bake fail a resident is experiencing and guide them to the right fix.</p>
-      <div id="flowchart-bakefail" style="margin-top:16px;overflow:hidden;width:100%;">
+  <div class="fc-btn-grid">
+    <button class="fc-btn" onclick="openModal('bake-fail', 'Bake Fail / Cloud / Grey Avatar')">
+      <span class="fc-btn-icon">☁️</span>
+      <div class="fc-btn-info">
+        <div class="fc-btn-title">Bake Fail / Cloud / Grey Avatar</div>
+        <div class="fc-btn-sub">Avatar appearance · rebake · cache</div>
+      </div>
+      <span class="fc-btn-arrow">›</span>
+    </button>
+    <button class="fc-btn" onclick="openModal('tp-fail', 'Teleport Failure')">
+      <span class="fc-btn-icon">🌀</span>
+      <div class="fc-btn-info">
+        <div class="fc-btn-title">Teleport Failure</div>
+        <div class="fc-btn-sub">TP fail · crash · access denied</div>
+      </div>
+      <span class="fc-btn-arrow">›</span>
+    </button>
+    <button class="fc-btn" onclick="openModal('inventory-loss', 'Missing Inventory Items')">
+      <span class="fc-btn-icon">📦</span>
+      <div class="fc-btn-info">
+        <div class="fc-btn-title">Missing Inventory Items</div>
+        <div class="fc-btn-sub">Lost items · cache · marketplace</div>
+      </div>
+      <span class="fc-btn-arrow">›</span>
+    </button>
+  </div>
+
+  <!-- Hidden flowchart content -->
+  <div id="fc-content-bake-fail" style="display:none;">      <div id="flowchart-bakefail" style="margin-top:16px;width:100%;">
         <div class="fc">
 
           <!-- START -->
@@ -1110,7 +1267,103 @@
           </div>
 
         </div><!-- /.fc -->
-      </div><!-- /#flowchart-bakefail -->
+      </div><!-- /#flowchart-bakefail --></div>
+  <div id="fc-content-tp-fail" style="display:none;">      <div id="flowchart-tp" style="margin-top:16px;width:100%;">
+        <div class="fc">
+
+          <div class="fc-node fc-start">Teleport is failing — what happens?</div>
+          <span class="fc-arrow">↓</span>
+
+          <div class="fc-branch" style="grid-template-columns:1fr 1fr 1fr;max-width:960px;">
+
+            <!-- Column 1: Error message / no access -->
+            <div class="fc-branch-col">
+              <span class="fc-label" style="color:var(--c-red);background:var(--c-red-d);border:1px solid rgba(255,82,82,0.3);">❌ Error message / access denied</span>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-q" style="max-width:none;width:100%;">What does the error say?</div>
+              <div class="fc-branch" style="max-width:none;width:100%;margin-top:6px;">
+                <div class="fc-branch-col">
+                  <span class="fc-label" style="color:var(--c-amber);background:var(--c-amber-d);border:1px solid rgba(255,179,0,0.3);">"Region full"</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">Wait a few minutes and try again. Region has hit its avatar limit.</div>
+                </div>
+                <div class="fc-branch-col">
+                  <span class="fc-label" style="color:var(--c-adult);background:var(--c-adult-d);border:1px solid rgba(233,30,140,0.3);">"No access" / adult region</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">Check account settings — Adult content must be enabled and age verified. Or the parcel has access restrictions.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2: Crash / disconnect -->
+            <div class="fc-branch-col">
+              <span class="fc-label" style="color:var(--c-orange);background:var(--c-orange-d);border:1px solid rgba(255,146,76,0.3);">💥 Crash or disconnect on TP</span>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                <strong>1.</strong> Check script memory — Avatar menu → Avatar Health → Scripts. If over 6.4MB, remove scripted attachments.<br>
+                <strong>2.</strong> Remove all HUDs and scripted items, then try again.<br>
+                <strong>3.</strong> (Firestorm 7.x) Prefs → Graphics → General → untick Mirrors.
+              </div>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-q" style="max-width:none;width:100%;">Still crashing on all TPs?</div>
+              <div class="fc-branch" style="max-width:none;width:100%;margin-top:6px;">
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-yes">Yes</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">Try adding new DNS (e.g. Google 8.8.8.8). Check for empty friends list — sign of DNS issues.</div>
+                </div>
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-no">No — only some</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">Specific regions may be having trouble. Try relogging into a different region and teleporting from there.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 3: Stuck / silent fail -->
+            <div class="fc-branch-col">
+              <span class="fc-label" style="color:var(--c-sky);background:var(--c-sky-d);border:1px solid rgba(0,212,255,0.3);">⏳ Stuck / just doesn't go</span>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                <strong>1.</strong> Try flying to 200m altitude first, then teleport.<br>
+                <strong>2.</strong> "Puddle jump" — TP to an empty region (e.g. Pooley or Welsh) first, then to destination.<br>
+                <strong>3.</strong> If using a landmark, open it and let info fully load before clicking Teleport.<br>
+                <strong>4.</strong> Try reducing bandwidth to 500kbps — Preferences → Network.
+              </div>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-q" style="max-width:none;width:100%;">Is it only one region failing?</div>
+              <div class="fc-branch" style="max-width:none;width:100%;margin-top:6px;">
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-yes">Yes</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">That region likely needs a restart. Contact the region owner or try again later.</div>
+                </div>
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-no">No — all regions</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">Check firewall — TCP port 12043 must be open. Whitelist viewer in antivirus (Norton in particular). Reboot router.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <hr class="fc-sep">
+          <div class="fc-merge">↓ IF NOTHING ABOVE WORKS ↓</div>
+          <span class="fc-arrow">↓</span>
+          <div class="fc-node fc-action" style="max-width:700px;">
+            <strong>General checklist:</strong><br>
+            • Reboot your router and modem<br>
+            • Clear viewer cache and relog into an empty region<br>
+            • Disable teleport screen: Prefs → Move &amp; View → Teleports — make sure "Disable Teleport Screens" is NOT checked<br>
+            • Try a different viewer to rule out viewer-specific issues<br>
+            • Check the SL Grid Status page for known outages
+          </div>
+          <span class="fc-arrow">↓</span>
+          <div class="fc-node fc-end-ticket" style="max-width:700px;">⚠ Still failing? File a support ticket at support.secondlife.com including the region name, time, and any error message.</div>
+
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1151,15 +1404,28 @@ function tog(trigger) {
   card.classList.toggle('open');
 }
 
-function copyText(btn) {
-  const text = btn.previousElementSibling.innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    const orig = btn.textContent;
-    btn.textContent = 'COPIED!';
-    btn.style.color = 'var(--teal)';
-    setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 1500);
-  });
+function openModal(id, title) {
+  const src = document.getElementById('fc-content-' + id);
+  if (!src) return;
+  document.getElementById('fc-modal-title').textContent = title;
+  document.getElementById('fc-modal-body').innerHTML = src.innerHTML;
+  document.getElementById('fc-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+
+function closeModal() {
+  document.getElementById('fc-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('fc-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+});
 
 const srch = document.getElementById('tech-search');
 const clr  = document.getElementById('tech-clear');
@@ -1198,5 +1464,13 @@ clr.addEventListener('click', () => {
 });
 </script>
 
+
+<div id="fc-modal" role="dialog" aria-modal="true">
+  <div id="fc-modal-inner">
+    <div id="fc-modal-title"></div>
+    <button id="fc-modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <div id="fc-modal-body"></div>
+  </div>
+</div>
 </body>
 </html>

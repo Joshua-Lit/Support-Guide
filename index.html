@@ -258,6 +258,53 @@ body {
 }
 .sc-val { font-family:'Orbitron','Courier New',monospace; font-size:14px; font-weight:600; color:var(--blue); }
 .stat-chip:hover { border-color:var(--blue); background:var(--blue-dim); }
+.tech-chip {
+  color: var(--c-skyblue);
+  background: var(--c-skyblue-d);
+  border-color: rgba(124,127,255,0.4);
+  font-family: 'Share Tech Mono','Courier New',monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.tech-chip:hover { border-color: var(--c-skyblue); background: rgba(124,127,255,0.2); }
+.page-nav {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+}
+.page-nav-link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 8px;
+  font-family: 'Share Tech Mono','Courier New',monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.page-nav-link:hover { color: var(--text-hi); background: var(--blue-dim); }
+.page-nav-link.active { color: var(--blue); border-bottom-color: var(--blue); background: var(--blue-dim); }
+.pn-icon { font-size: 13px; }
+.nav-item-modal { color: var(--text-mid); }
+.nav-item-modal:hover { color: var(--text-hi); }
+.ni-modal-hint {
+  font-size: 10px;
+  color: var(--c-white);
+  background: rgba(240,244,255,0.1);
+  border: 1px solid rgba(240,244,255,0.2);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-left: 4px;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
 .home-btn {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
   font-size: 12px;
@@ -904,6 +951,66 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 
 /* qi-fuchsia retired — replaced by qi-adult */
 
+
+/* ═══ CLARA MODAL BUTTON ═══ */
+.clara-modal-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--panel2);
+  border: 1px solid var(--border2);
+  border-left: 6px solid var(--c-white);
+  border-radius: 10px;
+  padding: 18px 20px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 460px;
+  text-align: left;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+.clara-modal-btn:hover { background: rgba(240,244,255,0.08); border-color: var(--c-white); transform: translateY(-2px); }
+.clara-modal-icon { font-size: 28px; flex-shrink: 0; }
+.clara-modal-info { flex: 1; }
+.clara-modal-title { font-size: 14px; font-weight: 500; color: var(--text-hi); margin-bottom: 4px; }
+.clara-modal-sub { font-family: 'Share Tech Mono','Courier New',monospace; font-size: 10px; letter-spacing: 1px; color: var(--text-dim); text-transform: uppercase; }
+.clara-modal-arrow { color: var(--c-white); font-size: 24px; flex-shrink: 0; }
+
+/* ═══ CLARA MODAL ═══ */
+#clara-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(4,6,14,0.92);
+  z-index: 9999;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#clara-modal.open { display: block; }
+#clara-modal-inner {
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  margin: 24px auto;
+  max-width: 860px;
+  padding: 28px 32px 36px;
+  position: relative;
+}
+#clara-modal-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: var(--panel2);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  color: var(--text-dim);
+  font-size: 18px;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+#clara-modal-close:hover { color: var(--text-hi); border-color: var(--text-mid); }
+@media (max-width: 640px) { #clara-modal-inner { margin: 10px; padding: 18px 14px 24px; } }
+
 /* ═══ CLARA ═══ */
 .clara-intro {
   font-size:13px; color:var(--text-mid); line-height:1.7;
@@ -984,6 +1091,18 @@ function scrollToTop() {
   document.getElementById('main').scrollTo({top:0, behavior:'smooth'});
   window.scrollTo({top:0, behavior:'smooth'});
 }
+function openClaraModal() {
+  const src = document.getElementById('clara-modal-content');
+  const body = document.getElementById('clara-modal-body');
+  if (!src || !body) return;
+  body.innerHTML = src.innerHTML;
+  document.getElementById('clara-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeClaraModal() {
+  document.getElementById('clara-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
 function tog(trigger) {
   const card = trigger.parentElement;
   card.classList.toggle('open');
@@ -1041,6 +1160,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const u = 'josh', d = 'joshualit.uk';
     link.href = 'mailto:' + u + '@' + d;
     link.title = 'Send suggestions to ' + u + '@' + d;
+  }
+  const cm = document.getElementById('clara-modal');
+  if (cm) {
+    cm.addEventListener('click', function(e) { if (e.target === this) closeClaraModal(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeClaraModal(); });
   }
   const srch   = document.getElementById('global-search');
   const cnt    = document.getElementById('search-count');
@@ -1124,6 +1248,11 @@ document.addEventListener('DOMContentLoaded', function() {
       SL MENTOR
     </div>
     <div class="logo-sub">Resident Support Reference</div>
+  </div>
+
+  <div class="page-nav">
+    <a class="page-nav-link active" href="index.html"><span class="pn-icon">🏠</span>Home</a>
+    <a class="page-nav-link" href="technical.html"><span class="pn-icon">⚙️</span>Technical Q&amp;A</a>
   </div>
 
   <div class="search-wrap">
@@ -1263,16 +1392,8 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 
     <div class="nav-group">
-      <div class="nav-group-hdr" onclick="toggleNav(this)">
-        <span>🕊️</span> CLARA Method <span class="ng-arrow">▶</span>
-      </div>
-      <div class="nav-items">
-        <span class="nav-item" onclick="jumpTo('sec-clara')"><span class="ni-dot"></span>Overview</span>
-        <span class="nav-item" onclick="jumpTo('clara-c')"><span class="ni-dot"></span>C — Centre Yourself</span>
-        <span class="nav-item" onclick="jumpTo('clara-l')"><span class="ni-dot"></span>L — Listen</span>
-        <span class="nav-item" onclick="jumpTo('clara-a1')"><span class="ni-dot"></span>A — Affirm</span>
-        <span class="nav-item" onclick="jumpTo('clara-r')"><span class="ni-dot"></span>R — Respond</span>
-        <span class="nav-item" onclick="jumpTo('clara-a2')"><span class="ni-dot"></span>A — Add / Adjust</span>
+      <div class="nav-group-hdr" onclick="openClaraModal()" style="cursor:pointer;">
+        <span>🕊️</span> CLARA Method <span class="ni-modal-hint">↗</span>
       </div>
     </div>
 
@@ -1293,6 +1414,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <p>Searchable reference for SL Mentors — covering frequent questions, key in-world locations, and ready-to-use scripts for helping new residents.</p>
     <div class="stat-row">
       <button class="home-btn" onclick="clearSearch(); scrollToTop();" title="Return to top">⌂ Home</button>
+      <a class="stat-chip tech-chip" href="technical.html" title="Go to Technical Q&amp;A">⚙ Technical Q&amp;A</a>
       <div class="stat-chip" onclick="jumpTo('sec-mobile')" title="Go to Mobile" style="cursor:pointer;"><span class="sc-val">2</span><span class="sc-lbl">Mobile</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">14</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
@@ -1341,7 +1463,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="qi-arrow">›</div>
       </div>
 
-      <div class="qi-card qi-clara" data-search="clara method de-escalation nonviolent communication empathy" onclick="jumpTo('sec-clara')">
+      <div class="qi-card qi-clara" data-search="clara method de-escalation nonviolent communication empathy" onclick="openClaraModal()">
         <div class="qi-icon">🕊️</div>
         <div class="qi-info">
           <div class="qi-title">CLARA Method</div>
@@ -2549,14 +2671,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
   </section>
 
-  <!-- ══════ SECTION 4 — CLARA ══════ -->
+  <!-- ══════ SECTION 4 — CLARA (modal) ══════ -->
   <section class="section" id="sec-clara" data-section>
     <div class="section-hdr">
       <div class="sec-icon si-p">🕊️</div>
       <div class="sec-title">The CLARA Method</div>
       <div class="sec-count">De-escalation framework</div>
     </div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">A five-step framework for nonviolent communication and de-escalation with difficult residents.</p>
+    <button class="clara-modal-btn" onclick="openClaraModal()">
+      <span class="clara-modal-icon">🕊️</span>
+      <div class="clara-modal-info">
+        <div class="clara-modal-title">Open CLARA Method Guide</div>
+        <div class="clara-modal-sub">Centre · Listen · Affirm · Respond · Add</div>
+      </div>
+      <span class="clara-modal-arrow">›</span>
+    </button>
+  </section>
 
+  <!-- CLARA hidden content for modal -->
+  <div id="clara-modal-content" style="display:none;">
     <p class="clara-intro" data-search="clara method nonviolent communication de-escalation framework empathy dialogue mentor conflict centre listen affirm respond add">CLARA is a five-step framework for nonviolent communication and de-escalation. It shifts a conversation from a win-lose argument to a collaborative dialogue — ideal for mentors handling frustrated or confrontational residents.</p>
 
     <div class="clara-steps">
@@ -2664,7 +2798,9 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
 
-  </section>
+
+  </div>
+
 
   <!-- ══════ SECTION 5 — VIDEO LINKS ══════ -->
 
@@ -2686,5 +2822,14 @@ document.addEventListener('DOMContentLoaded', function() {
 </footer>
 
 
+
+<!-- CLARA Modal -->
+<div id="clara-modal" role="dialog" aria-modal="true">
+  <div id="clara-modal-inner">
+    <div style="font-family:'Orbitron','Courier New',monospace;font-size:1rem;font-weight:600;color:var(--text-hi);letter-spacing:1px;margin-bottom:16px;padding-right:40px;">🕊️ The CLARA Method</div>
+    <button id="clara-modal-close" onclick="closeClaraModal()" aria-label="Close">✕</button>
+    <div id="clara-modal-body"></div>
+  </div>
+</div>
 </body>
 </html>
