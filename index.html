@@ -854,6 +854,10 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-mobile:hover { border-color:#FFE033; background:var(--c-mobile-d); }
 .qi-mobile:hover .qi-arrow { color:var(--c-mobile); }
 
+.qi-tech { border-left:6px solid rgba(124,127,255,0.5); }
+.qi-tech:hover { border-color:var(--c-skyblue); background:var(--c-skyblue-d); }
+.qi-tech:hover .qi-arrow { color:var(--c-skyblue); }
+
 .qi-amber { border-left:6px solid rgba(255,179,0,0.5); }
 .qi-amber:hover { border-color:var(--c-amber); background:var(--c-amber-d); }
 .qi-amber:hover .qi-arrow { color:var(--c-amber); }
@@ -1141,7 +1145,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span>⚡</span> Quick Index <span class="ng-arrow">▶</span>
       </div>
       <div class="nav-items">
-        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 21 topics</span>
+        <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 22 topics</span>
       </div>
     </div>
 
@@ -1245,6 +1249,16 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="nav-item" onclick="jumpTo('faq-mobile-basics')"><span class="ni-dot"></span>Mobile vs Desktop</span>
         <span class="nav-item" onclick="jumpTo('faq-mobile-ar')"><span class="ni-dot"></span>Report Abuse on Mobile</span>
         <span class="nav-item" onclick="jumpTo('lm-campwich')"><span class="ni-dot"></span>Campwich Forest</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
+        <span>⚙️</span> Technical Reference <span class="ng-arrow">▶</span>
+      </div>
+      <div class="nav-items">
+        <span class="nav-item" onclick="window.location.href='technical.html'"><span class="ni-dot"></span>Technical Q&amp;A</span>
+        <span class="nav-item" onclick="window.location.href='technical.html#qa-bake-fail'"><span class="ni-dot"></span>Bake Fail Flowchart</span>
       </div>
     </div>
 
@@ -1440,6 +1454,15 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="qi-info">
           <div class="qi-title">SL Mobile App</div>
           <div class="qi-sub">Controls, differences, AR</div>
+        </div>
+        <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card qi-tech" data-search="technical workflows bake fail flowchart viewer settings streaming scripting" onclick="window.location.href='technical.html'">
+        <div class="qi-icon">⚙️</div>
+        <div class="qi-info">
+          <div class="qi-title">Technical Q&amp;A</div>
+          <div class="qi-sub">Workflows, viewer settings</div>
         </div>
         <div class="qi-arrow">›</div>
       </div>

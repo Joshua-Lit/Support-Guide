@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SL Technical Reference</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Roboto:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg:          #080b14;
+    --bg2:         #0c1020;
+    --panel:       #121830;
+    --panel2:      #161d38;
+    --border:      rgba(255,255,255,0.07);
+    --border2:     rgba(255,255,255,0.14);
+    --text:        #c8d8f0;
+    --text-hi:     #f0f6ff;
+    --text-mid:    #8090b0;
+    --text-dim:    #4a5878;
+    --blue:        #3A86FF;
+    --blue-dim:    rgba(58,134,255,0.12);
+    --teal:        #1DE9D5;
+    --teal-dim:    rgba(29,233,213,0.1);
+
+    /* ── Shared colour palette (matches main guide) ── */
+    --c-elecblue:  #4D9FFF;  --c-elecblue-d: rgba(77,159,255,0.12);
+    --c-violet:    #AA44FF;  --c-violet-d:   rgba(170,68,255,0.12);
+    --c-cyan:      #f0f4ff;  --c-cyan-d:     rgba(240,244,255,0.12);
+    --c-white:     #f0f4ff;  --c-white-d:    rgba(240,244,255,0.08);
+    --c-gaming:    #00E5FF;  --c-gaming-d:   rgba(0,229,255,0.12);
+    --c-mobile:    #FFE033;  --c-mobile-d:   rgba(255,224,51,0.12);
+    --c-adult:     #E91E8C;  --c-adult-d:    rgba(233,30,140,0.12);
+    --c-amber:     #FFB300;  --c-amber-d:    rgba(255,179,0,0.12);
+    --c-lime:      #AEEA00;  --c-lime-d:     rgba(174,234,0,0.12);
+    --c-sky:       #00D4FF;  --c-sky-d:      rgba(0,212,255,0.12);
+    --c-skyblue:   #7C7FFF;  --c-skyblue-d:  rgba(124,127,255,0.12);
+    --c-rose:      #FF5CA8;  --c-rose-d:     rgba(255,92,168,0.12);
+    --c-gold:      #FFEE58;  --c-gold-d:     rgba(255,238,88,0.12);
+    --c-orange:    #FF924C;  --c-orange-d:   rgba(255,146,76,0.12);
+    --c-teal:      #1DE9D5;  --c-teal-d:     rgba(29,233,213,0.12);
+    --c-mint:      #69FF47;  --c-mint-d:     rgba(105,255,71,0.12);
+    --c-red:       #FF5252;  --c-red-d:      rgba(255,82,82,0.12);
+    --c-coral:     #FF1744;  --c-coral-d:    rgba(255,23,68,0.12);
+    --c-fuchsia:   #FF5FD2;  --c-fuchsia-d:  rgba(255,95,210,0.12);
+
+    /* ── Technical page accent (violet) ── */
+    --c-tech:      var(--c-violet);
+    --c-tech-d:    var(--c-violet-d);
+
+    /* ── Viewer column colours ── */
+    --c-sl:        #4D9FFF;  /* SL Viewer = electric blue */
+    --c-sl-d:      rgba(77,159,255,0.10);
+    --c-sl-b:      rgba(77,159,255,0.35);
+    --c-fs:        #FF924C;  /* Firestorm = orange */
+    --c-fs-d:      rgba(255,146,76,0.10);
+    --c-fs-b:      rgba(255,146,76,0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    line-height: 1.65;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  #app { display: flex; min-height: 100vh; position: relative; }
+
+  #sidebar {
+    width: 240px;
+    min-width: 240px;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .sidebar-logo {
+    padding: 20px 18px 16px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .sidebar-logo::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--c-violet), var(--teal), transparent);
+  }
+  .sidebar-logo-row {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text-hi);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .sidebar-logo-sub {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .sidebar-nav { padding: 12px 0; flex: 1; }
+  .nav-section-hdr {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 10px 18px 4px;
+  }
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 18px;
+    font-size: 12px;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+    text-decoration: none;
+    border-left: 2px solid transparent;
+  }
+  .nav-link:hover { color: var(--text-hi); background: var(--blue-dim); border-left-color: var(--c-tech); }
+  .nav-link .ni-dot { width:5px; height:5px; border-radius:50%; background:var(--border2); flex-shrink:0; }
+  .nav-link:hover .ni-dot { background: var(--c-tech); }
+  .sidebar-home {
+    margin: 12px 14px;
+    padding: 8px 14px;
+    background: var(--c-tech-d);
+    border: 1px solid rgba(167,139,255,0.3);
+    border-radius: 6px;
+    color: var(--c-tech);
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: background 0.15s;
+  }
+  .sidebar-home:hover { background: rgba(167,139,255,0.2); }
+
+  #main { flex: 1; padding: 40px 52px 80px; overflow-x: hidden; min-width: 0; }
+
+  /* ═══ HEADER ═══ */
+  #page-header {
+    padding: 0 0 24px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+  .header-eyebrow {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header-title {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-hi);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .header-title span { color: var(--c-tech); }
+  .header-sub {
+    font-size: 13px;
+    color: var(--text-mid);
+    max-width: 580px;
+  }
+
+  /* ═══ SEARCH ═══ */
+  .search-wrap {
+    margin: 0 0 32px 0;
+    max-width: 600px;
+    position: relative;
+  }
+  #tech-search {
+    width: 100%;
+    background: var(--panel);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 10px 40px 10px 16px;
+    color: var(--text-hi);
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  #tech-search:focus { border-color: var(--c-tech); }
+  #tech-search::placeholder { color: var(--text-dim); }
+  #tech-clear {
+    display: none;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px 4px;
+  }
+  #tech-clear:hover { color: var(--text-hi); }
+
+  /* ═══ MAIN LAYOUT ═══ */
+  #main {
+    padding: 40px 52px 80px;
+  }
+
+  /* ═══ SECTION HEADER ═══ */
+  .sec-hdr {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sec-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+    background: var(--c-tech-d);
+    border: 1px solid rgba(167,139,255,0.3);
+  }
+  .sec-title {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-hi);
+    letter-spacing: 1px;
+  }
+  .sec-count {
+    margin-left: auto;
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ═══ Q&A CARDS ═══ */
+  .qa-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+    margin-bottom: 12px;
+  }
+  .qa-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: var(--border2);
+    transition: background 0.2s;
+    border-radius: 10px 0 0 10px;
+  }
+  .qa-card:hover { border-color: var(--border2); }
+  .qa-card:hover::before,
+  .qa-card.open::before { background: var(--c-tech); }
+  .qa-card.open { border-color: rgba(167,139,255,0.35); }
+  .qa-card.hidden { display: none; }
+
+  .qa-q {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px 14px 22px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .qa-q-text {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-hi);
+    line-height: 1.4;
+  }
+  .qa-tag {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    color: var(--c-tech);
+    background: var(--c-tech-d);
+    border: 1px solid rgba(167,139,255,0.3);
+  }
+  .qa-tog {
+    font-size: 18px;
+    color: var(--text-dim);
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--border2);
+    flex-shrink: 0;
+    transition: transform 0.2s, color 0.2s, border-color 0.2s;
+    font-weight: 300;
+  }
+  .qa-card.open .qa-tog {
+    transform: rotate(45deg);
+    color: var(--c-tech);
+    border-color: var(--c-tech);
+    background: var(--c-tech-d);
+  }
+
+  .qa-body {
+    display: none;
+    padding: 0 20px 18px 22px;
+  }
+  .qa-card.open .qa-body { display: block; }
+  .qa-body p { color: var(--text); margin-bottom: 10px; line-height: 1.7; }
+  .qa-body a { color: var(--c-tech); text-decoration: none; }
+  .qa-body a:hover { text-decoration: underline; }
+
+  /* Steps */
+  .steps { display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
+  .step { display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; color: var(--text); }
+  .sn {
+    min-width: 24px; height: 24px;
+    background: var(--c-tech-d);
+    border: 1px solid rgba(167,139,255,0.3);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--c-tech);
+    flex-shrink: 0;
+  }
+
+  /* Tip box */
+  .tip-box {
+    background: var(--panel2);
+    border-left: 3px solid var(--c-tech);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    margin-top: 14px;
+  }
+  .tip-label {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--c-tech);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .tip-box p { color: var(--text-mid); font-size: 12.5px; margin: 0; }
+
+  /* Bullets */
+  .bullets { display: flex; flex-direction: column; gap: 6px; margin: 10px 0; }
+  .bullet { font-size: 12.5px; color: var(--text); padding-left: 16px; position: relative; }
+  .bullet::before { content: '›'; position: absolute; left: 0; color: var(--c-tech); font-size: 14px; }
+
+  /* Link buttons */
+  .link-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 14px;
+    background: var(--c-tech-d);
+    border: 1px solid rgba(167,139,255,0.4);
+    border-radius: 6px;
+    color: var(--c-tech);
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .link-btn:hover { background: rgba(167,139,255,0.2); border-color: var(--c-tech); text-decoration: none; }
+
+  /* Viewer columns */
+  .viewer-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .viewer-col {
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .vc-sl { background: var(--c-sl-d); border: 1px solid var(--c-sl-b); }
+  .vc-fs { background: var(--c-fs-d); border: 1px solid var(--c-fs-b); }
+  .vc-label {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .vc-sl .vc-label { color: var(--c-sl); }
+  .vc-fs .vc-label { color: var(--c-fs); }
+  .vc-col-body { font-size: 12.5px; color: var(--text); line-height: 1.65; }
+  .vc-col-body .say-block { margin-top: 10px; }
+  .vc-col-body .say-text { font-size: 12px; padding-right: 60px; }
+  .vc-col-body .say-label { font-size: 8px; }
+  .vc-col-body .copy-btn { font-size: 8px; padding: 3px 8px; }
+  .vc-col-body .bullets { margin: 6px 0; }
+  .vc-col-body .bullet { font-size: 12px; }
+  .vc-col-body .steps { margin: 6px 0; }
+  .vc-col-body .step { font-size: 12px; }
+  .vc-col-body p { margin-bottom: 6px; }
+  @media (max-width: 640px) {
+    .viewer-cols { grid-template-columns: 1fr; }
+  }
+
+  /* Say blocks */
+  .say-block {
+    background: var(--panel2);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 14px;
+    position: relative;
+  }
+  .say-label {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--c-tech);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .say-text {
+    font-size: 13px;
+    color: var(--text-hi);
+    line-height: 1.65;
+    padding-right: 70px;
+  }
+  .say-block .copy-btn {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: var(--c-tech-d);
+    border: 1px solid rgba(167,139,255,0.4);
+    border-radius: 4px;
+    color: var(--c-tech);
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .say-block .copy-btn:hover { background: rgba(167,139,255,0.25); }
+
+  /* Code inline */
+  code {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 11px;
+    background: var(--panel2);
+    border: 1px solid var(--border2);
+    border-radius: 3px;
+    padding: 1px 5px;
+    color: var(--teal);
+  }
+
+  /* ═══ FOOTER ═══ */
+  #footer {
+    position: static;
+    bottom: 0; left: 0; right: 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 14px 28px;
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 16px;
+  }
+  .footer-left { display:flex; align-items:center; gap:14px; }
+  .footer-text {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .footer-divider { color: var(--border2); font-size: 16px; }
+  .footer-link {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--teal);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .footer-link:hover { color: var(--c-tech); }
+  .footer-top-btn {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .footer-top-btn:hover { color: var(--teal); border-color: var(--teal); }
+
+  @media (max-width: 640px) {
+    #page-header, .search-wrap, #main { padding-left: 20px; padding-right: 20px; }
+  }
+
+  /* ═══ FLOWCHART ═══ */
+  .fc { font-family: 'Roboto', sans-serif; width:100%; overflow:hidden; }
+  .fc-node {
+    border-radius: 8px; padding: 12px 16px; margin: 0 auto 6px;
+    text-align: center; font-size: 13px; position: relative;
+    max-width: 520px; cursor:default; width:100%;
+  }
+  .fc-start {
+    background: rgba(167,139,255,0.2);
+    border: 2px solid var(--c-tech);
+    color: var(--text-hi); font-weight: 600;
+    border-radius: 30px;
+  }
+  .fc-q {
+    background: rgba(58,134,255,0.1);
+    border: 1px solid rgba(58,134,255,0.5);
+    color: var(--text-hi);
+    border-radius: 8px;
+  }
+  .fc-action {
+    background: rgba(29,233,213,0.08);
+    border: 1px solid rgba(29,233,213,0.35);
+    color: var(--text);
+    border-radius: 6px;
+    font-size: 12.5px;
+    text-align: left;
+    padding: 10px 14px;
+  }
+  .fc-end-ok {
+    background: rgba(105,255,71,0.1);
+    border: 2px solid rgba(105,255,71,0.5);
+    color: #69FF47;
+    font-weight: 600; border-radius: 30px;
+  }
+  .fc-end-bad {
+    background: rgba(255,82,82,0.1);
+    border: 2px solid rgba(255,82,82,0.4);
+    color: #FF5252;
+    font-weight: 600; border-radius: 30px;
+  }
+  .fc-end-ticket {
+    background: rgba(255,179,0,0.1);
+    border: 2px solid rgba(255,179,0,0.4);
+    color: #FFB300;
+    font-weight: 600; border-radius: 30px;
+  }
+  .fc-arrow {
+    text-align: center; color: var(--text-dim);
+    font-size: 18px; line-height: 1; margin: 0 auto;
+    display: block;
+  }
+  .fc-branch {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin: 0 auto; max-width: 700px;
+  }
+  .fc-branch-col { display: flex; flex-direction: column; align-items: center; }
+  .fc-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 2px 10px; border-radius: 3px; margin-bottom: 4px;
+  }
+  .fc-label-yes { color: #69FF47; background: rgba(105,255,71,0.1); border: 1px solid rgba(105,255,71,0.3); }
+  .fc-label-no  { color: #FF5252; background: rgba(255,82,82,0.1);  border: 1px solid rgba(255,82,82,0.3); }
+  .fc-sep { border:none; border-top: 1px dashed var(--border2); margin: 16px auto; max-width:700px; }
+  .fc-merge { text-align:center; color:var(--text-dim); font-size:11px; letter-spacing:1px; font-family:'Share Tech Mono',monospace; margin:4px 0; }
+  .fc-note { font-size:11px; color:var(--text-mid); text-align:center; margin-top:4px; }
+</style>
+</head>
+<body>
+
+<div id="app">
+
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-row">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.77z" stroke="var(--c-tech)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      SL TECHNICAL
+    </div>
+    <div class="sidebar-logo-sub">Mentor Reference — Technical</div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section-hdr">⚙️ Media &amp; Streaming</div>
+    <a class="nav-link" onclick="jumpTo('qa-video-stream')"><span class="ni-dot"></span>Stream video to SL screen</a>
+    <div class="nav-section-hdr">🔧 Viewer Settings</div>
+    <a class="nav-link" onclick="jumpTo('qa-lookat')"><span class="ni-dot"></span>Turn off lookat crosshairs</a>
+    <a class="nav-link" onclick="jumpTo('qa-head-mouse')"><span class="ni-dot"></span>Stop head following mouse</a>
+    <a class="nav-link" onclick="jumpTo('qa-selection-beam')"><span class="ni-dot"></span>Turn off selection beam</a>
+    <a class="nav-link" onclick="jumpTo('qa-script-particles')"><span class="ni-dot"></span>Turn off script particles</a>
+    <a class="nav-link" onclick="jumpTo('qa-pay-confirm')"><span class="ni-dot"></span>Confirm before paying</a>
+    <a class="nav-link" onclick="jumpTo('qa-spam-protection')"><span class="ni-dot"></span>Spam / griefing protection</a>
+    <div class="nav-section-hdr">⌨️ Shortcuts</div>
+    <a class="nav-link" onclick="jumpTo('qa-shortcuts')"><span class="ni-dot"></span>Useful keyboard shortcuts</a>
+    <div class="nav-section-hdr">🔀 Flowcharts</div>
+    <a class="nav-link" onclick="jumpTo('qa-bake-fail')"><span class="ni-dot"></span>Bake fail / cloud avatar</a>
+  </div>
+  <a class="sidebar-home" href="index.html">← Back to Main Guide</a>
+</nav>
+
+<main id="main">
+
+  <div id="page-header" style="margin-bottom:32px;">
+    <div class="header-eyebrow">// Second Life Mentor Reference</div>
+    <div class="header-title">Technical <span>Q&amp;A</span></div>
+    <p class="header-sub">Answers to more technical questions from residents — streaming, scripting, media, and more.</p>
+  </div>
+
+  <div class="search-wrap">
+    <input type="text" id="tech-search" placeholder="search technical Q&amp;A..." autocomplete="off" spellcheck="false">
+    <button id="tech-clear" title="Clear search">✕</button>
+  </div>
+
+  <div class="sec-hdr">
+    <div class="sec-icon">⚙️</div>
+    <div class="sec-title">Media &amp; Streaming</div>
+    <div class="sec-count" id="qa-count">1 entry</div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="qa-card" id="qa-video-stream" data-search="stream video local drive screen sl television tv kosmi watch together movie">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">Is there any way to stream video from a local drive to an SL screen?</span>
+      <span class="qa-tag">Media</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <p>Yes — <strong>Kosmi</strong> is the most practical solution for this. It's a free browser-based platform that handles the screen sharing and streaming relay, so you don't need to set up your own streaming server.</p>
+      <p style="margin-top:10px;"><strong>How it works:</strong></p>
+      <div class="steps">
+        <div class="step"><div class="sn">1</div><div>Create a free room on <strong>kosmi.io</strong> — no sign-up required.</div></div>
+        <div class="step"><div class="sn">2</div><div>Use Kosmi's <strong>Screen Share</strong> feature to share your local video from your computer.</div></div>
+        <div class="step"><div class="sn">3</div><div>In SL, set your parcel or prim media URL to the Kosmi room link — a <strong>Kosmi TV</strong> object in-world handles this automatically.</div></div>
+        <div class="step"><div class="sn">4</div><div>Anyone in the region with media enabled will see the stream on the in-world screen.</div></div>
+      </div>
+      <p style="margin-top:12px;"><strong>Getting a Kosmi TV in-world:</strong></p>
+      <div class="bullets">
+        <div class="bullet">There are free and low-cost <strong>Kosmi TVs on the Marketplace</strong> that make setup easy — they handle the technical parts like setting the media URL automatically.</div>
+        <div class="bullet">Search <code>Kosmi TV</code> on the Marketplace to find options at various price points, including free ones.</div>
+      </div>
+      <a class="link-btn" href="https://kosmi.io/" target="_blank">Visit kosmi.io</a>
+      <a class="link-btn" href="https://marketplace.secondlife.com/products/search?search%5Bkeywords%5D=kosmi+tv&search%5Bprice_low%5D=0" target="_blank">Kosmi TVs on Marketplace</a>
+      <div class="say-block">
+        <div class="say-label">// What to tell the resident</div>
+        <div class="say-text">You can use a free service called Kosmi to stream video from your computer to an in-world screen. Head to kosmi.io, create a free room, then use Screen Share to share your video. You'll also need a Kosmi TV in-world — there are free and cheap ones on the Marketplace. Search for "Kosmi TV" there. The TV handles setting everything up automatically.</div>
+        <button class="copy-btn" onclick="copyText(this)">COPY</button>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">// Technical Note</div>
+        <p>Kosmi streams via your browser, so anything your computer can play can be shared — local files, streaming services, or any application window. Residents viewing in SL need to have <strong>Media</strong> enabled in their viewer preferences to see the stream.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEWER SETTINGS SECTION -->
+  <div class="sec-hdr" style="margin-top:40px;">
+    <div class="sec-icon">🔧</div>
+    <div class="sec-title">Viewer Settings</div>
+  </div>
+
+  <div class="qa-card" id="qa-lookat" data-search="lookat crosshairs crosshair turn off disable camera focus where looking privacy firestorm">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">How do I turn off the lookat crosshairs — I don't want others seeing where my camera is pointing?</span>
+      <span class="qa-tag">Privacy</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <p>The <strong>lookat crosshairs</strong> show where your camera is focused (normally via Alt-Click). You can control both what you see and what you send to others.</p>
+
+      <p style="margin-top:12px;"><strong>🔷 Official SL Viewer</strong></p>
+      <p>First enable the Develop menu: <strong>Ctrl+Alt+Q</strong>, then go to <strong>Develop → Avatar → Show Look At</strong> and toggle it off. This hides crosshairs on your screen.</p>
+      <p style="margin-top:8px;">To stop sending your lookat to others, go to <strong>Preferences → Privacy</strong> and look for the lookat/camera options there.</p>
+
+      <p style="margin-top:12px;"><strong>🔶 Firestorm</strong></p>
+      <p>Go to <strong>Preferences → Privacy → LookAt tab</strong>:</p>
+      <div class="bullets">
+        <div class="bullet"><strong>Show look at targets</strong> — global toggle to show/hide all crosshairs on your screen.</div>
+        <div class="bullet"><strong>Don't send my look at targets to others</strong> — prevents your camera focus point from showing to other residents.</div>
+        <div class="bullet"><strong>Don't send any look at targets at all</strong> — also stops your avatar's head from turning to face your camera focus point.</div>
+        <div class="bullet"><strong>Don't send my selection target hints</strong> — prevents your selection pointer from showing to others.</div>
+      </div>
+
+      <div class="say-block">
+        <div class="say-label">// What to tell the resident (SL Viewer)</div>
+        <div class="say-text">Go to Preferences → Privacy. Uncheck "Enable LookAt" to stop crosshairs showing on your screen and to stop sending your camera position to others. While you're there, you can also uncheck "Enable Selection Hints" to stop your selection pointer showing to others.</div>
+        <button class="copy-btn" onclick="copyText(this)">COPY</button>
+      </div>
+      <div class="say-block">
+        <div class="say-label">// What to tell the resident (Firestorm)</div>
+        <div class="say-text">Go to Preferences → Privacy → LookAt tab. To stop others seeing where your camera points, check "Don't send my look at targets to others". You can also uncheck "Show look at targets" to hide everyone else's crosshairs from your own screen.</div>
+        <button class="copy-btn" onclick="copyText(this)">COPY</button>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">// Note</div>
+        <p>Crosshairs show where the camera is focused, not necessarily where the person is actually looking — the camera can be moved independently after focusing. Disabling "send my look at targets" is the most common setting for privacy.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card" id="qa-head-mouse" data-search="avatar head follows mouse turning cursor stop disable head movement firestorm preferences">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">How do I stop my avatar's head following my mouse cursor?</span>
+      <span class="qa-tag">Appearance</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <div class="viewer-cols">
+        <div class="viewer-col vc-sl">
+          <div class="vc-label">🔷 SL Viewer</div>
+          <div class="vc-col-body">
+            <p>This option is not available in the official SL viewer.</p>
+          </div>
+        </div>
+        <div class="viewer-col vc-fs">
+          <div class="vc-label">🔶 Firestorm</div>
+          <div class="vc-col-body">
+            <p>Go to <strong>Preferences → Firestorm → Avatar tab</strong>. Set both sliders to zero:</p>
+            <div class="bullets">
+              <div class="bullet"><strong>Vertical range</strong> — controls up/down head movement.</div>
+              <div class="bullet"><strong>Horizontal range</strong> — controls left/right head movement.</div>
+            </div>
+            <div class="say-block">
+              <div class="say-label">// What to tell the resident</div>
+              <div class="say-text">Go to Preferences → Firestorm → Avatar tab. Set both the vertical and horizontal "amount that avatar's head follows mouse" sliders to zero. That will stop your head turning to follow your cursor.</div>
+              <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card" id="qa-selection-beam" data-search="selection beam particle disable turn off beam pointing firestorm avatar preferences">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">How do I turn off the selection beam (the particle stream when I click on things)?</span>
+      <span class="qa-tag">Display</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <div class="viewer-cols">
+        <div class="viewer-col vc-sl">
+          <div class="vc-label">🔷 SL Viewer</div>
+          <div class="vc-col-body">
+            <p>This option is not available in the official SL viewer.</p>
+          </div>
+        </div>
+        <div class="viewer-col vc-fs">
+          <div class="vc-label">🔶 Firestorm</div>
+          <div class="vc-col-body">
+            <p>Go to <strong>Preferences → Firestorm → Avatar tab</strong>. Uncheck <strong>Enable selection beam</strong>.</p>
+            <p>You can also adjust the beam width and update rate if you want to keep it but make it less intrusive.</p>
+            <div class="say-block">
+              <div class="say-label">// What to tell the resident</div>
+              <div class="say-text">Go to Preferences → Firestorm → Avatar tab. Uncheck "Enable selection beam" and the particle stream when clicking on objects will disappear.</div>
+              <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card" id="qa-script-particles" data-search="script particles swirling particles disable objects chatting turn off firestorm extras">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">How do I turn off the swirling particles that appear when scripts communicate?</span>
+      <span class="qa-tag">Display</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <div class="viewer-cols">
+        <div class="viewer-col vc-sl">
+          <div class="vc-label">🔷 SL Viewer</div>
+          <div class="vc-col-body">
+            <p>This option is not available in the official SL viewer.</p>
+          </div>
+        </div>
+        <div class="viewer-col vc-fs">
+          <div class="vc-label">🔶 Firestorm</div>
+          <div class="vc-col-body">
+            <p>Go to <strong>Preferences → Firestorm → Extras tab</strong>. Uncheck <strong>Create particle effects when scripts communicate</strong>.</p>
+            <div class="say-block">
+              <div class="say-label">// What to tell the resident</div>
+              <div class="say-text">Go to Preferences → Firestorm → Extras tab. Uncheck "Create particle effects when scripts communicate" and the swirling particles around scripted objects will stop appearing.</div>
+              <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">// Tip</div>
+        <p>Particularly useful in busy areas — the constant particle effects from many scripted objects can be visually distracting and affect performance.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card" id="qa-pay-confirm" data-search="confirm before paying payment L$ linden dollars accidental firestorm extras threshold">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">Can I get a confirmation dialog before paying someone or an object?</span>
+      <span class="qa-tag">Economy</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <div class="viewer-cols">
+        <div class="viewer-col vc-sl">
+          <div class="vc-label">🔷 SL Viewer</div>
+          <div class="vc-col-body">
+            <p>Go to <strong>Preferences → General</strong> and look for a payment confirmation option.</p>
+            <div class="say-block">
+              <div class="say-label">// What to tell the resident</div>
+              <div class="say-text">Go to Preferences → General and look for a payment confirmation option to enable a dialog before paying.</div>
+              <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            </div>
+          </div>
+        </div>
+        <div class="viewer-col vc-fs">
+          <div class="vc-label">🔶 Firestorm</div>
+          <div class="vc-col-body">
+            <p>Go to <strong>Preferences → Firestorm → Extras tab</strong>. Enable <strong>Confirm before paying</strong> and set a threshold. Set to <code>0</code> to confirm before every payment.</p>
+            <div class="say-block">
+              <div class="say-label">// What to tell the resident</div>
+              <div class="say-text">Go to Preferences → Firestorm → Extras tab. Enable "Confirm before paying" and set the threshold to 0. That way you'll get a confirmation before every payment so you won't accidentally pay anyone.</div>
+              <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">// Tip</div>
+        <p>Setting the threshold to <code>0</code> means every payment requires confirmation, no matter how small — useful for new residents who accidentally click pay buttons.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card" id="qa-spam-protection" data-search="spam protection griefer griefing object spam messages firestorm protection tab block">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">Can Firestorm protect against spam/griefing from objects?</span>
+      <span class="qa-tag">Security</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <div class="viewer-cols">
+        <div class="viewer-col vc-sl">
+          <div class="vc-label">🔷 SL Viewer</div>
+          <div class="vc-col-body">
+            <p>No dedicated spam protection tab. Use <strong>Preferences → Privacy → Block List</strong> to manually block griefing objects and residents.</p>
+          </div>
+        </div>
+        <div class="viewer-col vc-fs">
+          <div class="vc-label">🔶 Firestorm</div>
+          <div class="vc-col-body">
+            <p>Go to <strong>Preferences → Firestorm → Protection tab</strong>. Enable <strong>Spam Protection</strong> to automatically block objects sending excessive messages. Configure:</p>
+            <div class="bullets">
+              <div class="bullet"><strong>Max lines in a single message</strong> — blocks sources exceeding this line count.</div>
+              <div class="bullet"><strong>Max events from same source</strong> — blocks sources exceeding this many events in 2 seconds.</div>
+              <div class="bullet"><strong>Unblock all spam sources</strong> — clears all blocked sources.</div>
+            </div>
+            <p style="margin-top:6px;">Also has <strong>Texture Lag Protection</strong> to hide large high-texture objects — useful against texture griefing.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEYBOARD SHORTCUTS SECTION -->
+  <div class="sec-hdr" style="margin-top:40px;">
+    <div class="sec-icon">⌨️</div>
+    <div class="sec-title">Useful Keyboard Shortcuts (Firestorm)</div>
+  </div>
+
+  <div class="qa-card" id="qa-shortcuts" data-search="keyboard shortcuts firestorm hotkeys quick keys snapshot inventory appearance groups friends chat">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">What are the most useful Firestorm keyboard shortcuts?</span>
+      <span class="qa-tag">Shortcuts</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <p>A curated selection of the most useful shortcuts. On Mac, substitute <strong>Cmd</strong> for <strong>Ctrl</strong> and <strong>Option</strong> for <strong>Alt</strong> where indicated.</p>
+      <p style="margin-top:12px;"><strong>Avatar &amp; Appearance</strong></p>
+      <div class="bullets">
+        <div class="bullet"><code>Ctrl+I</code> — Inventory</div>
+        <div class="bullet"><code>Ctrl+O</code> — Appearance</div>
+        <div class="bullet"><code>Ctrl+Alt+R</code> — Force Appearance Update (rebake)</div>
+        <div class="bullet"><code>Alt+Shift+R</code> — Refresh Attachments</div>
+        <div class="bullet"><code>Alt+Shift+A</code> — Stop Avatar Animations</div>
+        <div class="bullet"><code>Ctrl+Alt+P</code> — Move Lock (toggle)</div>
+        <div class="bullet"><code>Ctrl+Alt+S</code> — Force Ground Sit</div>
+      </div>
+      <p style="margin-top:12px;"><strong>Communication</strong></p>
+      <div class="bullets">
+        <div class="bullet"><code>Ctrl+Shift+F</code> — Friends</div>
+        <div class="bullet"><code>Ctrl+Shift+G</code> — Groups</div>
+        <div class="bullet"><code>Ctrl+H</code> — Chat history</div>
+        <div class="bullet"><code>Ctrl+T</code> — Conversations / IMs</div>
+        <div class="bullet"><code>Shift+Enter</code> — Whisper</div>
+        <div class="bullet"><code>Ctrl+Enter</code> — Shout</div>
+      </div>
+      <p style="margin-top:12px;"><strong>World &amp; Navigation</strong></p>
+      <div class="bullets">
+        <div class="bullet"><code>Ctrl+Shift+H</code> — Teleport Home</div>
+        <div class="bullet"><code>Ctrl+M</code> — World Map</div>
+        <div class="bullet"><code>Ctrl+Shift+M</code> — Mini-Map</div>
+        <div class="bullet"><code>Ctrl+S</code> — Resync Animations</div>
+        <div class="bullet"><code>Ctrl+Shift+A</code> — Nearby Avatars</div>
+      </div>
+      <p style="margin-top:12px;"><strong>Camera</strong></p>
+      <div class="bullets">
+        <div class="bullet"><code>Alt+Up/Down</code> — Zoom camera in/out</div>
+        <div class="bullet"><code>Alt+Left/Right</code> — Rotate camera</div>
+        <div class="bullet"><code>Esc</code> — Reset view</div>
+        <div class="bullet"><code>Ctrl+0</code> — Zoom in / <code>Ctrl+9</code> — Zoom default / <code>Ctrl+8</code> — Zoom out</div>
+      </div>
+      <p style="margin-top:12px;"><strong>Snapshots &amp; Display</strong></p>
+      <div class="bullets">
+        <div class="bullet"><code>Ctrl+Shift+S</code> — Take snapshot</div>
+        <div class="bullet"><code>Ctrl+Alt+Shift+4</code> — Toggle all avatars hidden/visible</div>
+        <div class="bullet"><code>Ctrl+Alt+Shift+=</code> — Hide particles</div>
+        <div class="bullet"><code>Ctrl+P</code> — Preferences</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">// Full Reference</div>
+        <p>The complete Firestorm keyboard shortcut list is on the Firestorm Wiki: <a href="https://wiki.firestormviewer.org/keyboard_shortcuts" target="_blank">wiki.firestormviewer.org/keyboard_shortcuts</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOWCHARTS SECTION -->
+  <div class="sec-hdr" style="margin-top:40px;">
+    <div class="sec-icon">🔀</div>
+    <div class="sec-title">Diagnostic Flowcharts</div>
+  </div>
+
+  <div class="qa-card" id="qa-bake-fail" data-search="bake fail cloud avatar grey blurry invisible orange cloud texture rebake fix diagnose troubleshoot">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">How do I diagnose and fix a bake fail / cloud / grey avatar?</span>
+      <span class="qa-tag">Flowchart</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <p>Use this flowchart to diagnose what kind of bake fail a resident is experiencing and guide them to the right fix.</p>
+      <div id="flowchart-bakefail" style="margin-top:16px;overflow:hidden;width:100%;">
+        <div class="fc">
+
+          <!-- START -->
+          <div class="fc-node fc-start">Avatar appears as cloud, grey blob, or invisible?</div>
+          <span class="fc-arrow">↓</span>
+
+          <!-- Q1 -->
+          <div class="fc-node fc-q">What does the avatar look like to them?</div>
+          <span class="fc-arrow">↓</span>
+
+          <!-- Branch 1: three-way -->
+          <div class="fc-branch" style="grid-template-columns:1fr 1fr 1fr; max-width:900px;">
+
+            <!-- Cloud/Orange Cloud -->
+            <div class="fc-branch-col">
+              <span class="fc-label" style="color:#FF924C;background:rgba(255,146,76,0.1);border:1px solid rgba(255,146,76,0.3);">☁ Cloud / Orange Cloud</span>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                <strong>1.</strong> Try wearing a different shape from inventory<br>
+                <strong>2.</strong> Try a different system skin, eyes, hair base<br>
+                <strong>3.</strong> Wait for inventory to fully load (check count isn't "Fetching")<br>
+                <strong>4.</strong> Go to a low-lag region (e.g. Hippo Hills Island)<br>
+                <strong>5.</strong> Select a different outfit → Replace Outfit<br>
+                <strong>6.</strong> Check all 4 system parts are worn: shape, skin, eyes, hair base
+              </div>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-q" style="max-width:none;width:100%;">Did rebaking / wearing system parts fix it?</div>
+              <div class="fc-branch" style="max-width:none;width:100%;margin-top:6px;">
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-yes">Yes</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-end-ok" style="max-width:none;width:100%;">✓ Fixed!</div>
+                </div>
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-no">No</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                    Check internet connection quality.<br>
+                    If on mobile/cell data → switch to WiFi.<br>
+                    Reboot router. Clear viewer cache and relog.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grey -->
+            <div class="fc-branch-col">
+              <span class="fc-label" style="color:#8090b0;background:rgba(128,144,176,0.1);border:1px solid rgba(128,144,176,0.3);">▨ Grey Textures</span>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                <strong>1.</strong> Right-click avatar nametag → <strong>Tex. Refresh</strong><br>
+                <strong>(Firestorm: Right-click → Appearance → Tex Refresh)</strong>
+              </div>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-q" style="max-width:none;width:100%;">Still grey?</div>
+              <div class="fc-branch" style="max-width:none;width:100%;margin-top:6px;">
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-yes">Yes</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                    Remove all worn <strong>layered clothing, tattoos and alphas</strong>.<br>
+                    Tex. Refresh again.<br>
+                    If now baked naked → re-add layers one at a time to find corrupted item.
+                  </div>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-q" style="max-width:none;width:100%;">Still grey with nothing worn?</div>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                    Try a different system skin.<br>
+                    If that fixes it → original skin texture is corrupted.<br>
+                    Also check for DNS issues — try switching to Google DNS (8.8.8.8).
+                  </div>
+                </div>
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-no">No</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-end-ok" style="max-width:none;width:100%;">✓ Fixed!</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Invisible -->
+            <div class="fc-branch-col">
+              <span class="fc-label" style="color:#c8d8f0;background:rgba(200,216,240,0.08);border:1px solid rgba(200,216,240,0.2);">👁 Invisible / Transparent</span>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                Press <strong>Ctrl+Alt+Shift+4</strong> to toggle avatar rendering.<br>
+                If on multiple monitors (Firestorm): move viewer to primary monitor.
+              </div>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-q" style="max-width:none;width:100%;">Still invisible?</div>
+              <div class="fc-branch" style="max-width:none;width:100%;margin-top:6px;">
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-no">Fixed</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-end-ok" style="max-width:none;width:100%;">✓ Fixed!</div>
+                </div>
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-yes">Still invisible</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                    Try rebake: <strong>Ctrl+Alt+R</strong><br>
+                    Check all 4 system parts worn.<br>
+                    Try wearing a default avatar outfit.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Merge / Persistent -->
+          <hr class="fc-sep">
+          <div class="fc-merge">↓ IF NONE OF THE ABOVE WORKS ↓</div>
+          <span class="fc-arrow">↓</span>
+          <div class="fc-node fc-action" style="max-width:700px;">
+            <strong>Persistent Bake Fail checklist:</strong><br>
+            • Disable RLV if enabled (Preferences → Firestorm → Extras → restart)<br>
+            • Clear viewer cache completely and relog<br>
+            • Check for duplicate "Current Outfit" folders in inventory<br>
+            • Whitelist viewer in antivirus software<br>
+            • Reboot router/modem<br>
+            • Try logging in from a different region
+          </span>
+          <span class="fc-arrow">↓</span>
+          <div class="fc-node fc-q" style="max-width:700px;">Is the clothing change visible to you but NOT to others?</div>
+          <div class="fc-branch" style="max-width:700px;">
+            <div class="fc-branch-col">
+              <span class="fc-label fc-label-yes">Yes</span>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-end-ticket" style="max-width:none;width:100%;">⚠ File a support ticket with Linden Lab — this is a known server-side issue only LL can fix.</div>
+            </div>
+            <div class="fc-branch-col">
+              <span class="fc-label fc-label-no">No — still broken for everyone</span>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-end-bad" style="max-width:none;width:100%;">✕ Escalate — try Firestorm Support group or file an LL support ticket.</div>
+            </div>
+          </div>
+
+        </div><!-- /.fc -->
+      </div><!-- /#flowchart-bakefail -->
+    </div>
+  </div>
+
+
+</main>
+
+</div><!-- /#app -->
+
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span class="footer-text">SL Technical Reference</span>
+      <span class="footer-divider">·</span>
+      <a href="#" class="footer-link" id="suggest-link"><span style="font-size:26px;vertical-align:middle;line-height:1;">✉</span><span style="vertical-align:middle;"> Suggestions</span></a>
+    </div>
+    <button class="footer-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span style="font-size:20px;line-height:1;vertical-align:middle;display:inline-block;transform:translateY(2px);">⬆</span><span style="vertical-align:middle;"> Top</span></button>
+    <div></div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const link = document.getElementById('suggest-link');
+  if (link) {
+    const u = 'josh', d = 'joshualit.uk';
+    link.href = 'mailto:' + u + '@' + d;
+    link.title = 'Send suggestions to ' + u + '@' + d;
+  }
+});
+
+function jumpTo(id) {
+  const el = document.getElementById(id);
+  if (el) { el.scrollIntoView({behavior:'smooth', block:'start'}); }
+}
+
+function tog(trigger) {
+  const card = trigger.parentElement;
+  card.classList.toggle('open');
+}
+
+function copyText(btn) {
+  const text = btn.previousElementSibling.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = 'COPIED!';
+    btn.style.color = 'var(--teal)';
+    setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 1500);
+  });
+}
+
+const srch = document.getElementById('tech-search');
+const clr  = document.getElementById('tech-clear');
+const cnt  = document.getElementById('qa-count');
+
+function n(s) { return s.toLowerCase().replace(/[^a-z0-9 ]/g,' '); }
+
+function doSearch(raw) {
+  const q = n(raw);
+  const cards = document.querySelectorAll('.qa-card');
+  let hits = 0;
+  cards.forEach(el => el.classList.remove('hidden'));
+  if (!q.trim()) { updateCount(); return; }
+  const terms = q.trim().split(/\s+/).filter(Boolean);
+  cards.forEach(el => {
+    const hay = n(el.dataset.search + ' ' + el.textContent);
+    if (terms.every(t => hay.includes(t))) hits++;
+    else el.classList.add('hidden');
+  });
+  cnt.textContent = hits + ' result' + (hits !== 1 ? 's' : '');
+}
+
+function updateCount() {
+  const total = document.querySelectorAll('.qa-card').length;
+  cnt.textContent = total + ' entr' + (total !== 1 ? 'ies' : 'y');
+}
+
+srch.addEventListener('input', () => {
+  clr.style.display = srch.value ? 'block' : 'none';
+  doSearch(srch.value);
+});
+clr.addEventListener('click', () => {
+  srch.value = '';
+  clr.style.display = 'none';
+  doSearch('');
+});
+</script>
+
+</body>
+</html>
