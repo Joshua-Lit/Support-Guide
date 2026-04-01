@@ -183,13 +183,13 @@ body {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
   font-size: 11px;
   letter-spacing: 2px;
-  color: var(--text-dim);
+  color: var(--text-mid);
   text-transform: uppercase;
   cursor: pointer;
   user-select: none;
   transition: color 0.15s;
 }
-.nav-group-hdr:hover { color: var(--text-mid); }
+.nav-group-hdr:hover { color: var(--text-hi); }
 .nav-group-hdr .ng-arrow { margin-left: auto; font-size: 9px; transition: transform 0.2s; }
 .nav-group-hdr.open .ng-arrow { transform: rotate(90deg); }
 .nav-items { display: none; }
@@ -198,17 +198,18 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 16px 6px 30px;
-  font-size: 12px;
-  color: var(--text-dim);
+  padding: 7px 16px 7px 30px;
+  font-size: 12.5px;
+  color: var(--text);
   cursor: pointer;
   border-left: 2px solid transparent;
   transition: all 0.15s;
   text-decoration: none;
 }
-.nav-item:hover { color: var(--text); border-left-color: var(--border2); background: rgba(61,127,255,0.05); }
+.nav-item:hover { color: var(--text-hi); border-left-color: var(--border2); background: rgba(61,127,255,0.05); }
 .nav-item.active { color: var(--blue); border-left-color: var(--blue); background: var(--blue-dim); }
-.ni-dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.ni-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: 0.5; flex-shrink: 0; }
+.nav-item:hover .ni-dot { opacity: 1; }
 
 .sidebar-status {
   border-top: 1px solid var(--border);
