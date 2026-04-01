@@ -24,7 +24,7 @@
   --c-cyan:      #f0f4ff;  --c-cyan-d:     rgba(240,244,255,0.12);
   --c-white:     #f0f4ff;  --c-white-d:    rgba(240,244,255,0.08);
   --c-gaming:    #00E5FF;  --c-gaming-d:   rgba(0,229,255,0.12);
-  --c-mobile:    #FFF176;  --c-mobile-d:   rgba(255,241,118,0.12);
+  --c-mobile:    #FFE033;  --c-mobile-d:   rgba(255,224,51,0.12);
   --c-adult:     #E91E8C;  --c-adult-d:    rgba(233,30,140,0.12);
   --c-amber:     #FFB300;  --c-amber-d:    rgba(255,179,0,0.12);
   --c-lime:      #AEEA00;  --c-lime-d:     rgba(174,234,0,0.12);
@@ -294,7 +294,7 @@ body {
 .si-g { background:var(--gold-dim); border:1px solid rgba(255,198,84,0.3); }
 .si-t { background:var(--teal-dim); border:1px solid rgba(94,255,200,0.3); }
 .si-p { background:rgba(240,244,255,0.22); border:1px solid rgba(240,244,255,0.6); }
-.si-m { background:rgba(255,241,118,0.1); border:1px solid rgba(255,241,118,0.3); color:var(--c-mobile); }
+.si-m { background:rgba(255,224,51,0.1); border:1px solid rgba(255,224,51,0.3); color:var(--c-mobile); }
 .sec-title { font-family:'Orbitron','Courier New',monospace; font-size:1rem; font-weight:600; color:var(--text-hi); letter-spacing:1px; }
 .sec-count {
   margin-left:auto;
@@ -352,8 +352,8 @@ body {
 .faq-item.edge-mov:hover, .faq-item.edge-mov.open { border-color:rgba(105,255,71,0.35); }
 
 .faq-item.edge-mob::before { background:var(--border2); }
-.faq-item.edge-mob:hover::before, .faq-item.edge-mob.open::before { background: linear-gradient(to bottom, #FFFFFF, #FFF176 25%, #FFD600 60%, #FF6D00); }
-.faq-item.edge-mob:hover, .faq-item.edge-mob.open { border-color:rgba(255,241,118,0.35); }
+.faq-item.edge-mob:hover::before, .faq-item.edge-mob.open::before { background: #FFE033; }
+.faq-item.edge-mob:hover, .faq-item.edge-mob.open { border-color:rgba(255,224,51,0.35); }
 
 .faq-item.edge-gaming::before { background:var(--border2); }
 .faq-item.edge-gaming:hover::before, .faq-item.edge-gaming.open::before { background: var(--c-gaming); }
@@ -396,7 +396,7 @@ body {
 .t-inv { color:var(--c-rose);     background:var(--c-rose-d);     border:1px solid rgba(255,92,168,0.3); }
 .t-lnd { color:var(--c-orange);   background:var(--c-orange-d);   border:1px solid rgba(255,146,76,0.3); }
 .t-mov { color:var(--c-mint);     background:var(--c-mint-d);     border:1px solid rgba(105,255,71,0.3); }
-.t-mob { color:var(--c-mobile); background:var(--c-mobile-d); border:1px solid rgba(255,241,118,0.3); }
+.t-mob { color:var(--c-mobile); background:var(--c-mobile-d); border:1px solid rgba(255,224,51,0.3); }
 .t-gaming { color:var(--c-gaming); background:var(--c-gaming-d); border:1px solid rgba(0,229,255,0.3); }
 .t-rul { color:var(--c-red);      background:var(--c-red-d);      border:1px solid rgba(255,82,82,0.3); }
 .t-aud { color:var(--c-fuchsia);  background:var(--c-fuchsia-d);  border:1px solid rgba(233,30,140,0.3); }
@@ -853,7 +853,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-mobile { border-left: none; background-image: none; }
 .qi-mobile:hover { border-color:var(--c-mobile); background:var(--c-mobile-d); }
 .qi-mobile:hover .qi-arrow { color:var(--c-mobile); }
-.qi-mobile::before { content:''; position:absolute; left:0; top:0; bottom:0; width:6px; background: linear-gradient(to bottom, #FFFFFF, #FFF176 25%, #FFD600 60%, #FF6D00); border-radius:10px 0 0 10px; }
+.qi-mobile::before { content:''; position:absolute; left:0; top:0; bottom:0; width:6px; background: #FFE033; border-radius:10px 0 0 10px; }
 
 .qi-amber { border-left:6px solid rgba(255,179,0,0.5); }
 .qi-amber:hover { border-color:var(--c-amber); background:var(--c-amber-d); }
@@ -1973,7 +1973,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="lm-name">Campwich Forest</div>
         <div class="lm-region">📌 Mobile entry point &amp; Monthly Mobile User Group (MMUG)</div>
         <div class="lm-desc">The entry point for new residents joining via the SL Mobile app. Also the location for the monthly Mobile User Group (MMUG) meeting, held the last Thursday of every month at 12:00 noon SLT.</div>
-        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge" style="color:var(--c-mobile);background:var(--c-mobile-d);border:1px solid rgba(255,241,118,0.25);">Mobile</span><span class="lm-badge b-info">New Residents</span><span class="lm-badge b-info">Mentors Only</span></div></div>
+        <div class="lm-footer"><div class="lm-badges"><span class="lm-badge" style="color:var(--c-mobile);background:var(--c-mobile-d);border:1px solid rgba(255,224,51,0.25);">Mobile</span><span class="lm-badge b-info">New Residents</span><span class="lm-badge b-info">Mentors Only</span></div></div>
       </div>
 
       <div class="lm-card" id="lm-sandbox" data-search="sandbox build create objects rez free public building practice welcome area">
