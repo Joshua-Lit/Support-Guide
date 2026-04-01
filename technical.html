@@ -628,6 +628,18 @@
   .page-nav-link.active { color: var(--blue); border-bottom-color: var(--blue); background: var(--blue-dim); }
   .pn-icon { font-size: 13px; }
 
+
+  .fs-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    flex-shrink: 0;
+    position: relative;
+    top: -1px;
+  }
   /* ═══ FLOWCHART MODAL ═══ */
   .fc-btn-grid {
     display: grid;
@@ -684,16 +696,16 @@
   <div class="sidebar-nav">
     <div class="nav-section-hdr">⚙️ Media &amp; Streaming</div>
     <a class="nav-link" onclick="jumpTo('qa-video-stream')"><span class="ni-dot"></span>Stream video to SL screen</a>
-    <div class="nav-section-hdr">🔧 Viewer Settings</div>
+    <div class="nav-section-hdr">🔧 Both Viewers</div>
     <a class="nav-link" onclick="jumpTo('qa-lookat')"><span class="ni-dot"></span>Turn off lookat crosshairs</a>
+    <a class="nav-link" onclick="jumpTo('qa-spam-protection')"><span class="ni-dot"></span>Spam / griefing protection</a>
+    <a class="nav-link" onclick="jumpTo('qa-pay-confirm')"><span class="ni-dot"></span>Confirm before paying</a>
+    <div class="nav-section-hdr" style="display:flex;align-items:center;gap:6px;"><span class="fs-icon" style="width:14px;height:14px;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C12 2 8 7 8 11C8 11 6 9 7 6C5 8 3 11 3 14C3 18.4 7.1 22 12 22C16.9 22 21 18.4 21 14C21 10 17 6 16 4C16 7 14 9 12 10C12 10 14 7 12 2Z" fill="#FF6432"/><path d="M12 13C10.5 13 9 14 9 15.5C9 17.2 10.3 18.5 12 18.5C13.7 18.5 15 17.2 15 15.5C15 14 13.5 13 12 13Z" fill="#FFD600"/></svg></span> Firestorm Only</div>
     <a class="nav-link" onclick="jumpTo('qa-head-mouse')"><span class="ni-dot"></span>Stop head following mouse</a>
     <a class="nav-link" onclick="jumpTo('qa-selection-beam')"><span class="ni-dot"></span>Turn off selection beam</a>
     <a class="nav-link" onclick="jumpTo('qa-script-particles')"><span class="ni-dot"></span>Turn off script particles</a>
-    <a class="nav-link" onclick="jumpTo('qa-pay-confirm')"><span class="ni-dot"></span>Confirm before paying</a>
-    <a class="nav-link" onclick="jumpTo('qa-spam-protection')"><span class="ni-dot"></span>Spam / griefing protection</a>
-    <a class="nav-link" onclick="jumpTo('qa-clean-install')"><span class="ni-dot"></span>Clean install Firestorm</a>
-    <div class="nav-section-hdr">⌨️ Shortcuts</div>
-    <a class="nav-link" onclick="jumpTo('qa-shortcuts')"><span class="ni-dot"></span>Useful keyboard shortcuts</a>
+    <a class="nav-link" onclick="jumpTo('qa-clean-install')"><span class="ni-dot"></span>Clean install</a>
+    <a class="nav-link" onclick="jumpTo('qa-shortcuts')"><span class="ni-dot"></span>Keyboard shortcuts</a>
     <div class="nav-section-hdr">🔀 Flowcharts</div>
     <a class="nav-link" onclick="openModal('bake-fail','Bake Fail / Cloud / Grey Avatar')"><span class="ni-dot"></span>Bake fail / cloud avatar</a>
     <a class="nav-link" onclick="openModal('tp-fail','Teleport Failure')"><span class="ni-dot"></span>Teleport failure</a>
@@ -800,6 +812,91 @@
     </div>
   </div>
 
+  <div class="qa-card" id="qa-spam-protection" data-search="spam protection griefer griefing object spam messages firestorm protection tab block">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">Can the viewer protect against spam/griefing from objects?</span>
+      <span class="qa-tag">Security</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <div class="viewer-cols">
+        <div class="viewer-col vc-sl">
+          <div class="vc-label">🔷 SL Viewer</div>
+          <div class="vc-col-body">
+            <p>No dedicated spam protection tab. Use <strong>Preferences → Privacy → Block List</strong> to manually block griefing objects and residents.</p>
+            <div class="say-block">
+              <div class="say-label">// What to tell the resident</div>
+              <div class="say-text">Go to Preferences → Privacy → Block List. From there you can manually add the griefing object or avatar to your block list to stop receiving messages from it.</div>
+              <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            </div>
+          </div>
+        </div>
+        <div class="viewer-col vc-fs">
+          <div class="vc-label"><span class="fs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C12 2 8 7 8 11C8 11 6 9 7 6C5 8 3 11 3 14C3 18.4 7.1 22 12 22C16.9 22 21 18.4 21 14C21 10 17 6 16 4C16 7 14 9 12 10C12 10 14 7 12 2Z" fill="#FF6432"/><path d="M12 13C10.5 13 9 14 9 15.5C9 17.2 10.3 18.5 12 18.5C13.7 18.5 15 17.2 15 15.5C15 14 13.5 13 12 13Z" fill="#FFD600"/></svg></span>Firestorm</div>
+          <div class="vc-col-body">
+            <p>Go to <strong>Preferences → Firestorm → Protection tab</strong>. Enable <strong>Spam Protection</strong> to automatically block objects sending excessive messages. Configure:</p>
+            <div class="bullets">
+              <div class="bullet"><strong>Max lines in a single message</strong> — blocks sources exceeding this line count.</div>
+              <div class="bullet"><strong>Max events from same source</strong> — blocks sources exceeding this many events in 2 seconds.</div>
+              <div class="bullet"><strong>Unblock all spam sources</strong> — clears all blocked sources.</div>
+            </div>
+            <p style="margin-top:6px;">Also has <strong>Texture Lag Protection</strong> to hide large high-texture objects — useful against texture griefing.</p>
+            <div class="say-block">
+              <div class="say-label">// What to tell the resident</div>
+              <div class="say-text">Go to Preferences → Firestorm → Protection tab. Enable Spam Protection to automatically block objects sending too many messages at once. You can also enable Texture Lag Protection to hide large objects being used to grief.</div>
+              <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card" id="qa-pay-confirm" data-search="confirm before paying payment L$ linden dollars accidental firestorm extras threshold">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">Can I get a confirmation dialog before paying someone or an object?</span>
+      <span class="qa-tag">Economy</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <div class="viewer-cols">
+        <div class="viewer-col vc-sl">
+          <div class="vc-label">🔷 SL Viewer</div>
+          <div class="vc-col-body">
+            <p>Go to <strong>Preferences → General</strong> and look for a payment confirmation option.</p>
+            <div class="say-block">
+              <div class="say-label">// What to tell the resident</div>
+              <div class="say-text">Go to Preferences → General and look for a payment confirmation option to enable a dialog before paying.</div>
+              <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            </div>
+          </div>
+        </div>
+        <div class="viewer-col vc-fs">
+          <div class="vc-label"><span class="fs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C12 2 8 7 8 11C8 11 6 9 7 6C5 8 3 11 3 14C3 18.4 7.1 22 12 22C16.9 22 21 18.4 21 14C21 10 17 6 16 4C16 7 14 9 12 10C12 10 14 7 12 2Z" fill="#FF6432"/><path d="M12 13C10.5 13 9 14 9 15.5C9 17.2 10.3 18.5 12 18.5C13.7 18.5 15 17.2 15 15.5C15 14 13.5 13 12 13Z" fill="#FFD600"/></svg></span>Firestorm</div>
+          <div class="vc-col-body">
+            <p>Go to <strong>Preferences → Firestorm → Extras tab</strong>. Enable <strong>Confirm before paying</strong> and set a threshold. Set to <code>0</code> to confirm before every payment.</p>
+            <div class="say-block">
+              <div class="say-label">// What to tell the resident</div>
+              <div class="say-text">Go to Preferences → Firestorm → Extras tab. Enable "Confirm before paying" and set the threshold to 0. That way you'll get a confirmation before every payment so you won't accidentally pay anyone.</div>
+              <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">// Tip</div>
+        <p>Setting the threshold to <code>0</code> means every payment requires confirmation, no matter how small — useful for new residents who accidentally click pay buttons.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="sec-hdr" style="margin-top:32px;">
+    <div class="sec-icon" style="background:rgba(255,100,50,0.12);border:1px solid rgba(255,100,50,0.3);"><span class="fs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C12 2 8 7 8 11C8 11 6 9 7 6C5 8 3 11 3 14C3 18.4 7.1 22 12 22C16.9 22 21 18.4 21 14C21 10 17 6 16 4C16 7 14 9 12 10C12 10 14 7 12 2Z" fill="#FF6432"/><path d="M12 13C10.5 13 9 14 9 15.5C9 17.2 10.3 18.5 12 18.5C13.7 18.5 15 17.2 15 15.5C15 14 13.5 13 12 13Z" fill="#FFD600"/></svg></span></div>
+    <div class="sec-title" style="color:var(--c-fs);">Firestorm-Specific Settings</div>
+  </div>
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">These settings are only available in the Firestorm viewer.</p>
+
   <div class="qa-card" id="qa-head-mouse" data-search="avatar head follows mouse turning cursor stop disable head movement firestorm preferences">
     <div class="qa-q" onclick="tog(this)">
       <span class="qa-q-text">How do I stop my avatar's head following my mouse cursor?</span>
@@ -815,7 +912,7 @@
           </div>
         </div>
         <div class="viewer-col vc-fs">
-          <div class="vc-label">🔶 Firestorm</div>
+          <div class="vc-label"><span class="fs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C12 2 8 7 8 11C8 11 6 9 7 6C5 8 3 11 3 14C3 18.4 7.1 22 12 22C16.9 22 21 18.4 21 14C21 10 17 6 16 4C16 7 14 9 12 10C12 10 14 7 12 2Z" fill="#FF6432"/><path d="M12 13C10.5 13 9 14 9 15.5C9 17.2 10.3 18.5 12 18.5C13.7 18.5 15 17.2 15 15.5C15 14 13.5 13 12 13Z" fill="#FFD600"/></svg></span>Firestorm</div>
           <div class="vc-col-body">
             <p>Go to <strong>Preferences → Firestorm → Avatar tab</strong>. Set both sliders to zero:</p>
             <div class="bullets">
@@ -848,7 +945,7 @@
           </div>
         </div>
         <div class="viewer-col vc-fs">
-          <div class="vc-label">🔶 Firestorm</div>
+          <div class="vc-label"><span class="fs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C12 2 8 7 8 11C8 11 6 9 7 6C5 8 3 11 3 14C3 18.4 7.1 22 12 22C16.9 22 21 18.4 21 14C21 10 17 6 16 4C16 7 14 9 12 10C12 10 14 7 12 2Z" fill="#FF6432"/><path d="M12 13C10.5 13 9 14 9 15.5C9 17.2 10.3 18.5 12 18.5C13.7 18.5 15 17.2 15 15.5C15 14 13.5 13 12 13Z" fill="#FFD600"/></svg></span>Firestorm</div>
           <div class="vc-col-body">
             <p>Go to <strong>Preferences → Firestorm → Avatar tab</strong>. Uncheck <strong>Enable selection beam</strong>.</p>
             <p>You can also adjust the beam width and update rate if you want to keep it but make it less intrusive.</p>
@@ -878,7 +975,7 @@
           </div>
         </div>
         <div class="viewer-col vc-fs">
-          <div class="vc-label">🔶 Firestorm</div>
+          <div class="vc-label"><span class="fs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C12 2 8 7 8 11C8 11 6 9 7 6C5 8 3 11 3 14C3 18.4 7.1 22 12 22C16.9 22 21 18.4 21 14C21 10 17 6 16 4C16 7 14 9 12 10C12 10 14 7 12 2Z" fill="#FF6432"/><path d="M12 13C10.5 13 9 14 9 15.5C9 17.2 10.3 18.5 12 18.5C13.7 18.5 15 17.2 15 15.5C15 14 13.5 13 12 13Z" fill="#FFD600"/></svg></span>Firestorm</div>
           <div class="vc-col-body">
             <p>Go to <strong>Preferences → Firestorm → Extras tab</strong>. Uncheck <strong>Create particle effects when scripts communicate</strong>.</p>
             <div class="say-block">
@@ -896,78 +993,6 @@
     </div>
   </div>
 
-  <div class="qa-card" id="qa-pay-confirm" data-search="confirm before paying payment L$ linden dollars accidental firestorm extras threshold">
-    <div class="qa-q" onclick="tog(this)">
-      <span class="qa-q-text">Can I get a confirmation dialog before paying someone or an object?</span>
-      <span class="qa-tag">Economy</span>
-      <span class="qa-tog">+</span>
-    </div>
-    <div class="qa-body">
-      <div class="viewer-cols">
-        <div class="viewer-col vc-sl">
-          <div class="vc-label">🔷 SL Viewer</div>
-          <div class="vc-col-body">
-            <p>Go to <strong>Preferences → General</strong> and look for a payment confirmation option.</p>
-            <div class="say-block">
-              <div class="say-label">// What to tell the resident</div>
-              <div class="say-text">Go to Preferences → General and look for a payment confirmation option to enable a dialog before paying.</div>
-              <button class="copy-btn" onclick="copyText(this)">COPY</button>
-            </div>
-          </div>
-        </div>
-        <div class="viewer-col vc-fs">
-          <div class="vc-label">🔶 Firestorm</div>
-          <div class="vc-col-body">
-            <p>Go to <strong>Preferences → Firestorm → Extras tab</strong>. Enable <strong>Confirm before paying</strong> and set a threshold. Set to <code>0</code> to confirm before every payment.</p>
-            <div class="say-block">
-              <div class="say-label">// What to tell the resident</div>
-              <div class="say-text">Go to Preferences → Firestorm → Extras tab. Enable "Confirm before paying" and set the threshold to 0. That way you'll get a confirmation before every payment so you won't accidentally pay anyone.</div>
-              <button class="copy-btn" onclick="copyText(this)">COPY</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tip-box">
-        <div class="tip-label">// Tip</div>
-        <p>Setting the threshold to <code>0</code> means every payment requires confirmation, no matter how small — useful for new residents who accidentally click pay buttons.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="qa-card" id="qa-spam-protection" data-search="spam protection griefer griefing object spam messages firestorm protection tab block">
-    <div class="qa-q" onclick="tog(this)">
-      <span class="qa-q-text">Can Firestorm protect against spam/griefing from objects?</span>
-      <span class="qa-tag">Security</span>
-      <span class="qa-tog">+</span>
-    </div>
-    <div class="qa-body">
-      <div class="viewer-cols">
-        <div class="viewer-col vc-sl">
-          <div class="vc-label">🔷 SL Viewer</div>
-          <div class="vc-col-body">
-            <p>No dedicated spam protection tab. Use <strong>Preferences → Privacy → Block List</strong> to manually block griefing objects and residents.</p>
-            <div class="say-block">
-              <div class="say-label">// What to tell the resident</div>
-              <div class="say-text">Go to Preferences → Privacy → Block List. From there you can manually add the griefing object or avatar to your block list to stop receiving messages from it.</div>
-              <button class="copy-btn" onclick="copyText(this)">COPY</button>
-            </div>
-          </div>
-        </div>
-        <div class="viewer-col vc-fs">
-          <div class="vc-label">🔶 Firestorm</div>
-          <div class="vc-col-body">
-            <p>Go to <strong>Preferences → Firestorm → Protection tab</strong>. Enable <strong>Spam Protection</strong> to automatically block objects sending excessive messages. Configure:</p>
-            <div class="bullets">
-              <div class="bullet"><strong>Max lines in a single message</strong> — blocks sources exceeding this line count.</div>
-              <div class="bullet"><strong>Max events from same source</strong> — blocks sources exceeding this many events in 2 seconds.</div>
-              <div class="bullet"><strong>Unblock all spam sources</strong> — clears all blocked sources.</div>
-            </div>
-            <p style="margin-top:6px;">Also has <strong>Texture Lag Protection</strong> to hide large high-texture objects — useful against texture griefing.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
   <div class="qa-card" id="qa-clean-install" data-search="clean install firestorm reinstall uninstall settings cache wipe fresh start problems viewer broken">
@@ -1004,7 +1029,7 @@
           </div>
         </div>
         <div class="viewer-col vc-fs">
-          <div class="vc-label">🔶 Firestorm — 12-Step Clean Install</div>
+          <div class="vc-label"><span class="fs-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2C12 2 8 7 8 11C8 11 6 9 7 6C5 8 3 11 3 14C3 18.4 7.1 22 12 22C16.9 22 21 18.4 21 14C21 10 17 6 16 4C16 7 14 9 12 10C12 10 14 7 12 2Z" fill="#FF6432"/><path d="M12 13C10.5 13 9 14 9 15.5C9 17.2 10.3 18.5 12 18.5C13.7 18.5 15 17.2 15 15.5C15 14 13.5 13 12 13Z" fill="#FFD600"/></svg></span>Firestorm — 12-Step Clean Install</div>
           <div class="vc-col-body">
             <div class="steps">
               <div class="step"><div class="sn">1</div><div>Download the latest installer from the <a href="https://www.firestormviewer.org/downloads/" target="_blank">Firestorm downloads page</a>. Only use the official site.</div></div>
@@ -1032,10 +1057,6 @@
   </div>
 
   <!-- KEYBOARD SHORTCUTS SECTION -->
-  <div class="sec-hdr" style="margin-top:40px;">
-    <div class="sec-icon">⌨️</div>
-    <div class="sec-title">Useful Keyboard Shortcuts (Firestorm)</div>
-  </div>
 
   <div class="qa-card" id="qa-shortcuts" data-search="keyboard shortcuts firestorm hotkeys quick keys snapshot inventory appearance groups friends chat">
     <div class="qa-q" onclick="tog(this)">
