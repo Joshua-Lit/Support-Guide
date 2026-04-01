@@ -780,6 +780,28 @@
     align-items: center;
     cursor: default;
   }
+  /* ═══ SHORTCUTS TABLE ═══ */
+  .shortcuts-group-hdr { font-family:'Share Tech Mono','Courier New',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-mid); margin:18px 0 8px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+  .shortcuts-table { width:100%; border-collapse:collapse; }
+  .shortcuts-table tr { border-bottom:1px solid var(--border); }
+  .shortcuts-table tr:last-child { border-bottom:none; }
+  .shortcuts-table td { padding:7px 8px; font-size:12.5px; vertical-align:middle; }
+  .shortcuts-table td:first-child { color:var(--text); width:34%; }
+  .shortcuts-table td:nth-child(2), .shortcuts-table td:nth-child(3) { width:26%; }
+  .shortcuts-table td:last-child { width:14%; text-align:right; }
+  .sc-kbd { font-family:'Share Tech Mono','Courier New',monospace; font-size:11px; color:var(--c-fs); background:rgba(255,100,50,0.1); border:1px solid rgba(255,100,50,0.3); border-radius:4px; padding:2px 6px; white-space:nowrap; }
+  .sc-col-hdr { font-family:'Share Tech Mono','Courier New',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--text-dim); }
+  .sc-copy-btn { background:var(--panel2); border:1px solid var(--border2); border-radius:4px; color:var(--text-dim); font-family:'Share Tech Mono','Courier New',monospace; font-size:8px; letter-spacing:1px; padding:3px 8px; cursor:pointer; transition:color 0.15s, border-color 0.15s; white-space:nowrap; }
+  .sc-copy-btn:hover { color:var(--c-teal); border-color:var(--c-teal); }
+
+  /* ═══ FIRESTORM CARD ORANGE HOVER ═══ */
+  .fs-card:hover { border-color:rgba(255,100,50,0.35) !important; }
+  .fs-card:hover .qa-tog { color:var(--c-fs); border-color:var(--c-fs); }
+  .fs-card:hover::before { background: var(--c-fs) !important; }
+  .fs-card.open { border-color:rgba(255,100,50,0.35) !important; }
+  .fs-card.open .qa-tog { color:var(--c-fs); border-color:var(--c-fs); background:rgba(255,100,50,0.1); }
+  .fs-card.open::before { background: var(--c-fs) !important; }
+
   /* ═══ FLOWCHART MODAL ═══ */
   .fc-btn-grid {
     display: grid;
@@ -851,6 +873,7 @@
     <a class="nav-link fs-link" onclick="jumpTo('qa-selection-beam')"><span class="ni-dot"></span>Turn off selection beam</a>
     <a class="nav-link fs-link" onclick="jumpTo('qa-script-particles')"><span class="ni-dot"></span>Turn off script particles</a>
     <a class="nav-link fs-link" onclick="jumpTo('qa-clean-install')"><span class="ni-dot"></span>Clean install</a>
+    <a class="nav-link fs-link" onclick="jumpTo('qa-reset-settings')"><span class="ni-dot"></span>Reset all settings</a>
     <a class="nav-link fs-link" onclick="jumpTo('qa-shortcuts')"><span class="ni-dot"></span>Keyboard shortcuts</a>
     <div class="nav-section-hdr">🔀 Flowcharts</div>
     <a class="nav-link" onclick="openModal('bake-fail','Bake Fail / Cloud / Grey Avatar')"><span class="ni-dot"></span>Bake fail / cloud avatar</a>
@@ -868,7 +891,7 @@
     <div class="stat-row">
       <a class="home-btn" href="index.html">⌂ Home</a>
       <span class="tech-chip-active">⚙ Technical Q&amp;A</span>
-      <div class="stat-chip" onclick="document.getElementById('qa-video-stream').scrollIntoView({behavior:'smooth'})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">9</span><span class="sc-lbl">Q&amp;As</span></div>
+      <div class="stat-chip" onclick="document.getElementById('qa-video-stream').scrollIntoView({behavior:'smooth'})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Q&amp;As</span></div>
       <div class="stat-chip" onclick="document.getElementById('sec-flowcharts').scrollIntoView({behavior:'smooth'})" title="Go to Flowcharts" style="cursor:pointer;"><span class="sc-val">3</span><span class="sc-lbl">Flowcharts</span></div>
       <div class="stat-chip" onclick="document.getElementById('qa-head-mouse').scrollIntoView({behavior:'smooth'})" title="Go to Firestorm Settings" style="cursor:pointer;border-color:rgba(255,100,50,0.4);"><span class="sc-val" style="color:var(--c-fs);">6</span><span class="sc-lbl">Firestorm</span></div>
     </div>
@@ -1051,10 +1074,10 @@
   </div>
   <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">These settings are only available in the Firestorm viewer.</p>
 
-  <div class="qa-card" id="qa-head-mouse" data-search="avatar head follows mouse turning cursor stop disable head movement firestorm preferences">
+  <div class="qa-card fs-card" id="qa-head-mouse" data-search="avatar head follows mouse turning cursor stop disable head movement firestorm preferences">
     <div class="qa-q" onclick="tog(this)">
       <span class="qa-q-text">How do I stop my avatar's head following my mouse cursor?</span>
-      <span class="qa-tag">Appearance</span>
+      <span class="qa-tag" style="color:var(--c-fs);background:rgba(255,100,50,0.1);border-color:rgba(255,100,50,0.3);">Appearance</span>
       <span class="qa-tog">+</span>
     </div>
     <div class="qa-body">
@@ -1084,10 +1107,10 @@
     </div>
   </div>
 
-  <div class="qa-card" id="qa-selection-beam" data-search="selection beam particle disable turn off beam pointing firestorm avatar preferences">
+  <div class="qa-card fs-card" id="qa-selection-beam" data-search="selection beam particle disable turn off beam pointing firestorm avatar preferences">
     <div class="qa-q" onclick="tog(this)">
       <span class="qa-q-text">How do I turn off the selection beam (the particle stream when I click on things)?</span>
-      <span class="qa-tag">Display</span>
+      <span class="qa-tag" style="color:var(--c-fs);background:rgba(255,100,50,0.1);border-color:rgba(255,100,50,0.3);">Display</span>
       <span class="qa-tog">+</span>
     </div>
     <div class="qa-body">
@@ -1114,10 +1137,10 @@
     </div>
   </div>
 
-  <div class="qa-card" id="qa-script-particles" data-search="script particles swirling particles disable objects chatting turn off firestorm extras">
+  <div class="qa-card fs-card" id="qa-script-particles" data-search="script particles swirling particles disable objects chatting turn off firestorm extras">
     <div class="qa-q" onclick="tog(this)">
       <span class="qa-q-text">How do I turn off the swirling particles that appear when scripts communicate?</span>
-      <span class="qa-tag">Display</span>
+      <span class="qa-tag" style="color:var(--c-fs);background:rgba(255,100,50,0.1);border-color:rgba(255,100,50,0.3);">Display</span>
       <span class="qa-tog">+</span>
     </div>
     <div class="qa-body">
@@ -1149,10 +1172,10 @@
 
 
 
-  <div class="qa-card" id="qa-clean-install" data-search="clean install firestorm reinstall uninstall settings cache wipe fresh start problems viewer broken">
+  <div class="qa-card fs-card" id="qa-clean-install" data-search="clean install firestorm reinstall uninstall settings cache wipe fresh start problems viewer broken">
     <div class="qa-q" onclick="tog(this)">
       <span class="qa-q-text">How do I do a clean install of Firestorm?</span>
-      <span class="qa-tag">Viewer</span>
+      <span class="qa-tag" style="color:var(--c-fs);background:rgba(255,100,50,0.1);border-color:rgba(255,100,50,0.3);">Viewer</span>
       <span class="qa-tog">+</span>
     </div>
     <div class="qa-body">
@@ -1214,56 +1237,93 @@
 
   <!-- KEYBOARD SHORTCUTS SECTION -->
 
-  <div class="qa-card" id="qa-shortcuts" data-search="keyboard shortcuts firestorm hotkeys quick keys snapshot inventory appearance groups friends chat">
+  <div class="qa-card fs-card" id="qa-reset-settings" data-search="reset settings firestorm preferences advanced broken menu fix viewer behaviour unexpected">
     <div class="qa-q" onclick="tog(this)">
-      <span class="qa-q-text">What are the most useful Firestorm keyboard shortcuts?</span>
-      <span class="qa-tag">Shortcuts</span>
+      <span class="qa-q-text">How do I reset all Firestorm settings to default?</span>
+      <span class="qa-tag" style="color:var(--c-fs);background:rgba(255,100,50,0.1);border-color:rgba(255,100,50,0.3);">Viewer</span>
       <span class="qa-tog">+</span>
     </div>
     <div class="qa-body">
-      <p>A curated selection of the most useful shortcuts. On Mac, substitute <strong>Cmd</strong> for <strong>Ctrl</strong> and <strong>Option</strong> for <strong>Alt</strong> where indicated.</p>
-      <p style="margin-top:12px;"><strong>Avatar &amp; Appearance</strong></p>
-      <div class="bullets">
-        <div class="bullet"><code>Ctrl+I</code> — Inventory</div>
-        <div class="bullet"><code>Ctrl+O</code> — Appearance</div>
-        <div class="bullet"><code>Ctrl+Alt+R</code> — Force Appearance Update (rebake)</div>
-        <div class="bullet"><code>Alt+Shift+R</code> — Refresh Attachments</div>
-        <div class="bullet"><code>Alt+Shift+A</code> — Stop Avatar Animations</div>
-        <div class="bullet"><code>Ctrl+Alt+P</code> — Move Lock (toggle)</div>
-        <div class="bullet"><code>Ctrl+Alt+S</code> — Force Ground Sit</div>
+      <p>Resetting all settings can resolve unexpected viewer behaviour such as broken menus, missing UI elements, or options not responding correctly. It restores Firestorm to its default configuration without requiring a full reinstall.</p>
+      <div class="tip-box" style="border-left-color:var(--c-fs);">
+        <div class="tip-label" style="color:var(--c-fs);">// When to use this</div>
+        <p>Try this before a clean install — it's quicker and solves many of the same issues. If the problem persists after a reset, then proceed to a clean install.</p>
       </div>
-      <p style="margin-top:12px;"><strong>Communication</strong></p>
-      <div class="bullets">
-        <div class="bullet"><code>Ctrl+Shift+F</code> — Friends</div>
-        <div class="bullet"><code>Ctrl+Shift+G</code> — Groups</div>
-        <div class="bullet"><code>Ctrl+H</code> — Chat history</div>
-        <div class="bullet"><code>Ctrl+T</code> — Conversations / IMs</div>
-        <div class="bullet"><code>Shift+Enter</code> — Whisper</div>
-        <div class="bullet"><code>Ctrl+Enter</code> — Shout</div>
+      <div class="steps">
+        <div class="step"><div class="sn">1</div><div>Go to <strong>Preferences → Advanced</strong></div></div>
+        <div class="step"><div class="sn">2</div><div>Click <strong>Reset All Settings</strong></div></div>
+        <div class="step"><div class="sn">3</div><div>Log out and log back in — your settings will be restored to defaults</div></div>
       </div>
-      <p style="margin-top:12px;"><strong>World &amp; Navigation</strong></p>
-      <div class="bullets">
-        <div class="bullet"><code>Ctrl+Shift+H</code> — Teleport Home</div>
-        <div class="bullet"><code>Ctrl+M</code> — World Map</div>
-        <div class="bullet"><code>Ctrl+Shift+M</code> — Mini-Map</div>
-        <div class="bullet"><code>Ctrl+S</code> — Resync Animations</div>
-        <div class="bullet"><code>Ctrl+Shift+A</code> — Nearby Avatars</div>
+      <div class="say-block">
+        <div class="say-label">// What to tell the resident</div>
+        <div class="say-text">Try going to Preferences → Advanced and clicking Reset All Settings, then log out and back in. This resets Firestorm to its defaults and often fixes unexpected issues without needing a full reinstall.</div>
+        <button class="copy-btn" onclick="copyText(this)">COPY</button>
       </div>
-      <p style="margin-top:12px;"><strong>Camera</strong></p>
-      <div class="bullets">
-        <div class="bullet"><code>Alt+Up/Down</code> — Zoom camera in/out</div>
-        <div class="bullet"><code>Alt+Left/Right</code> — Rotate camera</div>
-        <div class="bullet"><code>Esc</code> — Reset view</div>
-        <div class="bullet"><code>Ctrl+0</code> — Zoom in / <code>Ctrl+9</code> — Zoom default / <code>Ctrl+8</code> — Zoom out</div>
-      </div>
-      <p style="margin-top:12px;"><strong>Snapshots &amp; Display</strong></p>
-      <div class="bullets">
-        <div class="bullet"><code>Ctrl+Shift+S</code> — Take snapshot</div>
-        <div class="bullet"><code>Ctrl+Alt+Shift+4</code> — Toggle all avatars hidden/visible</div>
-        <div class="bullet"><code>Ctrl+Alt+Shift+=</code> — Hide particles</div>
-        <div class="bullet"><code>Ctrl+P</code> — Preferences</div>
-      </div>
-      <div class="tip-box">
+      <div class="xref">📎 See also: <a class="xref-link" onclick="jumpTo('qa-clean-install')">Clean install guide</a></div>
+    </div>
+  </div>
+
+  <div class="qa-card fs-card" id="qa-shortcuts" data-search="keyboard shortcuts firestorm hotkeys quick keys snapshot inventory appearance groups friends chat">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">What are the most useful Firestorm keyboard shortcuts?</span>
+      <span class="qa-tag" style="color:var(--c-fs);background:rgba(255,100,50,0.1);border-color:rgba(255,100,50,0.3);">Shortcuts</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <p style="margin-bottom:16px;">On Mac, <strong>Ctrl → Cmd</strong> and <strong>Alt → Option</strong>. Click COPY to paste a shortcut into chat.</p>
+
+      <div class="shortcuts-group-hdr">🧍 Avatar &amp; Appearance</div>
+      <table class="shortcuts-table">
+        <tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
+        <tr><td>Inventory</td><td><span class="sc-kbd">Ctrl+I</span></td><td><span class="sc-kbd">Cmd+I</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Inventory: Ctrl+I on PC, Cmd+I on Mac.')">COPY</button></td></tr>
+        <tr><td>Appearance</td><td><span class="sc-kbd">Ctrl+O</span></td><td><span class="sc-kbd">Cmd+O</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Appearance: Ctrl+O on PC, Cmd+O on Mac.')">COPY</button></td></tr>
+        <tr><td>Rebake / Force Appearance</td><td><span class="sc-kbd">Ctrl+Alt+R</span></td><td><span class="sc-kbd">Cmd+Option+R</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Rebake / Force Appearance Update: Ctrl+Alt+R on PC, Cmd+Option+R on Mac.')">COPY</button></td></tr>
+        <tr><td>Refresh Attachments</td><td><span class="sc-kbd">Alt+Shift+R</span></td><td><span class="sc-kbd">Option+Shift+R</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Refresh Attachments: Alt+Shift+R on PC, Option+Shift+R on Mac.')">COPY</button></td></tr>
+        <tr><td>Stop Animations</td><td><span class="sc-kbd">Alt+Shift+A</span></td><td><span class="sc-kbd">Option+Shift+A</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Stop Avatar Animations: Alt+Shift+A on PC, Option+Shift+A on Mac.')">COPY</button></td></tr>
+        <tr><td>Move Lock (toggle)</td><td><span class="sc-kbd">Ctrl+Alt+P</span></td><td><span class="sc-kbd">Cmd+Option+P</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Move Lock toggle: Ctrl+Alt+P on PC, Cmd+Option+P on Mac.')">COPY</button></td></tr>
+        <tr><td>Force Ground Sit</td><td><span class="sc-kbd">Ctrl+Alt+S</span></td><td><span class="sc-kbd">Cmd+Option+S</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Force Ground Sit: Ctrl+Alt+S on PC, Cmd+Option+S on Mac.')">COPY</button></td></tr>
+      </table>
+
+      <div class="shortcuts-group-hdr">💬 Communication</div>
+      <table class="shortcuts-table">
+        <tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
+        <tr><td>Friends</td><td><span class="sc-kbd">Ctrl+Shift+F</span></td><td><span class="sc-kbd">Cmd+Shift+F</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Friends list: Ctrl+Shift+F on PC, Cmd+Shift+F on Mac.')">COPY</button></td></tr>
+        <tr><td>Groups</td><td><span class="sc-kbd">Ctrl+Shift+G</span></td><td><span class="sc-kbd">Cmd+Shift+G</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Groups: Ctrl+Shift+G on PC, Cmd+Shift+G on Mac.')">COPY</button></td></tr>
+        <tr><td>Chat History</td><td><span class="sc-kbd">Ctrl+H</span></td><td><span class="sc-kbd">Cmd+H</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Chat History: Ctrl+H on PC, Cmd+H on Mac.')">COPY</button></td></tr>
+        <tr><td>Conversations / IMs</td><td><span class="sc-kbd">Ctrl+T</span></td><td><span class="sc-kbd">Cmd+T</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Conversations / IMs: Ctrl+T on PC, Cmd+T on Mac.')">COPY</button></td></tr>
+        <tr><td>Whisper</td><td><span class="sc-kbd">Shift+Enter</span></td><td><span class="sc-kbd">Shift+Enter</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Whisper in chat: Shift+Enter on both PC and Mac.')">COPY</button></td></tr>
+        <tr><td>Shout</td><td><span class="sc-kbd">Ctrl+Enter</span></td><td><span class="sc-kbd">Cmd+Enter</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Shout in chat: Ctrl+Enter on PC, Cmd+Enter on Mac.')">COPY</button></td></tr>
+      </table>
+
+      <div class="shortcuts-group-hdr">🌍 World &amp; Navigation</div>
+      <table class="shortcuts-table">
+        <tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
+        <tr><td>Teleport Home</td><td><span class="sc-kbd">Ctrl+Shift+H</span></td><td><span class="sc-kbd">Cmd+Shift+H</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Teleport Home: Ctrl+Shift+H on PC, Cmd+Shift+H on Mac.')">COPY</button></td></tr>
+        <tr><td>World Map</td><td><span class="sc-kbd">Ctrl+M</span></td><td><span class="sc-kbd">Cmd+M</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'World Map: Ctrl+M on PC, Cmd+M on Mac.')">COPY</button></td></tr>
+        <tr><td>Mini-Map</td><td><span class="sc-kbd">Ctrl+Shift+M</span></td><td><span class="sc-kbd">Cmd+Shift+M</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Mini-Map: Ctrl+Shift+M on PC, Cmd+Shift+M on Mac.')">COPY</button></td></tr>
+        <tr><td>Resync Animations</td><td><span class="sc-kbd">Ctrl+S</span></td><td><span class="sc-kbd">Cmd+S</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Resync Animations: Ctrl+S on PC, Cmd+S on Mac.')">COPY</button></td></tr>
+        <tr><td>Nearby Avatars</td><td><span class="sc-kbd">Ctrl+Shift+A</span></td><td><span class="sc-kbd">Cmd+Shift+A</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Nearby Avatars: Ctrl+Shift+A on PC, Cmd+Shift+A on Mac.')">COPY</button></td></tr>
+      </table>
+
+      <div class="shortcuts-group-hdr">📷 Camera</div>
+      <table class="shortcuts-table">
+        <tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
+        <tr><td>Zoom in / out</td><td><span class="sc-kbd">Alt+↑/↓</span></td><td><span class="sc-kbd">Option+↑/↓</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Zoom camera in/out: Alt+Up/Down on PC, Option+Up/Down on Mac.')">COPY</button></td></tr>
+        <tr><td>Rotate camera</td><td><span class="sc-kbd">Alt+←/→</span></td><td><span class="sc-kbd">Option+←/→</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Rotate camera: Alt+Left/Right on PC, Option+Left/Right on Mac.')">COPY</button></td></tr>
+        <tr><td>Reset view</td><td><span class="sc-kbd">Esc</span></td><td><span class="sc-kbd">Esc</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Reset camera view: Esc on both PC and Mac.')">COPY</button></td></tr>
+        <tr><td>Zoom in / Default / Out</td><td><span class="sc-kbd">Ctrl+0</span> / <span class="sc-kbd">Ctrl+9</span> / <span class="sc-kbd">Ctrl+8</span></td><td><span class="sc-kbd">Cmd+0</span> / <span class="sc-kbd">Cmd+9</span> / <span class="sc-kbd">Cmd+8</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Camera zoom: Ctrl+0 (in), Ctrl+9 (default), Ctrl+8 (out) on PC. Cmd+0/9/8 on Mac.')">COPY</button></td></tr>
+      </table>
+
+      <div class="shortcuts-group-hdr">📸 Snapshots &amp; Display</div>
+      <table class="shortcuts-table">
+        <tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
+        <tr><td>Take Snapshot</td><td><span class="sc-kbd">Ctrl+Shift+S</span></td><td><span class="sc-kbd">Cmd+Shift+S</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Take a snapshot: Ctrl+Shift+S on PC, Cmd+Shift+S on Mac.')">COPY</button></td></tr>
+        <tr><td>Toggle avatars hidden</td><td><span class="sc-kbd">Ctrl+Alt+Shift+4</span></td><td><span class="sc-kbd">Cmd+Option+Shift+4</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Toggle all avatars hidden/visible: Ctrl+Alt+Shift+4 on PC, Cmd+Option+Shift+4 on Mac.')">COPY</button></td></tr>
+        <tr><td>Hide particles</td><td><span class="sc-kbd">Ctrl+Alt+Shift+=</span></td><td><span class="sc-kbd">Cmd+Option+Shift+=</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Hide particles: Ctrl+Alt+Shift+= on PC, Cmd+Option+Shift+= on Mac.')">COPY</button></td></tr>
+        <tr><td>Preferences</td><td><span class="sc-kbd">Ctrl+P</span></td><td><span class="sc-kbd">Cmd+P</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Preferences: Ctrl+P on PC, Cmd+P on Mac.')">COPY</button></td></tr>
+      </table>
+
+      <div class="tip-box" style="margin-top:16px;">
         <div class="tip-label">// Full Reference</div>
         <p>The complete Firestorm keyboard shortcut list is on the Firestorm Wiki: <a href="https://wiki.firestormviewer.org/keyboard_shortcuts" target="_blank">wiki.firestormviewer.org/keyboard_shortcuts</a></p>
       </div>
@@ -1579,6 +1639,15 @@ function toggleSidebarNav() {
   if (!nav || !btn) return;
   nav.classList.toggle('mobile-open');
   btn.classList.toggle('open');
+}
+
+function copyShortcut(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = 'COPIED!';
+    btn.style.color = 'var(--c-teal)';
+    setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 1500);
+  });
 }
 
 function jumpTo(id) {
