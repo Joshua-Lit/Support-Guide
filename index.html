@@ -226,6 +226,21 @@ body {
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 .status-text { font-family:'Share Tech Mono','Courier New',monospace; font-size:9px; color:var(--text-dim); }
+.sidebar-top-btn {
+  margin-left: auto;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+.sidebar-top-btn:hover { color: var(--c-teal); border-color: var(--c-teal); }
 
 /* ═══ MAIN ═══ */
 #main { flex:1; padding:40px 52px 40px; overflow-x:hidden; min-width:0; }
@@ -1427,6 +1442,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="nav-item" onclick="jumpTo('faq-land')"><span class="ni-dot"></span>Land &amp; Parcels</span>
         <span class="nav-item" onclick="jumpTo('faq-account')"><span class="ni-dot"></span>Account &amp; Membership</span>
         <span class="nav-item" onclick="jumpTo('faq-adult')"><span class="ni-dot"></span>Adult Content</span>
+        <span class="nav-item" onclick="jumpTo('faq-sex')"><span class="ni-dot"></span>Is sex possible?</span>
         <span class="nav-item" onclick="jumpTo('faq-rules')"><span class="ni-dot"></span>Rules &amp; Reporting</span>
         <span class="nav-item" onclick="jumpTo('faq-ar')"><span class="ni-dot"></span>Filing an Abuse Report</span>
         <span class="nav-item" onclick="jumpTo('faq-gambling')"><span class="ni-dot"></span>Gambling &amp; Skill Gaming</span>
@@ -1469,6 +1485,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="nav-item" onclick="jumpTo('sc-movelock')"><span class="ni-dot"></span>MoveLock / Being Pushed</span>
         <span class="nav-item" onclick="jumpTo('sc-gambling')"><span class="ni-dot"></span>Gambling &amp; Skill Gaming</span>
         <span class="nav-item" onclick="jumpTo('sc-adult')"><span class="ni-dot"></span>Age Verification</span>
+        <span class="nav-item" onclick="jumpTo('sc-sex')"><span class="ni-dot"></span>Quick Answer — Sex?</span>
         <span class="nav-item" onclick="jumpTo('sc-adulthub')"><span class="ni-dot"></span>What Can You Do at Adult Hub?</span>
         <span class="nav-item" onclick="jumpTo('sc-sffl')"><span class="ni-dot"></span>Second Friends for Life</span>
       </div>
@@ -1533,11 +1550,18 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
 
+    <div class="nav-group">
+      <div class="nav-group-hdr" onclick="openShortcutsModal()" style="cursor:pointer;">
+        <span>⌨️</span> Keyboard Shortcuts <span class="ni-modal-hint">↗</span>
+      </div>
+    </div>
+
   </div>
 
   <div class="sidebar-status">
     <div class="status-dot"></div>
     <div class="status-text">GUIDE ONLINE — SL MENTORS</div>
+    <button class="sidebar-top-btn" onclick="scrollToTop()" title="Scroll to top">⬆ TOP</button>
   </div>
 </nav>
 
@@ -1552,9 +1576,9 @@ document.addEventListener('DOMContentLoaded', function() {
       <button class="home-btn active" onclick="clearSearch(); scrollToTop();" title="You are here — Home">⌂ Home</button>
       <a class="stat-chip tech-chip" href="technical.html" title="Go to Technical Q&amp;A">⚙ Technical Q&amp;A</a>
       <div class="stat-chip" onclick="jumpTo('sec-mobile')" title="Go to Mobile" style="cursor:pointer;"><span class="sc-val">2</span><span class="sc-lbl">Mobile</span></div>
-      <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">14</span><span class="sc-lbl">FAQs</span></div>
+      <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">15</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
-      <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">11</span><span class="sc-lbl">Scripts</span></div>
+      <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">12</span><span class="sc-lbl">Scripts</span></div>
     </div>
   </div>
 
@@ -1770,7 +1794,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="section-hdr">
       <div class="sec-icon si-b">❓</div>
       <div class="sec-title">FAQs &amp; Answers</div>
-      <div class="sec-count">14 entries</div>
+      <div class="sec-count">15 entries</div>
     </div>
     <div class="faq-list">
 
@@ -2231,6 +2255,29 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
       </div>
 
+      <div class="faq-item edge-sex" id="faq-sex" data-search="sex adult content possible age 18 enable preferences adult rated regions maturity sexual ageplay prohibited">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">Is sex possible in Second Life?</span>
+          <span class="faq-tag t-sex">Adult</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>Yes — adult content including sexual interactions is a legal and fully supported part of Second Life, but it comes with clear rules:</p>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div><strong>Must be 18 or over</strong> — this is enforced by Linden Lab's Terms of Service. Misrepresenting your age is a violation.</div></div>
+            <div class="step"><div class="sn">2</div><div><strong>Adult content is opt-in</strong> — it is not available by default. Go to <em>Preferences → General</em> and set content access to <strong>General, Moderate, Adult</strong>.</div></div>
+            <div class="step"><div class="sn">3</div><div><strong>Adult-rated regions only</strong> — sexual content must take place on Adult-rated land (such as the mainland continent Zindra, or private Adult regions). It is not permitted on General or Moderate land.</div></div>
+            <div class="step"><div class="sn">4</div><div><strong>The Adult Hub</strong> is the recommended starting point for newcomers curious about this side of SL.</div></div>
+            <div class="step"><div class="sn">5</div><div><strong>Sexual ageplay is strictly prohibited</strong> — no exceptions, regardless of region rating or consent. This includes avatars that appear to be minors in a sexual context.</div></div>
+          </div>
+          <div class="tip-box" style="border-left-color:var(--c-adult);">
+            <div class="tip-label" style="color:var(--c-adult);">// Mentor Note</div>
+            <p>Always confirm the resident is 18 or over before directing them to adult areas. See the Age Verification script for the exact steps.</p>
+          </div>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-sex');return false;">Quick answer script</a> · <a class="xref-link" href="#" onclick="jumpTo('sc-adult');return false;">Age Verification script</a></div>
+        </div>
+      </div>
+
 
     </div>
   </section>
@@ -2325,28 +2372,11 @@ document.addEventListener('DOMContentLoaded', function() {
   </section>
 
   <!-- ══════ SECTION 3 — SCRIPTS ══════ -->
-  <section class="section" id="sec-shortcuts" data-section>
-    <div class="section-hdr">
-      <div class="sec-icon" style="background:var(--c-skyblue-d);border:1px solid rgba(124,127,255,0.3);">⌨️</div>
-      <div class="sec-title">Keyboard Shortcuts</div>
-      <div class="sec-count">Quick Reference</div>
-    </div>
-    <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">Common shortcuts for newcomers — covers movement, avatar, chat and general functions. Click to open the full PC &amp; Mac reference.</p>
-    <button class="shortcuts-modal-btn" onclick="openShortcutsModal()">
-      <span class="shortcuts-modal-icon">⌨️</span>
-      <div class="shortcuts-modal-info">
-        <div class="shortcuts-modal-title">Common Keyboard Shortcuts</div>
-        <div class="shortcuts-modal-sub">PC &amp; Mac · Movement · Avatar · Chat · General</div>
-      </div>
-      <span class="shortcuts-modal-arrow">›</span>
-    </button>
-  </section>
-
   <section class="section" id="sec-scripts" data-section>
     <div class="section-hdr">
       <div class="sec-icon si-t">📋</div>
       <div class="sec-title">Mentor Tips &amp; Scripts</div>
-      <div class="sec-count">11 scripts</div>
+      <div class="sec-count">12 scripts</div>
     </div>
     <div class="script-list">
 
@@ -2531,6 +2561,23 @@ document.addEventListener('DOMContentLoaded', function() {
             <button class="copy-btn" onclick="copyText(this)">COPY</button>
           </div>
           <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-gambling');return false;">Gambling FAQ</a></div>
+        </div>
+      </div>
+
+      <div class="sc-card" id="sc-sex" style="--sc-color:var(--c-adult);--sc-color-a:rgba(233,30,140,0.3);--sc-color-dim:rgba(233,30,140,0.1);" data-search="sex adult content possible age 18 preferences enable adult rated regions adult hub">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Quick Answer — "Is sex possible in SL?"</span>
+          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(233,30,140,0.25);">Adult</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>Use this as an immediate, friendly first response. Follow up with age verification before going further.</p>
+          <div class="say-block">
+            <div class="say-label">// Quick answer</div>
+            <div class="say-text">Yes, adult content including sex is possible in Second Life, but you must be 18 or over. You'll need to enable Adult content in Preferences → General, then you can visit Adult-rated regions. The Adult Hub is a good starting point for newcomers curious about that side of SL.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-adult');return false;">Age Verification script</a> · <a class="xref-link" href="#" onclick="jumpTo('faq-sex');return false;">Full FAQ entry</a></div>
         </div>
       </div>
 
