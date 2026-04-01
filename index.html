@@ -880,9 +880,9 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-white:hover { border-color:#121830; background:rgba(18,24,48,0.5); }
 .qi-white:hover .qi-arrow { color:#8090b0; }
 
-.qi-clara { border-left:6px solid rgba(240,244,255,0.6); }
-.qi-clara:hover { border-color:#f0f4ff; background:rgba(240,244,255,0.08); }
-.qi-clara:hover .qi-arrow { color:#f0f4ff; }
+.qi-clara { border-left:6px solid #FFFFFF; }
+.qi-clara:hover { border-color:#ffffff; background:rgba(255,255,255,0.08); }
+.qi-clara:hover .qi-arrow { color:#ffffff; }
 
 .qi-cyan { border-left:6px solid rgba(240,244,255,0.5); }
 .qi-cyan:hover { border-color:var(--c-cyan); background:var(--c-cyan-d); }
@@ -958,6 +958,112 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 
 /* qi-fuchsia retired — replaced by qi-adult */
 
+
+
+/* ═══ SHORTCUTS MODAL ═══ */
+.shortcuts-modal-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--panel2);
+  border: 1px solid var(--border2);
+  border-left: 6px solid #8c8c9b;
+  border-radius: 10px;
+  padding: 18px 20px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 460px;
+  text-align: left;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+.shortcuts-modal-btn:hover { background: rgba(140,140,155,0.1); border-color: #8c8c9b; transform: translateY(-2px); }
+.shortcuts-modal-icon { font-size: 28px; flex-shrink: 0; }
+.shortcuts-modal-info { flex: 1; }
+.shortcuts-modal-title { font-size: 14px; font-weight: 500; color: var(--text-hi); margin-bottom: 4px; }
+.shortcuts-modal-sub { font-family: 'Share Tech Mono','Courier New',monospace; font-size: 10px; letter-spacing: 1px; color: var(--text-dim); text-transform: uppercase; }
+.shortcuts-modal-arrow { color: #8c8c9b; font-size: 24px; flex-shrink: 0; }
+
+#shortcuts-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(4,6,14,0.92);
+  z-index: 9999;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#shortcuts-modal.open { display: block; }
+#shortcuts-modal-inner {
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  margin: 24px auto;
+  max-width: 780px;
+  padding: 28px 32px 36px;
+  position: relative;
+}
+#shortcuts-modal-close {
+  position: absolute;
+  top: 20px; right: 20px;
+  background: var(--panel2);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  color: var(--text-dim);
+  font-size: 18px;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+#shortcuts-modal-close:hover { color: var(--text-hi); border-color: var(--text-mid); }
+.shortcuts-title {
+  font-family: 'Oxanium','Courier New',monospace;
+  font-size: 1rem; font-weight: 600;
+  color: var(--text-hi); letter-spacing: 1px;
+  margin-bottom: 6px; padding-right: 40px;
+}
+.shortcuts-subtitle {
+  font-size: 12px; color: var(--text-dim); margin-bottom: 20px;
+}
+.shortcuts-group-hdr {
+  font-family: 'Share Tech Mono','Courier New',monospace;
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-mid); margin: 18px 0 8px;
+  padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+.shortcuts-table { width: 100%; border-collapse: collapse; }
+.shortcuts-table tr { border-bottom: 1px solid var(--border); }
+.shortcuts-table tr:last-child { border-bottom: none; }
+.shortcuts-table td { padding: 7px 8px; font-size: 12.5px; vertical-align: middle; }
+.shortcuts-table td:first-child { color: var(--text); width: 38%; }
+.shortcuts-table td:nth-child(2), .shortcuts-table td:nth-child(3) { width: 24%; }
+.shortcuts-table td:last-child { width: 14%; text-align: right; }
+.sc-kbd {
+  font-family: 'Share Tech Mono','Courier New',monospace;
+  font-size: 11px;
+  color: var(--c-skyblue);
+  background: rgba(124,127,255,0.1);
+  border: 1px solid rgba(124,127,255,0.3);
+  border-radius: 4px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+.sc-col-hdr { font-family: 'Share Tech Mono','Courier New',monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); }
+.sc-copy-btn {
+  background: var(--panel2);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  color: var(--text-dim);
+  font-family: 'Share Tech Mono','Courier New',monospace;
+  font-size: 8px;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.sc-copy-btn:hover { color: var(--c-teal); border-color: var(--c-teal); }
+@media (max-width: 640px) { #shortcuts-modal-inner { margin: 10px; padding: 18px 12px 24px; } }
 
 /* ═══ CLARA MODAL BUTTON ═══ */
 .clara-modal-btn {
@@ -1098,6 +1204,24 @@ function scrollToTop() {
   document.getElementById('main').scrollTo({top:0, behavior:'smooth'});
   window.scrollTo({top:0, behavior:'smooth'});
 }
+
+function openShortcutsModal() {
+  document.getElementById('shortcuts-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeShortcutsModal() {
+  document.getElementById('shortcuts-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function copyShortcut(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = 'COPIED!';
+    btn.style.color = 'var(--c-teal)';
+    setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 1500);
+  });
+}
+
 function openClaraModal() {
   const src = document.getElementById('clara-modal-content');
   const body = document.getElementById('clara-modal-body');
@@ -1168,10 +1292,15 @@ document.addEventListener('DOMContentLoaded', function() {
     link.href = 'mailto:' + u + '@' + d;
     link.title = 'Send suggestions to ' + u + '@' + d;
   }
+  const sm = document.getElementById('shortcuts-modal');
+  if (sm) {
+    sm.addEventListener('click', function(e) { if (e.target === this) closeShortcutsModal(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeShortcutsModal(); closeClaraModal(); } });
+  }
   const cm = document.getElementById('clara-modal');
   if (cm) {
     cm.addEventListener('click', function(e) { if (e.target === this) closeClaraModal(); });
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeClaraModal(); });
+
   }
   const srch   = document.getElementById('global-search');
   const cnt    = document.getElementById('search-count');
@@ -1585,6 +1714,15 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="qi-sub">Controls, differences, AR</div>
         </div>
         <div class="qi-arrow">›</div>
+      </div>
+
+      <div class="qi-card" style="border-left:6px solid rgba(140,140,155,0.6);" data-search="keyboard shortcuts pc mac movement fly run teleport avatar chat" onclick="openShortcutsModal()">
+        <div class="qi-icon">⌨️</div>
+        <div class="qi-info">
+          <div class="qi-title">Keyboard Shortcuts</div>
+          <div class="qi-sub">PC &amp; Mac quick reference</div>
+        </div>
+        <div class="qi-arrow" style="color:#8c8c9b;">›</div>
       </div>
 
       <div class="qi-card qi-tech" data-search="technical workflows bake fail flowchart viewer settings streaming scripting" onclick="window.location.href='technical.html'">
@@ -2187,6 +2325,23 @@ document.addEventListener('DOMContentLoaded', function() {
   </section>
 
   <!-- ══════ SECTION 3 — SCRIPTS ══════ -->
+  <section class="section" id="sec-shortcuts" data-section>
+    <div class="section-hdr">
+      <div class="sec-icon" style="background:var(--c-skyblue-d);border:1px solid rgba(124,127,255,0.3);">⌨️</div>
+      <div class="sec-title">Keyboard Shortcuts</div>
+      <div class="sec-count">Quick Reference</div>
+    </div>
+    <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">Common shortcuts for newcomers — covers movement, avatar, chat and general functions. Click to open the full PC &amp; Mac reference.</p>
+    <button class="shortcuts-modal-btn" onclick="openShortcutsModal()">
+      <span class="shortcuts-modal-icon">⌨️</span>
+      <div class="shortcuts-modal-info">
+        <div class="shortcuts-modal-title">Common Keyboard Shortcuts</div>
+        <div class="shortcuts-modal-sub">PC &amp; Mac · Movement · Avatar · Chat · General</div>
+      </div>
+      <span class="shortcuts-modal-arrow">›</span>
+    </button>
+  </section>
+
   <section class="section" id="sec-scripts" data-section>
     <div class="section-hdr">
       <div class="sec-icon si-t">📋</div>
@@ -2836,6 +2991,54 @@ document.addEventListener('DOMContentLoaded', function() {
     <div style="font-family:'Oxanium','Courier New',monospace;font-size:1rem;font-weight:600;color:var(--text-hi);letter-spacing:1px;margin-bottom:16px;padding-right:40px;">🕊️ The CLARA Method</div>
     <button id="clara-modal-close" onclick="closeClaraModal()" aria-label="Close">✕</button>
     <div id="clara-modal-body"></div>
+  </div>
+</div>
+
+<!-- Shortcuts Modal -->
+<div id="shortcuts-modal" role="dialog" aria-modal="true">
+  <div id="shortcuts-modal-inner">
+    <button id="shortcuts-modal-close" onclick="closeShortcutsModal()" aria-label="Close">✕</button>
+    <div class="shortcuts-title">⌨️ Common Keyboard Shortcuts</div>
+    <div class="shortcuts-subtitle">PC uses Ctrl/Alt — Mac uses Cmd/Option. Click COPY to paste a shortcut into chat.</div>
+
+    <div class="shortcuts-group-hdr">🏃 Movement</div>
+    <table class="shortcuts-table">
+      <tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
+      <tr><td>Fly on/off</td><td><span class="sc-kbd">F</span></td><td><span class="sc-kbd">F</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Fly on/off: press F on both PC and Mac.')">COPY</button></td></tr>
+      <tr><td>Fly up</td><td><span class="sc-kbd">E</span> or <span class="sc-kbd">PgUp</span></td><td><span class="sc-kbd">E</span> or <span class="sc-kbd">Fn+↑</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Fly up: press E (or PgUp on PC / Fn+Up on Mac).')">COPY</button></td></tr>
+      <tr><td>Fly down</td><td><span class="sc-kbd">C</span> or <span class="sc-kbd">PgDown</span></td><td><span class="sc-kbd">C</span> or <span class="sc-kbd">Fn+↓</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Fly down: press C (or PgDown on PC / Fn+Down on Mac).')">COPY</button></td></tr>
+      <tr><td>Always Run</td><td><span class="sc-kbd">Ctrl+R</span></td><td><span class="sc-kbd">Cmd+R</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Always Run toggle: Ctrl+R on PC, Cmd+R on Mac.')">COPY</button></td></tr>
+      <tr><td>Teleport Home</td><td><span class="sc-kbd">Ctrl+Shift+H</span></td><td><span class="sc-kbd">Cmd+Shift+H</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Teleport Home: Ctrl+Shift+H on PC, Cmd+Shift+H on Mac.')">COPY</button></td></tr>
+      <tr><td>Focus camera</td><td><span class="sc-kbd">Alt+Click</span></td><td><span class="sc-kbd">Option+Click</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Focus camera on object: Alt+Click on PC, Option+Click on Mac.')">COPY</button></td></tr>
+      <tr><td>Reset camera view</td><td><span class="sc-kbd">Esc</span></td><td><span class="sc-kbd">Esc</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Reset camera view: press Esc on both PC and Mac.')">COPY</button></td></tr>
+    </table>
+
+    <div class="shortcuts-group-hdr">🧍 Avatar</div>
+    <table class="shortcuts-table">
+      <tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
+      <tr><td>Inventory</td><td><span class="sc-kbd">Ctrl+I</span></td><td><span class="sc-kbd">Cmd+I</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Open Inventory: Ctrl+I on PC, Cmd+I on Mac.')">COPY</button></td></tr>
+      <tr><td>Appearance</td><td><span class="sc-kbd">Ctrl+O</span></td><td><span class="sc-kbd">Cmd+O</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Open Appearance: Ctrl+O on PC, Cmd+O on Mac.')">COPY</button></td></tr>
+      <tr><td>Rebake avatar</td><td><span class="sc-kbd">Ctrl+Alt+R</span></td><td><span class="sc-kbd">Cmd+Option+R</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Rebake / Force Appearance Update: Ctrl+Alt+R on PC, Cmd+Option+R on Mac.')">COPY</button></td></tr>
+      <tr><td>Stop animations</td><td><span class="sc-kbd">Alt+Shift+A</span></td><td><span class="sc-kbd">Option+Shift+A</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Stop all avatar animations: Alt+Shift+A on PC, Option+Shift+A on Mac.')">COPY</button></td></tr>
+      <tr><td>Toggle avatar visible</td><td><span class="sc-kbd">Ctrl+Alt+Shift+4</span></td><td><span class="sc-kbd">Cmd+Option+Shift+4</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Toggle avatar rendering (invisible fix): Ctrl+Alt+Shift+4 on PC, Cmd+Option+Shift+4 on Mac.')">COPY</button></td></tr>
+    </table>
+
+    <div class="shortcuts-group-hdr">💬 Communication</div>
+    <table class="shortcuts-table">
+      <tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
+      <tr><td>Chat history</td><td><span class="sc-kbd">Ctrl+H</span></td><td><span class="sc-kbd">Cmd+H</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Open Chat history: Ctrl+H on PC, Cmd+H on Mac.')">COPY</button></td></tr>
+      <tr><td>Conversations / IMs</td><td><span class="sc-kbd">Ctrl+T</span></td><td><span class="sc-kbd">Cmd+T</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Open Conversations/IMs: Ctrl+T on PC, Cmd+T on Mac.')">COPY</button></td></tr>
+      <tr><td>Groups</td><td><span class="sc-kbd">Ctrl+Shift+G</span></td><td><span class="sc-kbd">Cmd+Shift+G</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Open Groups: Ctrl+Shift+G on PC, Cmd+Shift+G on Mac.')">COPY</button></td></tr>
+      <tr><td>Whisper</td><td><span class="sc-kbd">Shift+Enter</span></td><td><span class="sc-kbd">Shift+Enter</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Whisper in chat: Shift+Enter on both PC and Mac.')">COPY</button></td></tr>
+      <tr><td>Shout</td><td><span class="sc-kbd">Ctrl+Enter</span></td><td><span class="sc-kbd">Cmd+Enter</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Shout in chat: Ctrl+Enter on PC, Cmd+Enter on Mac.')">COPY</button></td></tr>
+    </table>
+
+    <div class="shortcuts-group-hdr">⚙️ General</div>
+    <table class="shortcuts-table">
+      <tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
+      <tr><td>Preferences</td><td><span class="sc-kbd">Ctrl+P</span></td><td><span class="sc-kbd">Cmd+P</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Open Preferences: Ctrl+P on PC, Cmd+P on Mac.')">COPY</button></td></tr>
+      <tr><td>Snapshot</td><td><span class="sc-kbd">Ctrl+Shift+S</span></td><td><span class="sc-kbd">Cmd+Shift+S</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Take a snapshot: Ctrl+Shift+S on PC, Cmd+Shift+S on Mac.')">COPY</button></td></tr>
+    </table>
   </div>
 </div>
 </body>
