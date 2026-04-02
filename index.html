@@ -1477,6 +1477,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('sc-awp')"><span class="ni-dot"></span>Naked / Missing — AWP</span>
+        <span class="nav-item" onclick="jumpTo('sc-meshbody')"><span class="ni-dot"></span>Explaining Mesh Bodies</span>
         <span class="nav-item" onclick="jumpTo('sc-greeting')"><span class="ni-dot"></span>Greeting a Resident</span>
         <span class="nav-item" onclick="jumpTo('sc-overwhelmed')"><span class="ni-dot"></span>Overwhelmed Resident</span>
         <span class="nav-item" onclick="jumpTo('sc-dontknow')"><span class="ni-dot"></span>When You Don't Know</span>
@@ -1850,7 +1851,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="faq-item edge-app" id="faq-missing-parts" data-search="naked missing body part clothing skin head worn tab bold inventory avatar welcome pack">
         <div class="faq-q" onclick="tog(this)">
           <span class="faq-q-text">A newcomer is naked or has a missing body part / clothing item.</span>
-          <span class="faq-tag t-app">Avatar</span>
+          <span class="faq-tag t-app">Appearance</span>
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
@@ -2404,10 +2405,10 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="script-list">
 
-      <div class="sc-card" id="sc-awp" style="--sc-color:var(--c-teal);--sc-color-a:rgba(29,233,213,0.3);--sc-color-dim:rgba(29,233,213,0.1);" data-search="naked missing avatar body parts clothing welcome pack AWP worn tab inventory bold">
+      <div class="sc-card" id="sc-awp" style="--sc-color:var(--c-violet);--sc-color-a:rgba(170,68,255,0.3);--sc-color-dim:rgba(170,68,255,0.1);" data-search="naked missing avatar body parts clothing welcome pack AWP worn tab inventory bold">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Naked / Missing Body Part or Clothing</span>
-          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(29,233,213,0.25);">Avatar</span>
+          <span class="sc-cat" style="color:var(--c-violet);background:var(--c-violet-d);border-color:rgba(170,68,255,0.3);">Appearance</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -2432,6 +2433,50 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="say-text">Go to Avatar in the top menu bar, then click Avatar Welcome Pack. Choose any of the complete starter looks — it's free and will give you a full avatar instantly!</div>
             <button class="copy-btn" onclick="copyText(this)">COPY</button>
           </div>
+        </div>
+      </div>
+
+
+
+      <div class="sc-card" id="sc-meshbody" style="--sc-color:var(--c-violet);--sc-color-a:rgba(170,68,255,0.3);--sc-color-dim:rgba(170,68,255,0.1);" data-search="mesh body head appearance help confused shopping demo fitmesh bento maitreya legacy reborn ebody bom bakes gianni jake belleza">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Explaining Mesh Bodies to Newcomers</span>
+          <span class="sc-cat" style="color:var(--c-violet);background:var(--c-violet-d);border-color:rgba(170,68,255,0.25);">Appearance</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>Mesh bodies are one of the most confusing topics for newcomers. Use a simple analogy before going into technical detail.</p>
+          <div class="say-block">
+            <div class="say-label">// Analogy to use</div>
+            <div class="say-text">Think of the default avatar as a basic mannequin. A mesh body is like a custom suit you wear over it — much better detail and fits modern clothing. They cost L$ but free demos let you try before you buy!</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <p style="margin-top:12px;"><strong>Popular female bodies:</strong></p>
+          <div class="bullets">
+            <div class="bullet"><strong>Maitreya Lara / LaraX</strong> — the most widely supported, huge range of compatible clothing</div>
+            <div class="bullet"><strong>eBODY Reborn</strong> — very popular, great clothing support</div>
+            <div class="bullet"><strong>MeshBody Legacy</strong> (Perky, Petite, Special) — high quality with strong creator support</div>
+          </div>
+          <p style="margin-top:12px;"><strong>Popular male bodies:</strong></p>
+          <div class="bullets">
+            <div class="bullet"><strong>Legacy</strong> (Athletic / Classic)</div>
+            <div class="bullet"><strong>Belleza Jake</strong></div>
+            <div class="bullet"><strong>Signature Gianni</strong></div>
+          </div>
+          <p style="margin-top:12px;"><strong>Popular mesh heads:</strong></p>
+          <div class="bullets">
+            <div class="bullet"><strong>Lelutka</strong> — the most popular mesh heads, widely supported for skins and appliers. Demos available in-store:
+              <div class="mp-links" style="margin-top:6px;">
+                <a class="mp-btn" href="secondlife://LeLutka/118/134/24">Open Lelutka in SL</a>
+              </div>
+            </div>
+          </div>
+          <div class="bullets" style="margin-top:12px;">
+            <div class="bullet">Mesh bodies need <strong>BOM (Bakes on Mesh)</strong> enabled for skin to display correctly.</div>
+            <div class="bullet">Clothing must be <strong>fitted/rigged for that specific body</strong> — not all clothes fit all bodies.</div>
+            <div class="bullet"><strong>Always demo first</strong> — demos are free and show exactly how it looks on your shape.</div>
+          </div>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-appearance');return false;">Bake Fail FAQ</a></div>
         </div>
       </div>
 
@@ -2505,48 +2550,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <button class="copy-btn" onclick="copyText(this)">COPY</button>
           </div>
           <p>Log any recurring confusion patterns you notice — valuable feedback for the wider mentor team.</p>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-meshbody" style="--sc-color:var(--c-violet);--sc-color-a:rgba(170,68,255,0.3);--sc-color-dim:rgba(170,68,255,0.1);" data-search="mesh body head appearance help confused shopping demo fitmesh bento maitreya legacy reborn ebody bom bakes gianni jake belleza">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Explaining Mesh Bodies to Newcomers</span>
-          <span class="sc-cat" style="color:var(--c-violet);background:var(--c-violet-d);border-color:rgba(170,68,255,0.25);">Appearance</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>Mesh bodies are one of the most confusing topics for newcomers. Use a simple analogy before going into technical detail.</p>
-          <div class="say-block">
-            <div class="say-label">// Analogy to use</div>
-            <div class="say-text">Think of the default avatar as a basic mannequin. A mesh body is like a custom suit you wear over it — much better detail and fits modern clothing. They cost L$ but free demos let you try before you buy!</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <p style="margin-top:12px;"><strong>Popular female bodies:</strong></p>
-          <div class="bullets">
-            <div class="bullet"><strong>Maitreya Lara / LaraX</strong> — the most widely supported, huge range of compatible clothing</div>
-            <div class="bullet"><strong>eBODY Reborn</strong> — very popular, great clothing support</div>
-            <div class="bullet"><strong>MeshBody Legacy</strong> (Perky, Petite, Special) — high quality with strong creator support</div>
-          </div>
-          <p style="margin-top:12px;"><strong>Popular male bodies:</strong></p>
-          <div class="bullets">
-            <div class="bullet"><strong>Legacy</strong> (Athletic / Classic)</div>
-            <div class="bullet"><strong>Belleza Jake</strong></div>
-            <div class="bullet"><strong>Signature Gianni</strong></div>
-          </div>
-          <p style="margin-top:12px;"><strong>Popular mesh heads:</strong></p>
-          <div class="bullets">
-            <div class="bullet"><strong>Lelutka</strong> — the most popular mesh heads, widely supported for skins and appliers. Demos available in-store:
-              <div class="mp-links" style="margin-top:6px;">
-                <a class="mp-btn" href="secondlife://LeLutka/118/134/24">Open Lelutka in SL</a>
-              </div>
-            </div>
-          </div>
-          <div class="bullets" style="margin-top:12px;">
-            <div class="bullet">Mesh bodies need <strong>BOM (Bakes on Mesh)</strong> enabled for skin to display correctly.</div>
-            <div class="bullet">Clothing must be <strong>fitted/rigged for that specific body</strong> — not all clothes fit all bodies.</div>
-            <div class="bullet"><strong>Always demo first</strong> — demos are free and show exactly how it looks on your shape.</div>
-          </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-appearance');return false;">Bake Fail FAQ</a></div>
         </div>
       </div>
 
@@ -3122,6 +3125,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <tr><td>Fly down</td><td><span class="sc-kbd">C</span> or <span class="sc-kbd">PgDown</span></td><td><span class="sc-kbd">C</span> or <span class="sc-kbd">Fn+↓</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Fly down: press C (or PgDown on PC / Fn+Down on Mac).')">COPY</button></td></tr>
       <tr><td>Always Run</td><td><span class="sc-kbd">Ctrl+R</span></td><td><span class="sc-kbd">Cmd+R</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Always Run toggle: Ctrl+R on PC, Cmd+R on Mac.')">COPY</button></td></tr>
       <tr><td>Teleport Home</td><td><span class="sc-kbd">Ctrl+Shift+H</span></td><td><span class="sc-kbd">Cmd+Shift+H</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Teleport Home: Ctrl+Shift+H on PC, Cmd+Shift+H on Mac.')">COPY</button></td></tr>
+        <tr><td>Fly Override <span style="font-size:10px;color:var(--text-dim);">(no-fly areas)</span></td><td><span class="sc-kbd">Ctrl+Alt+V</span></td><td><span class="sc-kbd">Cmd+Option+V</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Fly Override (allows flight in no-fly areas): Ctrl+Alt+V on PC, Cmd+Option+V on Mac.')">COPY</button></td></tr>
       <tr><td>Focus camera</td><td><span class="sc-kbd">Alt+Click</span></td><td><span class="sc-kbd">Option+Click</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Focus camera on object: Alt+Click on PC, Option+Click on Mac.')">COPY</button></td></tr>
       <tr><td>Reset camera view</td><td><span class="sc-kbd">Esc</span></td><td><span class="sc-kbd">Esc</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Reset camera view: press Esc on both PC and Mac.')">COPY</button></td></tr>
     </table>
