@@ -1578,7 +1578,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <button class="home-btn active" onclick="clearSearch(); scrollToTop();" title="You are here — Home">⌂ Home</button>
       <a class="stat-chip tech-chip" href="technical.html" title="Go to Technical Q&amp;A">⚙ Technical Q&amp;A</a>
       <div class="stat-chip" onclick="jumpTo('sec-mobile')" title="Go to Mobile" style="cursor:pointer;"><span class="sc-val">2</span><span class="sc-lbl">Mobile</span></div>
-      <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">15</span><span class="sc-lbl">FAQs</span></div>
+      <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">16</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">13</span><span class="sc-lbl">Scripts</span></div>
     </div>
@@ -1616,11 +1616,11 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="qi-arrow">›</div>
       </div>
 
-      <div class="qi-card qi-violet" data-search="avatar appearance shape skin attachments cloud grey" onclick="jumpTo('faq-appearance')">
+      <div class="qi-card qi-violet" data-search="avatar appearance shape skin attachments cloud grey bake fail ruth naked missing" onclick="jumpTo('faq-missing-parts')">
         <div class="qi-icon">👤</div>
         <div class="qi-info">
           <div class="qi-title">Avatar Appearance</div>
-          <div class="qi-sub">Shape, skin, attachments</div>
+          <div class="qi-sub">Missing parts · cloud · bake fail</div>
         </div>
         <div class="qi-arrow">›</div>
       </div>
@@ -1796,7 +1796,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="section-hdr">
       <div class="sec-icon si-b">❓</div>
       <div class="sec-title">FAQs &amp; Answers</div>
-      <div class="sec-count">15 entries</div>
+      <div class="sec-count">16 entries</div>
     </div>
     <div class="faq-list">
 
@@ -1847,6 +1847,23 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
 
 
+      <div class="faq-item edge-app" id="faq-missing-parts" data-search="naked missing body part clothing skin head worn tab bold inventory avatar welcome pack">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">A newcomer is naked or has a missing body part / clothing item.</span>
+          <span class="faq-tag t-app">Avatar</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>This is one of the most common situations you'll encounter. It usually means an item has been accidentally removed. The WORN tab in Inventory is the fastest way to identify and fix it — open their inventory, click WORN, and look for the folder path next to their body parts and clothing.</p>
+          <div class="say-block">
+            <div class="say-label">// Reassure them first</div>
+            <div class="say-text">Don't panic, I can help you with that! 😊</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-awp');return false;">Missing parts / AWP script</a></div>
+        </div>
+      </div>
+
       <div class="faq-item edge-app" id="faq-appearance" data-search="avatar appearance shape skin bake fail cloud grey ruth rebake textures attachments hud">
         <div class="faq-q" onclick="tog(this)">
           <span class="faq-q-text">My avatar looks like a cloud / grey blob — how do I fix it?</span>
@@ -1862,8 +1879,13 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="step"><div class="sn">4</div><div>Still grey? Change to a different region, or relog entirely.</div></div>
           </div>
           <div class="tip-box">
-            <div class="tip-label">// Mentor Tip</div>
-            <p>If stuck as "Ruth" (the old default avatar), the quickest fix is the <strong>Avatar Welcome Pack</strong> — go to <strong>Avatar → Avatar Welcome Pack</strong> and have them choose a complete modern avatar.</p>
+            <div class="tip-label">// If stuck as Ruth / no mesh avatar</div>
+            <p>The quickest fix is the Avatar Welcome Pack — direct them there first, then follow up with the steps above if needed.</p>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// Say to the resident</div>
+            <div class="say-text">Go to Avatar → Avatar Welcome Pack in the top menu bar and choose a complete modern avatar. It's free and takes just a few seconds!</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
           </div>
           <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-meshbody');return false;">Explaining Mesh Bodies script</a></div>
         </div>
@@ -2408,7 +2430,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="say-block">
             <div class="say-label">// Nothing in WORN tab — completely naked</div>
             <div class="say-text">Go to Avatar in the top menu bar, then click Avatar Welcome Pack. Choose any of the complete starter looks — it's free and will give you a full avatar instantly!</div>
-            <div class="say-text">Go to Avatar in the top menu bar, then click Avatar Welcome Pack. Choose any of the complete starter looks — it's free and will give you a full avatar instantly!</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
           </div>
         </div>
       </div>
