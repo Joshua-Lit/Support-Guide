@@ -1690,6 +1690,12 @@ document.addEventListener('DOMContentLoaded', function() {
     link.href = 'mailto:' + u + '@' + d;
     link.title = 'Send suggestions to ' + u + '@' + d;
   }
+  // Auto-open flowchart modal if URL hash matches
+  const hash = window.location.hash;
+  if (hash === '#fc-avatar-appearance') openModal('avatar-appearance', 'Naked / Missing Body Parts or Clothing');
+  else if (hash === '#fc-bake-fail') openModal('bake-fail', 'Bake Fail / Cloud / Grey Avatar');
+  else if (hash === '#fc-tp-fail') openModal('tp-fail', 'Teleport Failure');
+  else if (hash === '#fc-inventory-loss') openModal('inventory-loss', 'Missing Inventory Items');
 });
 
 function toggleSidebarNav() {
