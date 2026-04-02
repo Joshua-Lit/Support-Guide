@@ -1307,6 +1307,16 @@ document.addEventListener('DOMContentLoaded', function() {
     link.href = 'mailto:' + u + '@' + d;
     link.title = 'Send suggestions to ' + u + '@' + d;
   }
+  // Auto-scroll to element if URL hash matches
+  if (window.location.hash) {
+    const el = document.getElementById(window.location.hash.slice(1));
+    if (el) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el.classList.contains('sc-card')) el.classList.add('open');
+      }, 300);
+    }
+  }
   const sm = document.getElementById('shortcuts-modal');
   if (sm) {
     sm.addEventListener('click', function(e) { if (e.target === this) closeShortcutsModal(); });
