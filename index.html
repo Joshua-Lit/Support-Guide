@@ -1476,6 +1476,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span>📋</span> Tips &amp; Scripts <span class="ng-arrow">▶</span>
       </div>
       <div class="nav-items">
+        <span class="nav-item" onclick="jumpTo('sc-awp')"><span class="ni-dot"></span>Naked / Missing — AWP</span>
         <span class="nav-item" onclick="jumpTo('sc-greeting')"><span class="ni-dot"></span>Greeting a Resident</span>
         <span class="nav-item" onclick="jumpTo('sc-overwhelmed')"><span class="ni-dot"></span>Overwhelmed Resident</span>
         <span class="nav-item" onclick="jumpTo('sc-dontknow')"><span class="ni-dot"></span>When You Don't Know</span>
@@ -1579,7 +1580,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="stat-chip" onclick="jumpTo('sec-mobile')" title="Go to Mobile" style="cursor:pointer;"><span class="sc-val">2</span><span class="sc-lbl">Mobile</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">15</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
-      <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">12</span><span class="sc-lbl">Scripts</span></div>
+      <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">13</span><span class="sc-lbl">Scripts</span></div>
     </div>
   </div>
 
@@ -2377,9 +2378,41 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="section-hdr">
       <div class="sec-icon si-t">📋</div>
       <div class="sec-title">Mentor Tips &amp; Scripts</div>
-      <div class="sec-count">12 scripts</div>
+      <div class="sec-count">13 scripts</div>
     </div>
     <div class="script-list">
+
+      <div class="sc-card" id="sc-awp" style="--sc-color:var(--c-teal);--sc-color-a:rgba(29,233,213,0.3);--sc-color-dim:rgba(29,233,213,0.1);" data-search="naked missing avatar body parts clothing welcome pack AWP worn tab inventory bold">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Naked / Missing Body Part or Clothing</span>
+          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(29,233,213,0.25);">Avatar</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>Use when a newcomer is naked or missing a body part or clothing item. The WORN tab is the quickest way to identify what's missing.</p>
+          <div class="say-block">
+            <div class="say-label">// Step 1 — Find what's missing</div>
+            <div class="say-text">Open your Inventory (Ctrl+I) and click the WORN tab — this shows everything you're currently wearing, including the folder each item came from. Note the folder names shown — e.g. "Female body - B" or "Female look - Casual".</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// Step 2 — Body part missing</div>
+            <div class="say-text">In the WORN tab, note your body folder name — e.g. "Female body - B". Go to Clothing → Female bodies & looks → [that folder name] in your main inventory. Items in bold are being worn — the one that's NOT bold is the missing part. Right-click it and choose Add.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// Step 2 — Clothing item missing</div>
+            <div class="say-text">In the WORN tab, note your look folder name — e.g. "Female look - Casual". Go to Clothing → Female bodies & looks → [that folder name] in your main inventory. Items in bold are being worn — the one that's NOT bold is the missing piece. Right-click it and choose Add.</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// Nothing in WORN tab — completely naked</div>
+            <div class="say-text">Go to Avatar in the top menu bar, then click Avatar Welcome Pack. Choose any of the complete starter looks — it's free and will give you a full avatar instantly!</div>
+            <div class="say-text">Go to Avatar in the top menu bar, then click Avatar Welcome Pack. Choose any of the complete starter looks — it's free and will give you a full avatar instantly!</div>
+          </div>
+        </div>
+      </div>
+
 
       <div class="sc-card" id="sc-greeting" style="--sc-color:var(--c-teal);--sc-color-a:rgba(29,233,213,0.3);--sc-color-dim:rgba(29,233,213,0.1);" data-search="greeting welcome new resident introduce yourself first contact open say hello">
         <div class="sc-hdr" onclick="tog(this)">
@@ -2625,6 +2658,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
         </div>
       </div>
+
 
       <div class="sc-card" id="sc-sffl" style="--sc-color:var(--c-mint);--sc-color-a:rgba(105,255,71,0.3);--sc-color-dim:rgba(105,255,71,0.1);" data-search="second friends for life group invite community social newcomer welcome friendly">
         <div class="sc-hdr" onclick="tog(this)">

@@ -876,6 +876,7 @@
     <a class="nav-link fs-link" onclick="jumpTo('qa-reset-settings')"><span class="ni-dot"></span>Reset all settings</a>
     <a class="nav-link fs-link" onclick="jumpTo('qa-shortcuts')"><span class="ni-dot"></span>Keyboard shortcuts</a>
     <div class="nav-section-hdr">🔀 Flowcharts</div>
+    <a class="nav-link" onclick="openModal('avatar-appearance','Naked / Missing Body Parts or Clothing')"><span class="ni-dot"></span>Naked / missing parts</a>
     <a class="nav-link" onclick="openModal('bake-fail','Bake Fail / Cloud / Grey Avatar')"><span class="ni-dot"></span>Bake fail / cloud avatar</a>
     <a class="nav-link" onclick="openModal('tp-fail','Teleport Failure')"><span class="ni-dot"></span>Teleport failure</a>
     <a class="nav-link" onclick="openModal('inventory-loss','Missing Inventory Items')"><span class="ni-dot"></span>Missing inventory items</a>
@@ -892,7 +893,7 @@
       <a class="home-btn" href="index.html">⌂ Home</a>
       <span class="tech-chip-active">⚙ Technical Q&amp;A</span>
       <div class="stat-chip" onclick="document.getElementById('qa-video-stream').scrollIntoView({behavior:'smooth'})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Q&amp;As</span></div>
-      <div class="stat-chip" onclick="document.getElementById('sec-flowcharts').scrollIntoView({behavior:'smooth'})" title="Go to Flowcharts" style="cursor:pointer;"><span class="sc-val">3</span><span class="sc-lbl">Flowcharts</span></div>
+      <div class="stat-chip" onclick="document.getElementById('sec-flowcharts').scrollIntoView({behavior:'smooth'})" title="Go to Flowcharts" style="cursor:pointer;"><span class="sc-val">4</span><span class="sc-lbl">Flowcharts</span></div>
       <div class="stat-chip" onclick="document.getElementById('qa-head-mouse').scrollIntoView({behavior:'smooth'})" title="Go to Firestorm Settings" style="cursor:pointer;border-color:rgba(255,100,50,0.4);"><span class="sc-val" style="color:var(--c-fs);">6</span><span class="sc-lbl">Firestorm</span></div>
     </div>
   </div>
@@ -1338,6 +1339,14 @@
   <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">Click a flowchart to open it as a full-screen overlay.</p>
 
   <div class="fc-btn-grid">
+    <button class="fc-btn" onclick="openModal('avatar-appearance', 'Naked / Missing Body Parts or Clothing')">
+      <span class="fc-btn-icon">🧍</span>
+      <div class="fc-btn-info">
+        <div class="fc-btn-title">Naked / Missing Body Parts or Clothing</div>
+        <div class="fc-btn-sub">Avatar Welcome Pack · rebake · inventory</div>
+      </div>
+      <span class="fc-btn-arrow">›</span>
+    </button>
     <button class="fc-btn" onclick="openModal('bake-fail', 'Bake Fail / Cloud / Grey Avatar')">
       <span class="fc-btn-icon">☁️</span>
       <div class="fc-btn-info">
@@ -1365,6 +1374,54 @@
   </div>
 
   <!-- Hidden flowchart content -->
+  <div id="fc-content-avatar-appearance" style="display:none;">
+    <div style="margin-top:16px;width:100%;">
+      <div class="fc">
+
+        <div class="fc-node fc-start">Newcomer is naked or missing a body part / clothing item</div>
+        <div class="fc-arrow">↓</div>
+
+        <div class="fc-node fc-action">Open <strong>Inventory (Ctrl+I)</strong> and click the <strong>WORN</strong> tab — this shows everything currently being worn and the folder each item came from</div>
+        <div class="fc-arrow">↓</div>
+
+        <div class="fc-node fc-q">Is a body part or a clothing item missing?</div>
+        <div class="fc-branch" style="grid-template-columns:1fr 1fr;">
+
+          <div class="fc-branch-col">
+            <div class="fc-label fc-label-yes">🧍 Body part missing<br><small>head, body, skin, shape, eyes</small></div>
+            <div class="fc-node fc-action">In the WORN tab, note the body folder name — e.g. <strong>Female body - B</strong></div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-action">Go to main inventory → <strong>Clothing → Female bodies &amp; looks → [that folder]</strong></div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-action">Items in <strong>bold</strong> are worn — find the one that is <strong>not bold</strong> — that's the missing part</div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-action">Right-click the missing item → <strong>Add</strong></div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-end-ok">✓ Problem solved!</div>
+          </div>
+
+          <div class="fc-branch-col">
+            <div class="fc-label fc-label-no">👗 Clothing item missing<br><small>clothes, hair, shoes, accessories</small></div>
+            <div class="fc-node fc-action">In the WORN tab, note the look folder name — e.g. <strong>Female look - Casual</strong></div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-action">Go to main inventory → <strong>Clothing → Female bodies &amp; looks → [that folder]</strong></div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-action">Items in <strong>bold</strong> are worn — find the one that is <strong>not bold</strong> — that's the missing piece</div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-action">Right-click the missing item → <strong>Add</strong></div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-end-ok">✓ Problem solved!</div>
+          </div>
+
+        </div>
+
+        <div class="fc-sep"></div>
+        <div class="fc-node fc-action" style="max-width:560px;margin:0 auto;"><strong>Nothing in WORN tab at all?</strong> Go to <strong>Avatar → Avatar Welcome Pack</strong> in the top menu bar and choose a complete starter look — it's free and instant</div>
+
+      </div>
+    </div>
+  </div>
+
   <div id="fc-content-bake-fail" style="display:none;">      <div id="flowchart-bakefail" style="margin-top:16px;width:100%;">
         <div class="fc">
 
