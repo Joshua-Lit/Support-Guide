@@ -295,14 +295,15 @@ body {
 .sc-panel-items {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6px 24px;
+  gap: 4px 24px;
 }
 .sc-panel-item {
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--text);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
+  line-height: 1.3;
 }
 .sc-panel-item-icon { font-size: 14px; flex-shrink: 0; }
 .sc-panel-dismiss {
@@ -1686,7 +1687,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   <!-- ══════ SESSION CHECKLIST PANEL ══════ -->
   <div id="session-checklist">
-    <div class="sc-panel-icon">📋</div>
     <div class="sc-panel-body">
       <div class="sc-panel-title">Before You Start</div>
       <div class="sc-panel-items">
