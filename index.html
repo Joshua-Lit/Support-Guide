@@ -1863,13 +1863,30 @@ document.addEventListener('DOMContentLoaded', function() {
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <p>This is one of the most common situations you'll encounter. It usually means an item has been accidentally removed. The WORN tab in Inventory is the fastest way to identify and fix it — open their inventory, click WORN, and look for the folder path next to their body parts and clothing.</p>
+          <p>The WORN tab in Inventory is the fastest way to identify what's missing — open their inventory, click WORN, and look for the folder path next to their body parts and clothing. Reassure them first, then follow one of the two paths below:</p>
           <div class="say-block">
             <div class="say-label">// Reassure them first</div>
             <div class="say-text">Don't panic, I can help you with that! 😊</div>
             <button class="copy-btn" onclick="copyText(this)">COPY</button>
           </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-awp');return false;">Missing parts / AWP script</a> · <a class="xref-link" href="technical.html#fc-avatar-appearance" target="_blank">Diagnostic Flowchart ↗</a></div>
+          <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;">
+            <button onclick="jumpTo('sc-awp')" style="flex:1;min-width:180px;display:flex;align-items:center;gap:12px;background:var(--panel2);border:1px solid var(--border2);border-left:4px solid var(--c-violet);border-radius:8px;padding:12px 16px;cursor:pointer;text-align:left;transition:background 0.2s,border-color 0.2s;">
+              <span style="font-size:20px;">📋</span>
+              <div>
+                <div style="font-size:12.5px;font-weight:500;color:var(--text-hi);margin-bottom:2px;">Step-by-step Script</div>
+                <div style="font-size:10px;font-family:'Share Tech Mono',monospace;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;">WORN tab · bold items · copy scripts</div>
+              </div>
+              <span style="color:var(--c-violet);font-size:18px;margin-left:auto;">›</span>
+            </button>
+            <a href="technical.html#fc-avatar-appearance" target="_blank" style="flex:1;min-width:180px;display:flex;align-items:center;gap:12px;background:var(--panel2);border:1px solid var(--border2);border-left:4px solid var(--c-mint);border-radius:8px;padding:12px 16px;cursor:pointer;text-decoration:none;transition:background 0.2s,border-color 0.2s;">
+              <span style="font-size:20px;">🔀</span>
+              <div>
+                <div style="font-size:12.5px;font-weight:500;color:var(--text-hi);margin-bottom:2px;">Diagnostic Flowchart</div>
+                <div style="font-size:10px;font-family:'Share Tech Mono',monospace;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;">Visual step-by-step guide ↗</div>
+              </div>
+              <span style="color:var(--c-mint);font-size:18px;margin-left:auto;">›</span>
+            </a>
+          </div>
         </div>
       </div>
 
