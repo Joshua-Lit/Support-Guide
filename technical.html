@@ -879,6 +879,7 @@
     <div class="nav-section-hdr">⚙️ Media &amp; Streaming</div>
     <a class="nav-link" onclick="jumpTo('qa-video-stream')"><span class="ni-dot"></span>Stream video to SL screen</a>
     <div class="nav-section-hdr">🔧 Both Viewers</div>
+    <a class="nav-link" onclick="jumpTo('qa-project-zero')"><span class="ni-dot"></span>What is Project Zero?</a>
     <a class="nav-link" onclick="jumpTo('qa-lookat')"><span class="ni-dot"></span>Turn off lookat crosshairs</a>
     <a class="nav-link" onclick="jumpTo('qa-spam-protection')"><span class="ni-dot"></span>Spam / griefing protection</a>
     <a class="nav-link" onclick="jumpTo('qa-pay-confirm')"><span class="ni-dot"></span>Confirm before paying</a>
@@ -909,7 +910,7 @@
     <div class="header-title">Technical <span>Q&amp;A</span></div>
     <p class="header-sub">Answers to more technical questions from residents — streaming, scripting, media, and more.</p>
     <div class="stat-row">
-      <div class="stat-chip" onclick="document.getElementById('qa-video-stream').scrollIntoView({behavior:'smooth'})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Q&amp;As</span></div>
+      <div class="stat-chip" onclick="document.getElementById('qa-video-stream').scrollIntoView({behavior:'smooth'})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">11</span><span class="sc-lbl">Q&amp;As</span></div>
       <div class="stat-chip" onclick="document.getElementById('sec-flowcharts').scrollIntoView({behavior:'smooth'})" title="Go to Flowcharts" style="cursor:pointer;"><span class="sc-val">4</span><span class="sc-lbl">Flowcharts</span></div>
       <div class="stat-chip" onclick="document.getElementById('qa-head-mouse').scrollIntoView({behavior:'smooth'})" title="Go to Firestorm Settings" style="cursor:pointer;border-color:rgba(255,100,50,0.4);"><span class="sc-val" style="color:var(--c-fs);">6</span><span class="sc-lbl">Firestorm</span></div>
     </div>
@@ -1003,6 +1004,33 @@
         <div class="tip-label">// Note</div>
         <p>Crosshairs show where the camera is focused, not necessarily where the person is actually looking — the camera can be moved independently after focusing. Disabling "send my look at targets" is the most common setting for privacy.</p>
       </div>
+    </div>
+  </div>
+
+  <div class="qa-card" id="qa-project-zero" data-search="project zero web browser viewer Philip Linden newcomers no download streaming zero barriers">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">What is Project Zero?</span>
+      <span class="qa-tag">Viewer</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <p><strong>Project Zero</strong> is a web-based Second Life viewer — no download required. Its goal is to reduce to zero the technical barriers to entering Second Life. A newcomer can be in-world within a few clicks.</p>
+      <div class="bullets">
+        <div class="bullet">Interface is similar to the SL Viewer but more simplified</div>
+        <div class="bullet">Currently available to a proportion of newcomers, plus all residents on a restricted basis (sessions are limited to one hour)</div>
+        <div class="bullet">Performance is considerably better than older viewers for many users</div>
+        <div class="bullet">Not intended to replace desktop viewers — it's an entry point</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">// Mentor Tip</div>
+        <p>Because Project Zero makes it so easy to enter SL, some newcomers arrive with no idea where they are or why. Don't be surprised — just be welcoming and take it from the beginning. The AWP avatar picker is available as an "Avatar" tab on the bottom taskbar in Project Zero.</p>
+      </div>
+      <div class="say-block">
+        <div class="say-label">// If they ask what viewer they're on</div>
+        <div class="say-text">It looks like you might be using Project Zero — that's Second Life's new web-based viewer, so you're in-world straight from your browser! It's a simplified experience to get you started. If you ever want the full viewer with more features, you can download the Second Life Viewer or Firestorm for free.</div>
+        <button class="copy-btn" onclick="copyText(this)">COPY</button>
+      </div>
+      <div class="xref">📎 More info: <a class="xref-link" href="https://community.secondlife.com/news/featured-news/browser-based-access-to-second-life-limited-testing-begins-today-r1559/" target="_blank">Project Zero blog post ↗</a></div>
     </div>
   </div>
 

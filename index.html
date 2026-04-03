@@ -267,6 +267,78 @@ body {
 }
 .page-hdr p { color:var(--text-dim); margin-top:10px; font-size:13px; max-width:580px; }
 .stat-row { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+
+/* ═══ SESSION CHECKLIST PANEL ═══ */
+#session-checklist {
+  background: var(--panel2);
+  border: 1px solid var(--border2);
+  border-left: 6px solid var(--c-amber);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+#session-checklist.hidden { display: none; }
+.sc-panel-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.sc-panel-body { flex: 1; }
+.sc-panel-title {
+  font-family: 'Oxanium', 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--c-amber);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.sc-panel-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 24px;
+}
+.sc-panel-item {
+  font-size: 12.5px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sc-panel-item-icon { font-size: 14px; flex-shrink: 0; }
+.sc-panel-dismiss {
+  background: none;
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  color: var(--text-dim);
+  font-size: 11px;
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  margin-top: 12px;
+}
+.sc-panel-dismiss:hover { color: var(--c-amber); border-color: var(--c-amber); }
+.sidebar-checklist-btn {
+  display: none;
+  width: 100%;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--border);
+  padding: 8px 16px;
+  color: var(--text-dim);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s;
+}
+.sidebar-checklist-btn:hover { color: var(--c-amber); }
+@media (max-width: 768px) { .sc-panel-items { grid-template-columns: 1fr; } }
+
 .stat-chip {
   background:var(--panel); border:1px solid var(--border);
   border-radius:6px; padding:5px 12px;
@@ -1215,6 +1287,20 @@ function toggleAllNav() {
   });
   btn.textContent = anyOpen ? '⊟ Collapse all' : '⊞ Expand all';
 }
+
+function dismissChecklist() {
+  document.getElementById('session-checklist').classList.add('hidden');
+  const btn = document.getElementById('sidebar-checklist-btn');
+  if (btn) btn.style.display = 'block';
+  localStorage.setItem('checklist-dismissed', '1');
+}
+function showChecklist() {
+  document.getElementById('session-checklist').classList.remove('hidden');
+  const btn = document.getElementById('sidebar-checklist-btn');
+  if (btn) btn.style.display = 'none';
+  localStorage.removeItem('checklist-dismissed');
+}
+
 function scrollToTop() {
   document.getElementById('main').scrollTo({top:0, behavior:'smooth'});
   window.scrollTo({top:0, behavior:'smooth'});
@@ -1308,6 +1394,12 @@ document.addEventListener('DOMContentLoaded', function() {
     link.title = 'Send suggestions to ' + u + '@' + d;
   }
   // Auto-scroll to element if URL hash matches
+  if (localStorage.getItem('checklist-dismissed')) {
+    const cl = document.getElementById('session-checklist');
+    const btn = document.getElementById('sidebar-checklist-btn');
+    if (cl) cl.classList.add('hidden');
+    if (btn) btn.style.display = 'block';
+  }
   if (window.location.hash) {
     const el = document.getElementById(window.location.hash.slice(1));
     if (el) {
@@ -1453,6 +1545,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <span class="nav-item" onclick="jumpTo('faq-account')"><span class="ni-dot"></span>Account &amp; Membership</span>
         <span class="nav-item" onclick="jumpTo('faq-adult')"><span class="ni-dot"></span>Adult Content</span>
         <span class="nav-item" onclick="jumpTo('faq-sex')"><span class="ni-dot"></span>Is sex possible?</span>
+        <span class="nav-item" onclick="jumpTo('faq-asl')"><span class="ni-dot"></span>ASL / Social Media Requests</span>
         <span class="nav-item" onclick="jumpTo('faq-rules')"><span class="ni-dot"></span>Rules &amp; Reporting</span>
         <span class="nav-item" onclick="jumpTo('faq-ar')"><span class="ni-dot"></span>Filing an Abuse Report</span>
         <span class="nav-item" onclick="jumpTo('faq-gambling')"><span class="ni-dot"></span>Gambling &amp; Skill Gaming</span>
@@ -1568,6 +1661,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   </div>
 
+  <button class="sidebar-checklist-btn" id="sidebar-checklist-btn" onclick="showChecklist()">⊞ Show Session Checklist</button>
   <div class="sidebar-status">
     <div class="status-dot"></div>
     <div class="status-text">GUIDE ONLINE — SL MENTORS</div>
@@ -1584,9 +1678,28 @@ document.addEventListener('DOMContentLoaded', function() {
     <p>Searchable reference for SL Mentors — FAQs, landmarks, scripts, and tips for helping new residents.</p>
     <div class="stat-row">
       <div class="stat-chip" onclick="jumpTo('sec-mobile')" title="Go to Mobile" style="cursor:pointer;"><span class="sc-val">2</span><span class="sc-lbl">Mobile</span></div>
-      <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">16</span><span class="sc-lbl">FAQs</span></div>
+      <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">17</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">8</span><span class="sc-lbl">Landmarks</span></div>
-      <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">13</span><span class="sc-lbl">Scripts</span></div>
+      <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">14</span><span class="sc-lbl">Scripts</span></div>
+    </div>
+  </div>
+
+  <!-- ══════ SESSION CHECKLIST PANEL ══════ -->
+  <div id="session-checklist">
+    <div class="sc-panel-icon">📋</div>
+    <div class="sc-panel-body">
+      <div class="sc-panel-title">Before You Start</div>
+      <div class="sc-panel-items">
+        <div class="sc-panel-item"><span class="sc-panel-icon">🏷️</span>Wear your Mentor tag</div>
+        <div class="sc-panel-item"><span class="sc-panel-icon">🌐</span>Wear your translator</div>
+        <div class="sc-panel-item"><span class="sc-panel-icon">🧍</span>Set AO to a calm static pose</div>
+        <div class="sc-panel-item"><span class="sc-panel-icon">📏</span>Keep a comfortable distance</div>
+        <div class="sc-panel-item"><span class="sc-panel-icon">🚫</span>Don't crowd the landing point</div>
+        <div class="sc-panel-item"><span class="sc-panel-icon">⚠️</span>Going AFK? Fly up, TP home or log off</div>
+          <div class="sc-panel-item"><span class="sc-panel-icon">😊</span>Be positive, friendly and welcoming</div>
+          <div class="sc-panel-item"><span class="sc-panel-icon">🧘</span>Stay calm — don't react, respond</div>
+      </div>
+      <button class="sc-panel-dismiss" onclick="dismissChecklist()">✕ Dismiss</button>
     </div>
   </div>
 
@@ -1802,7 +1915,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="section-hdr">
       <div class="sec-icon si-b">❓</div>
       <div class="sec-title">FAQs &amp; Answers</div>
-      <div class="sec-count">16 entries</div>
+      <div class="sec-count">17 entries</div>
     </div>
     <div class="faq-list">
 
@@ -2128,6 +2241,27 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
 
 
+
+      <div class="faq-item edge-rul" id="faq-asl" data-search="ASL age sex location instagram social media phone number real life information sharing privacy">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">A newcomer is asking for personal information — Instagram, phone number, social media.</span>
+          <span class="faq-tag t-rul">Conduct</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>ASL (age, sex, location) requests and requests for social media or phone numbers are increasingly common, especially from younger residents for whom this is a normal part of online life. Handle it without irritation — their online culture is different to ours.</p>
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Guidance</div>
+            <p>Gently discourage sharing real life information with strangers online — but if they want to do it, you cannot stop them. Your role is to model good practice, not to police behaviour. If it becomes persistent or uncomfortable, use the CLARA method or disengage politely.</p>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// Gentle reminder you can share</div>
+            <div class="say-text">Just a friendly reminder — it's always a good idea to keep personal information like phone numbers and social media private when meeting new people online. 😊</div>
+            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+          </div>
+        </div>
+      </div>
+
       <div class="faq-item edge-rul" id="faq-rules" data-search="abuse report AR griefer harassment community standards tos ban block mute screenshot movelock pushing">
         <div class="faq-q" onclick="tog(this)">
           <span class="faq-q-text">Someone is harassing me / griefing. What do I do?</span>
@@ -2409,7 +2543,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="section-hdr">
       <div class="sec-icon si-t">📋</div>
       <div class="sec-title">Mentor Tips &amp; Scripts</div>
-      <div class="sec-count">13 scripts</div>
+      <div class="sec-count">14 scripts</div>
     </div>
     <div class="script-list">
 
@@ -2421,6 +2555,15 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="sc-body">
           <p>Use when a newcomer is naked or missing a body part or clothing item. The WORN tab is the quickest way to identify what's missing.</p>
+          <div class="tip-box" style="margin-bottom:14px;">
+            <div class="tip-label">// How newcomers access the AWP</div>
+            <div class="bullets">
+              <div class="bullet"><strong>Project Zero:</strong> "Avatar" tab on the bottom taskbar</div>
+              <div class="bullet"><strong>SL Viewer:</strong> Left side taskbar → "Avatar Welcome Pack — choose a complete avatar"</div>
+              <div class="bullet"><strong>Firestorm:</strong> Avatar menu → Avatar Welcome Pack</div>
+            </div>
+            <p style="margin-top:8px;font-size:12px;">3 skin tones (Caucasian, African-American, Asian) × male &amp; female · 3 clothing sets each · Also in Library for customisation.</p>
+          </div>
           <div class="say-block">
             <div class="say-label">// Step 1 — Find what's missing</div>
             <div class="say-text">Open your Inventory (Ctrl+I) and click the WORN tab — this shows everything you're currently wearing, including the folder each item came from. Note the folder names shown — e.g. "Female body - B" or "Female look - Casual".</div>
@@ -2559,6 +2702,27 @@ document.addEventListener('DOMContentLoaded', function() {
             <button class="copy-btn" onclick="copyText(this)">COPY</button>
           </div>
           <p>Log any recurring confusion patterns you notice — valuable feedback for the wider mentor team.</p>
+        </div>
+      </div>
+
+      <div class="sc-card" id="sc-support" style="--sc-color:var(--c-amber);--sc-color-a:rgba(255,179,0,0.3);--sc-color-dim:rgba(255,179,0,0.1);" data-search="support help security backup mentor mole discord abuse report discreet calm backing">
+        <div class="sc-hdr" onclick="tog(this)">
+          <span class="sc-title">Calling for Mentor Support</span>
+          <span class="sc-cat" style="color:var(--c-amber);background:var(--c-amber-d);border-color:rgba(255,179,0,0.25);">Conduct</span>
+          <span class="sc-tog">+</span>
+        </div>
+        <div class="sc-body">
+          <p>If you need backup, always call for support in a <strong>discreet and calm way</strong>. Do not put resident names in group chat or Discord — we do not name and shame.</p>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div>Contact <strong>Viola</strong> if she is online</div></div>
+            <div class="step"><div class="sn">2</div><div>Ask for help in the relevant <strong>Discord channel</strong></div></div>
+            <div class="step"><div class="sn">3</div><div>Contact any of the <strong>Moles</strong> listed in Discord</div></div>
+            <div class="step"><div class="sn">4</div><div>File an <strong>Abuse Report</strong> if ToS or Community Standards are being broken — consider <strong>intent</strong> first</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Remember</div>
+            <p>If a situation is upsetting or stressing you, there is no reason to stay. Fly up, TP home, or log off. Problems are temporary. You are a volunteer — you are not obligated to endure difficult situations.</p>
+          </div>
         </div>
       </div>
 
@@ -2701,7 +2865,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
-          <p>As a Mentor and member of the <strong>Second Friends for Life</strong> group, you can send new residents a group invite directly. It's a warm, practical gesture that helps connect newcomers with a friendly community straight away.</p>
+          <p>As a Mentor and member of the <strong>Second Friends for Life</strong> group, you can send new residents a group invite directly. There is also a physical group joiner near the landing point for desktop viewers — point them to it if they're on desktop. It's a warm, practical gesture that helps connect newcomers with a friendly community straight away.</p>
           <div class="say-block">
             <div class="say-label">// Say before sending the invite</div>
             <div class="say-text">I'd like to invite you to a group called Second Friends for Life — it's a friendly community where you can meet people, ask questions, and feel at home in SL. Would you like me to send you an invite?</div>
