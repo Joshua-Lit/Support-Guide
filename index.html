@@ -3402,10 +3402,10 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Cookie Notice -->
 <div id="cookie-notice">
   <p>This site uses localStorage to remember your preferences (such as dismissed panels). It does not use tracking cookies or advertising. Our hosting provider may set technical cookies. <a href="https://lindenlab.com/legal/privacy-policy" target="_blank">More info</a></p>
-  <button onclick="document.getElementById('cookie-notice').classList.add('hidden');localStorage.setItem('cookie-ok','1')">Got it</button>
+  <button onclick="document.getElementById('cookie-notice').classList.add('hidden');localStorage.setItem('cookie-ok-v2','1')">Got it</button>
 </div>
 <script>
-  if (localStorage.getItem('cookie-ok')) document.getElementById('cookie-notice').classList.add('hidden');
+  if (localStorage.getItem('cookie-ok-v2')) document.getElementById('cookie-notice').classList.add('hidden');
 </script>
 
 <!-- ══════ CHECKLIST MODAL ══════ -->
