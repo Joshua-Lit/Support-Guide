@@ -9,6 +9,46 @@
 <style>
   /* Load fonts from Google with swap so layout never breaks if blocked */
   @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;900&family=Share+Tech+Mono&family=Roboto:wght@300;400;500;600&display=swap');
+
+  /* ── COOKIE NOTICE ── */
+  #cookie-notice {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 620px;
+    width: calc(100% - 40px);
+    z-index: 9999;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    font-size: 12.5px;
+    color: var(--text-mid);
+  }
+  #cookie-notice.hidden { display: none; }
+  #cookie-notice p { flex: 1; line-height: 1.5; margin: 0; }
+  #cookie-notice a { color: var(--text); text-decoration: underline; }
+  #cookie-notice button {
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+  }
+  #cookie-notice button:hover { opacity: 0.85; }
+
 </style>
 <style>
 :root {
@@ -2974,7 +3014,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="section-hdr">
       <div class="sec-icon si-w">🌐</div>
       <div class="sec-title">Useful Websites</div>
-      <div class="sec-count">8 links</div>
+      <div class="sec-count">9 links</div>
     </div>
     <p style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">External resources to share with residents or use yourself. Click <strong>Copy</strong> to copy the URL for pasting into chat.</p>
     <div class="vid-grid">
@@ -3049,6 +3089,15 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="vid-sub">community.secondlife.com</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://community.secondlife.com/knowledgebase/english/')">COPY</button>
+      </div>
+
+      <div class="vid-card web" data-search="newcomer resources guide new residents helper HUD links locations free items appearance quality avatar">
+        <div class="vid-thumb">🌟</div>
+        <div class="vid-info">
+          <a class="vid-title-link" href="https://www.joshualit.uk/newcomer.html" target="_blank">Newcomer Resources Page</a>
+          <div class="vid-sub">joshualit.uk/newcomer.html</div>
+        </div>
+        <button class="copy-btn" onclick="copyVid(this,'https://www.joshualit.uk/newcomer.html')">COPY</button>
       </div>
 
     </div>

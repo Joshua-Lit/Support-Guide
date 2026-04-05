@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Second Life — Newcomer Resources</title>
+<title>Newcomer Resources — Shared by your SL Mentor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -149,6 +149,46 @@
     .res-grid,.slurl-grid { grid-template-columns:1fr; }
     footer { padding:20px 16px; }
   }
+
+  /* ── COOKIE NOTICE ── */
+  #cookie-notice {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    max-width: 620px;
+    width: calc(100% - 40px);
+    z-index: 9999;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    font-size: 12.5px;
+    color: var(--text-mid);
+  }
+  #cookie-notice.hidden { display: none; }
+  #cookie-notice p { flex: 1; line-height: 1.5; margin: 0; }
+  #cookie-notice a { color: var(--text); text-decoration: underline; }
+  #cookie-notice button {
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+  }
+  #cookie-notice button:hover { opacity: 0.85; }
+
 </style>
 </head>
 <body>
@@ -441,7 +481,7 @@
       <div class="sec-icon" style="background:var(--blue-d);border:1px solid rgba(77,159,255,0.25);">💎</div>
       <div>
         <div class="sec-title">Building a Quality Avatar</div>
-        <div class="sec-desc">Ready to invest? These are some of the brands residents trust — there are many more out there. Always try the free demo before buying</div>
+        <div class="sec-desc">Ready to invest in your look? These are some of the brands you'll commonly hear mentioned in the community — there are many more out there and no single list is definitive. Your mentor can advise you further in-world. Always try the free demo before buying.</div>
       </div>
     </div>
 
@@ -661,11 +701,10 @@
 
     <div style="margin-top:16px;background:#1e1419;border:1px solid rgba(233,30,140,0.3);border-left:4px solid #E91E8C;border-radius:var(--radius-sm);padding:20px 24px;">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#E91E8C;font-family:'Roboto Flex',sans-serif;margin-bottom:12px;">🏠 The Adult Hub</div>
-      <p style="font-size:13.5px;color:var(--text-mid);line-height:1.6;margin-bottom:14px;">The Adult Hub is a welcoming, safe space for residents who are 18 or over and curious about the adult side of Second Life. It's not a venue full of strangers — think of it as a tasteful, well-designed resort with beautiful landscaping where you can find your bearings and explore at your own pace. The Hub includes private hotel rooms (available for 30 minutes with a partner or partners), saunas, a pool, a naturist beach, a main beach, and a small club where you can learn to dance. You'll also find information boards, teleport portals to adult locations across the grid, and the ThundrGO dating HUD to help you connect with other residents. The Hub itself is calm and social — the portals are your gateway to wherever you want to go.</p>
+      <p style="font-size:13.5px;color:var(--text-mid);line-height:1.6;margin-bottom:14px;">The Adult Hub is a welcoming, tasteful space created by Linden Lab for residents who are 18 or over and curious about the adult side of Second Life. It's not a venue full of strangers — think of it as a well-designed adult social area with beautiful landscaping where you can find your bearings at your own pace. The Hub includes private hotel rooms (available for 30 minutes with a partner or partners), saunas, a pool, a naturist beach, a main beach, and a club. You'll also find information boards, teleport portals to adult locations and entertainment across the grid, and the ThundrGO dating HUD. The Hub itself is calm and social — well moderated, with everyone clothed on the day of writing. When you arrive you'll be asked to agree to the region rules and confirm your maturity rating is set to Adult.</p>
       <a href="secondlife://Adult%20Hub/128/128/25" style="display:inline-flex;align-items:center;gap:8px;background:rgba(233,30,140,0.12);border:1px solid rgba(233,30,140,0.35);border-radius:var(--radius-sm);padding:9px 18px;text-decoration:none;color:#E91E8C;font-size:13px;font-weight:600;transition:background 0.15s;" onmouseover="this.style.background='rgba(233,30,140,0.2)'" onmouseout="this.style.background='rgba(233,30,140,0.12)'">
-        📍 Teleport to the Adult Hub
+        📍 By clicking this link I confirm I am 18 or over — Teleport to the Adult Hub
       </a>
-      <span style="font-size:11px;color:var(--text-dim);margin-left:12px;">Opens in Second Life — must be 18+</span>
     </div>
 
     <div class="tip" style="background:rgba(233,30,140,0.07);border-color:rgba(233,30,140,0.2);margin-top:12px;">
@@ -678,7 +717,8 @@
 
 <footer>
   <div style="margin-bottom:16px;"><a href="#" style="color:var(--text-mid);text-decoration:none;font-size:12px;border:1px solid var(--border2);border-radius:6px;padding:6px 16px;transition:color 0.15s,border-color 0.15s;" onmouseover="this.style.color='#fff';this.style.borderColor='var(--border2)'" onmouseout="this.style.color=''">⬆ Back to Top</a></div>
-  <p>This is a community resource created by an SL Mentor. <strong>Not an official Linden Lab or Second Life website.</strong></p>
+  <p>This page was shared with you by a Second Life Mentor — part of the official volunteer mentor community supporting new residents.</p>
+  <p style="margin-top:6px;">This is an independent community resource. <strong>Not an official Linden Lab or Second Life website.</strong></p>
   <p style="margin-top:6px;">Second Life® and Linden Lab® are registered trademarks of Linden Research, Inc. All rights reserved.</p>
   <p style="margin-top:10px;">
     <a href="https://secondlife.com" target="_blank">secondlife.com</a> ·
