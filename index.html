@@ -1217,6 +1217,42 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .clara-modal-arrow { color: var(--c-white); font-size: 24px; flex-shrink: 0; }
 
 /* ═══ CLARA MODAL ═══ */
+#checklist-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(4,6,14,0.92);
+  z-index: 9999;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#checklist-modal.open { display: block; }
+#checklist-modal-inner {
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  border-left: 4px solid var(--c-amber);
+  border-radius: 12px;
+  margin: 60px auto;
+  max-width: 600px;
+  padding: 28px 32px 32px;
+  position: relative;
+}
+#checklist-modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: var(--panel2);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  color: var(--text-dim);
+  font-size: 18px;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+#checklist-modal-close:hover { color: var(--text-hi); border-color: var(--text-mid); }
+@media (max-width: 640px) { #checklist-modal-inner { margin: 16px; padding: 20px 16px 24px; } }
+
 #clara-modal {
   display: none;
   position: fixed;
@@ -1336,10 +1372,7 @@ function dismissChecklist() {
   localStorage.setItem('checklist-dismissed', '1');
 }
 function showChecklist() {
-  document.getElementById('session-checklist').classList.remove('hidden');
-  const btn = document.getElementById('sidebar-checklist-btn');
-  if (btn) btn.style.display = 'none';
-  localStorage.removeItem('checklist-dismissed');
+  openChecklistModal();
 }
 
 function scrollToTop() {
@@ -1364,6 +1397,15 @@ function copyShortcut(btn, text) {
   });
 }
 
+
+function openChecklistModal() {
+  document.getElementById('checklist-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeChecklistModal() {
+  document.getElementById('checklist-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
 function openClaraModal() {
   const src = document.getElementById('clara-modal-content');
   const body = document.getElementById('clara-modal-body');
@@ -1435,12 +1477,6 @@ document.addEventListener('DOMContentLoaded', function() {
     link.title = 'Send suggestions to ' + u + '@' + d;
   }
   // Auto-scroll to element if URL hash matches
-  if (localStorage.getItem('checklist-dismissed')) {
-    const cl = document.getElementById('session-checklist');
-    const btn = document.getElementById('sidebar-checklist-btn');
-    if (cl) cl.classList.add('hidden');
-    if (btn) btn.style.display = 'block';
-  }
   if (window.location.hash) {
     const el = document.getElementById(window.location.hash.slice(1));
     if (el) {
@@ -1702,7 +1738,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   </div>
 
-  <button class="sidebar-checklist-btn" id="sidebar-checklist-btn" onclick="showChecklist()">⊞ Show Session Checklist</button>
+  <button class="sidebar-checklist-btn" id="sidebar-checklist-btn" onclick="openChecklistModal()" style="display:block;">📋 Session Checklist</button>
   <div class="sidebar-status">
     <div class="status-dot"></div>
     <div class="status-text">GUIDE ONLINE — SL MENTORS</div>
@@ -1722,24 +1758,6 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">17</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">8</span><span class="sc-lbl">Landmarks</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">14</span><span class="sc-lbl">Scripts</span></div>
-    </div>
-  </div>
-
-  <!-- ══════ SESSION CHECKLIST PANEL ══════ -->
-  <div id="session-checklist">
-    <div class="sc-panel-body">
-      <div class="sc-panel-title">Before You Start</div>
-      <div class="sc-panel-items">
-        <div class="sc-panel-item"><span class="sc-panel-icon">🏷️</span>Wear your Mentor tag</div>
-        <div class="sc-panel-item"><span class="sc-panel-icon">🌐</span>Wear your translator</div>
-        <div class="sc-panel-item"><span class="sc-panel-icon">🧍</span>Set AO to a calm static pose</div>
-        <div class="sc-panel-item"><span class="sc-panel-icon">📏</span>Keep a comfortable distance</div>
-        <div class="sc-panel-item"><span class="sc-panel-icon">🚫</span>Don't crowd the landing point</div>
-        <div class="sc-panel-item"><span class="sc-panel-icon">⚠️</span>Going AFK? Fly up, TP home or log off</div>
-          <div class="sc-panel-item"><span class="sc-panel-icon">😊</span>Be positive, friendly and welcoming</div>
-          <div class="sc-panel-item"><span class="sc-panel-icon">🧘</span>Stay calm — don't react, respond</div>
-      </div>
-      <button class="sc-panel-dismiss" onclick="dismissChecklist()">✕ Dismiss</button>
     </div>
   </div>
 
@@ -3378,6 +3396,24 @@ document.addEventListener('DOMContentLoaded', function() {
       <tr><td>Preferences</td><td><span class="sc-kbd">Ctrl+P</span></td><td><span class="sc-kbd">Cmd+P</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Open Preferences: Ctrl+P on PC, Cmd+P on Mac.')">COPY</button></td></tr>
       <tr><td>Snapshot</td><td><span class="sc-kbd">Ctrl+Shift+S</span></td><td><span class="sc-kbd">Cmd+Shift+S</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Take a snapshot: Ctrl+Shift+S on PC, Cmd+Shift+S on Mac.')">COPY</button></td></tr>
     </table>
+  </div>
+</div>
+
+<!-- ══════ CHECKLIST MODAL ══════ -->
+<div id="checklist-modal" onclick="if(event.target===this)closeChecklistModal()">
+  <div id="checklist-modal-inner">
+    <button id="checklist-modal-close" onclick="closeChecklistModal()">✕</button>
+    <div style="font-family:'Oxanium','Courier New',monospace;font-size:11px;font-weight:600;letter-spacing:2px;color:var(--c-amber);text-transform:uppercase;margin-bottom:16px;">📋 Before You Start</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">🏷️</span>Wear your Mentor tag</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">🌐</span>Wear your translator</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">🧍</span>Set AO to a calm static pose</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">📏</span>Keep a comfortable distance</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">🚫</span>Don't crowd the landing point</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">⚠️</span>Going AFK? Fly up, TP home or log off</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">😊</span>Be positive, friendly and welcoming</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">🧘</span>Stay calm — don't react, respond</div>
+    </div>
   </div>
 </div>
 </body>
