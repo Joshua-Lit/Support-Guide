@@ -89,6 +89,41 @@
   footer a:hover { color:var(--text-hi); }
 
 
+
+  /* ── QUICK NAV ── */
+  .quick-nav {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .quick-nav::-webkit-scrollbar { display: none; }
+  .quick-nav-inner {
+    display: flex;
+    gap: 0;
+    max-width: 900px;
+    width: 100%;
+    padding: 0 32px;
+  }
+  .quick-nav a {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 12px 16px;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .quick-nav a:hover { color: var(--text-hi); border-bottom-color: var(--purple); }
+  @media (max-width:600px) { .quick-nav-inner { padding: 0 8px; } .quick-nav a { padding: 10px 10px; font-size: 11px; } }
+
   /* ── FLOWCHART ── */
   .fc { width:100%; overflow:hidden; }
   .fc-node { border-radius:8px; padding:12px 16px; margin:0 auto 6px; text-align:center; font-size:13px; position:relative; max-width:520px; width:100%; }
@@ -139,6 +174,17 @@
   <h1>Welcome to Second Life 👋</h1>
   <p class="hero-sub">Useful links and places to help you find your feet — click any link to jump straight there.</p>
 </div>
+
+<nav class="quick-nav">
+  <div class="quick-nav-inner">
+    <a href="#locations">📍 Places to Go</a>
+    <a href="#free">🎁 Free Items</a>
+    <a href="#appearance">👤 Appearance</a>
+    <a href="#explore">🗺️ Explore</a>
+    <a href="#help">💬 Getting Help</a>
+    <a href="#adult">🔞 Adult Content</a>
+  </div>
+</nav>
 
 <main>
 
@@ -287,6 +333,10 @@
           <div class="res-card-icon">🎁</div>
           <div class="res-card-title">Free Avatar Resources</div>
           <div class="res-card-desc">Under 90 days old? Visit <strong>Firestorm Social Island</strong> for free Milena (female) or Mike (male) mesh heads. <strong>Palomma Plaza</strong> has free clothing and accessories from top designers — no time limit.</div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:14px;">
+            <a href="secondlife://Firestorm%20Social%20Island/127/158/33" style="display:flex;align-items:center;gap:8px;background:rgba(0,230,118,0.08);border:1px solid rgba(0,230,118,0.25);border-radius:6px;padding:8px 12px;text-decoration:none;color:var(--green);font-size:12.5px;font-weight:500;transition:background 0.15s;" onmouseover="this.style.background='rgba(0,230,118,0.15)'" onmouseout="this.style.background='rgba(0,230,118,0.08)'">📍 Firestorm Social Island <span style="margin-left:auto;font-size:11px;opacity:0.7;">↗ Teleport</span></a>
+            <a href="secondlife://Gallii/178/35/33" style="display:flex;align-items:center;gap:8px;background:rgba(0,230,118,0.08);border:1px solid rgba(0,230,118,0.25);border-radius:6px;padding:8px 12px;text-decoration:none;color:var(--green);font-size:12.5px;font-weight:500;transition:background 0.15s;" onmouseover="this.style.background='rgba(0,230,118,0.15)'" onmouseout="this.style.background='rgba(0,230,118,0.08)'">📍 Palomma Plaza <span style="margin-left:auto;font-size:11px;opacity:0.7;">↗ Teleport</span></a>
+          </div>
         </div>
       </div>
     </div>
@@ -488,6 +538,7 @@
 </main>
 
 <footer>
+  <div style="margin-bottom:16px;"><a href="#" style="color:var(--text-mid);text-decoration:none;font-size:12px;border:1px solid var(--border2);border-radius:6px;padding:6px 16px;transition:color 0.15s,border-color 0.15s;" onmouseover="this.style.color='#fff';this.style.borderColor='var(--border2)'" onmouseout="this.style.color=''">⬆ Back to Top</a></div>
   <p>This is a community resource created by an SL Mentor. <strong>Not an official Linden Lab or Second Life website.</strong></p>
   <p style="margin-top:6px;">Second Life® and Linden Lab® are registered trademarks of Linden Research, Inc. All rights reserved.</p>
   <p style="margin-top:10px;">
