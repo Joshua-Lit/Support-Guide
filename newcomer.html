@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Second Life — Newcomer Resources</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#1a1b1e; --bg2:#222428; --bg3:#2a2c31;
+    --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.15);
+    --text-hi:#ffffff; --text:#e0e0e6; --text-mid:#a0a0b0; --text-dim:#60607a;
+    --purple:#BF00FF; --purple-d:rgba(191,0,255,0.1);
+    --teal:#00C9C8; --teal-d:rgba(0,201,200,0.1);
+    --amber:#FFB300; --amber-d:rgba(255,179,0,0.1);
+    --green:#00E676; --green-d:rgba(0,230,118,0.1);
+    --blue:#4D9FFF; --blue-d:rgba(77,159,255,0.1);
+    --rose:#FF5CA8; --rose-d:rgba(255,92,168,0.1);
+    --radius:12px; --radius-sm:8px;
+  }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-size:15px; line-height:1.6; }
+
+  .notice-bar { background:rgba(191,0,255,0.12); border-bottom:1px solid rgba(191,0,255,0.25); padding:8px 24px; text-align:center; font-size:12px; color:var(--text-mid); }
+  .notice-bar strong { color:var(--text); }
+
+  header { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 32px; height:60px; display:flex; align-items:center; gap:10px; position:sticky; top:0; z-index:100; }
+  .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .logo-hex { width:34px; height:34px; background:rgba(77,159,255,0.12); border:1px solid rgba(77,159,255,0.35); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .logo-text { font-family:'Roboto Flex',sans-serif; font-size:14px; font-weight:700; color:var(--text-hi); letter-spacing:0.3px; }
+  .logo-text span { color:var(--blue); }
+  .header-tag { margin-left:auto; font-size:11px; color:var(--text-dim); font-family:'Roboto Flex',sans-serif; letter-spacing:1px; text-transform:uppercase; }
+
+  .hero { padding:52px 32px 44px; background:linear-gradient(170deg,#1c1d22 0%,#221528 60%,#1a1b1e 100%); border-bottom:1px solid var(--border); text-align:center; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% -20%,rgba(191,0,255,0.1) 0%,transparent 65%); pointer-events:none; }
+  .hero-eyebrow { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--purple); font-family:'Roboto Flex',sans-serif; margin-bottom:12px; }
+  .hero h1 { font-family:'Roboto Flex',sans-serif; font-size:clamp(1.6rem,4vw,2.4rem); font-weight:700; color:var(--text-hi); line-height:1.2; margin-bottom:12px; }
+  .hero-sub { font-size:14px; color:var(--text-mid); max-width:500px; margin:0 auto; }
+
+  main { max-width:900px; margin:0 auto; padding:48px 32px 72px; }
+
+  .sec-hdr { display:flex; align-items:center; gap:12px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+  .sec-icon { font-size:20px; width:40px; height:40px; display:flex; align-items:center; justify-content:center; border-radius:var(--radius-sm); flex-shrink:0; }
+  .sec-title { font-family:'Roboto Flex',sans-serif; font-size:1.1rem; font-weight:700; color:var(--text-hi); }
+  .sec-desc { font-size:13px; color:var(--text-dim); margin-top:2px; }
+  section { margin-bottom:52px; }
+
+  .res-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; }
+  .res-card { display:flex; flex-direction:column; background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; text-decoration:none; color:inherit; transition:border-color 0.2s,transform 0.2s,background 0.2s; }
+  .res-card:hover { transform:translateY(-3px); }
+  .res-card-accent { height:4px; flex-shrink:0; }
+  .res-card-body { padding:18px 20px; flex:1; display:flex; flex-direction:column; }
+  .res-card-icon { font-size:22px; margin-bottom:10px; }
+  .res-card-title { font-size:14px; font-weight:600; color:var(--text-hi); margin-bottom:6px; line-height:1.3; }
+  .res-card-desc { font-size:12.5px; color:var(--text-mid); line-height:1.55; flex:1; }
+  .res-card-footer { padding:10px 20px 14px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--border); margin-top:12px; }
+  .res-card-url { font-size:11px; color:var(--text-dim); }
+  .res-card-arrow { font-size:16px; color:var(--text-dim); transition:color 0.15s; }
+  .res-card:hover .res-card-arrow { color:var(--text-hi); }
+
+  .ac-purple .res-card-accent { background:var(--purple); }
+  .ac-purple:hover { border-color:rgba(191,0,255,0.4); background:#1e1a26; }
+  .ac-teal .res-card-accent { background:var(--teal); }
+  .ac-teal:hover { border-color:rgba(0,201,200,0.4); background:#1a2224; }
+  .ac-amber .res-card-accent { background:var(--amber); }
+  .ac-amber:hover { border-color:rgba(255,179,0,0.4); background:#232018; }
+  .ac-green .res-card-accent { background:var(--green); }
+  .ac-green:hover { border-color:rgba(0,230,118,0.4); background:#1a2220; }
+  .ac-blue .res-card-accent { background:var(--blue); }
+  .ac-blue:hover { border-color:rgba(77,159,255,0.4); background:#1a1e26; }
+  .ac-rose .res-card-accent { background:var(--rose); }
+  .ac-rose:hover { border-color:rgba(255,92,168,0.4); background:#241a20; }
+
+  .slurl-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+  .slurl-card { display:flex; align-items:center; gap:14px; background:var(--bg2); border:1px solid var(--border); border-left:4px solid var(--amber); border-radius:var(--radius-sm); padding:14px 18px; text-decoration:none; color:inherit; transition:border-color 0.15s,background 0.15s,transform 0.15s; }
+  .slurl-card:hover { border-color:var(--amber); background:var(--amber-d); transform:translateY(-2px); }
+  .slurl-card-icon { font-size:22px; flex-shrink:0; }
+  .slurl-card-name { font-size:13.5px; font-weight:600; color:var(--text-hi); margin-bottom:3px; }
+  .slurl-card-desc { font-size:12px; color:var(--text-mid); }
+  .slurl-card-badge { margin-left:auto; font-size:10px; font-family:'Roboto Flex',sans-serif; letter-spacing:1px; text-transform:uppercase; color:var(--amber); background:var(--amber-d); border:1px solid rgba(255,179,0,0.3); border-radius:4px; padding:2px 8px; flex-shrink:0; }
+
+  .tip { background:var(--teal-d); border:1px solid rgba(0,201,200,0.2); border-radius:var(--radius-sm); padding:14px 18px; font-size:13px; color:var(--text-mid); margin-top:14px; }
+  .tip strong { color:var(--teal); }
+
+  footer { background:var(--bg2); border-top:1px solid var(--border); padding:28px 32px; text-align:center; font-size:12px; color:var(--text-dim); line-height:1.9; }
+  footer a { color:var(--text-mid); text-decoration:none; }
+  footer a:hover { color:var(--text-hi); }
+
+  @media (max-width:600px) {
+    header { padding:0 16px; }
+    .hero { padding:40px 16px 32px; }
+    main { padding:32px 16px 60px; }
+    .res-grid,.slurl-grid { grid-template-columns:1fr; }
+    footer { padding:20px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="notice-bar">
+  ⚠️ <strong>Community resource — not an official Linden Lab website.</strong> Created by an SL Mentor to help newcomers. Second Life® is a registered trademark of Linden Research, Inc.
+</div>
+
+<header>
+  <a class="logo" href="#">
+    <div class="logo-hex">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.77z" stroke="#4d9fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span class="logo-text">SL Mentor <span>Resources</span></span>
+  </a>
+  <span class="header-tag">Newcomer Guide</span>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Your mentor shared this with you</div>
+  <h1>Welcome to Second Life 👋</h1>
+  <p class="hero-sub">Useful links and places to help you find your feet — click any link to jump straight there.</p>
+</div>
+
+<main>
+
+  <!-- IN-WORLD LOCATIONS -->
+  <section id="locations">
+    <div class="sec-hdr">
+      <div class="sec-icon" style="background:var(--amber-d);border:1px solid rgba(255,179,0,0.25);">📍</div>
+      <div>
+        <div class="sec-title">Places to Go In-World</div>
+        <div class="sec-desc">Click any link to teleport directly — make sure Second Life is running first</div>
+      </div>
+    </div>
+    <div class="slurl-grid">
+      <a class="slurl-card" href="secondlife://LearningCenterDT/162/102/153">
+        <span class="slurl-card-icon">🏫</span>
+        <div>
+          <div class="slurl-card-name">Desktop Learning Center</div>
+          <div class="slurl-card-desc">Where you started — return here any time for help</div>
+        </div>
+        <span class="slurl-card-badge">↗ Teleport</span>
+      </a>
+      <a class="slurl-card" href="secondlife://WelcomeHub/128/128/25">
+        <span class="slurl-card-icon">🌟</span>
+        <div>
+          <div class="slurl-card-name">Welcome Hub</div>
+          <div class="slurl-card-desc">Meet other newcomers and find mentors</div>
+        </div>
+        <span class="slurl-card-badge">↗ Teleport</span>
+      </a>
+      <a class="slurl-card" href="secondlife://WelcomeHubSandbox/74/79/25">
+        <span class="slurl-card-icon">🛠️</span>
+        <div>
+          <div class="slurl-card-name">Sandbox Welcome Area</div>
+          <div class="slurl-card-desc">Free public area to build, try items and experiment</div>
+        </div>
+        <span class="slurl-card-badge">↗ Teleport</span>
+      </a>
+      <a class="slurl-card" href="secondlife://Firestorm Social Island/128/128/25">
+        <span class="slurl-card-icon">🔥</span>
+        <div>
+          <div class="slurl-card-name">Firestorm Social Island</div>
+          <div class="slurl-card-desc">Help and free items for newcomers under 90 days</div>
+        </div>
+        <span class="slurl-card-badge">↗ Teleport</span>
+      </a>
+      <a class="slurl-card" href="secondlife://Gallii/178/35/33">
+        <span class="slurl-card-icon">🛍️</span>
+        <div>
+          <div class="slurl-card-name">Palomma Plaza</div>
+          <div class="slurl-card-desc">Free clothing and accessories from top designers</div>
+        </div>
+        <span class="slurl-card-badge">↗ Teleport</span>
+      </a>
+      <a class="slurl-card" href="secondlife://Voice Echo Canyon/128/128/25">
+        <span class="slurl-card-icon">🎤</span>
+        <div>
+          <div class="slurl-card-name">Voice Echo Canyon</div>
+          <div class="slurl-card-desc">Test your microphone and voice settings here</div>
+        </div>
+        <span class="slurl-card-badge">↗ Teleport</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FREE STUFF -->
+  <section id="free">
+    <div class="sec-hdr">
+      <div class="sec-icon" style="background:var(--green-d);border:1px solid rgba(0,230,118,0.25);">🎁</div>
+      <div>
+        <div class="sec-title">Free Items &amp; Your Avatar</div>
+        <div class="sec-desc">Look great without spending a penny</div>
+      </div>
+    </div>
+    <div class="res-grid">
+      <a class="res-card ac-green" href="https://marketplace.secondlife.com/products/search?search%5Bprice_max%5D=0&search%5Bmaturity%5D%5B%5D=General" target="_blank">
+        <div class="res-card-accent"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">🛒</div>
+          <div class="res-card-title">Free Marketplace Items</div>
+          <div class="res-card-desc">Thousands of L$0 items — clothes, accessories, furniture, animations and more. Shop from your browser, delivered to your inventory.</div>
+        </div>
+        <div class="res-card-footer">
+          <span class="res-card-url">marketplace.secondlife.com</span>
+          <span class="res-card-arrow">↗</span>
+        </div>
+      </a>
+      <a class="res-card ac-purple" href="https://marketplace.secondlife.com/products/search?search%5Bcategory_id%5D=4&search%5Bkeywords%5D=complete+avatar&search%5Bprice_max%5D=0&search%5Bmaturity%5D%5B%5D=General" target="_blank">
+        <div class="res-card-accent"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">👤</div>
+          <div class="res-card-title">Free Complete Avatars</div>
+          <div class="res-card-desc">Ready-to-wear complete avatars at no cost — a great way to try different looks before investing in a mesh body.</div>
+        </div>
+        <div class="res-card-footer">
+          <span class="res-card-url">marketplace.secondlife.com</span>
+          <span class="res-card-arrow">↗</span>
+        </div>
+      </a>
+      <a class="res-card ac-amber" href="https://fabfree.wordpress.com/fabfree-30-days-list/" target="_blank">
+        <div class="res-card-accent"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">✨</div>
+          <div class="res-card-title">FabFree 30-Day List</div>
+          <div class="res-card-desc">A regularly updated list of stores with free or very cheap items specifically for avatars under 30 days old.</div>
+        </div>
+        <div class="res-card-footer">
+          <span class="res-card-url">fabfree.wordpress.com</span>
+          <span class="res-card-arrow">↗</span>
+        </div>
+      </a>
+    </div>
+    <div class="tip"><strong>Avatar Welcome Pack:</strong> You already have a free set of high-quality avatars! In <strong>Firestorm</strong> go to Avatar → Avatar Welcome Pack. In the <strong>SL Viewer</strong> look for "Avatar Welcome Pack" on the left taskbar. In <strong>Project Zero</strong> tap the Avatar tab at the bottom. No cost, no HUDs needed.</div>
+  </section>
+
+  <!-- EXPLORE -->
+  <section id="explore">
+    <div class="sec-hdr">
+      <div class="sec-icon" style="background:var(--teal-d);border:1px solid rgba(0,201,200,0.25);">🗺️</div>
+      <div>
+        <div class="sec-title">Explore &amp; Discover</div>
+        <div class="sec-desc">Second Life is enormous — here's where to start</div>
+      </div>
+    </div>
+    <div class="res-grid">
+      <a class="res-card ac-teal" href="https://secondlife.com/destinations" target="_blank">
+        <div class="res-card-accent"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">🌍</div>
+          <div class="res-card-title">Destination Guide</div>
+          <div class="res-card-desc">The official guide to the best places in Second Life — music venues, art galleries, beaches, roleplay communities and much more.</div>
+        </div>
+        <div class="res-card-footer">
+          <span class="res-card-url">secondlife.com/destinations</span>
+          <span class="res-card-arrow">↗</span>
+        </div>
+      </a>
+      <a class="res-card ac-rose" href="https://secondlife.com/events/" target="_blank">
+        <div class="res-card-accent"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">🎵</div>
+          <div class="res-card-title">Events Calendar</div>
+          <div class="res-card-desc">Live music, club nights, art shows, community meetups — something is always happening in Second Life every hour of the day.</div>
+        </div>
+        <div class="res-card-footer">
+          <span class="res-card-url">secondlife.com/events</span>
+          <span class="res-card-arrow">↗</span>
+        </div>
+      </a>
+      <a class="res-card ac-blue" href="https://marketplace.secondlife.com" target="_blank">
+        <div class="res-card-accent"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">🛍️</div>
+          <div class="res-card-title">Marketplace</div>
+          <div class="res-card-desc">Browse millions of items — clothes, homes, animations, gadgets and more. Delivered straight to your inventory.</div>
+        </div>
+        <div class="res-card-footer">
+          <span class="res-card-url">marketplace.secondlife.com</span>
+          <span class="res-card-arrow">↗</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- GETTING HELP -->
+  <section id="help">
+    <div class="sec-hdr">
+      <div class="sec-icon" style="background:var(--blue-d);border:1px solid rgba(77,159,255,0.25);">💬</div>
+      <div>
+        <div class="sec-title">Getting Help</div>
+        <div class="sec-desc">You're never alone in Second Life</div>
+      </div>
+    </div>
+    <div class="res-grid">
+      <a class="res-card ac-blue" href="https://community.secondlife.com" target="_blank">
+        <div class="res-card-accent"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">📖</div>
+          <div class="res-card-title">Knowledge Base</div>
+          <div class="res-card-desc">Linden Lab's official help centre — answers to hundreds of common questions about Second Life.</div>
+        </div>
+        <div class="res-card-footer">
+          <span class="res-card-url">community.secondlife.com</span>
+          <span class="res-card-arrow">↗</span>
+        </div>
+      </a>
+      <a class="res-card ac-purple" href="https://community.secondlife.com/forums/forum/109-answers/" target="_blank">
+        <div class="res-card-accent"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">🙋</div>
+          <div class="res-card-title">Community Answers Forum</div>
+          <div class="res-card-desc">Ask questions and get answers from experienced residents. A friendly and active community ready to help.</div>
+        </div>
+        <div class="res-card-footer">
+          <span class="res-card-url">community.secondlife.com</span>
+          <span class="res-card-arrow">↗</span>
+        </div>
+      </a>
+      <a class="res-card ac-teal" href="https://lindenlab.freshdesk.com/support/home" target="_blank">
+        <div class="res-card-accent"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">🎫</div>
+          <div class="res-card-title">Official Support</div>
+          <div class="res-card-desc">Need help from Linden Lab directly? Submit a support ticket for account, billing or technical issues.</div>
+        </div>
+        <div class="res-card-footer">
+          <span class="res-card-url">lindenlab.freshdesk.com</span>
+          <span class="res-card-arrow">↗</span>
+        </div>
+      </a>
+    </div>
+    <div class="tip"><strong>Look for Mentors in-world!</strong> SL Mentors wear a Mentor tag and are there specifically to help newcomers. Don't hesitate to say hello — they're there because they genuinely want to help.</div>
+  </section>
+
+</main>
+
+<footer>
+  <p>This is a community resource created by an SL Mentor. <strong>Not an official Linden Lab or Second Life website.</strong></p>
+  <p style="margin-top:6px;">Second Life® and Linden Lab® are registered trademarks of Linden Research, Inc. All rights reserved.</p>
+  <p style="margin-top:10px;">
+    <a href="https://secondlife.com" target="_blank">secondlife.com</a> ·
+    <a href="https://lindenlab.com/legal/second-life-terms-and-conditions" target="_blank">Terms of Service</a> ·
+    <a href="https://lindenlab.com/legal/privacy-policy" target="_blank">Privacy Policy</a>
+  </p>
+</footer>
+
+</body>
+</html>
