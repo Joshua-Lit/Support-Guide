@@ -16,7 +16,7 @@
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--bg2);
+    background: var(--panel2);
     border: 1px solid var(--border2);
     border-radius: var(--radius);
     padding: 14px 20px;
@@ -25,7 +25,7 @@
     gap: 16px;
     max-width: 620px;
     width: calc(100% - 40px);
-    z-index: 9999;
+    z-index: 10001;
     box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     font-size: 12.5px;
     color: var(--text-mid);
@@ -74,7 +74,7 @@
   --c-gold:      #FFEE58;  --c-gold-d:     rgba(255,238,88,0.12);
   --c-orange:    #FF924C;  --c-orange-d:   rgba(255,146,76,0.12);
   --c-teal:      #1DE9D5;  --c-teal-d:     rgba(29,233,213,0.12);
-  --c-mint:      #69FF47;  --c-mint-d:     rgba(105,255,71,0.12);
+  --c-mint:      #4DC832;  --c-mint-d:     rgba(77,200,50,0.12);
   --c-red:       #FF5252;  --c-red-d:      rgba(255,82,82,0.12);
   --c-coral:     #FF1744;  --c-coral-d:    rgba(255,23,68,0.12);
   --c-fuchsia:   #FF5FD2;  --c-fuchsia-d:  rgba(255,95,210,0.12);
@@ -531,7 +531,7 @@ body {
 
 .faq-item.edge-mov::before { background:var(--border2); }
 .faq-item.edge-mov:hover::before, .faq-item.edge-mov.open::before { background: var(--c-mint); }
-.faq-item.edge-mov:hover, .faq-item.edge-mov.open { border-color:rgba(105,255,71,0.35); }
+.faq-item.edge-mov:hover, .faq-item.edge-mov.open { border-color:rgba(77,200,50,0.35); }
 
 .faq-item.edge-mob::before { background:var(--border2); }
 .faq-item.edge-mob:hover::before, .faq-item.edge-mob.open::before { background: #FFE033; }
@@ -577,7 +577,7 @@ body {
 .t-grp { color:var(--c-sky);      background:var(--c-sky-d);      border:1px solid rgba(0,212,255,0.55); }
 .t-inv { color:var(--c-rose);     background:var(--c-rose-d);     border:1px solid rgba(255,92,168,0.3); }
 .t-lnd { color:var(--c-orange);   background:var(--c-orange-d);   border:1px solid rgba(255,146,76,0.3); }
-.t-mov { color:var(--c-mint);     background:var(--c-mint-d);     border:1px solid rgba(105,255,71,0.3); }
+.t-mov { color:var(--c-mint);     background:var(--c-mint-d);     border:1px solid rgba(77,200,50,0.3); }
 .t-mob { color:var(--c-mobile); background:rgba(255,224,51,0.15); border:1px solid rgba(255,224,51,0.4); }
 .t-gaming { color:var(--c-gaming); background:var(--c-gaming-d); border:1px solid rgba(0,229,255,0.3); }
 .t-rul { color:var(--c-red);      background:var(--c-red-d);      border:1px solid rgba(255,82,82,0.3); }
@@ -1072,7 +1072,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 .qi-skyblue:hover { border-color:var(--c-skyblue); background:var(--c-skyblue-d); }
 .qi-skyblue:hover .qi-arrow { color:var(--c-skyblue); }
 
-.qi-mint { border-left:6px solid rgba(105,255,71,0.5); }
+.qi-mint { border-left:6px solid rgba(77,200,50,0.5); }
 .qi-mint:hover { border-color:var(--c-mint); background:var(--c-mint-d); }
 .qi-mint:hover .qi-arrow { color:var(--c-mint); }
 
@@ -2916,10 +2916,10 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
 
 
-      <div class="sc-card" id="sc-sffl" style="--sc-color:var(--c-mint);--sc-color-a:rgba(105,255,71,0.3);--sc-color-dim:rgba(105,255,71,0.1);" data-search="second friends for life group invite community social newcomer welcome friendly">
+      <div class="sc-card" id="sc-sffl" style="--sc-color:var(--c-mint);--sc-color-a:rgba(77,200,50,0.3);--sc-color-dim:rgba(77,200,50,0.1);" data-search="second friends for life group invite community social newcomer welcome friendly">
         <div class="sc-hdr" onclick="tog(this)">
           <span class="sc-title">Inviting a Resident to Second Friends for Life</span>
-          <span class="sc-cat" style="color:var(--c-mint);background:var(--c-mint-d);border-color:rgba(105,255,71,0.25);">Community</span>
+          <span class="sc-cat" style="color:var(--c-mint);background:var(--c-mint-d);border-color:rgba(77,200,50,0.25);">Community</span>
           <span class="sc-tog">+</span>
         </div>
         <div class="sc-body">
@@ -3398,6 +3398,15 @@ document.addEventListener('DOMContentLoaded', function() {
     </table>
   </div>
 </div>
+
+<!-- Cookie Notice -->
+<div id="cookie-notice">
+  <p>This site uses localStorage to remember your preferences (such as dismissed panels). It does not use tracking cookies or advertising. Our hosting provider may set technical cookies. <a href="https://lindenlab.com/legal/privacy-policy" target="_blank">More info</a></p>
+  <button onclick="document.getElementById('cookie-notice').classList.add('hidden');localStorage.setItem('cookie-ok','1')">Got it</button>
+</div>
+<script>
+  if (localStorage.getItem('cookie-ok')) document.getElementById('cookie-notice').classList.add('hidden');
+</script>
 
 <!-- ══════ CHECKLIST MODAL ══════ -->
 <div id="checklist-modal" onclick="if(event.target===this)closeChecklistModal()">
