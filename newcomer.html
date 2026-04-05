@@ -88,6 +88,25 @@
   footer a { color:var(--text-mid); text-decoration:none; }
   footer a:hover { color:var(--text-hi); }
 
+
+  /* ── FLOWCHART ── */
+  .fc { width:100%; overflow:hidden; }
+  .fc-node { border-radius:8px; padding:12px 16px; margin:0 auto 6px; text-align:center; font-size:13px; position:relative; max-width:520px; width:100%; }
+  .fc-start { background:rgba(191,0,255,0.15); border:2px solid var(--purple); color:var(--text-hi); font-weight:600; border-radius:30px; }
+  .fc-q { background:rgba(77,159,255,0.1); border:1px solid rgba(77,159,255,0.4); color:var(--text-hi); border-radius:8px; }
+  .fc-action { background:rgba(0,201,200,0.07); border:1px solid rgba(0,201,200,0.3); color:var(--text); border-radius:6px; font-size:12.5px; text-align:left; padding:10px 14px; }
+  .fc-end-ok { background:rgba(0,230,118,0.1); border:2px solid rgba(0,230,118,0.5); color:#00E676; font-weight:600; border-radius:30px; }
+  .fc-end-bad { background:rgba(255,82,82,0.1); border:2px solid rgba(255,82,82,0.4); color:#FF5252; font-weight:600; border-radius:30px; }
+  .fc-arrow { text-align:center; color:var(--text-dim); font-size:18px; line-height:1; margin:0 auto; display:block; }
+  .fc-branch { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:0 auto; max-width:700px; }
+  .fc-branch-col { display:flex; flex-direction:column; align-items:center; }
+  .fc-label { font-family:'DM Sans',sans-serif; font-size:10px; letter-spacing:1px; text-transform:uppercase; font-weight:600; padding:2px 10px; border-radius:3px; margin-bottom:4px; }
+  .fc-label-body { color:#00E676; background:rgba(0,230,118,0.1); border:1px solid rgba(0,230,118,0.3); }
+  .fc-label-clothing { color:var(--purple); background:var(--purple-d); border:1px solid rgba(191,0,255,0.3); }
+  .fc-label-naked { color:var(--amber); background:var(--amber-d); border:1px solid rgba(255,179,0,0.3); }
+  .fc-sep { border:none; border-top:1px dashed rgba(255,255,255,0.1); margin:16px auto; max-width:700px; }
+  @media (max-width:600px) { .fc-branch { grid-template-columns:1fr; } }
+
   @media (max-width:600px) {
     header { padding:0 16px; }
     .hero { padding:40px 16px 32px; }
@@ -206,18 +225,7 @@
           <span class="res-card-arrow">↗</span>
         </div>
       </a>
-      <a class="res-card ac-purple" href="https://marketplace.secondlife.com/products/search?search%5Bcategory_id%5D=4&search%5Bkeywords%5D=complete+avatar&search%5Bprice_max%5D=0&search%5Bmaturity%5D%5B%5D=General" target="_blank">
-        <div class="res-card-accent"></div>
-        <div class="res-card-body">
-          <div class="res-card-icon">👤</div>
-          <div class="res-card-title">Free Complete Avatars</div>
-          <div class="res-card-desc">Ready-to-wear complete avatars at no cost — a great way to try different looks before investing in a mesh body.</div>
-        </div>
-        <div class="res-card-footer">
-          <span class="res-card-url">marketplace.secondlife.com</span>
-          <span class="res-card-arrow">↗</span>
-        </div>
-      </a>
+
       <a class="res-card ac-amber" href="https://fabfree.wordpress.com/fabfree-30-days-list/" target="_blank">
         <div class="res-card-accent"></div>
         <div class="res-card-body">
@@ -232,6 +240,99 @@
       </a>
     </div>
     <div class="tip"><strong>Avatar Welcome Pack:</strong> You already have a free set of high-quality avatars! In <strong>Firestorm</strong> go to Avatar → Avatar Welcome Pack. In the <strong>SL Viewer</strong> look for "Avatar Welcome Pack" on the left taskbar. In <strong>Project Zero</strong> tap the Avatar tab at the bottom. No cost, no HUDs needed.</div>
+  </section>
+
+
+  <!-- APPEARANCE -->
+  <section id="appearance">
+    <div class="sec-hdr">
+      <div class="sec-icon" style="background:var(--purple-d);border:1px solid rgba(191,0,255,0.25);">👤</div>
+      <div>
+        <div class="sec-title">Your Avatar &amp; Appearance</div>
+        <div class="sec-desc">Looking good in Second Life</div>
+      </div>
+    </div>
+
+    <!-- AWP + mesh bodies cards -->
+    <div class="res-grid" style="margin-bottom:16px;">
+      <div class="res-card ac-purple" style="cursor:default;">
+        <div class="res-card-accent"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">✨</div>
+          <div class="res-card-title">Avatar Welcome Pack</div>
+          <div class="res-card-desc">You already have a free set of high-quality avatars — mesh heads and bodies from top creators, no cost and no HUDs needed. 3 skin tones × male &amp; female, 3 clothing sets each.</div>
+          <div style="margin-top:12px;font-size:12px;color:var(--text-dim);line-height:1.8;">
+            <strong style="color:var(--text-mid);">Project Zero</strong> — "Avatar" tab at the bottom<br>
+            <strong style="color:var(--text-mid);">SL Viewer</strong> — "Avatar Welcome Pack" on left taskbar<br>
+            <strong style="color:var(--text-mid);">Firestorm</strong> — Avatar menu → Avatar Welcome Pack
+          </div>
+        </div>
+      </div>
+      <div class="res-card ac-teal" style="cursor:default;">
+        <div class="res-card-accent"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">🧍</div>
+          <div class="res-card-title">What is a Mesh Body?</div>
+          <div class="res-card-desc">Think of the default avatar as a basic mannequin. A mesh body is a custom suit you wear over it — much better detail and compatible with modern clothing. They cost L$ but free demos let you try before you buy.</div>
+          <div style="margin-top:10px;font-size:12px;color:var(--text-dim);line-height:1.8;">
+            <strong style="color:var(--text-mid);">Female:</strong> Maitreya LaraX · eBODY Reborn · Legacy<br>
+            <strong style="color:var(--text-mid);">Male:</strong> Legacy Athletic · Belleza Jake · Gianni<br>
+            <strong style="color:var(--text-mid);">Heads:</strong> LeLutka (most popular — free demos in-store)
+          </div>
+        </div>
+      </div>
+      <div class="res-card ac-green" style="cursor:default;">
+        <div class="res-card-accent"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">🎁</div>
+          <div class="res-card-title">Free Avatar Resources</div>
+          <div class="res-card-desc">Under 90 days old? Visit <strong>Firestorm Social Island</strong> for free Milena (female) or Mike (male) mesh heads. <strong>Palomma Plaza</strong> has free clothing and accessories from top designers — no time limit.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flowchart -->
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;margin-top:4px;">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);font-family:'DM Sans',sans-serif;font-weight:600;margin-bottom:20px;text-align:center;">🔀 My avatar looks wrong — what do I do?</div>
+      <div class="fc">
+
+        <div class="fc-node fc-start">My avatar is naked, grey, or missing a body part / clothing item</div>
+        <div class="fc-arrow">↓</div>
+
+        <div class="fc-node fc-q">Is your whole avatar naked or grey?</div>
+        <div class="fc-branch">
+          <div class="fc-branch-col">
+            <div class="fc-label fc-label-body">Yes — naked or grey</div>
+            <div class="fc-node fc-action">Go to <strong>Avatar → Avatar Welcome Pack</strong> in the top menu bar and choose a complete starter look — it's free and instant</div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-q">Still grey / cloudy?</div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-action">Go to <strong>Avatar → Avatar Health → Rebake Textures</strong><br>Shortcut: <code style="background:rgba(255,255,255,0.07);border-radius:3px;padding:1px 5px;font-size:11px;">Ctrl+Alt+R</code> (PC) · <code style="background:rgba(255,255,255,0.07);border-radius:3px;padding:1px 5px;font-size:11px;">Cmd+Option+R</code> (Mac)</div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-action">Still not fixed? Change to a different region or relog</div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-end-ok">✓ Fixed!</div>
+          </div>
+          <div class="fc-branch-col">
+            <div class="fc-label fc-label-clothing">No — just a missing piece</div>
+            <div class="fc-node fc-action">Open <strong>Inventory</strong> (<code style="background:rgba(255,255,255,0.07);border-radius:3px;padding:1px 5px;font-size:11px;">Ctrl+I</code>) and click the <strong>WORN</strong> tab</div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-action">Note the folder name shown next to your body or outfit — e.g. <em>"Female body - B"</em> or <em>"Female look - Casual"</em></div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-action">In main inventory go to <strong>Clothing → [that folder name]</strong>. Items in <strong>bold</strong> are worn — the item that's <strong>not bold</strong> is the missing piece</div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-action">Right-click the missing item → <strong>Add</strong></div>
+            <div class="fc-arrow">↓</div>
+            <div class="fc-node fc-end-ok">✓ Fixed!</div>
+          </div>
+        </div>
+
+        <div class="fc-sep"></div>
+        <div class="fc-label fc-label-naked" style="display:inline-block;margin:0 auto 8px;">Everyone has disappeared — including me!</div>
+        <div class="fc-node fc-action" style="max-width:480px;">You've accidentally toggled avatar rendering off. Press <code style="background:rgba(255,255,255,0.07);border-radius:3px;padding:1px 5px;font-size:11px;">Ctrl+Alt+Shift+4</code> (PC) or <code style="background:rgba(255,255,255,0.07);border-radius:3px;padding:1px 5px;font-size:11px;">Cmd+Option+Shift+4</code> (Mac) to bring everyone back</div>
+
+      </div>
+    </div>
   </section>
 
   <!-- EXPLORE -->
@@ -332,6 +433,57 @@
     </div>
     <div class="tip"><strong>Look for Mentors in-world!</strong> SL Mentors wear a Mentor tag and are there specifically to help newcomers. Don't hesitate to say hello — they're there because they genuinely want to help.</div>
   </section>
+
+  <!-- ADULT CONTENT -->
+  <section id="adult">
+    <div class="sec-hdr">
+      <div class="sec-icon" style="background:rgba(233,30,140,0.1);border:1px solid rgba(233,30,140,0.25);">🔞</div>
+      <div>
+        <div class="sec-title">Adult Content in Second Life</div>
+        <div class="sec-desc">What you need to know before exploring this side of SL</div>
+      </div>
+    </div>
+    <div class="res-grid">
+      <div class="res-card" style="cursor:default;">
+        <div class="res-card-accent" style="background:#E91E8C;"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">🔞</div>
+          <div class="res-card-title">You Must Be 18 or Over</div>
+          <div class="res-card-desc">Adult content in Second Life is strictly for residents aged 18 and over. This is enforced by Linden Lab's Terms of Service — misrepresenting your age is a violation.</div>
+        </div>
+      </div>
+      <div class="res-card" style="cursor:default;">
+        <div class="res-card-accent" style="background:#E91E8C;"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">⚙️</div>
+          <div class="res-card-title">It's Opt-In</div>
+          <div class="res-card-desc">Adult content is not available by default. Enable it in <strong>Preferences → General</strong> and set your content access to <strong>General, Moderate, Adult</strong>.</div>
+        </div>
+      </div>
+      <div class="res-card" style="cursor:default;">
+        <div class="res-card-accent" style="background:#E91E8C;"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">📍</div>
+          <div class="res-card-title">Adult Regions Only</div>
+          <div class="res-card-desc">Adult content must take place on Adult-rated regions only — it is not permitted on General or Moderate land. Adult regions are clearly labelled in the viewer.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;background:#1e1419;border:1px solid rgba(233,30,140,0.3);border-left:4px solid #E91E8C;border-radius:var(--radius-sm);padding:20px 24px;">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#E91E8C;font-family:'Roboto Flex',sans-serif;margin-bottom:12px;">🏠 The Adult Hub</div>
+      <p style="font-size:13.5px;color:var(--text-mid);line-height:1.6;margin-bottom:14px;">The Adult Hub is a welcoming, safe space for residents who are 18 or over and curious about the adult side of Second Life. It's not a venue full of strangers — think of it as a tasteful, well-designed resort with beautiful landscaping where you can find your bearings and explore at your own pace. The Hub includes private hotel rooms (available for 30 minutes with a partner or partners), saunas, a pool, a naturist beach, a main beach, and a small club where you can learn to dance. You'll also find information boards, teleport portals to adult locations across the grid, and the ThundrGO dating HUD to help you connect with other residents. The Hub itself is calm and social — the portals are your gateway to wherever you want to go.</p>
+      <a href="secondlife://Adult%20Hub/128/128/25" style="display:inline-flex;align-items:center;gap:8px;background:rgba(233,30,140,0.12);border:1px solid rgba(233,30,140,0.35);border-radius:var(--radius-sm);padding:9px 18px;text-decoration:none;color:#E91E8C;font-size:13px;font-weight:600;transition:background 0.15s;" onmouseover="this.style.background='rgba(233,30,140,0.2)'" onmouseout="this.style.background='rgba(233,30,140,0.12)'">
+        📍 Teleport to the Adult Hub
+      </a>
+      <span style="font-size:11px;color:var(--text-dim);margin-left:12px;">Opens in Second Life — must be 18+</span>
+    </div>
+
+    <div class="tip" style="background:rgba(233,30,140,0.07);border-color:rgba(233,30,140,0.2);margin-top:12px;">
+      <strong style="color:#E91E8C;">Important:</strong> Sexual ageplay is <strong>strictly prohibited</strong> with no exceptions, regardless of region or consent. This includes avatars that appear to be minors in a sexual context. Violations are taken very seriously by Linden Lab.
+    </div>
+  </section>
+
 
 </main>
 
