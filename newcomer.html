@@ -557,23 +557,17 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
   color: var(--fa-inverse, #fff);
 }
 .nc-video-link {
-  display: block;
-  margin: 0.75rem 0 1rem;
-  padding: 0.6rem 1rem;
-  background: rgba(191,0,255,0.08);
-  border: 1px solid rgba(191,0,255,0.3);
-  border-radius: 8px;
-  color: #BF00FF;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: background 0.2s, border-color 0.2s;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
 }
-.nc-video-link:hover {
-  background: rgba(191,0,255,0.18);
-  border-color: rgba(191,0,255,0.6);
-  color: #d040ff;
-}
+.nc-video-link:hover { border-color: var(--purple); transform: translateY(-3px); }
 </style><link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,700&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <style>
@@ -947,7 +941,14 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
         </div>
       </div>
 
-      <a class="nc-video-link" href="https://youtu.be/BJ1eRTlWDYk" target="_blank">&#9654;&#65039; Watch: Avatar Welcome Pack &amp; Project Zero &mdash; Second Life University</a>
+      <a class="nc-video-link" href="https://youtu.be/BJ1eRTlWDYk" target="_blank">
+        <div class="res-card-accent" style="background:var(--purple);"></div>
+        <div class="res-card-body">
+          <div class="res-card-icon">▶</div>
+          <div class="res-card-title">Avatar Welcome Pack &amp; Project Zero</div>
+          <div class="res-card-desc">Official Second Life University video — walks through building a quality avatar from the free Avatar Welcome Pack, then introduces Project Zero (browser-based login).</div>
+        </div>
+      </a>
 
       <div class="res-card ac-teal" style="cursor:default;">
         <div class="res-card-accent"></div>
