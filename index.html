@@ -44,6 +44,13 @@
   <div class="nav">
     <div class="nav-collapse-row">
       <button id="nav-toggle-btn" onclick="toggleAllNav()" title="Expand all sections">⊞ Expand all</button>
+      <label class="theme-switch" title="Toggle light / dark theme">
+        <span class="theme-switch-label">Light</span>
+        <div class="theme-switch-track">
+          <input type="checkbox" class="theme-switch-input" onchange="toggleTheme()">
+          <span class="theme-switch-slider"></span>
+        </div>
+      </label>
     </div>
 
     <div class="nav-group">
@@ -203,7 +210,6 @@
   <div class="sidebar-status">
     <div class="status-dot"></div>
     <div class="status-text">GUIDE ONLINE — SL MENTORS</div>
-    <button class="theme-toggle" onclick="toggleTheme()" title="Switch theme">◐ Light</button>
     <button class="sidebar-top-btn" onclick="scrollToTop()" title="Scroll to top">⬆ TOP</button>
   </div>
 </nav>
