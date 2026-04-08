@@ -879,15 +879,12 @@
   .nav-group-hdr:hover { color: var(--text-hi); }
   .nav-group-hdr .ng-arrow { margin-left: auto; font-size: 9px; transition: transform 0.2s; }
   .nav-group-hdr.open .ng-arrow { transform: rotate(90deg); }
-  .nav-group--other > .nav-group-hdr { color: var(--text-dim); opacity: 0.8; }
-  .nav-group--other > .nav-group-hdr:hover { color: var(--text-mid); opacity: 1; }
 
   .nav-item--xpage { opacity:0.8; }
   .nav-item--xpage:hover { opacity:1; }
   .nav-item--fs { padding-left:36px; }
   .nav-item--fs .ni-dot { background:var(--c-fs); opacity:0.7; }
   .nav-item--fs:hover .ni-dot { opacity:1; }
-  .nav-collapse-row { display:none; }
   .nav { flex:1; overflow-y:auto; padding:6px 0 20px; }
   /* nav-group-hdr and nav-items reuse sidebar-logo nav styles */
   .nav-items { display:none; }
@@ -901,6 +898,23 @@
   }
   .nav-item:hover { color:var(--text-hi); border-left-color:var(--border2); background:rgba(61,127,255,0.05); }
 
+  #nav-toggle-btn {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 9px; letter-spacing: 1px;
+    color: var(--text-dim);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  #nav-toggle-btn:hover { color: var(--text); border-color: var(--border2); }
+  .nav-collapse-row {
+    padding: 8px 14px 4px;
+    display: flex;
+    justify-content: flex-end;
+  }
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -1057,9 +1071,11 @@ function closeModal() {
   </div>
 
   <div class="nav">
-    <div class="nav-collapse-row"></div>
+    <div class="nav-collapse-row">
+      <button id="nav-toggle-btn" onclick="toggleAllNav()" title="Expand all sections">&#x229E; Expand all</button>
+    </div>
 
-    <div class="nav-group nav-group--other">
+    <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>&#x26A1;</span> Quick Index <span class="ng-arrow">&#x25BA;</span>
       </div>
@@ -1068,7 +1084,7 @@ function closeModal() {
       </div>
     </div>
 
-    <div class="nav-group nav-group--other">
+    <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>&#x2753;</span> FAQs &amp; Answers <span class="ng-arrow">&#x25BA;</span>
       </div>
@@ -1093,7 +1109,7 @@ function closeModal() {
       </div>
     </div>
 
-    <div class="nav-group nav-group--other">
+    <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>&#x1F4CD;</span> Landmark Directory <span class="ng-arrow">&#x25BA;</span>
       </div>
@@ -1109,7 +1125,7 @@ function closeModal() {
       </div>
     </div>
 
-    <div class="nav-group nav-group--other">
+    <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>&#x1F4CB;</span> Tips &amp; Scripts <span class="ng-arrow">&#x25BA;</span>
       </div>
@@ -1128,7 +1144,25 @@ function closeModal() {
       </div>
     </div>
 
-    <div class="nav-group nav-group--other">
+    <div class="nav-group">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
+        <span>&#x25BA;</span> Video Links <span class="ng-arrow">&#x25BA;</span>
+      </div>
+      <div class="nav-items">
+        <span class="nav-item nav-item--xpage" onclick="window.location.href='index.html#sec-videos'"><span class="ni-dot"></span>All videos</span>
+      </div>
+    </div>
+
+        <div class="nav-group">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
+        <span>&#x1F310;</span> Useful Websites <span class="ng-arrow">&#x25BA;</span>
+      </div>
+      <div class="nav-items">
+        <span class="nav-item nav-item--xpage" onclick="window.location.href='index.html#sec-websites'"><span class="ni-dot"></span>All links</span>
+      </div>
+    </div>
+
+        <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
         <span>&#x1F4F1;</span> SL Mobile App <span class="ng-arrow">&#x25BA;</span>
       </div>
@@ -1159,13 +1193,13 @@ function closeModal() {
       </div>
     </div>
 
-    <div class="nav-group nav-group--other">
+    <div class="nav-group">
       <div class="nav-group-hdr" onclick="window.location.href='index.html#sec-clara'" style="cursor:pointer;">
         <span>&#x1F54A;&#xFE0F;</span> CLARA Method <span class="ni-modal-hint">&#x2197;</span>
       </div>
     </div>
 
-    <div class="nav-group nav-group--other">
+    <div class="nav-group">
       <div class="nav-group-hdr" onclick="window.location.href='index.html#sec-shortcuts'" style="cursor:pointer;">
         <span>&#x2328;&#xFE0F;</span> Keyboard Shortcuts <span class="ni-modal-hint">&#x2197;</span>
       </div>
