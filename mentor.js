@@ -359,3 +359,33 @@ function initUnifiedSidebar(currentPage) {
     }
   });
 }
+
+
+// ══ THEME SWITCHER ══
+function initTheme() {
+  const saved = localStorage.getItem('sl-mentor-theme');
+  if (saved === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  updateThemeButton();
+}
+
+function toggleTheme() {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  if (isLight) {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('sl-mentor-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('sl-mentor-theme', 'light');
+  }
+  updateThemeButton();
+}
+
+function updateThemeButton() {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  document.querySelectorAll('.theme-toggle').forEach(btn => {
+    btn.textContent = isLight ? '◑ Dark' : '◐ Light';
+    btn.title = isLight ? 'Switch to dark theme' : 'Switch to light theme';
+  });
+}
