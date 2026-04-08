@@ -1725,3 +1725,26 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     flex-shrink: 0;
   }
   #cookie-notice button:hover { opacity: 0.85; }
+
+/* ── Unified sidebar additions ── */
+
+/* ── Unified sidebar — cross-page nav items ── */
+.nav-item--xpage { opacity: 0.75; }
+.nav-item--xpage:hover { opacity: 1; }
+.nav-item--xpage::after {
+  content: '↗';
+  font-size: 8px;
+  margin-left: 4px;
+  color: var(--text-dim);
+  vertical-align: middle;
+}
+/* Other-page nav group header — slightly dimmer */
+.nav-group--other > .nav-group-hdr {
+  color: var(--text-dim);
+  opacity: 0.8;
+}
+.nav-group--other > .nav-group-hdr:hover { opacity: 1; }
+/* Firestorm nav items in tech Q&A group */
+.nav-item--fs { padding-left: 36px; }
+.nav-item--fs .ni-dot { background: var(--c-fs); opacity: 0.7; }
+.nav-item--fs:hover .ni-dot { opacity: 1; }

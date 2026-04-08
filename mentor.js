@@ -119,6 +119,7 @@ function copyText(btn) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  initUnifiedSidebar('index');
   const link = document.getElementById('suggest-link');
   if (link) {
     const u = 'josh', d = 'joshualit.uk';
@@ -298,3 +299,64 @@ document.addEventListener('DOMContentLoaded', function() {
     // (qa-count text left as-is from HTML on load)
   }
 });
+
+
+
+// ══ UNIFIED SIDEBAR NAV INIT ══
+// Detects current page, sets active state, wires cross-page nav links
+function initUnifiedSidebar(currentPage) {
+  // Set active page-nav tab
+  const homeLink = document.getElementById('pnav-home');
+  const techLink = document.getElementById('pnav-tech');
+  if (currentPage === 'index') {
+    homeLink && homeLink.classList.add('active');
+    document.getElementById('sidebar-search-home') && (document.getElementById('sidebar-search-home').style.display = '');
+    document.getElementById('sidebar-search-tech') && (document.getElementById('sidebar-search-tech').style.display = 'none');
+    document.getElementById('sidebar-page-sub') && (document.getElementById('sidebar-page-sub').textContent = 'Resident Support Reference');
+  } else {
+    techLink && techLink.classList.add('active');
+    document.getElementById('sidebar-search-home') && (document.getElementById('sidebar-search-home').style.display = 'none');
+    document.getElementById('sidebar-search-tech') && (document.getElementById('sidebar-search-tech').style.display = '');
+    document.getElementById('sidebar-page-sub') && (document.getElementById('sidebar-page-sub').textContent = 'Technical Reference');
+    // On tech page, hide the checklist button and expand/collapse toggle
+    const cb = document.getElementById('sidebar-checklist-btn');
+    if (cb) cb.style.display = 'none';
+    const tb = document.getElementById('nav-toggle-btn');
+    if (tb) tb.parentElement.style.display = 'none';
+  }
+
+  // Wire nav items: same-page = jumpTo(), other-page = navigate
+  document.querySelectorAll('.nav-item[data-page]').forEach(el => {
+    const targetPage = el.dataset.page;
+    const targetId   = el.dataset.target;
+    if (!targetId) return;
+
+    if (targetPage === currentPage) {
+      // Same page — scroll to section
+      el.style.cursor = 'pointer';
+      el.onclick = function() { jumpTo(targetId); };
+    } else {
+      // Other page — navigate with hash
+      const href = (targetPage === 'index' ? 'index.html' : 'technical.html') + '#' + targetId;
+      el.style.cursor = 'pointer';
+      el.onclick = function() { window.location.href = href; };
+      // Visual hint — slightly dimmer until hovered
+      el.classList.add('nav-item--xpage');
+    }
+  });
+
+  // Highlight the current page's nav groups with a subtle active accent on the header
+  const currentGroups = document.querySelectorAll(
+    currentPage === 'index'
+      ? '.nav-group:not(:has([data-page="tech"]))'
+      : '.nav-group:has([data-page="tech"])'
+  );
+  // (CSS :has() may not be available everywhere — use JS fallback)
+  document.querySelectorAll('.nav-group').forEach(group => {
+    const hasCurrentPage = group.querySelector('[data-page="' + currentPage + '"]');
+    const hasOtherPage   = group.querySelector('[data-page="' + (currentPage === 'index' ? 'tech' : 'index') + '"]');
+    if (hasOtherPage && !hasCurrentPage) {
+      group.classList.add('nav-group--other');
+    }
+  });
+}
