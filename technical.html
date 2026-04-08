@@ -234,6 +234,12 @@
     padding: 0 0 24px 0;
     border-bottom: 1px solid var(--border);
     margin-bottom: 0;
+    position: relative;
+  }
+  #page-header::after {
+    content: ''; position: absolute; bottom: -1px; left: 0;
+    width: 100px; height: 1px;
+    background: linear-gradient(90deg, var(--c-violet), transparent);
   }
   .header-eyebrow {
     font-family: 'Share Tech Mono', 'Courier New', monospace;
@@ -2026,7 +2032,7 @@ function closeModal() {
     <div class="footer-left">
       <span class="footer-text">SL Technical Reference</span>
       <span class="footer-divider">·</span>
-      <a href="/cdn-cgi/l/email-protection#caa0a5b9a28aa0a5b9a2bfaba6a3bee4bfa1" class="footer-link" id="suggest-link" title="Send suggestions to josh@joshualit.uk"><span style="font-size:26px;vertical-align:middle;line-height:1;">✉</span><span style="vertical-align:middle;"> Suggestions</span></a>
+      <a href="/cdn-cgi/l/email-protection#f09a9f8398b09a9f839885919c9984de859b" class="footer-link" id="suggest-link" title="Send suggestions to josh@joshualit.uk"><span style="font-size:26px;vertical-align:middle;line-height:1;">✉</span><span style="vertical-align:middle;"> Suggestions</span></a>
     </div>
     <button class="footer-top-btn" onclick="window.scrollTo({top:0,behavior:&#39;smooth&#39;})"><span style="font-size:20px;line-height:1;vertical-align:middle;display:inline-block;transform:translateY(2px);">⬆</span><span style="vertical-align:middle;"> Top</span></button>
     <div></div>
