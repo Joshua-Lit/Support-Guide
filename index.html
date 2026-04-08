@@ -44,11 +44,11 @@
   <div class="nav">
     <div class="nav-collapse-row">
       <button id="nav-toggle-btn" onclick="toggleAllNav()" title="Expand all sections">⊞ Expand all</button>
-      <label class="theme-switch" title="Toggle light / dark theme">
-        <span class="theme-switch-label">Light</span>
+      <label class="theme-switch" title="Toggle light / dark theme" onclick="toggleTheme(); return false;">
         <div class="theme-switch-track">
-          <input type="checkbox" class="theme-switch-input" onchange="toggleTheme()">
-          <span class="theme-switch-slider"></span>
+          <span class="theme-switch-sun">&#9728;</span>
+          <span class="theme-switch-moon">&#9790;</span>
+          <span class="theme-switch-knob"></span>
         </div>
       </label>
     </div>

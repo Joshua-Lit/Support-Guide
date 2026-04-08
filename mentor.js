@@ -413,11 +413,5 @@ function toggleTheme() {
   updateThemeToggle();
 }
 function updateThemeToggle() {
-  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-  document.querySelectorAll('.theme-switch-input').forEach(cb => {
-    cb.checked = isLight;
-  });
-  document.querySelectorAll('.theme-switch-label').forEach(lbl => {
-    lbl.textContent = isLight ? 'Dark' : 'Light';
-  });
+  // CSS handles visual state via [data-theme="light"] selectors — no JS needed
 }
