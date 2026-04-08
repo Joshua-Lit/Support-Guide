@@ -1476,7 +1476,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   transition: border-color 0.2s;
   margin-bottom: 12px;
 }
-.qa-card.open { overflow: visible; }
+
 .qa-card::before {
   content: '';
   position: absolute;
@@ -1685,7 +1685,6 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 
 /* ── COOKIE NOTICE ── */
 /* Load fonts from Google with swap so layout never breaks if blocked */
-  @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;900&family=Share+Tech+Mono&family=Roboto:wght@300;400;500;600&display=swap');
 
   /* ── COOKIE NOTICE ── */
   #cookie-notice {
@@ -1739,11 +1738,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   vertical-align: middle;
 }
 /* Other-page nav group header — slightly dimmer */
-.nav-group--other > .nav-group-hdr {
-  color: var(--text-dim);
-  opacity: 0.8;
-}
-.nav-group--other > .nav-group-hdr:hover { opacity: 1; }
+
 /* Firestorm nav items in tech Q&A group */
 .nav-item--fs { padding-left: 36px; }
 .nav-item--fs .ni-dot { background: var(--c-fs); opacity: 0.7; }

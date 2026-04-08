@@ -119,7 +119,6 @@ function copyText(btn) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  initUnifiedSidebar('index');
   const link = document.getElementById('suggest-link');
   if (link) {
     const u = 'josh', d = 'joshualit.uk';
