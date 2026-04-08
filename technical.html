@@ -2259,6 +2259,136 @@ function updateThemeToggle() {
     </div>
   </div>
 
+  <div id="fc-content-inventory-loss" style="display:none;">
+      <div id="flowchart-inventory" style="margin-top:16px;width:100%;">
+        <div class="fc">
+
+          <div class="fc-node fc-start">Items are missing from inventory — what's happening?</div>
+          <span class="fc-arrow">↓</span>
+
+          <div class="fc-branch" style="grid-template-columns:repeat(4,1fr);max-width:1200px;">
+
+            <!-- Column 1: Items seem to have vanished -->
+            <div class="fc-branch-col">
+              <span class="fc-label" style="color:var(--c-violet);background:var(--c-violet-d);border:1px solid rgba(170,68,255,0.3);">🔍 Items seem to have vanished</span>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                Open inventory and search for the item name. Check <strong>All Items</strong>, <strong>Recent Items</strong>, and the <strong>Trash</strong> folder. Also check <strong>Received Items</strong> at the bottom.
+              </div>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-q" style="max-width:none;width:100%;">Found in search?</div>
+              <div class="fc-branch" style="max-width:none;width:100%;margin-top:6px;">
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-yes">Yes</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-end-ok" style="max-width:none;width:100%;">✓ Problem solved!</div>
+                </div>
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-no">No</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">Inventory may not have fully loaded yet. Wait 2–3 minutes, then search again.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 2: Inventory stuck loading -->
+            <div class="fc-branch-col">
+              <span class="fc-label" style="color:var(--c-amber);background:var(--c-amber-d);border:1px solid rgba(255,179,0,0.3);">⏳ Inventory stuck or greyed out</span>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                <strong>1.</strong> Go to a low-lag region (e.g. Hippo Hills Island).<br>
+                <strong>2.</strong> Close all inventory sub-folders, then reopen.<br>
+                <strong>3.</strong> Wait — large inventories can take several minutes to fully load.
+              </div>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-q" style="max-width:none;width:100%;">Still stuck after waiting?</div>
+              <div class="fc-branch" style="max-width:none;width:100%;margin-top:6px;">
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-yes">Yes</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                    Clear inventory cache.<br>
+                    <strong>Firestorm:</strong> Preferences → Network → Clear Inventory Cache, then relog.<br>
+                    <strong>SL Viewer:</strong> Me → Preferences → Privacy → Clear Cache, then relog.
+                  </div>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-end-ok" style="max-width:none;width:100%;">✓ Items reload on next login</div>
+                </div>
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-no">No — loaded fine</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-end-ok" style="max-width:none;width:100%;">✓ Problem solved!</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column 3: Items confirmed missing -->
+            <div class="fc-branch-col">
+              <span class="fc-label" style="color:var(--c-red);background:var(--c-red-d);border:1px solid rgba(255,82,82,0.3);">❌ Items confirmed missing after full load</span>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                <strong>1.</strong> Check <strong>Trash</strong> — items may have been accidentally deleted.<br>
+                <strong>2.</strong> Check <strong>Lost and Found</strong> — returned items from objects land here.<br>
+                <strong>3.</strong> Check your <strong>Transaction History</strong> on the SL website to confirm purchase.
+              </div>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-q" style="max-width:none;width:100%;">Found in Trash or Lost and Found?</div>
+              <div class="fc-branch" style="max-width:none;width:100%;margin-top:6px;">
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-yes">Yes</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-end-ok" style="max-width:none;width:100%;">✓ Restore from Trash or move from Lost and Found</div>
+                </div>
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-no">No</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-end-ticket" style="max-width:none;width:100%;">📋 File a support ticket at support.secondlife.com — Linden Lab may restore items lost due to a technical fault. Include item names and approximate dates.</div>
+                </div>
+              </div>
+            </div>
+
+          
+            <!-- Column 4: Redelivery -->
+            <div class="fc-branch-col">
+              <span class="fc-label" style="color:var(--c-teal);background:var(--c-teal-d);border:1px solid rgba(29,233,213,0.3);">🔄 Purchased at a store or Marketplace</span>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                Most creators offer <strong>redelivery</strong>.<br><br>
+                <strong>Marketplace:</strong> secondlife.com → Marketplace → My Account → Order History → find the order → click <strong>Redeliver</strong>.
+              </div>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-action" style="max-width:none;width:100%;">
+                <strong>In-world store:</strong> Look for a <strong>Redelivery Terminal</strong> at the store. Touch it and follow the prompts to re-receive your purchase.
+              </div>
+              <span class="fc-arrow">↓</span>
+              <div class="fc-node fc-q" style="max-width:none;width:100%;">Redelivery successful?</div>
+              <div class="fc-branch" style="max-width:none;width:100%;margin-top:6px;">
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-yes">Yes</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-end-ok" style="max-width:none;width:100%;">✓ Problem solved!</div>
+                </div>
+                <div class="fc-branch-col">
+                  <span class="fc-label fc-label-no">No</span>
+                  <span class="fc-arrow">↓</span>
+                  <div class="fc-node fc-action" style="max-width:none;width:100%;">Contact the creator via IM or their store support. Include your transaction ID from Order History.</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <hr class="fc-sep">
+          <div class="fc-merge">↕ general tips ↕</div>
+          <span class="fc-arrow">↓</span>
+          <div class="fc-node fc-action" style="max-width:640px;">
+            Keep inventory tidy — organise into folders and avoid thousands of loose items at the top level, as this slows loading. Regularly empty the Trash folder.
+          </div>
+
+        </div>
+      </div>
+    </div>
+
 
 </main>
 
