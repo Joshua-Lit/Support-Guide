@@ -124,7 +124,7 @@
     font-size: 15px;
     flex-shrink: 0;
   }
-  .sidebar-nav { padding: 12px 0; flex: 1; }
+  .sidebar-nav { padding: 12px 0; flex: 1; overflow-y: auto; }
   .sidebar-status { border-top:1px solid var(--border); padding:10px 16px; display:flex; align-items:center; gap:8px; }
   .status-dot { width:6px; height:6px; border-radius:50%; background:var(--c-tech); animation:blink 2s ease-in-out infinite; flex-shrink:0; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
@@ -184,6 +184,49 @@
   }
   .sidebar-home:hover { background: rgba(167,139,255,0.2); }
 
+  /* ── Sidebar search (matches index.html style) ── */
+  .search-wrap { padding: 12px 14px; border-bottom: 1px solid var(--border); }
+  .search-inner { position: relative; }
+  .search-icon {
+    position: absolute; left: 10px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim); font-size: 11px;
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    pointer-events: none;
+  }
+  #tech-search {
+    width: 100%;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 28px 8px 30px;
+    color: var(--text-hi);
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  #tech-search:focus { border-color: var(--c-tech); box-shadow: 0 0 0 3px var(--c-tech-d); }
+  #tech-search::placeholder { color: var(--text-dim); }
+  #tech-clear {
+    position: absolute; right: 8px; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none; cursor: pointer;
+    color: var(--text-dim); font-size: 11px; line-height: 1;
+    padding: 2px 3px; border-radius: 3px;
+    display: none;
+    transition: color 0.15s, background 0.15s;
+  }
+  #tech-clear:hover { color: var(--text-hi); background: var(--border); }
+  #tech-clear.visible { display: block; }
+  #tech-search-count {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--c-teal);
+    padding: 5px 2px 0;
+    min-height: 18px;
+  }
+
   #main { flex: 1; padding: 40px 52px 80px; overflow-x: hidden; min-width: 0; }
 
   /* ═══ HEADER ═══ */
@@ -214,41 +257,6 @@
     color: var(--text-mid);
     max-width: 580px;
   }
-
-  /* ═══ SEARCH ═══ */
-  .search-wrap {
-    margin: 0 0 32px 0;
-    max-width: 600px;
-    position: relative;
-  }
-  #tech-search {
-    width: 100%;
-    background: var(--panel);
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    padding: 10px 40px 10px 16px;
-    color: var(--text-hi);
-    font-family: 'Share Tech Mono', 'Courier New', monospace;
-    font-size: 13px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  #tech-search:focus { border-color: var(--c-tech); }
-  #tech-search::placeholder { color: var(--text-dim); }
-  #tech-clear {
-    display: none;
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: var(--text-dim);
-    cursor: pointer;
-    font-size: 14px;
-    padding: 2px 4px;
-  }
-  #tech-clear:hover { color: var(--text-hi); }
 
   /* ═══ MAIN LAYOUT ═══ */
   #main {
@@ -560,10 +568,6 @@
   }
   .footer-top-btn:hover { color: var(--teal); border-color: var(--teal); }
 
-  @media (max-width: 640px) {
-    #page-header, .search-wrap, #main { padding-left: 20px; padding-right: 20px; }
-  }
-
   .sidebar-nav-toggle {
     display: none;
     width: 100%;
@@ -588,58 +592,26 @@
     .sidebar-nav.mobile-open { display: block; }
   }
   @media (max-width: 768px) {
-    /* Stack sidebar above main */
     #app { flex-direction: column; }
-
-    #sidebar {
-      width: 100%;
-      min-width: 0;
-      height: auto;
-      position: static;
-      border-right: none;
-      border-bottom: 1px solid var(--border);
-      overflow-y: visible;
-    }
-
-    /* Collapse sidebar nav by default on mobile — show logo and page-nav only */
+    #sidebar { width: 100%; min-width: 0; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); overflow-y: visible; }
     .sidebar-nav { display: none; }
     .sidebar-logo { padding: 14px 18px; }
-
-    /* Page nav full width */
     .page-nav { width: 100%; }
     .page-nav-link { padding: 10px 12px; font-size: 11px; }
-
-    /* Main content */
     #main { padding: 24px 16px 60px; }
-
-    /* Header */
     .header-title { font-size: 1.3rem; }
     .header-sub { font-size: 12px; }
-
-    /* Viewer columns stack */
     .viewer-cols { grid-template-columns: 1fr; }
-
-    /* Flowchart buttons stack */
     .fc-btn-grid { grid-template-columns: 1fr; }
-
-    /* Section headers */
     .sec-hdr { flex-wrap: wrap; gap: 10px; }
-
-    /* Say blocks */
     .say-text { padding-right: 0; padding-bottom: 36px; }
     .say-block .copy-btn { top: auto; bottom: 10px; right: 12px; }
-
-    /* Modal */
     #fc-modal-inner { margin: 8px; padding: 16px 12px 20px; }
     #fc-modal-title { font-size: 0.85rem; }
-
-    /* Flowchart branches stack on mobile */
     .fc-branch { grid-template-columns: 1fr !important; }
     .fc-branch-col { width: 100%; }
     .fc-node { max-width: 100% !important; width: 100% !important; }
   }
-
-  /* Slightly wider phones and small tablets */
   @media (max-width: 900px) and (min-width: 769px) {
     #sidebar { width: 200px; min-width: 200px; }
     #main { padding: 28px 28px 60px; }
@@ -736,7 +708,6 @@
   .page-nav-link:hover { color: var(--text-hi); background: var(--blue-dim); }
   .page-nav-link.active { color: var(--blue); border-bottom-color: var(--blue); background: var(--blue-dim); }
   .pn-icon { font-size: 13px; }
-
 
   .fs-icon {
     display: inline-flex;
@@ -860,7 +831,7 @@
     transform: translateX(-50%);
     background: var(--bg2);
     border: 1px solid var(--border2);
-    border-radius: var(--radius);
+    border-radius: 8px;
     padding: 14px 20px;
     display: flex;
     align-items: center;
@@ -876,7 +847,7 @@
   #cookie-notice p { flex: 1; line-height: 1.5; margin: 0; }
   #cookie-notice a { color: var(--text); text-decoration: underline; }
   #cookie-notice button {
-    background: var(--purple);
+    background: var(--c-tech);
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -885,13 +856,129 @@
     font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
-    font-family: 'DM Sans', sans-serif;
     transition: opacity 0.15s;
     flex-shrink: 0;
   }
   #cookie-notice button:hover { opacity: 0.85; }
 
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const link = document.getElementById('suggest-link');
+  if (link) {
+    const u = 'josh', d = 'joshualit.uk';
+    link.href = 'mailto:' + u + '@' + d;
+    link.title = 'Send suggestions to ' + u + '@' + d;
+  }
+  // Auto-open flowchart modal if URL hash matches
+  const hash = window.location.hash;
+  if (hash === '#fc-avatar-appearance') openModal('avatar-appearance', 'Naked / Missing Body Parts or Clothing');
+  else if (hash === '#fc-bake-fail') openModal('bake-fail', 'Bake Fail / Cloud / Grey Avatar');
+  else if (hash === '#fc-tp-fail') openModal('tp-fail', 'Teleport Failure');
+  else if (hash === '#fc-inventory-loss') openModal('inventory-loss', 'Missing Inventory Items');
+
+  document.getElementById('fc-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // ── Sidebar search ──
+  const srch = document.getElementById('tech-search');
+  const clr  = document.getElementById('tech-clear');
+  const cnt  = document.getElementById('tech-search-count');
+
+  function n(s) { return s.toLowerCase().replace(/[^a-z0-9 ]/g,' '); }
+
+  function doTechSearch(raw) {
+    const q = n(raw);
+    const cards = document.querySelectorAll('.qa-card');
+    let hits = 0;
+    cards.forEach(el => el.classList.remove('hidden'));
+    if (!q.trim()) {
+      cnt.textContent = '';
+      return;
+    }
+    const terms = q.trim().split(/\s+/).filter(Boolean);
+    cards.forEach(el => {
+      const hay = n((el.dataset.search || '') + ' ' + el.textContent);
+      if (terms.every(t => hay.includes(t))) hits++;
+      else el.classList.add('hidden');
+    });
+    cnt.textContent = hits > 0 ? hits + ' result' + (hits !== 1 ? 's' : '') : 'no results';
+  }
+
+  srch.addEventListener('input', () => {
+    clr.classList.toggle('visible', srch.value.length > 0);
+    doTechSearch(srch.value);
+  });
+  clr.addEventListener('click', () => {
+    srch.value = '';
+    clr.classList.remove('visible');
+    doTechSearch('');
+    srch.focus();
+  });
+
+  if (localStorage.getItem('cookie-ok-v2')) document.getElementById('cookie-notice').classList.add('hidden');
+});
+
+function toggleSidebarNav() {
+  const nav = document.getElementById('sidebar-nav');
+  const btn = document.getElementById('sidebar-nav-toggle');
+  if (!nav || !btn) return;
+  nav.classList.toggle('mobile-open');
+  btn.classList.toggle('open');
+}
+
+function copyShortcut(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = 'COPIED!';
+    btn.style.color = 'var(--c-teal)';
+    setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 1500);
+  });
+}
+
+function jumpTo(id) {
+  const el = document.getElementById(id);
+  if (el) { el.scrollIntoView({behavior:'smooth', block:'start'}); }
+  const nav = document.getElementById('sidebar-nav');
+  const btn = document.getElementById('sidebar-nav-toggle');
+  if (nav && nav.classList.contains('mobile-open')) {
+    nav.classList.remove('mobile-open');
+    if (btn) btn.classList.remove('open');
+  }
+}
+
+function tog(trigger) {
+  const card = trigger.parentElement;
+  card.classList.toggle('open');
+}
+
+function copyText(btn) {
+  const text = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ OK';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('ok'); }, 2200);
+  });
+}
+
+function openModal(id, title) {
+  const src = document.getElementById('fc-content-' + id);
+  if (!src) return;
+  document.getElementById('fc-modal-title').textContent = title;
+  document.getElementById('fc-modal-body').innerHTML = src.innerHTML;
+  document.getElementById('fc-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('fc-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
 </head>
 <body>
 
@@ -914,6 +1001,16 @@
     <a class="page-nav-link" href="index.html"><span class="pn-icon">🏠</span>Home</a>
     <a class="page-nav-link active" href="technical.html"><span class="pn-icon">⚙️</span>Technical</a>
   </div>
+
+  <div class="search-wrap">
+    <div class="search-inner">
+      <span class="search-icon">//</span>
+      <input type="text" id="tech-search" placeholder="search technical Q&amp;A..." autocomplete="off" spellcheck="false">
+      <button id="tech-clear" title="Clear search">✕</button>
+    </div>
+    <div id="tech-search-count"></div>
+  </div>
+
   <button class="sidebar-nav-toggle" id="sidebar-nav-toggle" onclick="toggleSidebarNav()">Navigation</button>
   <div class="sidebar-nav" id="sidebar-nav">
     <div class="nav-section-hdr">⚙️ Media &amp; Streaming</div>
@@ -954,11 +1051,6 @@
       <div class="stat-chip" onclick="document.getElementById('sec-flowcharts').scrollIntoView({behavior:'smooth'})" title="Go to Flowcharts" style="cursor:pointer;"><span class="sc-val">4</span><span class="sc-lbl">Flowcharts</span></div>
       <div class="stat-chip" onclick="document.getElementById('qa-head-mouse').scrollIntoView({behavior:'smooth'})" title="Go to Firestorm Settings" style="cursor:pointer;border-color:rgba(255,100,50,0.4);"><span class="sc-val" style="color:var(--c-fs);">6</span><span class="sc-lbl">Firestorm</span></div>
     </div>
-  </div>
-
-  <div class="search-wrap">
-    <input type="text" id="tech-search" placeholder="search technical Q&amp;A..." autocomplete="off" spellcheck="false">
-    <button id="tech-clear" title="Clear search">✕</button>
   </div>
 
   <div class="sec-hdr">
@@ -1767,118 +1859,10 @@
   </div>
 </footer>
 
-<div style="background:var(--bg2);border-top:1px solid var(--border);padding:10px 28px;text-align:center;font-size:12px;color:var(--text-dim);">Independent community resource. <strong style="color:var(--text-mid);">Not an official Linden Lab or Second Life website.</strong> Second Life® and Linden Lab® are registered trademarks of Linden Research, Inc.</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const link = document.getElementById('suggest-link');
-  if (link) {
-    const u = 'josh', d = 'joshualit.uk';
-    link.href = 'mailto:' + u + '@' + d;
-    link.title = 'Send suggestions to ' + u + '@' + d;
-  }
-  // Auto-open flowchart modal if URL hash matches
-  const hash = window.location.hash;
-  if (hash === '#fc-avatar-appearance') openModal('avatar-appearance', 'Naked / Missing Body Parts or Clothing');
-  else if (hash === '#fc-bake-fail') openModal('bake-fail', 'Bake Fail / Cloud / Grey Avatar');
-  else if (hash === '#fc-tp-fail') openModal('tp-fail', 'Teleport Failure');
-  else if (hash === '#fc-inventory-loss') openModal('inventory-loss', 'Missing Inventory Items');
-});
-
-function toggleSidebarNav() {
-  const nav = document.getElementById('sidebar-nav');
-  const btn = document.getElementById('sidebar-nav-toggle');
-  if (!nav || !btn) return;
-  nav.classList.toggle('mobile-open');
-  btn.classList.toggle('open');
-}
-
-function copyShortcut(btn, text) {
-  navigator.clipboard.writeText(text).then(() => {
-    const orig = btn.textContent;
-    btn.textContent = 'COPIED!';
-    btn.style.color = 'var(--c-teal)';
-    setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 1500);
-  });
-}
-
-function jumpTo(id) {
-  const el = document.getElementById(id);
-  if (el) { el.scrollIntoView({behavior:'smooth', block:'start'}); }
-  // Close mobile nav if open
-  const nav = document.getElementById('sidebar-nav');
-  const btn = document.getElementById('sidebar-nav-toggle');
-  if (nav && nav.classList.contains('mobile-open')) {
-    nav.classList.remove('mobile-open');
-    if (btn) btn.classList.remove('open');
-  }
-}
-
-function tog(trigger) {
-  const card = trigger.parentElement;
-  card.classList.toggle('open');
-}
-
-function openModal(id, title) {
-  const src = document.getElementById('fc-content-' + id);
-  if (!src) return;
-  document.getElementById('fc-modal-title').textContent = title;
-  document.getElementById('fc-modal-body').innerHTML = src.innerHTML;
-  document.getElementById('fc-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('fc-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('fc-modal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
-  });
-});
-
-const srch = document.getElementById('tech-search');
-const clr  = document.getElementById('tech-clear');
-const cnt  = document.getElementById('qa-count');
-
-function n(s) { return s.toLowerCase().replace(/[^a-z0-9 ]/g,' '); }
-
-function doSearch(raw) {
-  const q = n(raw);
-  const cards = document.querySelectorAll('.qa-card');
-  let hits = 0;
-  cards.forEach(el => el.classList.remove('hidden'));
-  if (!q.trim()) { updateCount(); return; }
-  const terms = q.trim().split(/\s+/).filter(Boolean);
-  cards.forEach(el => {
-    const hay = n(el.dataset.search + ' ' + el.textContent);
-    if (terms.every(t => hay.includes(t))) hits++;
-    else el.classList.add('hidden');
-  });
-  cnt.textContent = hits + ' result' + (hits !== 1 ? 's' : '');
-}
-
-function updateCount() {
-  const total = document.querySelectorAll('.qa-card').length;
-  cnt.textContent = total + ' entr' + (total !== 1 ? 'ies' : 'y');
-}
-
-srch.addEventListener('input', () => {
-  clr.style.display = srch.value ? 'block' : 'none';
-  doSearch(srch.value);
-});
-clr.addEventListener('click', () => {
-  srch.value = '';
-  clr.style.display = 'none';
-  doSearch('');
-});
-</script>
-
+<div style="background:var(--bg2);border-top:1px solid var(--border);padding:12px 28px;text-align:center;">
+  <p style="font-size:12px;color:var(--text-dim);line-height:1.7;">This is an independent community resource. <strong style="color:var(--text-mid);">Not an official Linden Lab or Second Life website.</strong></p>
+  <p style="font-size:12px;color:var(--text-dim);margin-top:4px;">Second Life® and Linden Lab® are registered trademarks of Linden Research, Inc. All rights reserved.</p>
+</div>
 
 <div id="fc-modal" role="dialog" aria-modal="true">
   <div id="fc-modal-inner">
@@ -1887,5 +1871,11 @@ clr.addEventListener('click', () => {
     <div id="fc-modal-body"></div>
   </div>
 </div>
+
+<div id="cookie-notice" class="hidden">
+  <p>This site uses localStorage to remember your preferences. It does not use tracking cookies or advertising. Our hosting provider may set technical cookies. <a href="https://lindenlab.com/legal/privacy-policy" target="_blank">More info</a></p>
+  <button onclick="document.getElementById('cookie-notice').classList.add('hidden');localStorage.setItem('cookie-ok-v2','1')">Got it</button>
+</div>
+
 </body>
 </html>
