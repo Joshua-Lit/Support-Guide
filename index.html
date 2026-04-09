@@ -12,7 +12,7 @@
 <body>
 <div id="app">
 
-<!-- ══════════════════════ SIDEBAR ══════════════════════ -->
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; SIDEBAR &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <nav id="sidebar">
   <div class="logo">
     <div class="logo-row">
@@ -28,22 +28,22 @@
   </div>
 
   <div class="page-nav">
-    <a class="page-nav-link active" href="index.html"><span class="pn-icon">🏠</span>Home</a>
-    <a class="page-nav-link" href="technical.html"><span class="pn-icon">⚙️</span>Technical</a>
+    <a class="page-nav-link active" href="index.html"><span class="pn-icon">&#127968;</span>Home</a>
+    <a class="page-nav-link" href="technical.html"><span class="pn-icon">&#9881;&#65039;</span>Technical</a>
   </div>
 
   <div class="search-wrap">
     <div class="search-inner">
       <span class="search-icon">//</span>
       <input type="text" id="global-search" placeholder="search guide..." autocomplete="off" spellcheck="false">
-      <button id="search-clear" onclick="clearSearch()" title="Clear search">✕</button>
+      <button id="search-clear" onclick="clearSearch()" title="Clear search">&#10005;</button>
     </div>
     <div id="search-count"></div>
   </div>
 
   <div class="nav">
     <div class="nav-collapse-row">
-      <button id="nav-toggle-btn" onclick="toggleAllNav()" title="Expand all sections">⊞ Expand all</button>
+      <button id="nav-toggle-btn" onclick="toggleAllNav()" title="Expand all sections">&#8862; Expand all</button>
       <label class="theme-switch" title="Toggle light / dark theme" onclick="toggleTheme(); return false;">
         <div class="theme-switch-track">
           <span class="theme-switch-sun">&#9728;</span>
@@ -55,7 +55,7 @@
 
     <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
-        <span>⚡</span> Quick Index <span class="ng-arrow">▶</span>
+        <span>&#9889;</span> Quick Index <span class="ng-arrow">&#9654;</span>
       </div>
       <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('sec-index')"><span class="ni-dot"></span>All 22 topics</span>
@@ -64,7 +64,7 @@
 
     <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
-        <span>❓</span> FAQs &amp; Answers <span class="ng-arrow">▶</span>
+        <span>&#10067;</span> FAQs &amp; Answers <span class="ng-arrow">&#9654;</span>
       </div>
       <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('faq-appearance')"><span class="ni-dot"></span>Avatar Appearance</span>
@@ -84,12 +84,16 @@
         <span class="nav-item" onclick="jumpTo('faq-voice')"><span class="ni-dot"></span>Voice &amp; Audio</span>
         <span class="nav-item" onclick="jumpTo('faq-invisible')"><span class="ni-dot"></span>Invisible Avatar</span>
         <span class="nav-item" onclick="jumpTo('faq-free-avatar')"><span class="ni-dot"></span>Free Good Avatar</span>
+        <span class="nav-item" onclick="jumpTo('faq-overwhelmed')"><span class="ni-dot"></span>Confused / Overwhelmed</span>
+        <span class="nav-item" onclick="jumpTo('faq-dontknow')"><span class="ni-dot"></span>When You Don't Know</span>
+        <span class="nav-item" onclick="jumpTo('faq-support')"><span class="ni-dot"></span>Calling for Support</span>
+        <span class="nav-item" onclick="jumpTo('faq-sffl')"><span class="ni-dot"></span>Second Friends for Life</span>
       </div>
     </div>
 
     <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
-        <span>📍</span> Landmark Directory <span class="ng-arrow">▶</span>
+        <span>&#128205;</span> Landmark Directory <span class="ng-arrow">&#9654;</span>
       </div>
       <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('lm-welcome')"><span class="ni-dot"></span>Welcome Hub</span>
@@ -106,31 +110,7 @@
 
     <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
-        <span>📋</span> Tips &amp; Scripts <span class="ng-arrow">▶</span>
-      </div>
-      <div class="nav-items">
-        <span class="nav-item" onclick="jumpTo('sc-awp')"><span class="ni-dot"></span>Naked / Missing — AWP</span>
-        <span class="nav-item" onclick="jumpTo('sc-meshbody')"><span class="ni-dot"></span>Explaining Mesh Bodies</span>
-        <span class="nav-item" onclick="jumpTo('sc-greeting')"><span class="ni-dot"></span>Greeting a Resident</span>
-        <span class="nav-item" onclick="jumpTo('sc-overwhelmed')"><span class="ni-dot"></span>Overwhelmed Resident</span>
-        <span class="nav-item" onclick="jumpTo('sc-dontknow')"><span class="ni-dot"></span>When You Don't Know</span>
-        <span class="nav-item" onclick="jumpTo('sc-closing')"><span class="ni-dot"></span>Wrapping Up</span>
-        <span class="nav-item" onclick="jumpTo('sc-meshbody')"><span class="ni-dot"></span>Explaining Mesh Bodies</span>
-        <span class="nav-item" onclick="jumpTo('sc-difficult')"><span class="ni-dot"></span>Difficult Residents</span>
-        <span class="nav-item" onclick="jumpTo('sc-movelock')"><span class="ni-dot"></span>MoveLock / Being Pushed</span>
-        <span class="nav-item" onclick="jumpTo('sc-gambling')"><span class="ni-dot"></span>Gambling &amp; Skill Gaming</span>
-        <span class="nav-item" onclick="jumpTo('sc-adult')"><span class="ni-dot"></span>Age Verification</span>
-        <span class="nav-item" onclick="jumpTo('sc-sex')"><span class="ni-dot"></span>Quick Answer — Sex?</span>
-        <span class="nav-item" onclick="jumpTo('sc-adulthub')"><span class="ni-dot"></span>What Can You Do at Adult Hub?</span>
-        <span class="nav-item" onclick="jumpTo('sc-genitalia')"><span class="ni-dot"></span>Where Can I Get Genitalia?</span>
-        <span class="nav-item" onclick="jumpTo('sc-genitalia-hub')"><span class="ni-dot"></span>Genitalia — At the Adult Hub</span>
-        <span class="nav-item" onclick="jumpTo('sc-sffl')"><span class="ni-dot"></span>Second Friends for Life</span>
-      </div>
-    </div>
-
-    <div class="nav-group">
-      <div class="nav-group-hdr" onclick="toggleNav(this)">
-        <span>▶</span> Video Links <span class="ng-arrow">▶</span>
+        <span>&#9654;</span> Video Links <span class="ng-arrow">&#9654;</span>
       </div>
       <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('sec-videos')"><span class="ni-dot"></span>All videos</span>
@@ -147,10 +127,10 @@
 
     <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
-        <span>🌐</span> Useful Websites <span class="ng-arrow">▶</span>
+        <span>&#127760;</span> Useful Websites <span class="ng-arrow">&#9654;</span>
       </div>
       <div class="nav-items">
-        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>ShowBuzz — Live Events</span>
+        <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>ShowBuzz &#8212; Live Events</span>
         <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>SL Music Events</span>
         <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Land Options</span>
         <span class="nav-item" onclick="jumpTo('sec-websites')"><span class="ni-dot"></span>Marketplace</span>
@@ -163,18 +143,18 @@
 
     <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
-        <span>📱</span> SL Mobile App <span class="ng-arrow">▶</span>
+        <span>&#128241;</span> SL Mobile App <span class="ng-arrow">&#9654;</span>
       </div>
       <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('faq-mobile-basics')"><span class="ni-dot"></span>Mobile vs Desktop</span>
         <span class="nav-item" onclick="jumpTo('faq-mobile-ar')"><span class="ni-dot"></span>Report Abuse on Mobile</span>
-        <span class="nav-item" onclick="jumpTo('faq-starting-areas')"><span class="ni-dot"></span>Starting Areas — Mentor Scope</span>
+        <span class="nav-item" onclick="jumpTo('faq-starting-areas')"><span class="ni-dot"></span>Starting Areas &#8212; Mentor Scope</span>
       </div>
     </div>
 
         <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
-        <span>⚙️</span> Technical Q&amp;A <span class="ng-arrow">▶</span>
+        <span>&#9881;&#65039;</span> Technical Q&amp;A <span class="ng-arrow">&#9654;</span>
       </div>
       <div class="nav-items">
         <span class="nav-item nav-item--xpage" onclick="window.location.href='technical.html#qa-video-stream'"><span class="ni-dot"></span>Stream video to SL screen</span>
@@ -194,38 +174,37 @@
 
     <div class="nav-group">
       <div class="nav-group-hdr" onclick="openClaraModal()" style="cursor:pointer;">
-        <span>🕊️</span> CLARA Method <span class="ni-modal-hint">↗</span>
+        <span>&#128330;&#65039;</span> CLARA Method <span class="ni-modal-hint">&#8599;</span>
       </div>
     </div>
 
     <div class="nav-group">
       <div class="nav-group-hdr" onclick="openShortcutsModal()" style="cursor:pointer;">
-        <span>⌨️</span> Keyboard Shortcuts <span class="ni-modal-hint">↗</span>
+        <span>&#9000;&#65039;</span> Keyboard Shortcuts <span class="ni-modal-hint">&#8599;</span>
       </div>
     </div>
 
   </div>
 
-  <button class="sidebar-checklist-btn" id="sidebar-checklist-btn" onclick="openChecklistModal()" style="display:block;">📋 Session Checklist</button>
+  <button class="sidebar-checklist-btn" id="sidebar-checklist-btn" onclick="openChecklistModal()" style="display:block;">&#128203; Session Checklist</button>
   <div class="sidebar-status">
     <div class="status-dot"></div>
-    <div class="status-text">GUIDE ONLINE — SL MENTORS</div>
-    <button class="sidebar-top-btn" onclick="scrollToTop()" title="Scroll to top">⬆ TOP</button>
+    <div class="status-text">GUIDE ONLINE &#8212; SL MENTORS</div>
+    <button class="sidebar-top-btn" onclick="scrollToTop()" title="Scroll to top">&#11014; TOP</button>
   </div>
 </nav>
 
-<!-- ══════════════════════ MAIN ══════════════════════ -->
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; MAIN &#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <main id="main">
 
   <div class="page-hdr">
     <div class="eyebrow">// SECOND LIFE MENTOR REFERENCE</div>
     <h1>Resident Support Guide</h1>
-    <p>Searchable reference for SL Mentors — FAQs, landmarks, scripts, and tips for helping new residents.</p>
+    <p>Searchable reference for SL Mentors &#8212; FAQs, landmarks, scripts, and tips for helping new residents.</p>
     <div class="stat-row">
       <div class="stat-chip" onclick="jumpTo('sec-mobile')" title="Go to Mobile" style="cursor:pointer;"><span class="sc-val">2</span><span class="sc-lbl">Mobile</span></div>
-      <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">17</span><span class="sc-lbl">FAQs</span></div>
+      <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">21</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">8</span><span class="sc-lbl">Landmarks</span></div>
-      <div class="stat-chip" onclick="jumpTo('sec-scripts')" title="Go to Scripts" style="cursor:pointer;"><span class="sc-val">14</span><span class="sc-lbl">Scripts</span></div>
     </div>
   </div>
 
@@ -234,220 +213,211 @@
     <p>No results found. Try a different search term.</p>
   </div>
 
-  <!-- ══════ QUICK INDEX ══════ -->
+  <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; QUICK INDEX &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
   <section class="section" id="sec-index" data-section="">
     <div class="section-hdr">
-      <div class="sec-icon si-b">⚡</div>
+      <div class="sec-icon si-b">&#9889;</div>
       <div class="sec-title">Quick Index</div>
       <div class="sec-count">Jump to any topic</div>
     </div>
     <div class="qi-grid">
 
       <div class="qi-card qi-elecblue" data-search="account premium basic membership tier" onclick="jumpTo('faq-account')">
-        <div class="qi-icon">🔑</div>
+        <div class="qi-icon">&#128273;</div>
         <div class="qi-info">
           <div class="qi-title">Account &amp; Membership</div>
           <div class="qi-sub">Premium, basic, tiers</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-adult" data-search="adult sex content age 18 verify hub mature explicit" onclick="jumpTo('faq-adult')">
-        <div class="qi-icon">🔞</div>
+        <div class="qi-icon">&#128286;</div>
         <div class="qi-info">
           <div class="qi-title">Adult Content</div>
-          <div class="qi-sub">Age verify first — 18+ only</div>
+          <div class="qi-sub">Age verify first &#8212; 18+ only</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-violet" data-search="avatar appearance shape skin attachments cloud grey bake fail ruth naked missing" onclick="jumpTo('faq-missing-parts')">
-        <div class="qi-icon">👤</div>
+        <div class="qi-icon">&#128100;</div>
         <div class="qi-info">
           <div class="qi-title">Avatar Appearance</div>
-          <div class="qi-sub">Missing parts · cloud · bake fail</div>
+          <div class="qi-sub">Missing parts &#183; cloud &#183; bake fail</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-clara" data-search="clara method de-escalation nonviolent communication empathy" onclick="openClaraModal()">
-        <div class="qi-icon">🕊️</div>
+        <div class="qi-icon">&#128330;&#65039;</div>
         <div class="qi-info">
           <div class="qi-title">CLARA Method</div>
           <div class="qi-sub">De-escalation framework</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-amber" data-search="linden dollars economy buying money transactions" onclick="jumpTo('faq-economy')">
-        <div class="qi-icon">💰</div>
+        <div class="qi-icon">&#128176;</div>
         <div class="qi-info">
           <div class="qi-title">Economy &amp; L$</div>
           <div class="qi-sub">Buying L$, transactions</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-lime" data-search="free avatar good look legacy body mike head firestorm" onclick="jumpTo('faq-free-avatar')">
-        <div class="qi-icon">✨</div>
+        <div class="qi-icon">&#10024;</div>
         <div class="qi-info">
           <div class="qi-title">Free Good Avatar</div>
           <div class="qi-sub">Legacy body, Milena or Mike head</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-sky" data-search="groups chat voice notifications join" onclick="jumpTo('faq-groups')">
-        <div class="qi-icon">💬</div>
+        <div class="qi-icon">&#128172;</div>
         <div class="qi-info">
           <div class="qi-title">Groups &amp; Chat</div>
           <div class="qi-sub">Join, voice, notifications</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-rose" data-search="inventory lost missing items folder trash" onclick="jumpTo('faq-inventory')">
-        <div class="qi-icon">🎒</div>
+        <div class="qi-icon">&#127890;</div>
         <div class="qi-info">
           <div class="qi-title">Inventory Issues</div>
           <div class="qi-sub">Lost, missing, sorting</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-white" data-search="invisible avatar hidden avatars toggle shortcut" onclick="jumpTo('faq-invisible')">
-        <div class="qi-icon">👻</div>
+        <div class="qi-icon">&#128123;</div>
         <div class="qi-info">
           <div class="qi-title">Invisible Avatar</div>
           <div class="qi-sub">Hidden avatars, toggle fix</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-gold" data-search="landmarks welcome hub sandbox help island" onclick="jumpTo('sec-landmarks')">
-        <div class="qi-icon">📍</div>
+        <div class="qi-icon">&#128205;</div>
         <div class="qi-info">
           <div class="qi-title">Key Landmarks</div>
           <div class="qi-sub">Help areas, hubs, sandboxes</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-orange" data-search="land parcels renting buying mainland" onclick="jumpTo('faq-land')">
-        <div class="qi-icon">🏡</div>
+        <div class="qi-icon">&#127969;</div>
         <div class="qi-info">
           <div class="qi-title">Land &amp; Parcels</div>
           <div class="qi-sub">Renting, buying, mainland</div>
         </div>
-        <div class="qi-arrow">›</div>
-      </div>
-
-      <div class="qi-card qi-teal" data-search="mentor scripts greetings phrases tips" onclick="jumpTo('sec-scripts')">
-        <div class="qi-icon">📋</div>
-        <div class="qi-info">
-          <div class="qi-title">Mentor Scripts</div>
-          <div class="qi-sub">Greetings, common responses</div>
-        </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-mint" data-search="movement teleport flying stuck tp" onclick="jumpTo('faq-movement')">
-        <div class="qi-icon">🚀</div>
+        <div class="qi-icon">&#128640;</div>
         <div class="qi-info">
           <div class="qi-title">Movement &amp; Teleports</div>
           <div class="qi-sub">Flying, TP issues, stuck</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-red" data-search="rules abuse griefer report AR ToS" onclick="jumpTo('faq-rules')">
-        <div class="qi-icon">🛡️</div>
+        <div class="qi-icon">&#128737;&#65039;</div>
         <div class="qi-info">
           <div class="qi-title">Rules &amp; Reporting</div>
           <div class="qi-sub">AR, griefers, ToS</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-gaming" data-search="gambling skill gaming chance slots casino wagering payout region age 19" onclick="jumpTo('faq-gambling')">
-        <div class="qi-icon">🎮</div>
+        <div class="qi-icon">&#127918;</div>
         <div class="qi-info">
           <div class="qi-title">Gaming &amp; Gambling</div>
           <div class="qi-sub">Skill gaming, ToS rules</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-mobile" data-search="mobile app ios android campwich controls differences abuse report" onclick="jumpTo('sec-mobile')">
-        <div class="qi-icon">📱</div>
+        <div class="qi-icon">&#128241;</div>
         <div class="qi-info">
           <div class="qi-title">SL Mobile App</div>
           <div class="qi-sub">Controls, differences, AR</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card" style="border-left:6px solid rgba(140,140,155,0.6);" data-search="keyboard shortcuts pc mac movement fly run teleport avatar chat" onclick="openShortcutsModal()">
-        <div class="qi-icon">⌨️</div>
+        <div class="qi-icon">&#9000;&#65039;</div>
         <div class="qi-info">
           <div class="qi-title">Keyboard Shortcuts</div>
           <div class="qi-sub">PC &amp; Mac quick reference</div>
         </div>
-        <div class="qi-arrow" style="color:#8c8c9b;">›</div>
+        <div class="qi-arrow" style="color:#8c8c9b;">&#8250;</div>
       </div>
 
       <div class="qi-card qi-tech" data-search="technical workflows bake fail flowchart viewer settings streaming scripting" onclick="window.location.href='technical.html'">
-        <div class="qi-icon">⚙️</div>
+        <div class="qi-icon">&#9881;&#65039;</div>
         <div class="qi-info">
           <div class="qi-title">Technical Q&amp;A</div>
           <div class="qi-sub">Workflows, viewer settings</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-coral" data-search="video tutorials youtube avatar shape shopping bakes mesh communicating music media help" onclick="jumpTo('sec-videos')">
-        <div class="qi-icon">▶</div>
+        <div class="qi-icon">&#9654;</div>
         <div class="qi-info">
           <div class="qi-title">Video Tutorials</div>
           <div class="qi-sub">8 helpful YouTube guides</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-skyblue" data-search="useful websites showbuzz marketplace knowledge base destination music" onclick="jumpTo('sec-websites')">
-        <div class="qi-icon">🌐</div>
+        <div class="qi-icon">&#127760;</div>
         <div class="qi-info">
           <div class="qi-title">Useful Websites</div>
           <div class="qi-sub">External resources &amp; links</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
       <div class="qi-card qi-fuchsia" data-search="voice audio sound microphone chat hear" onclick="jumpTo('faq-voice')">
-        <div class="qi-icon">🎙️</div>
+        <div class="qi-icon">&#127897;&#65039;</div>
         <div class="qi-info">
           <div class="qi-title">Voice &amp; Audio</div>
           <div class="qi-sub">Mic, sound, voice chat</div>
         </div>
-        <div class="qi-arrow">›</div>
+        <div class="qi-arrow">&#8250;</div>
       </div>
 
 
     </div>
   </section>
 
-  <!-- ══════ SECTION 1 — FAQs ══════ -->
+  <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; SECTION 1 &#8212; FAQs &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
   <section class="section" id="sec-faqs" data-section="">
     <div class="section-hdr">
-      <div class="sec-icon si-b">❓</div>
+      <div class="sec-icon si-b">&#10067;</div>
       <div class="sec-title">FAQs &amp; Answers</div>
-      <div class="sec-count">17 entries</div>
+      <div class="sec-count">21 entries</div>
     </div>
     <div class="faq-list">
 
       <div class="faq-item edge-acc" id="faq-account" data-search="premium plus basic account upgrade membership tier stipend benefits groups free linden home sandbox">
         <div class="faq-q" onclick="tog(this)">
-          <span class="faq-q-text">What are the membership tiers — Basic, Plus, Premium and Premium Plus?</span>
+          <span class="faq-q-text">What are the membership tiers &#8212; Basic, Plus, Premium and Premium Plus?</span>
           <span class="faq-tag t-acc">Account</span>
           <span class="faq-tog">+</span>
         </div>
@@ -459,34 +429,34 @@
               <div class="tier-price">Monthly</div>
             </div>
             <div class="tier-row">
-              <div class="tier-name"><span class="tier-icon">🔓</span><div><strong>Basic</strong><div class="tier-desc">50 groups. Full world access, Marketplace, L$ buying. Cannot own land or claim a Linden Home.</div></div></div>
+              <div class="tier-name"><span class="tier-icon">&#128275;</span><div><strong>Basic</strong><div class="tier-desc">50 groups. Full world access, Marketplace, L$ buying. Cannot own land or claim a Linden Home.</div></div></div>
               <div class="tier-price tier-free">Free</div>
               <div class="tier-price tier-free">Free</div>
             </div>
             <div class="tier-row">
-              <div class="tier-name"><span class="tier-icon">⭐</span><div><strong>Plus</strong><div class="tier-desc">55 groups. L$150/week stipend, up to 512m² mainland, limited Linden Home selection, L$10 uploads.</div></div></div>
+              <div class="tier-name"><span class="tier-icon">&#11088;</span><div><strong>Plus</strong><div class="tier-desc">55 groups. L$150/week stipend, up to 512m&#178; mainland, limited Linden Home selection, L$10 uploads.</div></div></div>
               <div class="tier-price">$5.50<span class="tier-pm">/mo</span></div>
               <div class="tier-price">$5.99<span class="tier-pm">/mo</span></div>
             </div>
             <div class="tier-row">
-              <div class="tier-name"><span class="tier-icon">🌟</span><div><strong>Premium</strong><div class="tier-desc">80 groups. L$300/week stipend, L$1,000 signup bonus, up to 1,024m² mainland, Linden Home, Premium sandboxes, 24/7 live chat.</div></div></div>
+              <div class="tier-name"><span class="tier-icon">&#127775;</span><div><strong>Premium</strong><div class="tier-desc">80 groups. L$300/week stipend, L$1,000 signup bonus, up to 1,024m&#178; mainland, Linden Home, Premium sandboxes, 24/7 live chat.</div></div></div>
               <div class="tier-price">$8.25<span class="tier-pm">/mo</span></div>
               <div class="tier-price">$11.99<span class="tier-pm">/mo</span></div>
             </div>
             <div class="tier-row">
-              <div class="tier-name"><span class="tier-icon">💎</span><div><strong>Premium Plus</strong><div class="tier-desc">150 groups. Up to 2,048m² mainland, free uploads, concierge phone support, host up to 2 Land Experiences, 240 stored IMs.</div></div></div>
+              <div class="tier-name"><span class="tier-icon">&#128142;</span><div><strong>Premium Plus</strong><div class="tier-desc">150 groups. Up to 2,048m&#178; mainland, free uploads, concierge phone support, host up to 2 Land Experiences, 240 stored IMs.</div></div></div>
               <div class="tier-price">$11.99<span class="tier-pm">/mo</span></div>
               <div class="tier-price">$15.99<span class="tier-pm">/mo</span></div>
             </div>
             <div class="tier-row">
-              <div class="tier-name"><span class="tier-icon">💎</span><div><strong>Premium Plus + Stipend &amp; Bonus</strong><div class="tier-desc">Everything above, plus L$650/week stipend and L$3,000 signup bonus. Requires the higher price plan.</div></div></div>
+              <div class="tier-name"><span class="tier-icon">&#128142;</span><div><strong>Premium Plus + Stipend &amp; Bonus</strong><div class="tier-desc">Everything above, plus L$650/week stipend and L$3,000 signup bonus. Requires the higher price plan.</div></div></div>
               <div class="tier-price">$20.75<span class="tier-pm">/mo</span></div>
               <div class="tier-price">$29.99<span class="tier-pm">/mo</span></div>
             </div>
           </div>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>
-            <p>Premium Plus has a checkbox during signup — if ticked, you pay more ($20.75/mo annual or $29.99/mo monthly) but receive the L$650/week stipend and L$3,000 signup bonus. If unticked, you pay less but get no stipend or bonus. Annual billing saves significantly across all paid tiers.</p>
+            <p>Premium Plus has a checkbox during signup &#8212; if ticked, you pay more ($20.75/mo annual or $29.99/mo monthly) but receive the L$650/week stipend and L$3,000 signup bonus. If unticked, you pay less but get no stipend or bonus. Annual billing saves significantly across all paid tiers.</p>
           </div>
         </div>
       </div>
@@ -499,50 +469,49 @@
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <p>The WORN tab in Inventory is the fastest way to identify what's missing — open their inventory, click WORN, and look for the folder path next to their body parts and clothing.</p>
+          <p>The WORN tab in Inventory is the fastest way to identify what's missing &#8212; open their inventory, click WORN, and look for the folder path next to their body parts and clothing.</p>
           <div class="tip-box">
             <div class="tip-label">// How newcomers access the AWP</div>
             <div class="bullets">
               <div class="bullet"><strong>Project Zero:</strong> "Avatar" tab on the bottom taskbar</div>
-              <div class="bullet"><strong>SL Viewer:</strong> Left side taskbar → "Avatar Welcome Pack — choose a complete avatar"</div>
-              <div class="bullet"><strong>Firestorm:</strong> Avatar menu → Avatar Welcome Pack</div>
+              <div class="bullet"><strong>SL Viewer:</strong> Left side taskbar &#8594; "Avatar Welcome Pack &#8212; choose a complete avatar"</div>
+              <div class="bullet"><strong>Firestorm:</strong> Avatar menu &#8594; Avatar Welcome Pack</div>
             </div>
           </div>
           <div class="say-block">
             <div class="say-label">// Click any line to copy it</div>
-            <div class="say-text" onclick="copyPara(this)">Open your Inventory (Ctrl+I) and click the WORN tab — this shows everything you're currently wearing, including the folder each item came from. Note the folder names shown — e.g. "Female body - B" or "Female look - Casual".</div>
-            <div class="say-text" onclick="copyPara(this)">In the WORN tab, note your body folder name — e.g. "Female body - B". Go to Clothing → Female bodies &amp; looks → [that folder name] in your main inventory. Items in bold are being worn — the one that's NOT bold is the missing part. Right-click it and choose Add.</div>
-            <div class="say-text" onclick="copyPara(this)">In the WORN tab, note your look folder name — e.g. "Female look - Casual". Go to Clothing → Female bodies &amp; looks → [that folder name] in your main inventory. Items in bold are being worn — the one that's NOT bold is the missing piece. Right-click it and choose Add.</div>
-            <div class="say-text" onclick="copyPara(this)">Go to Avatar in the top menu bar, then click Avatar Welcome Pack. Choose any of the complete starter looks — it's free and will give you a full avatar instantly!</div>
+            <div class="say-text" onclick="copyPara(this)">Open your Inventory (Ctrl+I) and click the WORN tab &#8212; this shows everything you're currently wearing, including the folder each item came from. Note the folder names shown &#8212; e.g. "Female body - B" or "Female look - Casual".</div>
+            <div class="say-text" onclick="copyPara(this)">In the WORN tab, note your body folder name &#8212; e.g. "Female body - B". Go to Clothing &#8594; Female bodies &amp; looks &#8594; [that folder name] in your main inventory. Items in bold are being worn &#8212; the one that's NOT bold is the missing part. Right-click it and choose Add.</div>
+            <div class="say-text" onclick="copyPara(this)">In the WORN tab, note your look folder name &#8212; e.g. "Female look - Casual". Go to Clothing &#8594; Female bodies &amp; looks &#8594; [that folder name] in your main inventory. Items in bold are being worn &#8212; the one that's NOT bold is the missing piece. Right-click it and choose Add.</div>
+            <div class="say-text" onclick="copyPara(this)">Go to Avatar in the top menu bar, then click Avatar Welcome Pack. Choose any of the complete starter looks &#8212; it's free and will give you a full avatar instantly!</div>
           </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="technical.html#fc-avatar-appearance" target="_blank">Diagnostic Flowchart ↗</a></div>
+          <div class="xref">&#128206; See also: <a class="xref-link" href="technical.html#fc-avatar-appearance" target="_blank">Diagnostic Flowchart &#8599;</a></div>
         </div>
       </div>
 
       <div class="faq-item edge-app" id="faq-appearance" data-search="avatar appearance shape skin bake fail cloud grey ruth rebake textures attachments hud">
         <div class="faq-q" onclick="tog(this)">
-          <span class="faq-q-text">My avatar looks like a cloud / grey blob — how do I fix it?</span>
+          <span class="faq-q-text">My avatar looks like a cloud / grey blob &#8212; how do I fix it?</span>
           <span class="faq-tag t-app">Appearance</span>
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <p>This is a <strong>bake fail</strong> — your avatar textures haven't loaded properly.</p>
+          <p>This is a <strong>bake fail</strong> &#8212; your avatar textures haven't loaded properly.</p>
           <div class="steps">
-            <div class="step"><div class="sn">1</div><div>Wait 30 seconds — resolves itself on slow connections.</div></div>
-            <div class="step"><div class="sn">2</div><div><strong>Avatar menu → Avatar Health → Refresh Attachments</strong></div></div>
-            <div class="step"><div class="sn">3</div><div><strong>Avatar → Avatar Health → Rebake Textures</strong> (shortcut: <code>Ctrl+Alt+R</code>)</div></div>
+            <div class="step"><div class="sn">1</div><div>Wait 30 seconds &#8212; resolves itself on slow connections.</div></div>
+            <div class="step"><div class="sn">2</div><div><strong>Avatar menu &#8594; Avatar Health &#8594; Refresh Attachments</strong></div></div>
+            <div class="step"><div class="sn">3</div><div><strong>Avatar &#8594; Avatar Health &#8594; Rebake Textures</strong> (shortcut: <code>Ctrl+Alt+R</code>)</div></div>
             <div class="step"><div class="sn">4</div><div>Still grey? Change to a different region, or relog entirely.</div></div>
           </div>
           <div class="tip-box">
             <div class="tip-label">// If stuck as Ruth / no mesh avatar</div>
-            <p>The quickest fix is the Avatar Welcome Pack — direct them there first, then follow up with the steps above if needed.</p>
+            <p>The quickest fix is the Avatar Welcome Pack &#8212; direct them there first, then follow up with the steps above if needed.</p>
           </div>
           <div class="say-block">
-            <div class="say-label">// Say to the resident</div>
-            <div class="say-text">Go to Avatar → Avatar Welcome Pack in the top menu bar and choose a complete modern avatar. It's free and takes just a few seconds!</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            <div class="say-label">// Click to copy</div>
+            <div class="say-text" onclick="copyPara(this)">Go to Avatar &#8594; Avatar Welcome Pack in the top menu bar and choose a complete modern avatar. It's free and takes just a few seconds!</div>
           </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-meshbody');return false;">Explaining Mesh Bodies script</a></div>
+          <div class="xref">&#128206; See also: <a class="xref-link" href="#" onclick="jumpTo('faq-free-avatar');return false;">Free Avatar FAQ</a></div>
         </div>
       </div>
 
@@ -556,14 +525,14 @@
         <div class="faq-body">
           <p>Usually caused by <strong>inventory not fully loading</strong> or high sim lag.</p>
           <div class="steps">
-            <div class="step"><div class="sn">1</div><div>Check <strong>Inventory → Recent</strong> — wait for the spinning wheel to stop.</div></div>
-            <div class="step"><div class="sn">2</div><div>Right-click the item → <strong>Attach To</strong> → choose attach point manually.</div></div>
-            <div class="step"><div class="sn">3</div><div>If vanished: <strong>Edit → Detach Object</strong> — it may have attached off-screen.</div></div>
+            <div class="step"><div class="sn">1</div><div>Check <strong>Inventory &#8594; Recent</strong> &#8212; wait for the spinning wheel to stop.</div></div>
+            <div class="step"><div class="sn">2</div><div>Right-click the item &#8594; <strong>Attach To</strong> &#8594; choose attach point manually.</div></div>
+            <div class="step"><div class="sn">3</div><div>If vanished: <strong>Edit &#8594; Detach Object</strong> &#8212; it may have attached off-screen.</div></div>
             <div class="step"><div class="sn">4</div><div>Relog on a quieter, lower-traffic region.</div></div>
           </div>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>
-            <p>If a HUD seems lost, try <strong>Avatar → Avatar Health → Reset Skeleton &amp; Animations</strong> and relog.</p>
+            <p>If a HUD seems lost, try <strong>Avatar &#8594; Avatar Health &#8594; Reset Skeleton &amp; Animations</strong> and relog.</p>
           </div>
         </div>
       </div>
@@ -578,72 +547,26 @@
         <div class="faq-body">
           <p>You can put together a solid, modern-looking avatar without spending a single L$. Here's how:</p>
           <div class="steps">
-            <div class="step"><div class="sn">1</div><div><strong>Your starter body is already a Legacy body</strong> — this is a quality mesh body, so you're ahead of the game from day one.</div></div>
-            <div class="step"><div class="sn">2</div><div><strong>Adjust your shape:</strong> Right-click your avatar → <strong>Edit Shape</strong>. Tweak sliders for height, build, face — make it yours.</div></div>
-            <div class="step"><div class="sn">3</div><div>Visit the <strong>Firestorm Social Island New Resident Help Area</strong> and pick up a free avatar — <strong>Milena</strong> (female) or <strong>Mike</strong> (male). Both are free for residents under 90 days old.</div></div>
-            <div class="step"><div class="sn">4</div><div><strong>Find free &amp; cheap clothes</strong> — visit <em>Palomma Plaza</em> (in-world, free gifts from top designers) or browse the Marketplace using these filtered links:
+            <div class="step"><div class="sn">1</div><div><strong>Your starter body is already a Legacy body</strong> &#8212; this is a quality mesh body, so you're ahead of the game from day one.</div></div>
+            <div class="step"><div class="sn">2</div><div><strong>Adjust your shape:</strong> Right-click your avatar &#8594; <strong>Edit Shape</strong>. Tweak sliders for height, build, face &#8212; make it yours.</div></div>
+            <div class="step"><div class="sn">3</div><div>Visit the <strong>Firestorm Social Island New Resident Help Area</strong> and pick up a free avatar &#8212; <strong>Milena</strong> (female) or <strong>Mike</strong> (male). Both are free for residents under 90 days old.</div></div>
+            <div class="step"><div class="sn">4</div><div><strong>Find free &amp; cheap clothes</strong> &#8212; visit <em>Palomma Plaza</em> (in-world, free gifts from top designers) or browse the Marketplace using these filtered links:
               <div class="mp-links">
-                <a class="mp-btn" href="https://marketplace.secondlife.com/products/search?search%5Bprice_low%5D=0&amp;search%5Bprice_high%5D=0&amp;search%5Bkeywords%5D=-demo" target="_blank">Marketplace — Free (L$0)</a>
-                <a class="mp-btn" href="https://marketplace.secondlife.com/products/search?search%5Bprice_low%5D=1&amp;search%5Bprice_high%5D=1&amp;search%5Bkeywords%5D=-demo" target="_blank">Marketplace — L$1 items</a>
+                <a class="mp-btn" href="https://marketplace.secondlife.com/products/search?search%5Bprice_low%5D=0&amp;search%5Bprice_high%5D=0&amp;search%5Bkeywords%5D=-demo" target="_blank">Marketplace &#8212; Free (L$0)</a>
+                <a class="mp-btn" href="https://marketplace.secondlife.com/products/search?search%5Bprice_low%5D=1&amp;search%5Bprice_high%5D=1&amp;search%5Bkeywords%5D=-demo" target="_blank">Marketplace &#8212; L$1 items</a>
               </div>
             </div></div>
-            <div class="step"><div class="sn">5</div><div>Check <strong>Inventory → Library → Clothing</strong> for starter outfits that came with your account.</div></div>
-            <div class="step"><div class="sn">6</div><div><strong>More confident residents</strong> can also explore <strong>Inventory → Library → Avatar Welcome Pack</strong> — right-click the folder, select <strong>Copy</strong>, and paste it into <strong>My Inventory</strong> above. They can then open the folder and wear individual clothing items and accessories from there.</div></div>
+            <div class="step"><div class="sn">5</div><div>Check <strong>Inventory &#8594; Library &#8594; Clothing</strong> for starter outfits that came with your account.</div></div>
+            <div class="step"><div class="sn">6</div><div><strong>More confident residents</strong> can also explore <strong>Inventory &#8594; Library &#8594; Avatar Welcome Pack</strong> &#8212; right-click the folder, select <strong>Copy</strong>, and paste it into <strong>My Inventory</strong> above. They can then open the folder and wear individual clothing items and accessories from there.</div></div>
           </div>
           <div class="say-block">
-            <div class="say-label">// Share this video — Avatar Welcome Pack &amp; Project Zero</div>
-            <div class="say-text">https://youtu.be/BJ1eRTlWDYk</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            <div class="say-label">// Click any line to copy it</div>
+            <div class="say-text" onclick="copyPara(this)">Think of the default avatar as a basic mannequin. A mesh body is like a custom suit you wear over it &#8212; much better detail and fits modern clothing. They cost L$ but free demos let you try before you buy!</div>
+            <div class="say-text" onclick="copyPara(this)">https://youtu.be/BJ1eRTlWDYk</div>
           </div>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>
-            <p>The <strong>Firestorm Social Island New Resident Help Area</strong> has skins, shapes, and outfits all at no cost. Walk newer residents through it in person if you can. Make sure any clothing is compatible with the chosen mesh body. Remember the free avatars are only available to accounts under 90 days old.</p>
-          </div>
-        </div>
-      </div>
-      <div class="faq-item edge-eco" id="faq-economy" data-search="linden dollars buy purchase exchange lindens transaction stipend lindex earn work premium plus signup bonus">
-        <div class="faq-q" onclick="tog(this)">
-          <span class="faq-q-text">How do I get Linden Dollars (L$)?</span>
-          <span class="faq-tag t-eco">Economy</span>
-          <span class="faq-tog">+</span>
-        </div>
-        <div class="faq-body">
-          <div class="steps">
-            <div class="step"><div class="sn">1</div><div><strong>Buy L$:</strong> Me → Buy L$ in viewer, or via LindeX on secondlife.com. Rate: approx <code>250–270 L$ per US$1</code>.</div></div>
-            <div class="step"><div class="sn">2</div><div><strong>Earn in-world:</strong> Work as host, DJ, model, scripter, or builder — many roles pay L$/hour.</div></div>
-            <div class="step"><div class="sn">3</div><div><strong>Membership stipends</strong> — paid automatically each week based on your tier:
-              <div class="tier-table" style="margin-top:10px;">
-                <div class="tier-row tier-header">
-                  <div class="tier-name"></div>
-                  <div class="tier-price">Weekly</div>
-                  <div class="tier-price">Signup Bonus</div>
-                </div>
-                <div class="tier-row">
-                  <div class="tier-name"><span class="tier-icon">⭐</span><div><strong>Plus</strong></div></div>
-                  <div class="tier-price">L$150</div>
-                  <div class="tier-price" style="color:var(--text-dim);font-size:11px;">—</div>
-                </div>
-                <div class="tier-row">
-                  <div class="tier-name"><span class="tier-icon">🌟</span><div><strong>Premium</strong></div></div>
-                  <div class="tier-price">L$300</div>
-                  <div class="tier-price">L$1,000</div>
-                </div>
-                <div class="tier-row">
-                  <div class="tier-name"><span class="tier-icon">💎</span><div><strong>Premium Plus</strong><div class="tier-desc">Without stipend &amp; bonus checkbox</div></div></div>
-                  <div class="tier-price" style="color:var(--text-dim);font-size:11px;">—</div>
-                  <div class="tier-price" style="color:var(--text-dim);font-size:11px;">—</div>
-                </div>
-                <div class="tier-row">
-                  <div class="tier-name"><span class="tier-icon">💎</span><div><strong>Premium Plus</strong><div class="tier-desc">With stipend &amp; bonus checkbox ($20.75/mo annual · $29.99/mo monthly)</div></div></div>
-                  <div class="tier-price">L$650</div>
-                  <div class="tier-price">L$3,000</div>
-                </div>
-              </div>
-            </div></div>
-          </div>
-          <div class="tip-box">
-            <div class="tip-label">// Mentor Tip</div>
-            <p>The Premium Plus stipend and signup bonus are only available at the higher price point ($20.75/mo annual or $29.99/mo monthly) — not all Premium Plus plans qualify. Failed purchase? Direct residents to <strong>Help → Support Portal → Billing</strong>. Never ask for or accept L$ as a mentor.</p>
+            <p>The Premium Plus stipend and signup bonus are only available at the higher price point ($20.75/mo annual or $29.99/mo monthly) &#8212; not all Premium Plus plans qualify. Failed purchase? Direct residents to <strong>Help &#8594; Support Portal &#8594; Billing</strong>. Never ask for or accept L$ as a mentor.</p>
           </div>
         </div>
       </div>
@@ -657,32 +580,32 @@
         </div>
         <div class="faq-body">
           <p><strong>Limits:</strong> Free accounts can join up to <code>42</code> groups; Premium up to <code>70</code>.</p>
-          <p><strong>Joining:</strong> Search via <em>People → Groups → Search</em> or click a group sign in-world.</p>
-          <p><strong>Silencing notices:</strong> Right-click the group → <strong>Edit</strong> → uncheck <strong>Receive Notices</strong>.</p>
-          <p><strong>Active tag:</strong> Only one group tag shows at a time — click the group → press <strong>Activate</strong>.</p>
+          <p><strong>Joining:</strong> Search via <em>People &#8594; Groups &#8594; Search</em> or click a group sign in-world.</p>
+          <p><strong>Silencing notices:</strong> Right-click the group &#8594; <strong>Edit</strong> &#8594; uncheck <strong>Receive Notices</strong>.</p>
+          <p><strong>Active tag:</strong> Only one group tag shows at a time &#8212; click the group &#8594; press <strong>Activate</strong>.</p>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>
-            <p>To avoid accidentally leaving groups, tell residents to activate <strong>None</strong> at the top of their groups list — this means no group is active, so they can't inadvertently trigger a group-related action. It's a simple habit that prevents a lot of confusion.</p>
+            <p>To avoid accidentally leaving groups, tell residents to activate <strong>None</strong> at the top of their groups list &#8212; this means no group is active, so they can't inadvertently trigger a group-related action. It's a simple habit that prevents a lot of confusion.</p>
           </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-sffl');return false;">Second Friends for Life script</a></div>
+          <div class="xref">&#128206; See also: <a class="xref-link" href="#" onclick="jumpTo('faq-sffl');return false;">Second Friends for Life</a></div>
         </div>
       </div>
 
 
       <div class="faq-item edge-inv" id="faq-inventory" data-search="inventory lost missing items folder trash recent received marketplace redeliver">
         <div class="faq-q" onclick="tog(this)">
-          <span class="faq-q-text">I can't find items in my inventory — items seem missing.</span>
+          <span class="faq-q-text">I can't find items in my inventory &#8212; items seem missing.</span>
           <span class="faq-tag t-inv">Inventory</span>
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
           <p>Items are rarely truly lost. Work through these steps:</p>
           <div class="steps">
-            <div class="step"><div class="sn">1</div><div>Use the <strong>inventory search bar</strong> — try partial names or creator names.</div></div>
+            <div class="step"><div class="sn">1</div><div>Use the <strong>inventory search bar</strong> &#8212; try partial names or creator names.</div></div>
             <div class="step"><div class="sn">2</div><div>Check the <strong>Recent</strong> and <strong>Received Items</strong> tabs.</div></div>
-            <div class="step"><div class="sn">3</div><div>Check the <strong>Trash</strong> folder — items can end up there accidentally.</div></div>
+            <div class="step"><div class="sn">3</div><div>Check the <strong>Trash</strong> folder &#8212; items can end up there accidentally.</div></div>
             <div class="step"><div class="sn">4</div><div>Recently purchased? Check <strong>Recent Items</strong> or the <strong>Objects</strong> subfolder.</div></div>
-            <div class="step"><div class="sn">5</div><div>Firestorm: <strong>Avatar → Avatar Health → Clear Inventory Cache</strong>, then relog.</div></div>
+            <div class="step"><div class="sn">5</div><div>Firestorm: <strong>Avatar &#8594; Avatar Health &#8594; Clear Inventory Cache</strong>, then relog.</div></div>
           </div>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>
@@ -699,7 +622,7 @@
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <p>Land ownership in SL is tied to your membership tier. Here's what each tier includes — or point residents straight to <a href="https://secondlife.com/land" target="_blank" style="color:var(--c-orange);text-decoration:none;border-bottom:1px solid rgba(255,146,76,0.4);">secondlife.com/land</a> for the full overview.</p>
+          <p>Land ownership in SL is tied to your membership tier. Here's what each tier includes &#8212; or point residents straight to <a href="https://secondlife.com/land" target="_blank" style="color:var(--c-orange);text-decoration:none;border-bottom:1px solid rgba(255,146,76,0.4);">secondlife.com/land</a> for the full overview.</p>
           <div class="tier-table">
             <div class="tier-row tier-header">
               <div class="tier-name"></div>
@@ -707,29 +630,29 @@
               <div class="tier-price">Linden Home</div>
             </div>
             <div class="tier-row">
-              <div class="tier-name"><span class="tier-icon">🔓</span><div><strong>Basic</strong></div></div>
-              <div class="tier-price" style="color:var(--text-dim);font-size:11px;">—</div>
-              <div class="tier-price" style="color:var(--text-dim);font-size:11px;">—</div>
+              <div class="tier-name"><span class="tier-icon">&#128275;</span><div><strong>Basic</strong></div></div>
+              <div class="tier-price" style="color:var(--text-dim);font-size:11px;">&#8212;</div>
+              <div class="tier-price" style="color:var(--text-dim);font-size:11px;">&#8212;</div>
             </div>
             <div class="tier-row">
-              <div class="tier-name"><span class="tier-icon">⭐</span><div><strong>Plus</strong></div></div>
-              <div class="tier-price" style="font-size:11px;">512m²</div>
+              <div class="tier-name"><span class="tier-icon">&#11088;</span><div><strong>Plus</strong></div></div>
+              <div class="tier-price" style="font-size:11px;">512m&#178;</div>
               <div class="tier-price" style="font-size:11px;">Limited selection</div>
             </div>
             <div class="tier-row">
-              <div class="tier-name"><span class="tier-icon">🌟</span><div><strong>Premium</strong></div></div>
-              <div class="tier-price" style="font-size:11px;">1,024m²</div>
+              <div class="tier-name"><span class="tier-icon">&#127775;</span><div><strong>Premium</strong></div></div>
+              <div class="tier-price" style="font-size:11px;">1,024m&#178;</div>
               <div class="tier-price" style="font-size:11px;">Free choice</div>
             </div>
             <div class="tier-row">
-              <div class="tier-name"><span class="tier-icon">💎</span><div><strong>Premium Plus</strong></div></div>
-              <div class="tier-price" style="font-size:11px;">2,048m²</div>
+              <div class="tier-name"><span class="tier-icon">&#128142;</span><div><strong>Premium Plus</strong></div></div>
+              <div class="tier-price" style="font-size:11px;">2,048m&#178;</div>
               <div class="tier-price" style="font-size:11px;">Exclusive PP homes + request via support</div>
             </div>
           </div>
-          <p style="margin-top:12px;"><strong>🏠 Get a Linden Home</strong> — the best way to get started. House and land ready to furnish, 30+ styles to choose from, keep it private or open to visitors, enjoy a neighbourhood of other homeowners. Claim via <em>secondlife.com → My Account → Get a Linden Home</em>. <em>Requires paid membership.</em> Premium Plus members get access to exclusive Premium Plus Linden Homes and can request a specific home via a support ticket.</p>
-          <p><strong>🤝 Rent a parcel</strong> — just what you want, when you want it. No commitment, cancel anytime, great for parties and short-term events. Rent from other residents using Linden Dollars. Search <em>Land Rental</em> on Marketplace or in-world classifieds. <em>Premium membership not required.</em></p>
-          <p><strong>🏗️ Buy a parcel</strong> — build on your own land. A wide range of sizes and geography, more control than renting, resellable when you're ready to upgrade, multiple ways to buy. Uses the L$ land auction system. <em>Premium membership not required.</em></p>
+          <p style="margin-top:12px;"><strong>&#127968; Get a Linden Home</strong> &#8212; the best way to get started. House and land ready to furnish, 30+ styles to choose from, keep it private or open to visitors, enjoy a neighbourhood of other homeowners. Claim via <em>secondlife.com &#8594; My Account &#8594; Get a Linden Home</em>. <em>Requires paid membership.</em> Premium Plus members get access to exclusive Premium Plus Linden Homes and can request a specific home via a support ticket.</p>
+          <p><strong>&#129309; Rent a parcel</strong> &#8212; just what you want, when you want it. No commitment, cancel anytime, great for parties and short-term events. Rent from other residents using Linden Dollars. Search <em>Land Rental</em> on Marketplace or in-world classifieds. <em>Premium membership not required.</em></p>
+          <p><strong>&#127959;&#65039; Buy a parcel</strong> &#8212; build on your own land. A wide range of sizes and geography, more control than renting, resellable when you're ready to upgrade, multiple ways to buy. Uses the L$ land auction system. <em>Premium membership not required.</em></p>
           <div class="mp-links">
             <a class="mp-btn" href="https://secondlife.com/land" target="_blank">View all land options at secondlife.com/land</a>
           </div>
@@ -752,10 +675,10 @@
         <div class="faq-body">
           <p>Teleport failures are common under high server load.</p>
           <div class="steps">
-            <div class="step"><div class="sn">1</div><div>Wait 60 seconds — ghost avatars need time to catch up.</div></div>
-            <div class="step"><div class="sn">2</div><div>Teleport home: <strong>World → Teleport Home</strong>.</div></div>
+            <div class="step"><div class="sn">1</div><div>Wait 60 seconds &#8212; ghost avatars need time to catch up.</div></div>
+            <div class="step"><div class="sn">2</div><div>Teleport home: <strong>World &#8594; Teleport Home</strong>.</div></div>
             <div class="step"><div class="sn">3</div><div>If stuck in place: <strong>sit</strong> on a nearby object, then <strong>stand</strong>.</div></div>
-            <div class="step"><div class="sn">4</div><div>Last resort: secondlife.com → <strong>My Account → Return Home</strong>.</div></div>
+            <div class="step"><div class="sn">4</div><div>Last resort: secondlife.com &#8594; <strong>My Account &#8594; Return Home</strong>.</div></div>
           </div>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>
@@ -768,20 +691,19 @@
 
       <div class="faq-item edge-rul" id="faq-asl" data-search="ASL age sex location instagram social media phone number real life information sharing privacy">
         <div class="faq-q" onclick="tog(this)">
-          <span class="faq-q-text">A newcomer is asking for personal information — Instagram, phone number, social media.</span>
+          <span class="faq-q-text">A newcomer is asking for personal information &#8212; Instagram, phone number, social media.</span>
           <span class="faq-tag t-rul">Conduct</span>
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <p>ASL (age, sex, location) requests and requests for social media or phone numbers are increasingly common, especially from younger residents for whom this is a normal part of online life. Handle it without irritation — their online culture is different to ours.</p>
+          <p>ASL (age, sex, location) requests and requests for social media or phone numbers are increasingly common, especially from younger residents for whom this is a normal part of online life. Handle it without irritation &#8212; their online culture is different to ours.</p>
           <div class="tip-box">
             <div class="tip-label">// Mentor Guidance</div>
-            <p>Gently discourage sharing real life information with strangers online — but if they want to do it, you cannot stop them. Your role is to model good practice, not to police behaviour. If it becomes persistent or uncomfortable, use the CLARA method or disengage politely.</p>
+            <p>Gently discourage sharing real life information with strangers online &#8212; but if they want to do it, you cannot stop them. Your role is to model good practice, not to police behaviour. If it becomes persistent or uncomfortable, use the CLARA method or disengage politely.</p>
           </div>
           <div class="say-block">
-            <div class="say-label">// Gentle reminder you can share</div>
-            <div class="say-text">Just a friendly reminder — it's always a good idea to keep personal information like phone numbers and social media private when meeting new people online. 😊</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            <div class="say-label">// Click to copy</div>
+            <div class="say-text" onclick="copyPara(this)">Just a friendly reminder &#8212; it's always a good idea to keep personal information like phone numbers and social media private when meeting new people online. &#128522;</div>
           </div>
         </div>
       </div>
@@ -794,21 +716,21 @@
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <p>This is increasingly common and can be demoralising — especially if you spend hours helping people every day. Try not to take it personally: for many newcomers, particularly those arriving via social media, distinguishing real people from AI online is a genuine challenge in their daily lives.</p>
+          <p>This is increasingly common and can be demoralising &#8212; especially if you spend hours helping people every day. Try not to take it personally: for many newcomers, particularly those arriving via social media, distinguishing real people from AI online is a genuine challenge in their daily lives.</p>
           <div class="tip-box">
             <div class="tip-label">// Why it happens</div>
-            <p>Newer internet users, especially those who arrived via YouTube Shorts or Instagram, are used to encountering bots and AI on every platform. Polished, helpful typing in full sentences can pattern-match to their experience of AI. It's not usually an insult — it's uncertainty.</p>
+            <p>Newer internet users, especially those who arrived via YouTube Shorts or Instagram, are used to encountering bots and AI on every platform. Polished, helpful typing in full sentences can pattern-match to their experience of AI. It's not usually an insult &#8212; it's uncertainty.</p>
           </div>
           <div class="steps">
-            <div class="step"><div class="sn">😄</div><div><strong>Use humour:</strong> "I'm only a bot on Fridays — and it's not Friday." Saying something playful that a large language model wouldn't generate naturally often defuses it immediately.</div></div>
-            <div class="step"><div class="sn">🔄</div><div><strong>Turn it back:</strong> "Prove that <em>you're</em> human — since that's impossible, we're both just going to have to take each other's word for it." This tends to get a laugh and reset the mood.</div></div>
-            <div class="step"><div class="sn">👋</div><div><strong>Be personal:</strong> Mention something specific — your real name, how long you've been in SL, what you were doing before you logged in. Bots don't volunteer context.</div></div>
-            <div class="step"><div class="sn">🎤</div><div><strong>Offer voice:</strong> If you're comfortable, the surest proof is real-time voice. Even just offering tends to satisfy most people.</div></div>
-            <div class="step"><div class="sn">🪧</div><div><strong>Wear a sign:</strong> Some mentors wear a tag or HUD attachment saying "HUMAN" — low effort, surprisingly effective in group situations.</div></div>
+            <div class="step"><div class="sn">&#128516;</div><div><strong>Use humour:</strong> "I'm only a bot on Fridays &#8212; and it's not Friday." Saying something playful that a large language model wouldn't generate naturally often defuses it immediately.</div></div>
+            <div class="step"><div class="sn">&#128260;</div><div><strong>Turn it back:</strong> "Prove that <em>you're</em> human &#8212; since that's impossible, we're both just going to have to take each other's word for it." This tends to get a laugh and reset the mood.</div></div>
+            <div class="step"><div class="sn">&#128075;</div><div><strong>Be personal:</strong> Mention something specific &#8212; your real name, how long you've been in SL, what you were doing before you logged in. Bots don't volunteer context.</div></div>
+            <div class="step"><div class="sn">&#127908;</div><div><strong>Offer voice:</strong> If you're comfortable, the surest proof is real-time voice. Even just offering tends to satisfy most people.</div></div>
+            <div class="step"><div class="sn">&#129703;</div><div><strong>Wear a sign:</strong> Some mentors wear a tag or HUD attachment saying "HUMAN" &#8212; low effort, surprisingly effective in group situations.</div></div>
           </div>
           <div class="tip-box">
             <div class="tip-label">// Self-care reminder</div>
-            <p>If you spend a lot of time mentoring and hear this repeatedly, it does wear you down — that's a valid response. You're not obligated to keep engaging with someone who is being rude or dismissive. It's fine to disengage and move on.</p>
+            <p>If you spend a lot of time mentoring and hear this repeatedly, it does wear you down &#8212; that's a valid response. You're not obligated to keep engaging with someone who is being rude or dismissive. It's fine to disengage and move on.</p>
           </div>
         </div>
       </div>
@@ -821,19 +743,19 @@
         </div>
         <div class="faq-body">
           <div class="steps">
-            <div class="step"><div class="sn">1</div><div><strong>Mute/Block</strong> immediately: right-click avatar → <strong>Block</strong>.</div></div>
-            <div class="step"><div class="sn">2</div><div><strong>Move away</strong> — teleport to a different area or home.</div></div>
-            <div class="step"><div class="sn">3</div><div><strong>File an Abuse Report:</strong> Help → Report Abuse, choose category, describe what happened, submit.</div></div>
-            <div class="step"><div class="sn">4</div><div><strong>Document</strong> — take screenshots with <code>Ctrl+Shift+S</code>.</div></div>
+            <div class="step"><div class="sn">1</div><div><strong>Mute/Block</strong> immediately: right-click avatar &#8594; <strong>Block</strong>.</div></div>
+            <div class="step"><div class="sn">2</div><div><strong>Move away</strong> &#8212; teleport to a different area or home.</div></div>
+            <div class="step"><div class="sn">3</div><div><strong>File an Abuse Report:</strong> Help &#8594; Report Abuse, choose category, describe what happened, submit.</div></div>
+            <div class="step"><div class="sn">4</div><div><strong>Document</strong> &#8212; take screenshots with <code>Ctrl+Shift+S</code>.</div></div>
           </div>
-          <p>As a mentor, <strong>do not intervene directly</strong> with griefers — report only.</p>
+          <p>As a mentor, <strong>do not intervene directly</strong> with griefers &#8212; report only.</p>
 
-          <p style="margin-top:14px;"><strong>If someone is pushing you — use MoveLock</strong></p>
+          <p style="margin-top:14px;"><strong>If someone is pushing you &#8212; use MoveLock</strong></p>
           <p>A MoveLock anchors your avatar to a spot, preventing others from pushing you around.</p>
 
           <div class="steps">
-            <div class="step"><div class="sn">🔥</div><div><strong>Firestorm:</strong> Built-in MoveLock — toggle with <code>Ctrl+Alt+P</code> (PC) or <code>Command+Option+P</code> (Mac). No extra items needed.</div></div>
-            <div class="step"><div class="sn">👁</div><div><strong>Official SL Viewer:</strong> No built-in MoveLock. Wear a scripted HUD from the Marketplace instead:</div></div>
+            <div class="step"><div class="sn">&#128293;</div><div><strong>Firestorm:</strong> Built-in MoveLock &#8212; toggle with <code>Ctrl+Alt+P</code> (PC) or <code>Command+Option+P</code> (Mac). No extra items needed.</div></div>
+            <div class="step"><div class="sn">&#128065;</div><div><strong>Official SL Viewer:</strong> No built-in MoveLock. Wear a scripted HUD from the Marketplace instead:</div></div>
           </div>
 
           <div class="tier-table" style="margin-top:10px;">
@@ -843,9 +765,9 @@
               <div class="tier-price">Notes</div>
             </div>
             <div class="tier-row">
-              <div class="tier-name"><span class="tier-icon">⭐</span><div><strong>[CI] Movelock</strong><div class="tier-desc">Copy/Modify/Transfer. Works in no-script areas if activated elsewhere.</div></div></div>
+              <div class="tier-name"><span class="tier-icon">&#11088;</span><div><strong>[CI] Movelock</strong><div class="tier-desc">Copy/Modify/Transfer. Works in no-script areas if activated elsewhere.</div></div></div>
               <div class="tier-price tier-free">L$0</div>
-              <div class="tier-price" style="font-size:11px;color:var(--text-mid);">Locks when standing still — you can still move freely</div>
+              <div class="tier-price" style="font-size:11px;color:var(--text-mid);">Locks when standing still &#8212; you can still move freely</div>
             </div>
           </div>
           <div class="mp-links" style="margin-top:10px;">
@@ -854,9 +776,9 @@
 
           <div class="tip-box" style="margin-top:14px;">
             <div class="tip-label">// Mentor Tip</div>
-            <p>Blocking is local to the viewer only — it doesn't globally ban the user. Only Linden Lab can do that via the AR process. Also remind residents to <strong>disable their MoveLock</strong> before sitting on furniture, riding vehicles, or teleporting — it can cause unexpected snapping back to a previous position.</p>
+            <p>Blocking is local to the viewer only &#8212; it doesn't globally ban the user. Only Linden Lab can do that via the AR process. Also remind residents to <strong>disable their MoveLock</strong> before sitting on furniture, riding vehicles, or teleporting &#8212; it can cause unexpected snapping back to a previous position.</p>
           </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-movelock');return false;">MoveLock script</a> · <a class="xref-link" href="#" onclick="jumpTo('sc-difficult');return false;">Handling Difficult Residents</a></div>
+          <div class="xref">&#128206; See also: <a class="xref-link" href="#" onclick="jumpTo('sc-movelock');return false;">MoveLock script</a> &#183; <a class="xref-link" href="#" onclick="jumpTo('sc-difficult');return false;">Handling Difficult Residents</a></div>
         </div>
       </div>
 
@@ -868,18 +790,18 @@
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <p>An Abuse Report (AR) is the official way to report a resident or object to Linden Lab for violating the Community Standards or Terms of Service. Only Linden Lab can take action — mentors cannot.</p>
+          <p>An Abuse Report (AR) is the official way to report a resident or object to Linden Lab for violating the Community Standards or Terms of Service. Only Linden Lab can take action &#8212; mentors cannot.</p>
           <div class="steps">
-            <div class="step"><div class="sn">1</div><div><strong>Take a screenshot first</strong> — evidence helps. Use <code>Ctrl+Shift+S</code> (PC) or <code>Command+Shift+S</code> (Mac) to capture the screen.</div></div>
-            <div class="step"><div class="sn">2</div><div>Go to <strong>Help → Report Abuse</strong> in the viewer menu bar.</div></div>
-            <div class="step"><div class="sn">3</div><div><strong>Enter the offender's name</strong> — right-click their avatar and select <strong>Copy Name</strong> to get the exact username.</div></div>
-            <div class="step"><div class="sn">4</div><div><strong>Select a category</strong> — choose the closest match (e.g. Harassment, Disturbing the Peace, Fraud, Indecency).</div></div>
-            <div class="step"><div class="sn">5</div><div><strong>Write a clear description</strong> — include what happened, where, and when. Be factual and concise. Attach your screenshot if relevant.</div></div>
+            <div class="step"><div class="sn">1</div><div><strong>Take a screenshot first</strong> &#8212; evidence helps. Use <code>Ctrl+Shift+S</code> (PC) or <code>Command+Shift+S</code> (Mac) to capture the screen.</div></div>
+            <div class="step"><div class="sn">2</div><div>Go to <strong>Help &#8594; Report Abuse</strong> in the viewer menu bar.</div></div>
+            <div class="step"><div class="sn">3</div><div><strong>Enter the offender's name</strong> &#8212; right-click their avatar and select <strong>Copy Name</strong> to get the exact username.</div></div>
+            <div class="step"><div class="sn">4</div><div><strong>Select a category</strong> &#8212; choose the closest match (e.g. Harassment, Disturbing the Peace, Fraud, Indecency).</div></div>
+            <div class="step"><div class="sn">5</div><div><strong>Write a clear description</strong> &#8212; include what happened, where, and when. Be factual and concise. Attach your screenshot if relevant.</div></div>
             <div class="step"><div class="sn">6</div><div>Click <strong>Submit</strong>. You will not receive a direct response, but Linden Lab reviews all reports.</div></div>
           </div>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>
-            <p>Remind residents that ARs are not instant — Linden Lab investigates in their own time. Blocking the offender is the fastest way to protect themselves right now. Also note: <strong>filing a false or malicious AR is itself a Terms of Service violation</strong>.</p>
+            <p>Remind residents that ARs are not instant &#8212; Linden Lab investigates in their own time. Blocking the offender is the fastest way to protect themselves right now. Also note: <strong>filing a false or malicious AR is itself a Terms of Service violation</strong>.</p>
           </div>
         </div>
       </div>
@@ -892,37 +814,37 @@
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <p><strong>Gambling (games of chance) is strictly prohibited in Second Life.</strong> Operating or playing any game of chance that pays out Linden Dollars — such as slots, poker, roulette, dice, or anything using random number generation — is a Terms of Service violation and can result in account suspension or termination.</p>
-          <p style="margin-top:12px;"><strong>Skill Gaming is different.</strong> Games whose outcome is determined by skill — not chance — are permitted under SL's Skill Gaming Policy, but with strict requirements:</p>
+          <p><strong>Gambling (games of chance) is strictly prohibited in Second Life.</strong> Operating or playing any game of chance that pays out Linden Dollars &#8212; such as slots, poker, roulette, dice, or anything using random number generation &#8212; is a Terms of Service violation and can result in account suspension or termination.</p>
+          <p style="margin-top:12px;"><strong>Skill Gaming is different.</strong> Games whose outcome is determined by skill &#8212; not chance &#8212; are permitted under SL's Skill Gaming Policy, but with strict requirements:</p>
           <div class="steps">
             <div class="step"><div class="sn">1</div><div>The game, its creator, its operator, and the region must all be <strong>approved by Linden Lab</strong>.</div></div>
             <div class="step"><div class="sn">2</div><div>Skill Gaming can only take place in designated <strong>Skill Gaming Regions</strong>.</div></div>
-            <div class="step"><div class="sn">3</div><div>Players must be <strong>at least 19 years old</strong> — older than the 18+ requirement for adult content.</div></div>
-            <div class="step"><div class="sn">4</div><div>Access is <strong>restricted by jurisdiction</strong> — some countries and regions are not permitted. The viewer checks this automatically when entering a Skill Gaming Region.</div></div>
+            <div class="step"><div class="sn">3</div><div>Players must be <strong>at least 19 years old</strong> &#8212; older than the 18+ requirement for adult content.</div></div>
+            <div class="step"><div class="sn">4</div><div>Access is <strong>restricted by jurisdiction</strong> &#8212; some countries and regions are not permitted. The viewer checks this automatically when entering a Skill Gaming Region.</div></div>
           </div>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>
-            <p>If a resident asks where to find skill gaming, direct them to the in-world Destination Guide and search for "skill gaming" — or they can use <strong>World → Destination Guide</strong> in the viewer. If they seem to be describing a game of chance rather than skill, gently clarify the distinction and remind them that gambling is a ToS violation. As a mentor, do not direct residents to unverified gaming areas.</p>
+            <p>If a resident asks where to find skill gaming, direct them to the in-world Destination Guide and search for "skill gaming" &#8212; or they can use <strong>World &#8594; Destination Guide</strong> in the viewer. If they seem to be describing a game of chance rather than skill, gently clarify the distinction and remind them that gambling is a ToS violation. As a mentor, do not direct residents to unverified gaming areas.</p>
           </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-gambling');return false;">Explaining Gambling script</a></div>
+          <div class="xref">&#128206; See also: <a class="xref-link" href="#" onclick="jumpTo('sc-gambling');return false;">Explaining Gambling script</a></div>
         </div>
       </div>
 
 
       <div class="faq-item edge-aud" id="faq-voice" data-search="voice chat not working microphone audio sound hear speaker input output firestorm preferences">
         <div class="faq-q" onclick="tog(this)">
-          <span class="faq-q-text">Voice chat isn't working — I can't hear anyone.</span>
+          <span class="faq-q-text">Voice chat isn't working &#8212; I can't hear anyone.</span>
           <span class="faq-tag t-aud">Audio</span>
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
           <div class="steps">
-            <div class="step"><div class="sn">1</div><div><strong>Me → Preferences → Sound &amp; Media</strong> — confirm Voice enabled and correct devices selected.</div></div>
-            <div class="step"><div class="sn">2</div><div>Confirm the region/parcel allows voice — click the <strong>sound icon</strong> in the top toolbar to open the sound settings panel. Voice will appear at the bottom of the dropdown with an <strong>Enable Voice Chat</strong> toggle.</div></div>
-            <div class="step"><div class="sn">3</div><div>Check system audio — ensure SL isn't muted at the OS level.</div></div>
+            <div class="step"><div class="sn">1</div><div><strong>Me &#8594; Preferences &#8594; Sound &amp; Media</strong> &#8212; confirm Voice enabled and correct devices selected.</div></div>
+            <div class="step"><div class="sn">2</div><div>Confirm the region/parcel allows voice &#8212; click the <strong>sound icon</strong> in the top toolbar to open the sound settings panel. Voice will appear at the bottom of the dropdown with an <strong>Enable Voice Chat</strong> toggle.</div></div>
+            <div class="step"><div class="sn">3</div><div>Check system audio &#8212; ensure SL isn't muted at the OS level.</div></div>
             <div class="step"><div class="sn">4</div><div>In the sound panel, make sure the <strong>Voice</strong> slider is turned up and not muted.</div></div>
-            <div class="step"><div class="sn">5</div><div>Relog — voice sometimes fails on the initial login.</div></div>
-            <div class="step"><div class="sn">6</div><div><strong>Test your voice</strong> — visit <strong>Voice Echo Canyon</strong>, a public region with an echo channel where you can hear yourself speak and confirm voice is working. You will only hear yourself, not other residents. It is not a sandbox.
+            <div class="step"><div class="sn">5</div><div>Relog &#8212; voice sometimes fails on the initial login.</div></div>
+            <div class="step"><div class="sn">6</div><div><strong>Test your voice</strong> &#8212; visit <strong>Voice Echo Canyon</strong>, a public region with an echo channel where you can hear yourself speak and confirm voice is working. You will only hear yourself, not other residents. It is not a sandbox.
               <div class="mp-links">
                 <a class="mp-btn" href="secondlife://Voice%20Echo%20Canyon/175/75/30">Open in SL</a>
               </div>
@@ -930,7 +852,7 @@
           </div>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>
-            <p>The sound icon in the top toolbar (next to the clock) opens a dropdown with sliders for Master, Buttons, Ambient, Sounds, Music, Media, and Voice — this is the same in both the <strong>official SL viewer and Firestorm</strong>. If voice isn't working, check that the Voice slider is up and Enable Voice Chat is toggled on. Firestorm users: toggling <strong>Preferences → Sound &amp; Media → Enable Voice</strong> off and on also resolves most intermittent drop-outs.</p>
+            <p>The sound icon in the top toolbar (next to the clock) opens a dropdown with sliders for Master, Buttons, Ambient, Sounds, Music, Media, and Voice &#8212; this is the same in both the <strong>official SL viewer and Firestorm</strong>. If voice isn't working, check that the Voice slider is up and Enable Voice Chat is toggled on. Firestorm users: toggling <strong>Preferences &#8594; Sound &amp; Media &#8594; Enable Voice</strong> off and on also resolves most intermittent drop-outs.</p>
           </div>
         </div>
       </div>
@@ -942,21 +864,21 @@
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <p>There are two different situations here — a resident whose avatar is invisible to others, and the shortcut that intentionally hides all avatars.</p>
+          <p>There are two different situations here &#8212; a resident whose avatar is invisible to others, and the shortcut that intentionally hides all avatars.</p>
           <p><strong>Avatar invisible to others (unintentional):</strong></p>
           <div class="steps">
-            <div class="step"><div class="sn">1</div><div>Try <strong>Avatar → Avatar Health → Rebake Textures</strong> (<code>Ctrl+Alt+R</code> on PC, <code>Ctrl+Option+R</code> on Mac).</div></div>
-            <div class="step"><div class="sn">2</div><div>Use <strong>Avatar → Avatar Welcome Pack</strong> and wear a fresh complete avatar.</div></div>
+            <div class="step"><div class="sn">1</div><div>Try <strong>Avatar &#8594; Avatar Health &#8594; Rebake Textures</strong> (<code>Ctrl+Alt+R</code> on PC, <code>Ctrl+Option+R</code> on Mac).</div></div>
+            <div class="step"><div class="sn">2</div><div>Use <strong>Avatar &#8594; Avatar Welcome Pack</strong> and wear a fresh complete avatar.</div></div>
             <div class="step"><div class="sn">3</div><div>Change regions or relog entirely.</div></div>
           </div>
           <p style="margin-top:12px;"><strong>All avatars hidden (intentional toggle):</strong></p>
-          <p>There is a shortcut that hides <em>all</em> avatars in the scene — including your own. This is useful at crowded events to let vendors and objects rez more quickly, but it can confuse residents who trigger it accidentally.</p>
+          <p>There is a shortcut that hides <em>all</em> avatars in the scene &#8212; including your own. This is useful at crowded events to let vendors and objects rez more quickly, but it can confuse residents who trigger it accidentally.</p>
           <div class="steps">
-            <div class="step"><div class="sn">💡</div><div><strong>Mac:</strong> <code>Shift + Option + Command + 4</code><br><strong>PC:</strong> <code>Ctrl + Alt + Shift + 4</code><br>Press the same combination again to bring all avatars back.</div></div>
+            <div class="step"><div class="sn">&#128161;</div><div><strong>Mac:</strong> <code>Shift + Option + Command + 4</code><br><strong>PC:</strong> <code>Ctrl + Alt + Shift + 4</code><br>Press the same combination again to bring all avatars back.</div></div>
           </div>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>
-            <p>If a resident says everyone has disappeared including themselves, this shortcut is almost certainly the cause. It's a toggle — one press hides everyone, the same shortcut brings them all back. Remind them it hides <em>all</em> avatars, not just theirs, and is commonly used at busy events to improve performance.</p>
+            <p>If a resident says everyone has disappeared including themselves, this shortcut is almost certainly the cause. It's a toggle &#8212; one press hides everyone, the same shortcut brings them all back. Remind them it hides <em>all</em> avatars, not just theirs, and is commonly used at busy events to improve performance.</p>
           </div>
         </div>
       </div>
@@ -968,23 +890,23 @@
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <p>This is one of the most commonly asked questions from new residents. Handle it professionally and without judgement — adult content is a legal and fully supported part of Second Life.</p>
+          <p>This is one of the most commonly asked questions from new residents. Handle it professionally and without judgement &#8212; adult content is a legal and fully supported part of Second Life.</p>
           <div class="tip-box" style="border-left-color:var(--c-adult);">
-            <div class="tip-label" style="color:var(--c-adult);">// Important — Do This First</div>
+            <div class="tip-label" style="color:var(--c-adult);">// Important &#8212; Do This First</div>
             <p>Before pointing or taking a resident to the Adult Hub, you <strong>must</strong> ask them directly if they are 18 or over and wait for an explicit confirmation. Do not proceed until they have confirmed this in chat.</p>
             <p style="margin-top:8px;">Remember: behind every avatar is a real person. Approach adult conversations with the same care and respect you would expect in return.</p>
           </div>
           <div class="steps">
-            <div class="step"><div class="sn">1</div><div>Ask the resident: <em>"Before I help with this, I need to confirm — are you 18 or over?"</em></div></div>
+            <div class="step"><div class="sn">1</div><div>Ask the resident: <em>"Before I help with this, I need to confirm &#8212; are you 18 or over?"</em></div></div>
             <div class="step"><div class="sn">2</div><div>Wait for a clear <strong>yes</strong> in chat. If they say no, or do not reply, do not proceed.</div></div>
             <div class="step"><div class="sn">3</div><div>Once confirmed, you can point them to or take them to the <strong>Adult Hub</strong> where they can explore adult content areas safely.</div></div>
-            <div class="step"><div class="sn">4</div><div>Remind them that adult regions require their account to have <strong>Adult content enabled</strong> — this is set via <em>secondlife.com → My Account → Account Settings</em>.</div></div>
+            <div class="step"><div class="sn">4</div><div>Remind them that adult regions require their account to have <strong>Adult content enabled</strong> &#8212; this is set via <em>secondlife.com &#8594; My Account &#8594; Account Settings</em>.</div></div>
           </div>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>
-            <p>Never assume age. The confirmation must come from the resident in chat — this protects both them and you. If they decline to answer or seem evasive, politely end the conversation on this topic.</p>
+            <p>Never assume age. The confirmation must come from the resident in chat &#8212; this protects both them and you. If they decline to answer or seem evasive, politely end the conversation on this topic.</p>
           </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-adult');return false;">Age Verification script</a></div>
+          <div class="xref">&#128206; See also: <a class="xref-link" href="#" onclick="jumpTo('sc-adult');return false;">Age Verification script</a></div>
         </div>
       </div>
 
@@ -995,31 +917,111 @@
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <p>Yes — adult content including sexual interactions is a legal and fully supported part of Second Life, but it comes with clear rules:</p>
+          <p>Yes &#8212; adult content including sexual interactions is a legal and fully supported part of Second Life, but it comes with clear rules:</p>
           <div class="steps">
-            <div class="step"><div class="sn">1</div><div><strong>Must be 18 or over</strong> — this is enforced by Linden Lab's Terms of Service. Misrepresenting your age is a violation.</div></div>
-            <div class="step"><div class="sn">2</div><div><strong>Adult content is opt-in</strong> — it is not available by default. Go to <em>Preferences → General</em> and set content access to <strong>General, Moderate, Adult</strong>.</div></div>
-            <div class="step"><div class="sn">3</div><div><strong>Adult-rated regions only</strong> — sexual content must take place on Adult-rated land (such as the mainland continent Zindra, or private Adult regions). It is not permitted on General or Moderate land.</div></div>
+            <div class="step"><div class="sn">1</div><div><strong>Must be 18 or over</strong> &#8212; this is enforced by Linden Lab's Terms of Service. Misrepresenting your age is a violation.</div></div>
+            <div class="step"><div class="sn">2</div><div><strong>Adult content is opt-in</strong> &#8212; it is not available by default. Go to <em>Preferences &#8594; General</em> and set content access to <strong>General, Moderate, Adult</strong>.</div></div>
+            <div class="step"><div class="sn">3</div><div><strong>Adult-rated regions only</strong> &#8212; sexual content must take place on Adult-rated land (such as the mainland continent Zindra, or private Adult regions). It is not permitted on General or Moderate land.</div></div>
             <div class="step"><div class="sn">4</div><div><strong>The Adult Hub</strong> is the recommended starting point for newcomers curious about this side of SL.</div></div>
-            <div class="step"><div class="sn">5</div><div><strong>Sexual ageplay is strictly prohibited</strong> — no exceptions, regardless of region rating or consent. This includes avatars that appear to be minors in a sexual context.</div></div>
+            <div class="step"><div class="sn">5</div><div><strong>Sexual ageplay is strictly prohibited</strong> &#8212; no exceptions, regardless of region rating or consent. This includes avatars that appear to be minors in a sexual context.</div></div>
           </div>
           <div class="tip-box" style="border-left-color:var(--c-adult);">
             <div class="tip-label" style="color:var(--c-adult);">// Mentor Note</div>
             <p>Always confirm the resident is 18 or over before directing them to adult areas. See the Age Verification script for the exact steps.</p>
-            <p style="margin-top:8px;">If a resident is new to adult interactions, remind them that consent is essential — ask before initiating anything, and either person can withdraw at any time without pressure. Behind every avatar is a real person with real feelings.</p>
+            <p style="margin-top:8px;">If a resident is new to adult interactions, remind them that consent is essential &#8212; ask before initiating anything, and either person can withdraw at any time without pressure. Behind every avatar is a real person with real feelings.</p>
           </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-sex');return false;">Quick answer script</a> · <a class="xref-link" href="#" onclick="jumpTo('sc-adult');return false;">Age Verification script</a></div>
+          <div class="xref">&#128206; See also: <a class="xref-link" href="#" onclick="jumpTo('faq-adult');return false;">Adult content &amp; age verification</a></div>
+          <div class="say-block">
+            <div class="say-label">// Click any line to copy it</div>
+            <div class="say-text" onclick="copyPara(this)">Yes, adult content including sex is possible in Second Life, but you must be 18 or over. You'll need to enable Adult content in Preferences &#8594; General, then you can visit Adult-rated regions. The Adult Hub is a good starting point for newcomers curious about that side of SL.</div>
+            <div class="say-text" onclick="copyPara(this)">Genitalia isn't included with the starter avatars &#8212; it's bought separately. Your best starting point is the Second Life Marketplace. Make sure Adult content is enabled on your account, then search for "genitalia" and filter by price low to high. Check the listing carefully for compatibility with your specific mesh body before buying &#8212; demos are available on many paid items.</div>
+            <div class="say-text" onclick="copyPara(this)">Genitalia is bought separately &#8212; it's not included with any starter body. There are two types: basic (visual only, no scripted interaction) and scripted. Scripted is worth the investment if you plan to use it with pose furniture. Before buying, make sure it's compatible with your specific mesh body. The Marketplace is your starting point &#8212; search "genitalia" with Adult content enabled and sort by price.</div>
+          </div>
         </div>
       </div>
 
+      <div class="faq-item edge-rul" id="faq-overwhelmed" data-search="confused overwhelmed lost resident step by step slow down support">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">A resident seems confused or overwhelmed &#8212; how do I help?</span>
+          <span class="faq-tag t-rul">Support</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>Slow down. Ask one question at a time. Mirror their pace &#8212; if they're typing slowly, don't flood them with walls of text. Identify one goal and focus on it entirely.</p>
+          <p>If they can't articulate a goal, offer concrete options: explore somewhere new, customise their avatar, find people to meet.</p>
+          <div class="say-block">
+            <div class="say-label">// Click to copy</div>
+            <div class="say-text" onclick="copyPara(this)">No worries at all &#8212; SL can feel overwhelming at first! Let's take it step by step. What's the one thing you'd most like to do right now?</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item edge-rul" id="faq-dontknow" data-search="question don't know answer refer knowledge base community wrong information">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">I don't know the answer to a resident's question &#8212; what should I do?</span>
+          <span class="faq-tag t-rul">Best Practice</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>It's always better to say you don't know than to give incorrect information. Misinformation causes real frustration &#8212; residents trust mentors. Point them to the right resources and follow up if you find an answer.</p>
+          <div class="bullets">
+            <div class="bullet"><strong>community.secondlife.com</strong> &#8212; official knowledge base and Q&amp;A</div>
+            <div class="bullet"><strong>Second Life Answers</strong> &#8212; community forum for resident questions</div>
+            <div class="bullet"><strong>Firestorm Support Group</strong> (in-world) &#8212; viewer-specific issues</div>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// Click to copy</div>
+            <div class="say-text" onclick="copyPara(this)">That's a great question &#8212; I want to give you the right answer rather than guess. Let me find out / you can also check the SL Knowledge Base at community.secondlife.com.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item edge-rul" id="faq-support" data-search="mentor support backup help viola mole discord abuse report conduct">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">I need backup or support from another mentor &#8212; what do I do?</span>
+          <span class="faq-tag t-rul">Conduct</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>If you need backup, always call for support in a <strong>discreet and calm way</strong>. Do not put resident names in group chat or Discord &#8212; we do not name and shame.</p>
+          <div class="steps">
+            <div class="step"><div class="sn">1</div><div>Contact <strong>Viola</strong> if she is online</div></div>
+            <div class="step"><div class="sn">2</div><div>Ask for help in the relevant <strong>Discord channel</strong></div></div>
+            <div class="step"><div class="sn">3</div><div>Contact any of the <strong>Moles</strong> listed in Discord</div></div>
+            <div class="step"><div class="sn">4</div><div>File an <strong>Abuse Report</strong> if ToS or Community Standards are being broken &#8212; consider <strong>intent</strong> first</div></div>
+          </div>
+          <div class="tip-box">
+            <div class="tip-label">// Remember</div>
+            <p>If a situation is upsetting or stressing you, there is no reason to stay. Fly up, TP home, or log off. Problems are temporary. You are a volunteer &#8212; you are not obligated to endure difficult situations.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item edge-grp" id="faq-sffl" data-search="second friends for life group invite community social newcomer welcome friendly">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">How do I invite a resident to Second Friends for Life?</span>
+          <span class="faq-tag t-grp">Community</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>As a Mentor and member of <strong>Second Friends for Life</strong>, you can send new residents a group invite directly. There is also a physical group joiner near the landing point for desktop viewers. Always ask before sending the invite &#8212; don't assume everyone wants to join.</p>
+          <p>If they seem hesitant, leave it open: <em>"No pressure at all &#8212; the offer stands whenever you're ready."</em> If they join but later change their mind, they can leave via <strong>Communicate &#8594; Groups</strong> (<code>Ctrl+Shift+G</code> PC / <code>Cmd+Shift+G</code> Mac), right-click the group &#8594; <strong>Leave Group</strong>.</p>
+          <div class="say-block">
+            <div class="say-label">// Click any line to copy it</div>
+            <div class="say-text" onclick="copyPara(this)">I'd like to invite you to a group called Second Friends for Life &#8212; it's a friendly community where you can meet people, ask questions, and feel at home in SL. Would you like me to send you an invite?</div>
+            <div class="say-text" onclick="copyPara(this)">Great! You should have the invite now &#8212; just accept it and you'll be part of the group. Feel free to say hello in group chat anytime. &#128522;</div>
+          </div>
+          <div class="xref">&#128204; See also: <a class="xref-link" href="#" onclick="jumpTo(\'faq-groups\');return false;">Groups FAQ</a></div>
+        </div>
+      </div>
 
     </div>
   </section>
 
-  <!-- ══════ SECTION 2 — LANDMARKS ══════ -->
+  <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; SECTION 2 &#8212; LANDMARKS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
   <section class="section" id="sec-landmarks" data-section="">
     <div class="section-hdr">
-      <div class="sec-icon si-g">📍</div>
+      <div class="sec-icon si-g">&#128205;</div>
       <div class="sec-title">Landmark Directory</div>
       <div class="sec-count">8 locations</div>
     </div>
@@ -1027,63 +1029,63 @@
 
       <div class="lm-card" id="lm-welcome" data-search="welcome hub help newcomers new residents orientation intro classic legacy">
         <div class="lm-name">Welcome Hub</div>
-        <div class="lm-region"><span>📌 secondlife://WelcomeHub/166/105/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://WelcomeHub/166/105/25')" title="Copy SLURL">COPY</button></div>
-        <div class="lm-desc">Still a useful and relevant destination. Worth knowing and visiting — many residents still pass through here.</div>
+        <div class="lm-region"><span>&#128204; secondlife://WelcomeHub/166/105/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://WelcomeHub/166/105/25')" title="Copy SLURL">COPY</button></div>
+        <div class="lm-desc">Still a useful and relevant destination. Worth knowing and visiting &#8212; many residents still pass through here.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">Classic</span></div><a class="sl-btn" href="secondlife://WelcomeHub/166/105/25">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-sandbox" data-search="sandbox build create objects rez free public building practice welcome area">
         <div class="lm-name">Sandbox Welcome Area</div>
-        <div class="lm-region"><span>📌 secondlife://WelcomeHubSandbox/74/79/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://WelcomeHubSandbox/74/79/25')" title="Copy SLURL">COPY</button></div>
-        <div class="lm-desc">Official Linden Lab public sandbox. Residents can rez and build freely. Objects auto-return after a few hours — great for teaching building basics and experimenting with objects.</div>
+        <div class="lm-region"><span>&#128204; secondlife://WelcomeHubSandbox/74/79/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://WelcomeHubSandbox/74/79/25')" title="Copy SLURL">COPY</button></div>
+        <div class="lm-desc">Official Linden Lab public sandbox. Residents can rez and build freely. Objects auto-return after a few hours &#8212; great for teaching building basics and experimenting with objects.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-sandbox">Sandbox</span><span class="lm-badge b-info">Public</span></div><a class="sl-btn" href="secondlife://WelcomeHubSandbox/74/79/25">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-palomma" data-search="palomma plaza free dove fashion clothes skins shapes shoes hair jewelry makeup mens womens designer free gifts">
         <div class="lm-name">Palomma Plaza</div>
-        <div class="lm-region"><span>📌 secondlife://Gallii/178/35/33</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://Gallii/178/35/33')" title="Copy SLURL">COPY</button></div>
-        <div class="lm-desc">In memory of Free Dove and its founder Palomma Casanova — continuing the dream with free gifts from top SL designers. Fashion, clothes, skins, shapes, shoes, hair, jewellery, makeup, and more for both men and women.</div>
+        <div class="lm-region"><span>&#128204; secondlife://Gallii/178/35/33</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://Gallii/178/35/33')" title="Copy SLURL">COPY</button></div>
+        <div class="lm-desc">In memory of Free Dove and its founder Palomma Casanova &#8212; continuing the dream with free gifts from top SL designers. Fashion, clothes, skins, shapes, shoes, hair, jewellery, makeup, and more for both men and women.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-help">Free Items</span></div><a class="sl-btn" href="secondlife://Gallii/178/35/33">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-meshbody" data-search="maitreya mesh body lara larax appearance demo fitmesh bento shopping try">
         <div class="lm-name">Maitreya</div>
-        <div class="lm-region"><span>📌 secondlife://Maitreya%20Isle/128/128/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://Maitreya Isle/128/128/25')" title="Copy SLURL">COPY</button></div>
-        <div class="lm-desc">The Maitreya store — home of the Lara and LaraX mesh bodies, the most widely supported female mesh bodies in SL. Free demos available. Always try before buying.</div>
+        <div class="lm-region"><span>&#128204; secondlife://Maitreya%20Isle/128/128/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://Maitreya Isle/128/128/25')" title="Copy SLURL">COPY</button></div>
+        <div class="lm-desc">The Maitreya store &#8212; home of the Lara and LaraX mesh bodies, the most widely supported female mesh bodies in SL. Free demos available. Always try before buying.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-info">Free Demos</span></div><a class="sl-btn" href="secondlife://Maitreya%20Isle/128/128/25">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-legacy" data-search="meshbody legacy mesh body perky petite special athletic classic male female demo shopping">
         <div class="lm-name">MeshBody Legacy</div>
-        <div class="lm-region"><span>📌 secondlife://The%20Shops/123/114/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://The Shops/123/114/25')" title="Copy SLURL">COPY</button></div>
-        <div class="lm-desc">Home of the Legacy mesh bodies — popular for both female (Perky, Petite, Special) and male (Athletic, Classic) avatars. Free demos available in-store.</div>
+        <div class="lm-region"><span>&#128204; secondlife://The%20Shops/123/114/25</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://The Shops/123/114/25')" title="Copy SLURL">COPY</button></div>
+        <div class="lm-desc">Home of the Legacy mesh bodies &#8212; popular for both female (Perky, Petite, Special) and male (Athletic, Classic) avatars. Free demos available in-store.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-shop">Shopping</span><span class="lm-badge b-info">Free Demos</span></div><a class="sl-btn" href="secondlife://The%20Shops/123/114/25">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-lelutka" data-search="lelutka mesh head face bento demo skins appliers popular heads store">
         <div class="lm-name">Lelutka</div>
-        <div class="lm-region"><span>📌 secondlife://LeLutka/118/134/24</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://LeLutka/118/134/24')" title="Copy SLURL">COPY</button></div>
-        <div class="lm-desc">The most popular mesh head brand in SL. Free demos available in-store — always try before buying. Widely supported for skins, appliers, and animations.</div>
+        <div class="lm-region"><span>&#128204; secondlife://LeLutka/118/134/24</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://LeLutka/118/134/24')" title="Copy SLURL">COPY</button></div>
+        <div class="lm-desc">The most popular mesh head brand in SL. Free demos available in-store &#8212; always try before buying. Widely supported for skins, appliers, and animations.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-app">Appearance</span><span class="lm-badge b-info">Free Demos</span></div><a class="sl-btn" href="secondlife://LeLutka/118/134/24">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-firestorm-social" data-search="firestorm social island new resident help area milena mike head free 90 days avatar">
         <div class="lm-name">Firestorm Social Island</div>
-        <div class="lm-region"><span>📌 secondlife://Firestorm%20Social%20Island/127/158/33</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://Firestorm Social Island/127/158/33')" title="Copy SLURL">COPY</button></div>
+        <div class="lm-region"><span>&#128204; secondlife://Firestorm%20Social%20Island/127/158/33</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://Firestorm Social Island/127/158/33')" title="Copy SLURL">COPY</button></div>
         <div class="lm-desc">New Resident Help Area offering free quality items including the Milena (female) and Mike (male) mesh heads. Free to residents under 90 days old. A great first stop for newcomers.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Help</span><span class="lm-badge b-info">Under 90 Days</span></div><a class="sl-btn" href="secondlife://Firestorm%20Social%20Island/127/158/33">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-voiceecho" data-search="voice echo canyon test voice working echo channel public region">
         <div class="lm-name">Voice Echo Canyon</div>
-        <div class="lm-region"><span>📌 secondlife://Voice%20Echo%20Canyon/175/75/30</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://Voice Echo Canyon/175/75/30')" title="Copy SLURL">COPY</button></div>
-        <div class="lm-desc">Public region for testing voice. Speak and you'll hear yourself through an echo channel — confirming voice is working. You will only hear yourself, not other residents. Not a sandbox.</div>
+        <div class="lm-region"><span>&#128204; secondlife://Voice%20Echo%20Canyon/175/75/30</span><button class="lm-copy-btn" onclick="copyVid(this,'secondlife://Voice Echo Canyon/175/75/30')" title="Copy SLURL">COPY</button></div>
+        <div class="lm-desc">Public region for testing voice. Speak and you'll hear yourself through an echo channel &#8212; confirming voice is working. You will only hear yourself, not other residents. Not a sandbox.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge b-help">Voice Test</span><span class="lm-badge b-info">Public</span></div><a class="sl-btn" href="secondlife://Voice%20Echo%20Canyon/175/75/30">Open in SL</a></div>
       </div>
 
       <div class="lm-card" id="lm-adulthub" data-search="adult hub sex mature explicit content 18 over age verify">
         <div class="lm-name">Adult Hub</div>
-        <div class="lm-region">📌 Search "Adult Hub" in World Search</div>
+        <div class="lm-region">&#128204; Search "Adult Hub" in World Search</div>
         <div class="lm-desc">The central hub for adult content in Second Life. Direct residents here only after confirming they are 18 or over. Residents must also have Adult content enabled on their account. A space where newcomers can comfortably learn about adult interactions from mentors and connect with others.</div>
         <div class="lm-footer"><div class="lm-badges"><span class="lm-badge" style="color:var(--c-adult);background:var(--c-adult-d);border:1px solid rgba(233,30,140,0.25);">Adult</span><span class="lm-badge b-info">18+ Only</span></div><a class="sl-btn" href="secondlife://Adult%20Hub/128/128/25">Open in SL</a></div>
       </div>
@@ -1092,413 +1094,10 @@
 
   </section>
 
-  <!-- ══════ SECTION 3 — SCRIPTS ══════ -->
-  <section class="section" id="sec-scripts" data-section="">
-    <div class="section-hdr">
-      <div class="sec-icon si-t">📋</div>
-      <div class="sec-title">Mentor Tips &amp; Scripts</div>
-      <div class="sec-count">14 scripts</div>
-    </div>
-    <div class="script-list">
-
-      <div class="sc-card" id="sc-awp" style="--sc-color:var(--c-violet);--sc-color-a:rgba(170,68,255,0.3);--sc-color-dim:rgba(170,68,255,0.1);" data-search="naked missing avatar body parts clothing welcome pack AWP worn tab inventory bold">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Naked / Missing Body Part or Clothing</span>
-          <span class="sc-cat" style="color:var(--c-violet);background:var(--c-violet-d);border-color:rgba(170,68,255,0.3);">Appearance</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>Use when a newcomer is naked or missing a body part or clothing item. The WORN tab is the quickest way to identify what's missing.</p>
-          <div class="tip-box" style="margin-bottom:14px;">
-            <div class="tip-label">// How newcomers access the AWP</div>
-            <div class="bullets">
-              <div class="bullet"><strong>Project Zero:</strong> "Avatar" tab on the bottom taskbar</div>
-              <div class="bullet"><strong>SL Viewer:</strong> Left side taskbar → "Avatar Welcome Pack — choose a complete avatar"</div>
-              <div class="bullet"><strong>Firestorm:</strong> Avatar menu → Avatar Welcome Pack</div>
-            </div>
-            <p style="margin-top:8px;font-size:12px;">3 skin tones (Caucasian, African-American, Asian) × male &amp; female · 3 clothing sets each · Also in Library for customisation.</p>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// Step 1 — Find what's missing</div>
-            <div class="say-text">Open your Inventory (Ctrl+I) and click the WORN tab — this shows everything you're currently wearing, including the folder each item came from. Note the folder names shown — e.g. "Female body - B" or "Female look - Casual".</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// Step 2 — Body part missing</div>
-            <div class="say-text">In the WORN tab, note your body folder name — e.g. "Female body - B". Go to Clothing → Female bodies &amp; looks → [that folder name] in your main inventory. Items in bold are being worn — the one that's NOT bold is the missing part. Right-click it and choose Add.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// Step 2 — Clothing item missing</div>
-            <div class="say-text">In the WORN tab, note your look folder name — e.g. "Female look - Casual". Go to Clothing → Female bodies &amp; looks → [that folder name] in your main inventory. Items in bold are being worn — the one that's NOT bold is the missing piece. Right-click it and choose Add.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// Nothing in WORN tab — completely naked</div>
-            <div class="say-text">Go to Avatar in the top menu bar, then click Avatar Welcome Pack. Choose any of the complete starter looks — it's free and will give you a full avatar instantly!</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-missing-parts');return false;">Naked / Missing FAQ</a> · <a class="xref-link" href="technical.html#fc-avatar-appearance" target="_blank">Diagnostic Flowchart ↗</a></div>
-        </div>
-      </div>
-
-
-
-      <div class="sc-card" id="sc-meshbody" style="--sc-color:var(--c-violet);--sc-color-a:rgba(170,68,255,0.3);--sc-color-dim:rgba(170,68,255,0.1);" data-search="mesh body head appearance help confused shopping demo fitmesh bento maitreya legacy reborn ebody bom bakes gianni jake belleza">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Explaining Mesh Bodies to Newcomers</span>
-          <span class="sc-cat" style="color:var(--c-violet);background:var(--c-violet-d);border-color:rgba(170,68,255,0.25);">Appearance</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>Mesh bodies are one of the most confusing topics for newcomers. Use a simple analogy before going into technical detail.</p>
-          <div class="say-block">
-            <div class="say-label">// Analogy to use</div>
-            <div class="say-text">Think of the default avatar as a basic mannequin. A mesh body is like a custom suit you wear over it — much better detail and fits modern clothing. They cost L$ but free demos let you try before you buy!</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <p style="margin-top:12px;"><strong>Popular female bodies:</strong></p>
-          <div class="bullets">
-            <div class="bullet"><strong>Maitreya Lara / LaraX</strong> — the most widely supported, huge range of compatible clothing</div>
-            <div class="bullet"><strong>eBODY Reborn</strong> — very popular, great clothing support</div>
-            <div class="bullet"><strong>MeshBody Legacy</strong> (Perky, Petite, Special) — high quality with strong creator support</div>
-          </div>
-          <p style="margin-top:12px;"><strong>Popular male bodies:</strong></p>
-          <div class="bullets">
-            <div class="bullet"><strong>Legacy</strong> (Athletic / Classic)</div>
-            <div class="bullet"><strong>Belleza Jake</strong></div>
-            <div class="bullet"><strong>Signature Gianni</strong></div>
-          </div>
-          <p style="margin-top:12px;"><strong>Popular mesh heads:</strong></p>
-          <div class="bullets">
-            <div class="bullet"><strong>Lelutka</strong> — the most popular mesh heads, widely supported for skins and appliers. Demos available in-store:
-              <div class="mp-links" style="margin-top:6px;">
-                <a class="mp-btn" href="secondlife://LeLutka/118/134/24">Open Lelutka in SL</a>
-              </div>
-            </div>
-          </div>
-          <div class="bullets" style="margin-top:12px;">
-            <div class="bullet">Mesh bodies need <strong>BOM (Bakes on Mesh)</strong> enabled for skin to display correctly.</div>
-            <div class="bullet">Clothing must be <strong>fitted/rigged for that specific body</strong> — not all clothes fit all bodies.</div>
-            <div class="bullet"><strong>Always demo first</strong> — demos are free and show exactly how it looks on your shape.</div>
-          </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-appearance');return false;">Bake Fail FAQ</a></div>
-        </div>
-      </div>
-
-
-      <div class="sc-card" id="sc-greeting" style="--sc-color:var(--c-teal);--sc-color-a:rgba(29,233,213,0.3);--sc-color-dim:rgba(29,233,213,0.1);" data-search="greeting welcome new resident introduce yourself first contact open say hello">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Greeting a New Resident</span>
-          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(29,233,213,0.25);">Opening</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>Keep your opener friendly, brief, and non-intrusive. Many newcomers feel overwhelmed — don't flood them with information right away. Give them space to respond.</p>
-          <div class="say-block">
-            <div class="say-label">// Say in local or IM</div>
-            <div class="say-text">Hi there! Welcome to Second Life! 😊 I'm a Mentor volunteer — feel free to ask me anything, no question is too basic. Happy to help you get started!</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <p>If they don't respond, give it 2–3 minutes before a gentle follow-up. Some residents are still figuring out how to type in chat.</p>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-overwhelmed" style="--sc-color:var(--c-teal);--sc-color-a:rgba(29,233,213,0.3);--sc-color-dim:rgba(29,233,213,0.1);" data-search="confused lost resident overwhelmed help too much information slow down step by step">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Resident Seems Confused or Overwhelmed</span>
-          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(29,233,213,0.25);">Support</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>Slow down. Ask one question at a time. Mirror their pace — if they're typing slowly, don't flood them with walls of text. Identify one goal and focus on it entirely.</p>
-          <div class="say-block">
-            <div class="say-label">// Say in local or IM</div>
-            <div class="say-text">No worries at all — SL can feel overwhelming at first! Let's take it step by step. What's the one thing you'd most like to do right now?</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <p>If they can't articulate a goal, offer concrete options: explore somewhere new, customise their avatar, find people to meet.</p>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-dontknow" style="--sc-color:var(--c-teal);--sc-color-a:rgba(29,233,213,0.3);--sc-color-dim:rgba(29,233,213,0.1);" data-search="question don't know answer resource refer knowledge base community wrong information">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">When You Don't Know the Answer</span>
-          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(29,233,213,0.25);">Best Practice</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>It's always better to say you don't know than to give incorrect information. Misinformation causes real frustration — residents trust mentors.</p>
-          <div class="say-block">
-            <div class="say-label">// Say in local or IM</div>
-            <div class="say-text">That's a great question — I want to give you the right answer rather than guess. Let me find out / you can also check the SL Knowledge Base at community.secondlife.com.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="bullets">
-            <div class="bullet"><strong>community.secondlife.com</strong> — official knowledge base and Q&amp;A</div>
-            <div class="bullet"><strong>Second Life Answers</strong> — community forum for resident questions</div>
-            <div class="bullet"><strong>Firestorm Support Group</strong> (in-world) — viewer-specific issues</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-closing" style="--sc-color:var(--c-teal);--sc-color-a:rgba(29,233,213,0.3);--sc-color-dim:rgba(29,233,213,0.1);" data-search="close end wrap up conversation goodbye farewell finished done summary log">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Wrapping Up a Conversation</span>
-          <span class="sc-cat" style="color:var(--c-teal);background:var(--c-teal-d);border-color:rgba(29,233,213,0.25);">Closing</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>End every interaction positively — even brief ones. Leave the door open for follow-up questions. A summary of what you covered helps them remember the steps.</p>
-          <div class="say-block">
-            <div class="say-label">// Say in local or IM</div>
-            <div class="say-text">Great talking with you! If you have any more questions later, just shout — mentors are usually around. Enjoy Second Life! 🌟</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <p>Log any recurring confusion patterns you notice — valuable feedback for the wider mentor team.</p>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-support" style="--sc-color:var(--c-amber);--sc-color-a:rgba(255,179,0,0.3);--sc-color-dim:rgba(255,179,0,0.1);" data-search="support help security backup mentor mole discord abuse report discreet calm backing">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Calling for Mentor Support</span>
-          <span class="sc-cat" style="color:var(--c-amber);background:var(--c-amber-d);border-color:rgba(255,179,0,0.25);">Conduct</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>If you need backup, always call for support in a <strong>discreet and calm way</strong>. Do not put resident names in group chat or Discord — we do not name and shame.</p>
-          <div class="steps">
-            <div class="step"><div class="sn">1</div><div>Contact <strong>Viola</strong> if she is online</div></div>
-            <div class="step"><div class="sn">2</div><div>Ask for help in the relevant <strong>Discord channel</strong></div></div>
-            <div class="step"><div class="sn">3</div><div>Contact any of the <strong>Moles</strong> listed in Discord</div></div>
-            <div class="step"><div class="sn">4</div><div>File an <strong>Abuse Report</strong> if ToS or Community Standards are being broken — consider <strong>intent</strong> first</div></div>
-          </div>
-          <div class="tip-box">
-            <div class="tip-label">// Remember</div>
-            <p>If a situation is upsetting or stressing you, there is no reason to stay. Fly up, TP home, or log off. Problems are temporary. You are a volunteer — you are not obligated to endure difficult situations.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-difficult" style="--sc-color:var(--c-red);--sc-color-a:rgba(255,82,82,0.3);--sc-color-dim:rgba(255,82,82,0.1);" data-search="rude difficult aggressive resident handle boundary mute block disengage abuse volunteer">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Handling Rude or Difficult Residents</span>
-          <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(255,82,82,0.25);">Boundaries</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>Mentors are volunteers. You are never obligated to tolerate abuse. Stay calm, remain professional, and disengage if needed — your wellbeing comes first.</p>
-          <div class="say-block">
-            <div class="say-label">// Say in local or IM</div>
-            <div class="say-text">I'm happy to help, but I do need us to keep the conversation respectful. If you'd like assistance, I'm here — otherwise I'll let you explore on your own.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <p>If they continue, simply stop responding. Mute them and report to a senior mentor or via AR if they are harassing others. <strong>Do not engage in arguments.</strong></p>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-movelock" style="--sc-color:var(--c-red);--sc-color-a:rgba(255,82,82,0.3);--sc-color-dim:rgba(255,82,82,0.1);" data-search="movelock pushed around griefing being bumped lock avatar in place firestorm HUD">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Helping a Resident Being Pushed Around</span>
-          <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(255,82,82,0.25);">Griefing</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>If a resident is being pushed or bumped by others, a <strong>MoveLock</strong> anchors their avatar in place, preventing others from moving them. Here's what to tell them:</p>
-          <div class="say-block">
-            <div class="say-label">// Firestorm users</div>
-            <div class="say-text">Firestorm has a built-in MoveLock — just press <strong>Ctrl+Alt+P</strong> (PC) or <strong>Command+Option+P</strong> (Mac) to toggle it on. When enabled it locks you in place so no one can push you. Press the same shortcut to turn it off.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// Official SL Viewer users</div>
-            <div class="say-text">The official SL viewer doesn't have a built-in MoveLock, but you can get a free one from the Marketplace. The [CI] Movelock is a great free option — wear it as a HUD and it locks you in place whenever you're standing still, so you can still move freely.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="mp-links">
-            <a class="mp-btn" href="https://marketplace.secondlife.com/p/CI-Movelock-14/478109" target="_blank">[CI] Movelock — Free on Marketplace</a>
-          </div>
-          <p style="margin-top:10px;">Remind them to <strong>disable MoveLock before sitting, riding vehicles, or teleporting</strong> — otherwise they may snap back to their previous position unexpectedly.</p>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-rules');return false;">Harassment FAQ</a></div>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-gambling" style="--sc-color:var(--c-gaming);--sc-color-a:rgba(0,229,255,0.3);--sc-color-dim:rgba(0,229,255,0.1);" data-search="gambling skill gaming game chance slots casino wagering payout explain resident curious">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Explaining Gambling &amp; Skill Gaming</span>
-          <span class="sc-cat" style="color:var(--c-red);background:var(--c-red-d);border-color:rgba(255,82,82,0.25);">Rules</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>Residents often ask about gambling in SL — either out of curiosity or because they've seen casino-style areas in-world. Here's how to explain the distinction clearly.</p>
-          <div class="say-block">
-            <div class="say-label">// If they ask whether gambling is allowed</div>
-            <div class="say-text">Gambling — games of chance like slots, poker, or roulette — is not allowed in Second Life and is a Terms of Service violation. What is allowed is skill gaming, where the outcome depends on your ability rather than chance. Skill gaming regions are approved by Linden Lab, and you need to be 19 or older to access them. The viewer will check your age and location automatically when you try to enter.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// If they want to find skill gaming</div>
-            <div class="say-text">To find skill gaming areas, go to World → Destination Guide in the viewer and search for "skill gaming." Just keep in mind you'll need to be 19 or older and in a supported location — the viewer will let you know if you can't access a region.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// If they describe something that sounds like gambling</div>
-            <div class="say-text">That sounds like it could be a game of chance, which isn't permitted in Second Life. Playing or operating those games can lead to account suspension. If you're unsure whether a game is allowed, it's worth checking the Second Life Skill Gaming Policy on the wiki before playing.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-gambling');return false;">Gambling FAQ</a></div>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-sex" style="--sc-color:var(--c-adult);--sc-color-a:rgba(233,30,140,0.3);--sc-color-dim:rgba(233,30,140,0.1);" data-search="sex adult content possible age 18 preferences enable adult rated regions adult hub">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Quick Answer — "Is sex possible in SL?"</span>
-          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(233,30,140,0.25);">Adult</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>Use this as an immediate, friendly first response. Follow up with age verification before going further.</p>
-          <div class="say-block">
-            <div class="say-label">// Quick answer</div>
-            <div class="say-text">Yes, adult content including sex is possible in Second Life, but you must be 18 or over. You'll need to enable Adult content in Preferences → General, then you can visit Adult-rated regions. The Adult Hub is a good starting point for newcomers curious about that side of SL.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('sc-adult');return false;">Age Verification script</a> · <a class="xref-link" href="#" onclick="jumpTo('faq-sex');return false;">Full FAQ entry</a></div>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-adult" style="--sc-color:var(--c-adult);--sc-color-a:rgba(233,30,140,0.3);--sc-color-dim:rgba(233,30,140,0.1);" data-search="adult sex content age verify 18 confirmation hub mature explicit">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Age Verification Before Adult Content</span>
-          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(233,30,140,0.25);">Adult</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>This is one of the most common requests. You <strong>must</strong> get explicit age confirmation before directing or taking a resident to any adult area. Do not skip this step.</p>
-          <div class="say-block">
-            <div class="say-label">// Step 1 — Ask first</div>
-            <div class="say-text">Before I can help with that, I need to ask — are you 18 or over?</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// Step 2 — Once confirmed</div>
-            <div class="say-text">Great, thanks for confirming! I can point you to the Adult Hub where you'll find what you're looking for. You may also need to enable Adult content on your account at secondlife.com → My Account → Account Settings.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// If they say no or don't reply</div>
-            <div class="say-text">I'm not able to help with that — adult areas are for residents who are 18 or over. Is there anything else I can help you with?</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <p>Never assume age based on how someone presents their avatar or how they write. The confirmation must be explicit and in chat.</p>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-adult');return false;">Adult Content FAQ</a></div>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-adulthub" style="--sc-color:var(--c-adult);--sc-color-a:rgba(233,30,140,0.3);--sc-color-dim:rgba(233,30,140,0.1);" data-search="adult hub what can you do newcomer explain adult content interactions mentors connect">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">What Can You Do at the Adult Hub?</span>
-          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(233,30,140,0.25);">Adult</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>Use this when a newcomer asks what the Adult Hub is for, after you have confirmed they are 18 or over.</p>
-          <div class="say-block">
-            <div class="say-label">// Explaining the Adult Hub</div>
-            <div class="say-text">The Adult Hub is a welcoming space to explore the adult side of Second Life, connect with others, and ask questions in a comfortable environment. It's a great starting point for newcomers curious about what's available.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="tip-box" style="border-left-color:var(--c-adult);">
-            <div class="tip-label" style="color:var(--c-adult);">// Mentor Tip</div>
-            <p>Adult-themed furniture throughout the Hub includes built-in consent systems — residents will be asked to accept any interaction before it begins. Worth mentioning to newcomers so they know what to expect and feel in control.</p>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="sc-card" id="sc-genitalia" style="--sc-color:var(--c-adult);--sc-color-a:rgba(233,30,140,0.3);--sc-color-dim:rgba(233,30,140,0.1);" data-search="genitalia penis vagina adult body parts where get free buy newcomer question">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Where Can I Get Genitalia?</span>
-          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(233,30,140,0.25);">Adult</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>A common question — handle it matter-of-factly. Genitalia is not included with the Avatar Welcome Pack or any of the free starter bodies. It's a separate purchase.</p>
-          <div class="say-block">
-            <div class="say-label">// Quick answer</div>
-            <div class="say-text">Genitalia isn't included with the starter avatars — it's bought separately. Your best starting point is the Second Life Marketplace. Make sure Adult content is enabled on your account, then search for "genitalia" and filter by price low to high. Check the listing carefully for compatibility with your specific mesh body before buying — demos are available on many paid items.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="tip-box" style="border-left-color:var(--c-adult);">
-            <div class="tip-label" style="color:var(--c-adult);">// Mentor Tip</div>
-            <p>Keep it practical and non-judgmental — this is a routine question. Outside the Adult Hub, point them to the Marketplace and leave it there. If they're at the Hub, you can go into more detail and offer to take them to a store in-world — see the Adult Hub script for the fuller version.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-genitalia-hub" style="--sc-color:var(--c-adult);--sc-color-a:rgba(233,30,140,0.3);--sc-color-dim:rgba(233,30,140,0.1);" data-search="genitalia penis vagina adult hub store in-world recommend body compatible scripted mesh physics cock ASA INM FNY signature gianni">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Genitalia — At the Adult Hub</span>
-          <span class="sc-cat" style="color:var(--c-adult);background:var(--c-adult-d);border-color:rgba(233,30,140,0.25);">Adult</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>Use this when you're already at the Adult Hub with a resident who has asked about genitalia. They have agreed to the Linden Lab ToS to enter — age responsibility is theirs. You can go into more detail here and offer to take them to an in-world store.</p>
-          <div class="say-block">
-            <div class="say-label">// Fuller explanation</div>
-            <div class="say-text">Genitalia is bought separately — it's not included with any starter body. There are two types: basic (visual only, no scripted interaction) and scripted (responds to touch, compatible with other scripted items and furniture). Scripted is worth the investment if you plan to use it with pose furniture. Before buying anything, make sure it's compatible with your specific mesh body — most listings will say which bodies they support. Demos aren't always available but check first. The Marketplace is your starting point — search "genitalia" with Adult content enabled and sort by price. In-world stores often have a wider range than Marketplace listings alone.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="tip-box" style="border-left-color:var(--c-adult);">
-            <div class="tip-label" style="color:var(--c-adult);">// Mentor Tip — Current Brands</div>
-            <p>At the Hub, if you have time and are happy to, you can offer to TP the resident to an in-world store. Here are the most current options worth recommending:</p>
-            <p style="margin-top:8px;"><strong style="color:var(--text-hi);">Male:</strong></p>
-            <ul style="margin:6px 0 10px 16px;font-size:12.5px;color:var(--text-mid);line-height:1.8;">
-              <li><strong>Signature Gianni X</strong> — built-in scripted penis included with the body. No separate purchase needed. Mention this to residents who haven't bought a male body yet.</li>
-              <li><strong>The Physics Cock / "The P"</strong> (ASA/Session) — the current community favourite for a separate purchase. Bento-animated, physics-based, multiple sizes, compatible with Legacy, Maitreya, eBODY Reborn, Kupra and others. Updated to v3.1 in 2024. Has its own in-world store and Discord for support.</li>
-              <li><strong>INM ("It's Not Mine")</strong> — popular add-on for ejaculation effects, widely compatible with The P and other scripted genitalia.</li>
-            </ul>
-            <p style="margin-top:4px;"><strong style="color:var(--text-hi);">Female:</strong></p>
-            <ul style="margin:6px 0 10px 16px;font-size:12.5px;color:var(--text-mid);line-height:1.8;">
-              <li><strong>The V / "The Physics Vagina"</strong> (ASA/Session) — companion product to The P from the same creator. Same body compatibility, same quality standard.</li>
-              <li><strong>FNY</strong> — another well-regarded female option, compatible with The P's interaction system.</li>
-            </ul>
-            <p style="margin-top:4px;font-size:12.5px;color:var(--text-mid);"><strong>Avoid recommending Xcite!</strong> — once the market leader but now considered outdated and very script-heavy. Residents will likely encounter it on the Marketplace; steer them towards current alternatives.</p>
-            <p style="margin-top:8px;">Body compatibility matters — always remind residents to check the listing before buying. Demos are available on some paid items.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="sc-card" id="sc-sffl" style="--sc-color:var(--c-mint);--sc-color-a:rgba(77,200,50,0.3);--sc-color-dim:rgba(77,200,50,0.1);" data-search="second friends for life group invite community social newcomer welcome friendly">
-        <div class="sc-hdr" onclick="tog(this)">
-          <span class="sc-title">Inviting a Resident to Second Friends for Life</span>
-          <span class="sc-cat" style="color:var(--c-mint);background:var(--c-mint-d);border-color:rgba(77,200,50,0.25);">Community</span>
-          <span class="sc-tog">+</span>
-        </div>
-        <div class="sc-body">
-          <p>As a Mentor and member of the <strong>Second Friends for Life</strong> group, you can send new residents a group invite directly. There is also a physical group joiner near the landing point for desktop viewers — point them to it if they're on desktop. It's a warm, practical gesture that helps connect newcomers with a friendly community straight away.</p>
-          <div class="say-block">
-            <div class="say-label">// Say before sending the invite</div>
-            <div class="say-text">I'd like to invite you to a group called Second Friends for Life — it's a friendly community where you can meet people, ask questions, and feel at home in SL. Would you like me to send you an invite?</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// Once they accept</div>
-            <div class="say-text">Great! You should have the invite now — just accept it and you'll be part of the group. Feel free to say hello in group chat anytime. 😊</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <p>Always ask before sending the invite — don't assume everyone wants to join. If they seem hesitant, leave it open: <em>"No pressure at all — the offer stands whenever you're ready."</em> And if they join but later change their mind, they can leave the group at any time — in Firestorm go to <strong>Communicate → Groups</strong> (shortcut: <code>Command+Shift+G</code> on Mac, <code>Ctrl+Shift+G</code> on PC), right-click the group name and select <strong>Leave Group</strong>.</p>
-          <div class="xref">📎 See also: <a class="xref-link" href="#" onclick="jumpTo('faq-groups');return false;">Groups FAQ</a></div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════ SECTION 5 — VIDEOS ══════ -->
+  <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; SECTION 5 &#8212; VIDEOS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
   <section class="section" id="sec-videos" data-section="">
     <div class="section-hdr">
-      <div class="sec-icon si-v">▶</div>
+      <div class="sec-icon si-v">&#9654;</div>
       <div class="sec-title">Video Links</div>
       <div class="sec-count">8 tutorials</div>
     </div>
@@ -1506,7 +1105,7 @@
     <div class="vid-grid">
 
       <div class="vid-card" data-search="customizing avatar shape appearance tutorial video">
-        <div class="vid-thumb">▶</div>
+        <div class="vid-thumb">&#9654;</div>
         <div class="vid-info">
           <a class="vid-title-link vid-title-link--video" href="https://youtu.be/SVMvYaOt_PA" target="_blank">Customizing Avatar Shape</a>
           <div class="vid-sub">youtu.be/SVMvYaOt_PA</div>
@@ -1515,7 +1114,7 @@
       </div>
 
       <div class="vid-card" data-search="shopping buying linden dollars L$ marketplace tutorial video">
-        <div class="vid-thumb">▶</div>
+        <div class="vid-thumb">&#9654;</div>
         <div class="vid-info">
           <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=hRwavBUbhFY" target="_blank">Shopping &amp; Buying L$</a>
           <div class="vid-sub">youtube.com/watch?v=hRwavBUbhFY</div>
@@ -1524,7 +1123,7 @@
       </div>
 
       <div class="vid-card" data-search="bakes on mesh BOM skin texture tutorial video">
-        <div class="vid-thumb">▶</div>
+        <div class="vid-thumb">&#9654;</div>
         <div class="vid-info">
           <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=lS-0s2-pa-c" target="_blank">Bakes on Mesh</a>
           <div class="vid-sub">youtube.com/watch?v=lS-0s2-pa-c</div>
@@ -1533,7 +1132,7 @@
       </div>
 
       <div class="vid-card" data-search="communicating chat voice groups IM tutorial video">
-        <div class="vid-thumb">▶</div>
+        <div class="vid-thumb">&#9654;</div>
         <div class="vid-info">
           <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=ajDa4EUATJw" target="_blank">Communicating</a>
           <div class="vid-sub">youtube.com/watch?v=ajDa4EUATJw</div>
@@ -1542,7 +1141,7 @@
       </div>
 
       <div class="vid-card" data-search="music media streaming audio video player tutorial">
-        <div class="vid-thumb">▶</div>
+        <div class="vid-thumb">&#9654;</div>
         <div class="vid-info">
           <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=HQFwFCrJ8ek" target="_blank">Music &amp; Media</a>
           <div class="vid-sub">youtube.com/watch?v=HQFwFCrJ8ek</div>
@@ -1551,7 +1150,7 @@
       </div>
 
       <div class="vid-card" data-search="how to get help support resources tutorial video">
-        <div class="vid-thumb">▶</div>
+        <div class="vid-thumb">&#9654;</div>
         <div class="vid-info">
           <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=38RbaCL8pnU" target="_blank">How to Get Help</a>
           <div class="vid-sub">youtube.com/watch?v=38RbaCL8pnU</div>
@@ -1560,7 +1159,7 @@
       </div>
 
       <div class="vid-card" data-search="games gaming activities fun tutorial video">
-        <div class="vid-thumb">▶</div>
+        <div class="vid-thumb">&#9654;</div>
         <div class="vid-info">
           <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=kJO20YelMPo" target="_blank">Games</a>
           <div class="vid-sub">youtube.com/watch?v=kJO20YelMPo</div>
@@ -1569,7 +1168,7 @@
       </div>
 
       <div class="vid-card" data-search="bellisseria what is linden homes community continent tutorial video">
-        <div class="vid-thumb">▶</div>
+        <div class="vid-thumb">&#9654;</div>
         <div class="vid-info">
           <a class="vid-title-link vid-title-link--video" href="https://www.youtube.com/watch?v=gs2fKrGdBHA" target="_blank">What is Bellisseria?</a>
           <div class="vid-sub">youtube.com/watch?v=gs2fKrGdBHA</div>
@@ -1578,7 +1177,7 @@
       </div>
 
       <div class="vid-card" data-search="second life university avatar welcome pack project zero boston blaisdale beginner newcomer tutorial official linden lab">
-        <div class="vid-thumb">▶</div>
+        <div class="vid-thumb">&#9654;</div>
         <div class="vid-info">
           <a class="vid-title-link vid-title-link--video" href="https://youtu.be/BJ1eRTlWDYk" target="_blank">Avatar Welcome Pack &amp; <br>Project Zero</a>
           <div class="vid-sub">youtu.be/BJ1eRTlWDYk</div>
@@ -1589,10 +1188,10 @@
     </div>
   </section>
 
-  <!-- ══════ SECTION 6 — USEFUL WEBSITES ══════ -->
+  <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; SECTION 6 &#8212; USEFUL WEBSITES &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
   <section class="section" id="sec-websites" data-section="">
     <div class="section-hdr">
-      <div class="sec-icon si-w">🌐</div>
+      <div class="sec-icon si-w">&#127760;</div>
       <div class="sec-title">Useful Websites</div>
       <div class="sec-count">9 links</div>
     </div>
@@ -1600,16 +1199,16 @@
     <div class="vid-grid">
 
       <div class="vid-card web" data-search="showbuzz live music events grid happening now DJs performers venues">
-        <div class="vid-thumb">🎵</div>
+        <div class="vid-thumb">&#127925;</div>
         <div class="vid-info">
-          <a class="vid-title-link" href="https://showbuzz.org/" target="_blank">ShowBuzz — Live Events</a>
+          <a class="vid-title-link" href="https://showbuzz.org/" target="_blank">ShowBuzz &#8212; Live Events</a>
           <div class="vid-sub">showbuzz.org</div>
         </div>
         <button class="copy-btn" onclick="copyVid(this,'https://showbuzz.org/')">COPY</button>
       </div>
 
       <div class="vid-card web" data-search="secondlife music live events calendar artists DJs performers schedule">
-        <div class="vid-thumb">🎤</div>
+        <div class="vid-thumb">&#127908;</div>
         <div class="vid-info">
           <a class="vid-title-link" href="https://www.secondlife.music/events" target="_blank">SL Music Events Calendar</a>
           <div class="vid-sub">secondlife.music</div>
@@ -1618,7 +1217,7 @@
       </div>
 
       <div class="vid-card web" data-search="second life land linden homes rent buy parcel options">
-        <div class="vid-thumb">🏡</div>
+        <div class="vid-thumb">&#127969;</div>
         <div class="vid-info">
           <a class="vid-title-link" href="https://secondlife.com/land" target="_blank">Land Options</a>
           <div class="vid-sub">secondlife.com/land</div>
@@ -1627,7 +1226,7 @@
       </div>
 
       <div class="vid-card web" data-search="marketplace shopping buy items clothes skins free L$0 L$1">
-        <div class="vid-thumb">🛒</div>
+        <div class="vid-thumb">&#128722;</div>
         <div class="vid-info">
           <a class="vid-title-link" href="https://marketplace.secondlife.com" target="_blank">Marketplace</a>
           <div class="vid-sub">marketplace.secondlife.com</div>
@@ -1637,7 +1236,7 @@
       </div>
 
       <div class="vid-card web" data-search="bellisseria shopping community guide shops merchants commercial regions search filter teleport linden homes">
-        <div class="vid-thumb">🛍️</div>
+        <div class="vid-thumb">&#128717;&#65039;</div>
         <div class="vid-info">
           <a class="vid-title-link" href="https://bellisseria.online/" target="_blank">Bellisseria Shopping</a>
           <div class="vid-sub">bellisseria.online</div>
@@ -1646,7 +1245,7 @@
       </div>
 
       <div class="vid-card web" data-search="knowledge base help answers support community secondlife">
-        <div class="vid-thumb">📖</div>
+        <div class="vid-thumb">&#128214;</div>
         <div class="vid-info">
           <a class="vid-title-link" href="https://community.secondlife.com" target="_blank">Knowledge Base &amp; Answers</a>
           <div class="vid-sub">community.secondlife.com</div>
@@ -1655,7 +1254,7 @@
       </div>
 
       <div class="vid-card web" data-search="destination guide places explore featured locations events">
-        <div class="vid-thumb">📍</div>
+        <div class="vid-thumb">&#128205;</div>
         <div class="vid-info">
           <a class="vid-title-link" href="https://secondlife.com/destinations" target="_blank">Destination Guide</a>
           <div class="vid-sub">secondlife.com/destinations</div>
@@ -1664,7 +1263,7 @@
       </div>
 
       <div class="vid-card web" data-search="knowledge base official linden lab help articles support second life">
-        <div class="vid-thumb">📖</div>
+        <div class="vid-thumb">&#128214;</div>
         <div class="vid-info">
           <a class="vid-title-link" href="https://community.secondlife.com/knowledgebase/english/" target="_blank">Official Knowledge Base</a>
           <div class="vid-sub">community.secondlife.com</div>
@@ -1673,7 +1272,7 @@
       </div>
 
       <div class="vid-card web" data-search="newcomer resources guide new residents helper HUD links locations free items appearance quality avatar">
-        <div class="vid-thumb">🌟</div>
+        <div class="vid-thumb">&#127775;</div>
         <div class="vid-info">
           <a class="vid-title-link" href="https://www.joshualit.uk/newcomer.html" target="_blank">Newcomer Resources Page</a>
           <div class="vid-sub">joshualit.uk/newcomer.html</div>
@@ -1684,10 +1283,10 @@
     </div>
   </section>
 
-  <!-- ══════ SECTION 7 — MOBILE ══════ -->
+  <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; SECTION 7 &#8212; MOBILE &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
   <section class="section" id="sec-mobile" data-section="">
     <div class="section-hdr">
-      <div class="sec-icon si-m">📱</div>
+      <div class="sec-icon si-m">&#128241;</div>
       <div class="sec-title">SL Mobile App</div>
       <div class="sec-count">3 entries</div>
     </div>
@@ -1699,27 +1298,27 @@
         <span class="faq-tog">+</span>
       </div>
       <div class="faq-body">
-        <p>The SL Mobile app (Beta) is available free on iOS and Android. It offers a streamlined Second Life experience designed for touchscreens — but it works differently to the desktop viewer.</p>
+        <p>The SL Mobile app (Beta) is available free on iOS and Android. It offers a streamlined Second Life experience designed for touchscreens &#8212; but it works differently to the desktop viewer.</p>
         <p style="margin-top:12px;"><strong>Key differences:</strong></p>
         <div class="steps">
-          <div class="step"><div class="sn">🕹️</div><div><strong>Movement:</strong> One-handed virtual joystick. Camera controlled with familiar pinch and pan gestures.</div></div>
-          <div class="step"><div class="sn">👆</div><div><strong>Interaction:</strong> Single tap to interact with objects and avatars (no long press needed in current versions).</div></div>
-          <div class="step"><div class="sn">💬</div><div><strong>Object text:</strong> Supported — bubble chat shows object messages from scripted objects, which means translator text is now visible to Mobile users.</div></div>
-          <div class="step"><div class="sn">🤖</div><div><strong>Prima Linden:</strong> New mobile users are greeted by Prima — an AI chatbot that responds to questions and helps newcomers get started.</div></div>
-          <div class="step"><div class="sn">🌐</div><div><strong>Language:</strong> Supports multiple languages — English, Spanish, Portuguese, French, German, Italian, Turkish, Russian, and Japanese. Change via <strong>Menu → Settings → General → Language</strong>.</div></div>
-          <div class="step"><div class="sn">📍</div><div><strong>Entry point:</strong> New residents joining via Mobile arrive at <strong>Campwich Woodland Cabin</strong> or the <strong>Mobile Learning Center</strong>, not the Welcome Hub.</div></div>
+          <div class="step"><div class="sn">&#128377;&#65039;</div><div><strong>Movement:</strong> One-handed virtual joystick. Camera controlled with familiar pinch and pan gestures.</div></div>
+          <div class="step"><div class="sn">&#128070;</div><div><strong>Interaction:</strong> Single tap to interact with objects and avatars (no long press needed in current versions).</div></div>
+          <div class="step"><div class="sn">&#128172;</div><div><strong>Object text:</strong> Supported &#8212; bubble chat shows object messages from scripted objects, which means translator text is now visible to Mobile users.</div></div>
+          <div class="step"><div class="sn">&#129302;</div><div><strong>Prima Linden:</strong> New mobile users are greeted by Prima &#8212; an AI chatbot that responds to questions and helps newcomers get started.</div></div>
+          <div class="step"><div class="sn">&#127760;</div><div><strong>Language:</strong> Supports multiple languages &#8212; English, Spanish, Portuguese, French, German, Italian, Turkish, Russian, and Japanese. Change via <strong>Menu &#8594; Settings &#8594; General &#8594; Language</strong>.</div></div>
+          <div class="step"><div class="sn">&#128205;</div><div><strong>Entry point:</strong> New residents joining via Mobile arrive at <strong>Campwich Woodland Cabin</strong> or the <strong>Mobile Learning Center</strong>, not the Welcome Hub.</div></div>
         </div>
         <p style="margin-top:12px;"><strong>Current limitations vs desktop:</strong></p>
         <div class="bullets">
           <div class="bullet">No inventory management (most-requested missing feature)</div>
           <div class="bullet">Limited appearance/outfit tools</div>
           <div class="bullet">No llDialog / scripted object menus (in progress)</div>
-          <div class="bullet">Voice setup more complex — improvements coming soon</div>
+          <div class="bullet">Voice setup more complex &#8212; improvements coming soon</div>
           <div class="bullet">App can sometimes freeze when switching between apps on the device</div>
         </div>
         <div class="tip-box">
           <div class="tip-label">// Mentor Tip</div>
-          <p>If a new resident seems confused by controls or missing features, always ask whether they're on Mobile or Desktop first — the experience is quite different. Mobile residents arrive at Campwich Woodland Cabin or the Mobile Learning Center, so they may need directions to get to you.</p>
+          <p>If a new resident seems confused by controls or missing features, always ask whether they're on Mobile or Desktop first &#8212; the experience is quite different. Mobile residents arrive at Campwich Woodland Cabin or the Mobile Learning Center, so they may need directions to get to you.</p>
         </div>
       </div>
     </div>
@@ -1734,7 +1333,7 @@
         <p>The Abuse Report and Block options are available on Mobile but accessed differently to the desktop viewer.</p>
         <p style="margin-top:12px;"><strong>From IM or Nearby Chat:</strong></p>
         <div class="steps">
-          <div class="step"><div class="sn">1</div><div>Tap the <strong>… (three dots)</strong> next to the person's name in chat.</div></div>
+          <div class="step"><div class="sn">1</div><div>Tap the <strong>&#8230; (three dots)</strong> next to the person's name in chat.</div></div>
           <div class="step"><div class="sn">2</div><div>Choose <strong>Report Abuse</strong> or <strong>Block</strong> from the menu.</div></div>
         </div>
         <p style="margin-top:12px;"><strong>From Friends or Nearby People:</strong></p>
@@ -1745,7 +1344,7 @@
         </div>
         <div class="tip-box">
           <div class="tip-label">// Mentor Tip</div>
-          <p>The process is the same on iOS and Android. If a mobile resident can't find these options, make sure they're on the latest version of the app — some earlier versions had limited reporting features.</p>
+          <p>The process is the same on iOS and Android. If a mobile resident can't find these options, make sure they're on the latest version of the app &#8212; some earlier versions had limited reporting features.</p>
         </div>
       </div>
     </div>
@@ -1760,15 +1359,15 @@
         <p>Linden Lab has expanded the number of places where new residents can begin their SL journey. These fall into two categories: mentor-supported areas (where we operate) and third-party areas (run independently by other organisations).</p>
         <p style="margin-top:12px;"><strong>Mentor-supported areas (our scope):</strong></p>
         <div class="bullets">
-          <div class="bullet"><strong>Discovery Learning Center (DLC)</strong> — the primary mentor hub for desktop users</div>
-          <div class="bullet"><strong>Mobile Learning Center (MLC)</strong> — for mobile app users</div>
-          <div class="bullet"><strong>Campwich Woodland Cabin</strong> — mobile entry point (Mentors Only, no public SLURL)</div>
-          <div class="bullet"><strong>Welcome Hub</strong> — the original welcome area, still worth knowing</div>
+          <div class="bullet"><strong>Discovery Learning Center (DLC)</strong> &#8212; the primary mentor hub for desktop users</div>
+          <div class="bullet"><strong>Mobile Learning Center (MLC)</strong> &#8212; for mobile app users</div>
+          <div class="bullet"><strong>Campwich Woodland Cabin</strong> &#8212; mobile entry point (Mentors Only, no public SLURL)</div>
+          <div class="bullet"><strong>Welcome Hub</strong> &#8212; the original welcome area, still worth knowing</div>
         </div>
         <p style="margin-top:12px;"><strong>Third-party starting areas (not our responsibility):</strong></p>
         <div class="bullets">
           <div class="bullet"><strong>MadPea</strong> (Scaredy Cats)</div>
-          <div class="bullet"><strong>Ajuda Brasil</strong> — notably well-staffed with their own helpers</div>
+          <div class="bullet"><strong>Ajuda Brasil</strong> &#8212; notably well-staffed with their own helpers</div>
           <div class="bullet"><strong>Bad Unicorn</strong></div>
           <div class="bullet"><strong>Rush Week</strong></div>
           <div class="bullet"><strong>Club Midnight Plus</strong></div>
@@ -1776,35 +1375,35 @@
         </div>
         <div class="tip-box" style="margin-top:14px;">
           <div class="tip-label">// Mentor Tip</div>
-          <p>These third-party areas have their own hosts and moderators — or none at all. We are not invited there in a mentor capacity, and they are not invited to ours. You're welcome to visit as a regular resident, but if a newcomer says they started somewhere unfamiliar, don't worry about it — just focus on helping them where they are now. Linden Lab is monitoring retention across all these areas to see what newcomers respond to best.</p>
-          <p style="margin-top:8px;">On <strong>PC</strong>, newcomers are randomly assigned to one starting area with no interface to discover the others — so wherever they land is likely the only one they'll ever visit unless you direct them elsewhere. On <strong>Mobile</strong>, the app shows all starting areas clearly on the home screen.</p>
+          <p>These third-party areas have their own hosts and moderators &#8212; or none at all. We are not invited there in a mentor capacity, and they are not invited to ours. You're welcome to visit as a regular resident, but if a newcomer says they started somewhere unfamiliar, don't worry about it &#8212; just focus on helping them where they are now. Linden Lab is monitoring retention across all these areas to see what newcomers respond to best.</p>
+          <p style="margin-top:8px;">On <strong>PC</strong>, newcomers are randomly assigned to one starting area with no interface to discover the others &#8212; so wherever they land is likely the only one they'll ever visit unless you direct them elsewhere. On <strong>Mobile</strong>, the app shows all starting areas clearly on the home screen.</p>
         </div>
       </div>
     </div>
 
   </section>
 
-  <!-- ══════ SECTION 4 — CLARA (modal) ══════ -->
+  <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; SECTION 4 &#8212; CLARA (modal) &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
   <section class="section" id="sec-clara" data-section="">
     <div class="section-hdr">
-      <div class="sec-icon si-p">🕊️</div>
+      <div class="sec-icon si-p">&#128330;&#65039;</div>
       <div class="sec-title">The CLARA Method</div>
       <div class="sec-count">De-escalation framework</div>
     </div>
     <p style="font-size:13px;color:var(--text-dim);margin-bottom:16px;">A five-step framework for nonviolent communication and de-escalation with difficult residents.</p>
     <button class="clara-modal-btn" onclick="openClaraModal()">
-      <span class="clara-modal-icon">🕊️</span>
+      <span class="clara-modal-icon">&#128330;&#65039;</span>
       <div class="clara-modal-info">
         <div class="clara-modal-title">Open CLARA Method Guide</div>
-        <div class="clara-modal-sub">Centre · Listen · Affirm · Respond · Add</div>
+        <div class="clara-modal-sub">Centre &#183; Listen &#183; Affirm &#183; Respond &#183; Add</div>
       </div>
-      <span class="clara-modal-arrow">›</span>
+      <span class="clara-modal-arrow">&#8250;</span>
     </button>
   </section>
 
   <!-- CLARA hidden content for modal -->
   <div id="clara-modal-content" style="display:none;">
-    <p class="clara-intro" data-search="clara method nonviolent communication de-escalation framework empathy dialogue mentor conflict centre listen affirm respond add">CLARA is a five-step framework for nonviolent communication and de-escalation. It shifts a conversation from a win-lose argument to a collaborative dialogue — ideal for mentors handling frustrated or confrontational residents.</p>
+    <p class="clara-intro" data-search="clara method nonviolent communication de-escalation framework empathy dialogue mentor conflict centre listen affirm respond add">CLARA is a five-step framework for nonviolent communication and de-escalation. It shifts a conversation from a win-lose argument to a collaborative dialogue &#8212; ideal for mentors handling frustrated or confrontational residents.</p>
 
     <div class="clara-steps">
 
@@ -1815,7 +1414,7 @@
           <div class="clara-goal">Before engaging with someone angry or confrontational, manage your own internal state first.</div>
           <div class="clara-action">
             <div class="clara-action-label">// Action</div>
-            Take a breath, ground yourself, and remind yourself that the other person's anger is likely about their own needs or fears — not a personal attack. <strong>If you aren't calm, you cannot calm someone else.</strong>
+            Take a breath, ground yourself, and remind yourself that the other person's anger is likely about their own needs or fears &#8212; not a personal attack. <strong>If you aren't calm, you cannot calm someone else.</strong>
           </div>
         </div>
       </div>
@@ -1827,7 +1426,7 @@
           <div class="clara-goal">Give the person your full, undivided attention without interrupting.</div>
           <div class="clara-action">
             <div class="clara-action-label">// Action</div>
-            Look for the feeling or need behind their words. Even if they are being rude or irrational — what are they trying to protect? What do they feel they have lost?
+            Look for the feeling or need behind their words. Even if they are being rude or irrational &#8212; what are they trying to protect? What do they feel they have lost?
           </div>
         </div>
       </div>
@@ -1836,7 +1435,7 @@
         <div class="clara-letter" style="color:var(--purple);border-color:rgba(170,68,255,0.4);background:rgba(170,68,255,0.1);">A</div>
         <div class="clara-content">
           <div class="clara-name">Affirm <span class="clara-alt">(or Acknowledge)</span></div>
-          <div class="clara-goal">Find a point of connection or a feeling you can validate — to lower their defensive wall.</div>
+          <div class="clara-goal">Find a point of connection or a feeling you can validate &#8212; to lower their defensive wall.</div>
           <div class="clara-action">
             <div class="clara-action-label">// Action</div>
             This doesn't mean you agree with their logic. You are simply affirming their experience.
@@ -1880,14 +1479,14 @@
 
     <div class="clara-proscons" data-search="clara pros cons advantages disadvantages time emotional tax physical danger defuse hostility relationships clarity">
       <div class="clara-pro-col">
-        <div class="clara-col-hdr pro-hdr">✔ Pros</div>
+        <div class="clara-col-hdr pro-hdr">&#10004; Pros</div>
         <div class="clara-pc-item">
           <div class="clara-pc-title">Defuses Hostility</div>
           <div class="clara-pc-desc">By affirming the other person, you stop the back-and-forth of an argument before it escalates.</div>
         </div>
         <div class="clara-pc-item">
           <div class="clara-pc-title">Preserves Relationships</div>
-          <div class="clara-pc-desc">Builds a reputation for fairness and level-headedness — especially valuable in mentoring or leadership roles.</div>
+          <div class="clara-pc-desc">Builds a reputation for fairness and level-headedness &#8212; especially valuable in mentoring or leadership roles.</div>
         </div>
         <div class="clara-pc-item">
           <div class="clara-pc-title">Clarity</div>
@@ -1895,7 +1494,7 @@
         </div>
       </div>
       <div class="clara-con-col">
-        <div class="clara-col-hdr con-hdr">✘ Cons</div>
+        <div class="clara-col-hdr con-hdr">&#10008; Cons</div>
         <div class="clara-pc-item">
           <div class="clara-pc-title">Time-Consuming</div>
           <div class="clara-pc-desc">Requires patience and can take longer than simply giving an order or walking away.</div>
@@ -1905,7 +1504,7 @@
           <div class="clara-pc-desc">Requires you to absorb some of the other person's heat while staying cool yourself.</div>
         </div>
         <div class="clara-pc-item warn-item">
-          <div class="clara-pc-title">⚠ Not for Physical Danger</div>
+          <div class="clara-pc-title">&#9888; Not for Physical Danger</div>
           <div class="clara-pc-desc">If a situation turns violent or physically unsafe, CLARA is not a substitute for removing yourself or seeking safety.</div>
         </div>
       </div>
@@ -1915,7 +1514,7 @@
   </div>
 
 
-  <!-- ══════ SECTION 5 — VIDEO LINKS ══════ -->
+  <!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; SECTION 5 &#8212; VIDEO LINKS &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 
 
 </main>
@@ -1926,23 +1525,23 @@
   <div class="footer-inner">
     <div class="footer-left">
       <span class="footer-text">SL Mentor Reference Guide</span>
-      <span class="footer-divider">·</span>
-      <a href="/cdn-cgi/l/email-protection#d9b3b6aab199b3b6aab1acb8b5b0adf7acb2" class="footer-link" title="Send suggestions to josh@joshualit.uk" id="suggest-link"><span style="font-size:26px;vertical-align:middle;line-height:1;">✉</span><span style="vertical-align:middle;"> Suggestions</span></a>
+      <span class="footer-divider">&#183;</span>
+      <a href="/cdn-cgi/l/email-protection#d9b3b6aab199b3b6aab1acb8b5b0adf7acb2" class="footer-link" title="Send suggestions to josh@joshualit.uk" id="suggest-link"><span style="font-size:26px;vertical-align:middle;line-height:1;">&#9993;</span><span style="vertical-align:middle;"> Suggestions</span></a>
     </div>
-    <button class="footer-top-btn" onclick="scrollToTop()" title="Scroll to top"><span style="font-size:20px;line-height:1;vertical-align:middle;display:inline-block;transform:translateY(2px);">⬆</span><span style="vertical-align:middle;"> Top</span></button>
+    <button class="footer-top-btn" onclick="scrollToTop()" title="Scroll to top"><span style="font-size:20px;line-height:1;vertical-align:middle;display:inline-block;transform:translateY(2px);">&#11014;</span><span style="vertical-align:middle;"> Top</span></button>
     <div></div>
   </div>
 </footer>
 
-<div style="background:var(--bg2);border-top:1px solid var(--border);padding:10px 28px;text-align:center;font-size:12px;color:var(--text-dim);">This is an independent community resource. <strong style="color:var(--text-mid);">Not an official Linden Lab or Second Life website.</strong> Second Life® and Linden Lab® are registered trademarks of Linden Research, Inc. All rights reserved.</div>
+<div style="background:var(--bg2);border-top:1px solid var(--border);padding:10px 28px;text-align:center;font-size:12px;color:var(--text-dim);">This is an independent community resource. <strong style="color:var(--text-mid);">Not an official Linden Lab or Second Life website.</strong> Second Life&#174; and Linden Lab&#174; are registered trademarks of Linden Research, Inc. All rights reserved.</div>
 
 
 
 <!-- CLARA Modal -->
 <div id="clara-modal" role="dialog" aria-modal="true">
   <div id="clara-modal-inner">
-    <div style="font-family:'Oxanium','Courier New',monospace;font-size:1rem;font-weight:600;color:var(--text-hi);letter-spacing:1px;margin-bottom:16px;padding-right:40px;">🕊️ The CLARA Method</div>
-    <button id="clara-modal-close" onclick="closeClaraModal()" aria-label="Close">✕</button>
+    <div style="font-family:'Oxanium','Courier New',monospace;font-size:1rem;font-weight:600;color:var(--text-hi);letter-spacing:1px;margin-bottom:16px;padding-right:40px;">&#128330;&#65039; The CLARA Method</div>
+    <button id="clara-modal-close" onclick="closeClaraModal()" aria-label="Close">&#10005;</button>
     <div id="clara-modal-body"></div>
   </div>
 </div>
@@ -1950,16 +1549,16 @@
 <!-- Shortcuts Modal -->
 <div id="shortcuts-modal" role="dialog" aria-modal="true">
   <div id="shortcuts-modal-inner">
-    <button id="shortcuts-modal-close" onclick="closeShortcutsModal()" aria-label="Close">✕</button>
-    <div class="shortcuts-title">⌨️ Common Keyboard Shortcuts</div>
-    <div class="shortcuts-subtitle">PC uses Ctrl/Alt — Mac uses Cmd/Option. Click COPY to paste a shortcut into chat.</div>
+    <button id="shortcuts-modal-close" onclick="closeShortcutsModal()" aria-label="Close">&#10005;</button>
+    <div class="shortcuts-title">&#9000;&#65039; Common Keyboard Shortcuts</div>
+    <div class="shortcuts-subtitle">PC uses Ctrl/Alt &#8212; Mac uses Cmd/Option. Click COPY to paste a shortcut into chat.</div>
 
-    <div class="shortcuts-group-hdr">🏃 Movement</div>
+    <div class="shortcuts-group-hdr">&#127939; Movement</div>
     <table class="shortcuts-table">
       <tbody><tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
       <tr><td>Fly on/off</td><td><span class="sc-kbd">F</span></td><td><span class="sc-kbd">F</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Fly on/off: press F on both PC and Mac.')">COPY</button></td></tr>
-      <tr><td>Fly up</td><td><span class="sc-kbd">E</span> or <span class="sc-kbd">PgUp</span></td><td><span class="sc-kbd">E</span> or <span class="sc-kbd">Fn+↑</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Fly up: press E (or PgUp on PC / Fn+Up on Mac).')">COPY</button></td></tr>
-      <tr><td>Fly down</td><td><span class="sc-kbd">C</span> or <span class="sc-kbd">PgDown</span></td><td><span class="sc-kbd">C</span> or <span class="sc-kbd">Fn+↓</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Fly down: press C (or PgDown on PC / Fn+Down on Mac).')">COPY</button></td></tr>
+      <tr><td>Fly up</td><td><span class="sc-kbd">E</span> or <span class="sc-kbd">PgUp</span></td><td><span class="sc-kbd">E</span> or <span class="sc-kbd">Fn+&#8593;</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Fly up: press E (or PgUp on PC / Fn+Up on Mac).')">COPY</button></td></tr>
+      <tr><td>Fly down</td><td><span class="sc-kbd">C</span> or <span class="sc-kbd">PgDown</span></td><td><span class="sc-kbd">C</span> or <span class="sc-kbd">Fn+&#8595;</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Fly down: press C (or PgDown on PC / Fn+Down on Mac).')">COPY</button></td></tr>
       <tr><td>Always Run</td><td><span class="sc-kbd">Ctrl+R</span></td><td><span class="sc-kbd">Cmd+R</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Always Run toggle: Ctrl+R on PC, Cmd+R on Mac.')">COPY</button></td></tr>
       <tr><td>Teleport Home</td><td><span class="sc-kbd">Ctrl+Shift+H</span></td><td><span class="sc-kbd">Cmd+Shift+H</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Teleport Home: Ctrl+Shift+H on PC, Cmd+Shift+H on Mac.')">COPY</button></td></tr>
         <tr><td>Fly Override <span style="font-size:10px;color:var(--text-dim);">(no-fly areas)</span></td><td><span class="sc-kbd">Ctrl+Alt+V</span></td><td><span class="sc-kbd">Cmd+Option+V</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Fly Override (allows flight in no-fly areas): Ctrl+Alt+V on PC, Cmd+Option+V on Mac.')">COPY</button></td></tr>
@@ -1967,7 +1566,7 @@
       <tr><td>Reset camera view</td><td><span class="sc-kbd">Esc</span></td><td><span class="sc-kbd">Esc</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Reset camera view: press Esc on both PC and Mac.')">COPY</button></td></tr>
     </tbody></table>
 
-    <div class="shortcuts-group-hdr">🧍 Avatar</div>
+    <div class="shortcuts-group-hdr">&#129485; Avatar</div>
     <table class="shortcuts-table">
       <tbody><tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
       <tr><td>Inventory</td><td><span class="sc-kbd">Ctrl+I</span></td><td><span class="sc-kbd">Cmd+I</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Open Inventory: Ctrl+I on PC, Cmd+I on Mac.')">COPY</button></td></tr>
@@ -1977,7 +1576,7 @@
       <tr><td>Toggle avatar visible</td><td><span class="sc-kbd">Ctrl+Alt+Shift+4</span></td><td><span class="sc-kbd">Cmd+Option+Shift+4</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Toggle avatar rendering (invisible fix): Ctrl+Alt+Shift+4 on PC, Cmd+Option+Shift+4 on Mac.')">COPY</button></td></tr>
     </tbody></table>
 
-    <div class="shortcuts-group-hdr">💬 Communication</div>
+    <div class="shortcuts-group-hdr">&#128172; Communication</div>
     <table class="shortcuts-table">
       <tbody><tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
       <tr><td>Chat history</td><td><span class="sc-kbd">Ctrl+H</span></td><td><span class="sc-kbd">Cmd+H</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Open Chat history: Ctrl+H on PC, Cmd+H on Mac.')">COPY</button></td></tr>
@@ -1987,7 +1586,7 @@
       <tr><td>Shout</td><td><span class="sc-kbd">Ctrl+Enter</span></td><td><span class="sc-kbd">Cmd+Enter</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Shout in chat: Ctrl+Enter on PC, Cmd+Enter on Mac.')">COPY</button></td></tr>
     </tbody></table>
 
-    <div class="shortcuts-group-hdr">⚙️ General</div>
+    <div class="shortcuts-group-hdr">&#9881;&#65039; General</div>
     <table class="shortcuts-table">
       <tbody><tr><td class="sc-col-hdr"></td><td class="sc-col-hdr">PC</td><td class="sc-col-hdr">Mac</td><td></td></tr>
       <tr><td>Preferences</td><td><span class="sc-kbd">Ctrl+P</span></td><td><span class="sc-kbd">Cmd+P</span></td><td><button class="sc-copy-btn" onclick="copyShortcut(this,'Open Preferences: Ctrl+P on PC, Cmd+P on Mac.')">COPY</button></td></tr>
@@ -2005,22 +1604,22 @@
   if (localStorage.getItem('cookie-ok-v2')) document.getElementById('cookie-notice').classList.add('hidden');
 </script>
 
-<!-- ══════ CHECKLIST MODAL ══════ -->
+<!-- &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; CHECKLIST MODAL &#9552;&#9552;&#9552;&#9552;&#9552;&#9552; -->
 <div id="checklist-modal" onclick="if(event.target===this)closeChecklistModal()">
   <div id="checklist-modal-inner">
-    <button id="checklist-modal-close" onclick="closeChecklistModal()">✕</button>
-    <div style="font-family:'Oxanium','Courier New',monospace;font-size:11px;font-weight:600;letter-spacing:2px;color:var(--c-amber);text-transform:uppercase;margin-bottom:16px;">📋 Before You Start</div>
+    <button id="checklist-modal-close" onclick="closeChecklistModal()">&#10005;</button>
+    <div style="font-family:'Oxanium','Courier New',monospace;font-size:11px;font-weight:600;letter-spacing:2px;color:var(--c-amber);text-transform:uppercase;margin-bottom:16px;">&#128203; Before You Start</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;">
-      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">🏷️</span>Wear your Mentor tag</div>
-      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">🌐</span>Wear your translator</div>
-      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">🧍</span>Set AO to a calm static pose</div>
-      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">📏</span>Keep a comfortable distance</div>
-      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">🚫</span>Don't crowd the landing point</div>
-      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">⚠️</span>Going AFK? Fly up, TP home or log off</div>
-      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">😊</span>Be positive, friendly and welcoming</div>
-      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">🧘</span>Stay calm — don't react, respond</div>
-      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">☕</span>Beverage of choice to hand</div>
-      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">🚽</span>Empty your bladder beforehand</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#127991;&#65039;</span>Wear your Mentor tag</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#127760;</span>Wear your translator</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#129485;</span>Set AO to a calm static pose</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#128207;</span>Keep a comfortable distance</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#128683;</span>Don't crowd the landing point</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#9888;&#65039;</span>Going AFK? Fly up, TP home or log off</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#128522;</span>Be positive, friendly and welcoming</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#129496;</span>Stay calm &#8212; don't react, respond</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#9749;</span>Beverage of choice to hand</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#128701;</span>Empty your bladder beforehand</div>
     </div>
   </div>
 </div>
