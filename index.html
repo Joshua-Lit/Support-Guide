@@ -813,23 +813,29 @@ Full overview at: secondlife.com/land</div>
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <div class="steps">
-            <div class="step"><div class="sn">1</div><div><strong>Mute/Block</strong> immediately: right-click avatar &#8594; <strong>Block</strong>.</div></div>
-            <div class="step"><div class="sn">2</div><div><strong>Move away</strong> &#8212; teleport to a different area or home.</div></div>
-            <div class="step"><div class="sn">3</div><div><strong>File an Abuse Report:</strong> Help &#8594; Report Abuse, choose category, describe what happened, submit.</div></div>
-            <div class="step"><div class="sn">4</div><div><strong>Document</strong> &#8212; take screenshots with <code>Ctrl+Shift+S</code>.</div></div>
+          <div class="say-block">
+            <div class="say-label">// Click a number to copy that step &middot; Copy all for the full set</div>
+            <div class="steps" style="margin:0;background:none;border:none;padding:0;">
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">1</div><div><strong>Mute/Block</strong> immediately: right-click avatar &#8594; <strong>Block</strong>.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">2</div><div><strong>Move away</strong> &#8212; teleport to a different area or home.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">3</div><div><strong>File an Abuse Report:</strong> Help &#8594; Report Abuse, choose category, describe what happened, submit.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">4</div><div><strong>Document</strong> &#8212; take screenshots with <code>Ctrl+Shift+S</code>.</div></div>
+            </div>
+            <div class="say-text" style="display:none;">Here's what to do if someone is harassing or griefing you:
+1. Mute/Block them immediately: right-click their avatar → Block.
+2. Move away - teleport to a different area or home.
+3. File an Abuse Report: Help → Report Abuse, choose a category, describe what happened, and submit.
+4. Document it - take screenshots with Ctrl+Shift+S.</div>
+            <button class="copy-btn" onclick="copyText(this)">Copy all</button>
           </div>
           <p>As a mentor, <strong>do not intervene directly</strong> with griefers &#8212; report only.</p>
 
-          <p style="margin-top:14px;"><strong>If someone is pushing you &#8212; use MoveLock</strong></p>
-          <p>A MoveLock anchors your avatar to a spot, preventing others from pushing you around.</p>
-
+          <p style="margin-top:8px;"><strong>If someone is pushing you &#8212; use MoveLock</strong> &#8212; it anchors your avatar to a spot, preventing others from pushing you around.</p>
           <div class="steps">
             <div class="step"><div class="sn">&#128293;</div><div><strong>Firestorm:</strong> Built-in MoveLock &#8212; toggle with <code>Ctrl+Alt+P</code> (PC) or <code>Command+Option+P</code> (Mac). No extra items needed.</div></div>
             <div class="step"><div class="sn">&#128065;</div><div><strong>Official SL Viewer:</strong> No built-in MoveLock. Wear a scripted HUD from the Marketplace instead:</div></div>
           </div>
-
-          <div class="tier-table" style="margin-top:10px;">
+          <div class="tier-table" style="margin-top:6px;">
             <div class="tier-row tier-header">
               <div class="tier-name">HUD</div>
               <div class="tier-price">Price</div>
@@ -841,13 +847,13 @@ Full overview at: secondlife.com/land</div>
               <div class="tier-price" style="font-size:11px;color:var(--text-mid);">Locks when standing still &#8212; you can still move freely</div>
             </div>
           </div>
-          <div class="mp-links" style="margin-top:10px;">
+          <div class="mp-links" style="margin-top:6px;">
             <a class="mp-btn" href="https://marketplace.secondlife.com/products/search?search%5Bmaturity%5D%5B%5D=general&amp;search%5Bmaturity%5D%5B%5D=moderate&amp;search%5Bkeywords%5D=movelock" target="_blank">Search Movelock on Marketplace</a>
           </div>
 
-          <div class="tip-box" style="margin-top:14px;">
-            <div class="tip-label">// Mentor Tip</div>
-            <p>Blocking is local to the viewer only &#8212; it doesn't globally ban the user. Only Linden Lab can do that via the AR process. Also remind residents to <strong>disable their MoveLock</strong> before sitting on furniture, riding vehicles, or teleporting &#8212; it can cause unexpected snapping back to a previous position.</p>
+          <div class="say-block" style="margin-top:8px;">
+            <div class="say-label">// Blocking tip to share with resident</div>
+            <div class="say-text" onclick="copyPara(this)">Blocking is local to your viewer only — it won’t globally ban the person, but it stops you seeing or hearing them. Only Linden Lab can action an account via the Abuse Report process. Also, if you use MoveLock, remember to disable it before sitting on furniture, riding vehicles, or teleporting — it can cause you to snap back to your previous position unexpectedly.</div>
           </div>
 
         </div>
