@@ -73,8 +73,13 @@ function tog(trigger) {
   if (card.classList.contains('open')) {
     card.querySelectorAll('.sn[onclick]').forEach(sn => {
       sn.classList.remove('sn-animate');
-      void sn.offsetWidth; // force reflow so animation restarts
+      void sn.offsetWidth;
       sn.classList.add('sn-animate');
+    });
+    card.querySelectorAll('.say-text[onclick], .say-text[ondblclick]').forEach(st => {
+      st.classList.remove('say-animate');
+      void st.offsetWidth;
+      st.classList.add('say-animate');
     });
   }
 }
