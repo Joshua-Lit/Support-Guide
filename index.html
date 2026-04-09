@@ -697,7 +697,7 @@
             <div class="tier-row">
               <div class="tier-name"><span class="tier-icon">&#128142;</span><div><strong>Premium Plus</strong></div></div>
               <div class="tier-price" style="font-size:11px;">2,048m&#178;</div>
-              <div class="tier-price" style="font-size:11px;">Exclusive PP homes + request via support</div>
+              <div class="tier-price" style="font-size:11px;text-align:center;">Exclusive PP homes + request via support</div>
             </div>
           </div>
           <p style="margin-top:12px;">The main options for having your own space:</p>
@@ -736,15 +736,24 @@ Full overview at: secondlife.com/land</div>
         </div>
         <div class="faq-body">
           <p>Teleport failures are common under high server load.</p>
-          <div class="steps">
-            <div class="step"><div class="sn">1</div><div>Wait 60 seconds &#8212; ghost avatars need time to catch up.</div></div>
-            <div class="step"><div class="sn">2</div><div>Teleport home: <strong>World &#8594; Teleport Home</strong>.</div></div>
-            <div class="step"><div class="sn">3</div><div>If stuck in place: <strong>sit</strong> on a nearby object, then <strong>stand</strong>.</div></div>
-            <div class="step"><div class="sn">4</div><div>Last resort: secondlife.com &#8594; <strong>My Account &#8594; Return Home</strong>.</div></div>
+          <div class="say-block">
+            <div class="say-label">// Click a number to copy that step &middot; Copy all for the full set</div>
+            <div class="steps" style="margin:0;background:none;border:none;padding:0;">
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">1</div><div>Wait 60 seconds &#8212; ghost avatars need time to catch up.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">2</div><div>Teleport home: <strong>World &#8594; Teleport Home</strong>.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">3</div><div>If stuck in place: <strong>sit</strong> on a nearby object, then <strong>stand</strong>.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">4</div><div>Last resort: secondlife.com &#8594; <strong>My Account &#8594; Return Home</strong>.</div></div>
+            </div>
+            <div class="say-text" style="display:none;">Teleport failures are common under high server load. Try these steps:
+1. Wait 60 seconds - ghost avatars need time to catch up.
+2. Teleport home: World → Teleport Home.
+3. If stuck in place: sit on a nearby object, then stand up.
+4. Last resort: go to secondlife.com → My Account → Return Home.</div>
+            <button class="copy-btn" onclick="copyText(this)">Copy all</button>
           </div>
-          <div class="tip-box">
-            <div class="tip-label">// Mentor Tip</div>
-            <p>Remind newcomers about flying: <code>Page Up</code> to ascend, <code>Page Down</code> to descend, <code>F</code> to toggle fly mode (viewer-dependent).</p>
+          <div class="say-block">
+            <div class="say-label">// Flying tip to share with resident</div>
+            <div class="say-text" onclick="copyPara(this)">While you're getting your bearings, flying can help you get unstuck! Press F to toggle fly mode, Page Up to go higher, and Page Down to descend. Not all viewers use the same keys, but F works in most.</div>
           </div>
         </div>
       </div>
