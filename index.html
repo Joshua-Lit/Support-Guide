@@ -498,19 +498,19 @@
         <div class="faq-body">
           <p>This is a <strong>bake fail</strong> &#8212; your avatar textures haven't loaded properly.</p>
           <div class="say-block">
-            <div class="say-label">// Click to copy all steps</div>
+            <div class="say-label">// Click a number to copy that step &middot; Copy all for the full set</div>
             <div class="steps" style="margin:0;background:none;border:none;padding:0;">
-              <div class="step"><div class="sn">1</div><div>Wait 30 seconds &#8212; resolves itself on slow connections.</div></div>
-              <div class="step"><div class="sn">2</div><div><strong>Avatar menu &#8594; Avatar Health &#8594; Refresh Attachments</strong></div></div>
-              <div class="step"><div class="sn">3</div><div><strong>Avatar &#8594; Avatar Health &#8594; Rebake Textures</strong> (shortcut: <code>Ctrl+Alt+R</code>)</div></div>
-              <div class="step"><div class="sn">4</div><div>Still grey? Change to a different region, or relog entirely.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">1</div><div>Wait 30 seconds &#8212; resolves itself on slow connections.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">2</div><div><strong>Avatar menu &#8594; Avatar Health &#8594; Refresh Attachments</strong></div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">3</div><div><strong>Avatar &#8594; Avatar Health &#8594; Rebake Textures</strong> (shortcut: <code>Ctrl+Alt+R</code>)</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">4</div><div>Still grey? Change to a different region, or relog entirely.</div></div>
             </div>
             <div class="say-text" style="display:none;">This is a bake fail - your avatar textures haven't loaded properly. Try these steps:
 1. Wait 30 seconds - resolves itself on slow connections.
 2. Avatar menu → Avatar Health → Refresh Attachments
 3. Avatar → Avatar Health → Rebake Textures (shortcut: Ctrl+Alt+R)
 4. Still grey? Change to a different region, or relog entirely.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            <button class="copy-btn" onclick="copyText(this)">Copy all</button>
           </div>
           <div class="tip-box">
             <div class="tip-label">// If stuck as Ruth / no mesh avatar</div>
@@ -534,19 +534,19 @@
         <div class="faq-body">
           <p>Usually caused by <strong>inventory not fully loading</strong> or high sim lag.</p>
           <div class="say-block">
-            <div class="say-label">// Click to copy all steps</div>
+            <div class="say-label">// Click a number to copy that step &middot; Copy all for the full set</div>
             <div class="steps" style="margin:0;background:none;border:none;padding:0;">
-              <div class="step"><div class="sn">1</div><div>Check <strong>Inventory &#8594; Recent</strong> &#8212; wait for the spinning wheel to stop.</div></div>
-              <div class="step"><div class="sn">2</div><div>Right-click the item &#8594; <strong>Attach To</strong> &#8594; choose attach point manually.</div></div>
-              <div class="step"><div class="sn">3</div><div>If vanished: <strong>Edit &#8594; Detach Object</strong> &#8212; it may have attached off-screen.</div></div>
-              <div class="step"><div class="sn">4</div><div>Relog on a quieter, lower-traffic region.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">1</div><div>Check <strong>Inventory &#8594; Recent</strong> &#8212; wait for the spinning wheel to stop.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">2</div><div>Right-click the item &#8594; <strong>Attach To</strong> &#8594; choose attach point manually.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">3</div><div>If vanished: <strong>Edit &#8594; Detach Object</strong> &#8212; it may have attached off-screen.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">4</div><div>Relog on a quieter, lower-traffic region.</div></div>
             </div>
             <div class="say-text" style="display:none;">Usually caused by inventory not fully loading or high sim lag. Try these steps:
 1. Check Inventory → Recent - wait for the spinning wheel to stop.
 2. Right-click the item → Attach To → choose attach point manually.
 3. If vanished: Edit → Detach Object - it may have attached off-screen.
 4. Relog on a quieter, lower-traffic region.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            <button class="copy-btn" onclick="copyText(this)">Copy all</button>
           </div>
           <div class="tip-box">
             <div class="tip-label">// Mentor Tip</div>

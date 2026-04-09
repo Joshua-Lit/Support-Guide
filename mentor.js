@@ -109,6 +109,22 @@ function clearSearch() {
   srch.focus();
 }
 
+function copyStep(sn) {
+  const text = sn.nextElementSibling.textContent.trim();
+  const orig = sn.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    sn.textContent = '✓';
+    sn.style.color = 'var(--c-teal)';
+    sn.style.borderColor = 'var(--c-teal)';
+    sn.style.background = 'var(--c-teal-d)';
+    setTimeout(() => {
+      sn.textContent = orig;
+      sn.style.color = '';
+      sn.style.borderColor = '';
+      sn.style.background = '';
+    }, 1500);
+  });
+}
 function copyText(btn) {
   const text = btn.previousElementSibling.textContent.trim();
   navigator.clipboard.writeText(text).then(() => {
