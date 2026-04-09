@@ -828,7 +828,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 
 /* ═══ MEMBERSHIP TIER TABLE ═══ */
 .tier-table { border:1px solid var(--border); border-radius:8px; overflow:hidden; margin:10px 0; }
-.tier-row { display:grid; grid-template-columns:1fr 100px 100px; border-bottom:1px solid var(--border); }
+.tier-row { display:grid; grid-template-columns:1fr 160px 160px; border-bottom:1px solid var(--border); }
 .tier-row:last-child { border-bottom:none; }
 .tier-header { background:var(--bg3); }
 .tier-header .tier-price { font-family:'Share Tech Mono','Courier New',monospace; font-size:10px; color:var(--text-dim); letter-spacing:1px; text-transform:uppercase; padding:8px 12px; display:flex; align-items:center; justify-content:center; border-left:1px solid var(--border); }
