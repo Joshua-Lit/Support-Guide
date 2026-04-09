@@ -625,7 +625,7 @@
           </div>
           <div class="say-block">
             <div class="say-label">// Tip to share with resident</div>
-            <div class="say-text" onclick="copyPara(this)">To avoid accidentally leaving a group, activate None at the top of your groups list. That way no group is active and you won’t trigger any group actions by mistake.</div>
+            <div class="say-text" onclick="copyPara(this)">To avoid accidentally leaving a group, activate <strong>None</strong> at the top of your groups list. That way no group is active and you won’t trigger any group actions by mistake.</div>
           </div>
           <div class="xref">&#128206; See also: <a class="xref-link" href="#" onclick="jumpTo('faq-sffl');return false;">Second Friends for Life</a></div>
         </div>
@@ -640,16 +640,26 @@
         </div>
         <div class="faq-body">
           <p>Items are rarely truly lost. Work through these steps:</p>
-          <div class="steps">
-            <div class="step"><div class="sn">1</div><div>Use the <strong>inventory search bar</strong> &#8212; try partial names or creator names.</div></div>
-            <div class="step"><div class="sn">2</div><div>Check the <strong>Recent</strong> and <strong>Received Items</strong> tabs.</div></div>
-            <div class="step"><div class="sn">3</div><div>Check the <strong>Trash</strong> folder &#8212; items can end up there accidentally.</div></div>
-            <div class="step"><div class="sn">4</div><div>Recently purchased? Check <strong>Recent Items</strong> or the <strong>Objects</strong> subfolder.</div></div>
-            <div class="step"><div class="sn">5</div><div>Firestorm: <strong>Avatar &#8594; Avatar Health &#8594; Clear Inventory Cache</strong>, then relog.</div></div>
+          <div class="say-block">
+            <div class="say-label">// Click a number to copy that step &middot; Copy all for the full set</div>
+            <div class="steps" style="margin:0;background:none;border:none;padding:0;">
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">1</div><div>Use the <strong>inventory search bar</strong> &#8212; try partial names or creator names.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">2</div><div>Check the <strong>Recent</strong> and <strong>Received Items</strong> tabs.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">3</div><div>Check the <strong>Trash</strong> folder &#8212; items can end up there accidentally.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">4</div><div>Recently purchased? Check <strong>Recent Items</strong> or the <strong>Objects</strong> subfolder.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">5</div><div>Firestorm: <strong>Avatar &#8594; Avatar Health &#8594; Clear Inventory Cache</strong>, then relog.</div></div>
+            </div>
+            <div class="say-text" style="display:none;">Items are rarely truly lost. Try these steps:
+1. Use the inventory search bar - try partial names or creator names.
+2. Check the Recent and Received Items tabs.
+3. Check the Trash folder - items can end up there accidentally.
+4. Recently purchased? Check Recent Items or the Objects subfolder.
+5. Firestorm: Avatar → Avatar Health → Clear Inventory Cache, then relog.</div>
+            <button class="copy-btn" onclick="copyText(this)">Copy all</button>
           </div>
-          <div class="tip-box">
-            <div class="tip-label">// Mentor Tip</div>
-            <p>Marketplace purchases can be re-delivered at no charge from the resident's order history at marketplace.secondlife.com.</p>
+          <div class="say-block">
+            <div class="say-label">// Redelivery tip to share with resident</div>
+            <div class="say-text" onclick="copyPara(this)">If you bought it on the Marketplace, you can redeliver it for free. Go to secondlife.com → Marketplace → My Account → Order History, find the item and click Redeliver. For in-world store purchases, look for a Redelivery Terminal at the store — touch it and follow the prompts.</div>
           </div>
         </div>
       </div>
