@@ -1551,28 +1551,25 @@ function updateThemeToggle() {
     <div class="qa-body">
       <p>The <strong>lookat crosshairs</strong> show where your camera is focused (normally via Alt-Click). You can control both what you see and what you send to others.</p>
 
-      <p style="margin-top:12px;"><strong>🔷 Official SL Viewer</strong></p>
-      <p>First enable the Develop menu: <strong>Ctrl+Alt+Q</strong>, then go to <strong>Develop → Avatar → Show Look At</strong> and toggle it off. This hides crosshairs on your screen.</p>
-      <p style="margin-top:8px;">To stop sending your lookat to others, go to <strong>Preferences → Privacy</strong> and look for the lookat/camera options there.</p>
+      <p style="margin-top:12px;"><strong>&#128311; Official SL Viewer</strong></p>
+      <p>Settings are in <strong>Preferences &#8594; Privacy</strong>. First enable the Develop menu with <code>Ctrl+Alt+Q</code> to access the Show Look At toggle.</p>
 
-      <p style="margin-top:12px;"><strong>🔶 Firestorm</strong></p>
-      <p>Go to <strong>Preferences → Privacy → LookAt tab</strong>:</p>
+      <p style="margin-top:12px;"><strong>&#128310; Firestorm</strong></p>
+      <p>Go to <strong>Preferences &#8594; Privacy &#8594; LookAt tab</strong> for granular control:</p>
       <div class="bullets">
-        <div class="bullet"><strong>Show look at targets</strong> — global toggle to show/hide all crosshairs on your screen.</div>
-        <div class="bullet"><strong>Don't send my look at targets to others</strong> — prevents your camera focus point from showing to other residents.</div>
-        <div class="bullet"><strong>Don't send any look at targets at all</strong> — also stops your avatar's head from turning to face your camera focus point.</div>
-        <div class="bullet"><strong>Don't send my selection target hints</strong> — prevents your selection pointer from showing to others.</div>
+        <div class="bullet"><strong>Show look at targets</strong> &#8212; show/hide all crosshairs on your screen.</div>
+        <div class="bullet"><strong>Don't send my look at targets to others</strong> &#8212; stops your camera focus point showing to others.</div>
+        <div class="bullet"><strong>Don't send any look at targets at all</strong> &#8212; also stops your avatar's head turning to follow your camera.</div>
+        <div class="bullet"><strong>Don't send my selection target hints</strong> &#8212; stops your selection pointer showing to others.</div>
       </div>
 
       <div class="say-block">
-        <div class="say-label">// What to tell the resident (SL Viewer)</div>
-        <div class="say-text">Go to Preferences → Privacy. Uncheck "Enable LookAt" to stop crosshairs showing on your screen and to stop sending your camera position to others. While you're there, you can also uncheck "Enable Selection Hints" to stop your selection pointer showing to others.</div>
-        <button class="copy-btn" onclick="copyText(this)">COPY</button>
+        <div class="say-label">// SL Viewer &#8212; click to copy</div>
+        <div class="say-text" onclick="copyPara(this)">Go to Preferences → Privacy. Uncheck "Enable LookAt" to stop crosshairs showing on your screen and to stop sending your camera position to others. While you're there, you can also uncheck "Enable Selection Hints" to stop your selection pointer showing to others.</div>
       </div>
       <div class="say-block">
-        <div class="say-label">// What to tell the resident (Firestorm)</div>
-        <div class="say-text">Go to Preferences → Privacy → LookAt tab. To stop others seeing where your camera points, check "Don't send my look at targets to others". You can also uncheck "Show look at targets" to hide everyone else's crosshairs from your own screen.</div>
-        <button class="copy-btn" onclick="copyText(this)">COPY</button>
+        <div class="say-label">// Firestorm &#8212; click to copy</div>
+        <div class="say-text" onclick="copyPara(this)">Go to Preferences → Privacy → LookAt tab. To stop others seeing where your camera points, check "Don't send my look at targets to others". You can also uncheck "Show look at targets" to hide everyone else's crosshairs from your own screen.</div>
       </div>
       <div class="tip-box">
         <div class="tip-label">// Note</div>
