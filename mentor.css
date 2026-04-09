@@ -50,6 +50,7 @@
   --text-dim: #5a7099;
   --text-hi:  #e8f0ff;
   --text-mid: #8aa0cc;
+  --say-text: #ffffff;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -698,7 +699,7 @@ body {
 }
 .say-text {
   font-family:'Share Tech Mono','Courier New',monospace; font-size:12px;
-  color:var(--gold); line-height:1.6; white-space:pre-wrap;
+  color:var(--say-text); line-height:1.6; white-space:pre-wrap;
   padding-right:52px;
 }
 .copy-btn {
@@ -2185,6 +2186,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   --c-tech:     var(--c-violet); --c-tech-d: var(--c-violet-d);
   --c-sl:  #1a6abf; --c-sl-d: rgba(26,106,191,0.08); --c-sl-b: rgba(26,106,191,0.30);
   --c-fs:  #b85800; --c-fs-d: rgba(184,88,0,0.08);   --c-fs-b: rgba(184,88,0,0.30);
+  --say-text: #1a6abf;
 }
 [data-theme="light"] body { background: var(--bg2); }
 [data-theme="light"] #app { background: var(--bg2); }
