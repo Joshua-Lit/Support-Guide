@@ -497,7 +497,21 @@
     color: var(--text-hi);
     line-height: 1.65;
     padding-right: 70px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 4px 6px;
+    margin: 0 -6px 10px;
+    transition: color 0.15s, background 0.15s;
   }
+  .say-text:last-child { margin-bottom: 0; }
+  .say-text:hover { background: rgba(255,255,255,0.06); }
+  .say-text.copied { color: var(--c-teal) !important; background: var(--c-teal-d); }
+  @keyframes say-pulse {
+    0%   { box-shadow: 0 0 0 0px rgba(77,159,255,0.7); }
+    40%  { box-shadow: 0 0 0 10px rgba(77,159,255,0.0); }
+    100% { box-shadow: 0 0 0 0px rgba(77,159,255,0.0); }
+  }
+  .say-animate { animation: say-pulse 2s ease-out 2; }
   .say-block .copy-btn {
     position: absolute;
     top: 12px; right: 12px;
@@ -1233,6 +1247,18 @@ function jumpTo(id) {
 function tog(trigger) {
   const card = trigger.parentElement;
   card.classList.toggle('open');
+  if (card.classList.contains('open')) {
+    card.querySelectorAll('.sn[onclick]').forEach(sn => {
+      sn.classList.remove('sn-animate');
+      void sn.offsetWidth;
+      sn.classList.add('sn-animate');
+    });
+    card.querySelectorAll('.say-text[onclick]').forEach(st => {
+      st.classList.remove('say-animate');
+      void st.offsetWidth;
+      st.classList.add('say-animate');
+    });
+  }
 }
 
 function copyText(btn) {
