@@ -509,29 +509,11 @@
             </div>
           </div>
           <div class="say-block">
-            <div class="say-label">// Reassure them first</div>
-            <div class="say-text">Don't panic, I can help you with that! 😊</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// Step 1 — Find what's missing</div>
-            <div class="say-text">Open your Inventory (Ctrl+I) and click the WORN tab — this shows everything you're currently wearing, including the folder each item came from. Note the folder names shown — e.g. "Female body - B" or "Female look - Casual".</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// Step 2 — Body part missing</div>
-            <div class="say-text">In the WORN tab, note your body folder name — e.g. "Female body - B". Go to Clothing → Female bodies &amp; looks → [that folder name] in your main inventory. Items in bold are being worn — the one that's NOT bold is the missing part. Right-click it and choose Add.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// Step 2 — Clothing item missing</div>
-            <div class="say-text">In the WORN tab, note your look folder name — e.g. "Female look - Casual". Go to Clothing → Female bodies &amp; looks → [that folder name] in your main inventory. Items in bold are being worn — the one that's NOT bold is the missing piece. Right-click it and choose Add.</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
-          </div>
-          <div class="say-block">
-            <div class="say-label">// Nothing in WORN tab — completely naked</div>
-            <div class="say-text">Go to Avatar in the top menu bar, then click Avatar Welcome Pack. Choose any of the complete starter looks — it's free and will give you a full avatar instantly!</div>
-            <button class="copy-btn" onclick="copyText(this)">COPY</button>
+            <div class="say-label">// Click any line to copy it</div>
+            <div class="say-text" onclick="copyPara(this)">Open your Inventory (Ctrl+I) and click the WORN tab — this shows everything you're currently wearing, including the folder each item came from. Note the folder names shown — e.g. "Female body - B" or "Female look - Casual".</div>
+            <div class="say-text" onclick="copyPara(this)">In the WORN tab, note your body folder name — e.g. "Female body - B". Go to Clothing → Female bodies &amp; looks → [that folder name] in your main inventory. Items in bold are being worn — the one that's NOT bold is the missing part. Right-click it and choose Add.</div>
+            <div class="say-text" onclick="copyPara(this)">In the WORN tab, note your look folder name — e.g. "Female look - Casual". Go to Clothing → Female bodies &amp; looks → [that folder name] in your main inventory. Items in bold are being worn — the one that's NOT bold is the missing piece. Right-click it and choose Add.</div>
+            <div class="say-text" onclick="copyPara(this)">Go to Avatar in the top menu bar, then click Avatar Welcome Pack. Choose any of the complete starter looks — it's free and will give you a full avatar instantly!</div>
           </div>
           <div class="xref">📎 See also: <a class="xref-link" href="technical.html#fc-avatar-appearance" target="_blank">Diagnostic Flowchart ↗</a></div>
         </div>

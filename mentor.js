@@ -117,6 +117,12 @@ function copyText(btn) {
     setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('ok'); }, 2200);
   });
 }
+function copyPara(el) {
+  navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 1500);
+  });
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   initTheme();
