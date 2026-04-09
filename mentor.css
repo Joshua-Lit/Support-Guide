@@ -582,6 +582,23 @@ body {
   display:flex; align-items:center; justify-content:center;
   flex-shrink:0; margin-top:1px;
 }
+.sn[onclick] {
+  transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+}
+.sn[onclick]:hover {
+  background: rgba(61,127,255,0.22);
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(61,127,255,0.18);
+  color: var(--text-hi);
+}
+@keyframes sn-pulse {
+  0%   { box-shadow: 0 0 0 0px rgba(61,127,255,0.6); }
+  50%  { box-shadow: 0 0 0 5px rgba(61,127,255,0.0); }
+  100% { box-shadow: 0 0 0 0px rgba(61,127,255,0.0); }
+}
+.sn-animate {
+  animation: sn-pulse 0.55s ease-out 2;
+}
 
 .tip-box {
   background:rgba(94,255,200,0.04); border-left:2px solid var(--teal);

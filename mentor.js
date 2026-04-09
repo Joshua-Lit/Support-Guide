@@ -70,6 +70,13 @@ function closeClaraModal() {
 function tog(trigger) {
   const card = trigger.parentElement;
   card.classList.toggle('open');
+  if (card.classList.contains('open')) {
+    card.querySelectorAll('.sn[onclick]').forEach(sn => {
+      sn.classList.remove('sn-animate');
+      void sn.offsetWidth; // force reflow so animation restarts
+      sn.classList.add('sn-animate');
+    });
+  }
 }
 function toggleNav(hdr) {
   hdr.classList.toggle('open');
