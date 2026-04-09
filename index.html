@@ -497,11 +497,15 @@
         </div>
         <div class="faq-body">
           <p>This is a <strong>bake fail</strong> &#8212; your avatar textures haven't loaded properly.</p>
-          <div class="steps">
-            <div class="step"><div class="sn">1</div><div>Wait 30 seconds &#8212; resolves itself on slow connections.</div></div>
-            <div class="step"><div class="sn">2</div><div><strong>Avatar menu &#8594; Avatar Health &#8594; Refresh Attachments</strong></div></div>
-            <div class="step"><div class="sn">3</div><div><strong>Avatar &#8594; Avatar Health &#8594; Rebake Textures</strong> (shortcut: <code>Ctrl+Alt+R</code>)</div></div>
-            <div class="step"><div class="sn">4</div><div>Still grey? Change to a different region, or relog entirely.</div></div>
+          <div class="say-block">
+            <div class="say-label">// Click to copy all steps</div>
+            <div class="steps" style="margin:0;background:none;border:none;padding:0;">
+              <div class="step"><div class="sn">1</div><div>Wait 30 seconds &#8212; resolves itself on slow connections.</div></div>
+              <div class="step"><div class="sn">2</div><div><strong>Avatar menu &#8594; Avatar Health &#8594; Refresh Attachments</strong></div></div>
+              <div class="step"><div class="sn">3</div><div><strong>Avatar &#8594; Avatar Health &#8594; Rebake Textures</strong> (shortcut: <code>Ctrl+Alt+R</code>)</div></div>
+              <div class="step"><div class="sn">4</div><div>Still grey? Change to a different region, or relog entirely.</div></div>
+            </div>
+            <button class="copy-btn" onclick="navigator.clipboard.writeText('This is a bake fail - your avatar textures haven\'t loaded properly. Try these steps:\n1. Wait 30 seconds - resolves itself on slow connections.\n2. Avatar menu → Avatar Health → Refresh Attachments\n3. Avatar → Avatar Health → Rebake Textures (shortcut: Ctrl+Alt+R)\n4. Still grey? Change to a different region, or relog entirely.').then(b=>{this.textContent=\'✓ OK\';this.classList.add(\'ok\');setTimeout(()=>{this.textContent=\'COPY\';this.classList.remove(\'ok\')},2200)})">COPY</button>
           </div>
           <div class="tip-box">
             <div class="tip-label">// If stuck as Ruth / no mesh avatar</div>
