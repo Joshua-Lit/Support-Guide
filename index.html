@@ -924,21 +924,32 @@ Full overview at: secondlife.com/land</div>
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <div class="steps">
-            <div class="step"><div class="sn">1</div><div><strong>Me &#8594; Preferences &#8594; Sound &amp; Media</strong> &#8212; confirm Voice enabled and correct devices selected.</div></div>
-            <div class="step"><div class="sn">2</div><div>Confirm the region/parcel allows voice &#8212; click the <strong>sound icon</strong> in the top toolbar to open the sound settings panel. Voice will appear at the bottom of the dropdown with an <strong>Enable Voice Chat</strong> toggle.</div></div>
-            <div class="step"><div class="sn">3</div><div>Check system audio &#8212; ensure SL isn't muted at the OS level.</div></div>
-            <div class="step"><div class="sn">4</div><div>In the sound panel, make sure the <strong>Voice</strong> slider is turned up and not muted.</div></div>
-            <div class="step"><div class="sn">5</div><div>Relog &#8212; voice sometimes fails on the initial login.</div></div>
-            <div class="step"><div class="sn">6</div><div><strong>Test your voice</strong> &#8212; visit <strong>Voice Echo Canyon</strong>, a public region with an echo channel where you can hear yourself speak and confirm voice is working. You will only hear yourself, not other residents. It is not a sandbox.
-              <div class="mp-links">
-                <a class="mp-btn" href="secondlife://Voice%20Echo%20Canyon/175/75/30">Open in SL</a>
-              </div>
-            </div></div>
+          <div class="say-block">
+            <div class="say-label">// Click a number to copy that step &middot; Copy all for the full set</div>
+            <div class="steps" style="margin:0;background:none;border:none;padding:0;">
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">1</div><div><strong>Me &#8594; Preferences &#8594; Sound &amp; Media</strong> &#8212; confirm Voice enabled and correct devices selected.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">2</div><div>Confirm the region/parcel allows voice &#8212; click the <strong>sound icon</strong> in the top toolbar to open the sound settings panel. Voice will appear at the bottom of the dropdown with an <strong>Enable Voice Chat</strong> toggle.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">3</div><div>Check system audio &#8212; ensure SL isn't muted at the OS level.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">4</div><div>In the sound panel, make sure the <strong>Voice</strong> slider is turned up and not muted.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">5</div><div>Relog &#8212; voice sometimes fails on the initial login.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">6</div><div><strong>Test your voice</strong> &#8212; visit <strong>Voice Echo Canyon</strong>, a public region with an echo channel where you can hear yourself speak and confirm voice is working. You will only hear yourself, not other residents. It is not a sandbox.
+                <div class="mp-links">
+                  <a class="mp-btn" href="secondlife://Voice%20Echo%20Canyon/175/75/30">Open in SL</a>
+                </div>
+              </div></div>
+            </div>
+            <div class="say-text" style="display:none;">Voice chat troubleshooting steps:
+1. Go to Me → Preferences → Sound &amp; Media - confirm Voice is enabled and the correct devices are selected.
+2. Check the sound icon in the top right toolbar - click it to open the sound panel and make sure Enable Voice Chat is toggled on.
+3. Check your system audio - make sure SL isn't muted at the OS level.
+4. In the sound panel, check the Voice slider is turned up and not muted.
+5. Relog - voice sometimes fails on the initial login.
+6. Test at Voice Echo Canyon - you'll hear yourself speak if voice is working. Search for it in the Destination Guide or World → Destination Guide.</div>
+            <button class="copy-btn" onclick="copyText(this)">Copy all</button>
           </div>
-          <div class="tip-box">
-            <div class="tip-label">// Mentor Tip</div>
-            <p>The sound icon in the top toolbar (next to the clock) opens a dropdown with sliders for Master, Buttons, Ambient, Sounds, Music, Media, and Voice &#8212; this is the same in both the <strong>official SL viewer and Firestorm</strong>. If voice isn't working, check that the Voice slider is up and Enable Voice Chat is toggled on. Firestorm users: toggling <strong>Preferences &#8594; Sound &amp; Media &#8594; Enable Voice</strong> off and on also resolves most intermittent drop-outs.</p>
+          <div class="say-block" style="margin-top:8px;">
+            <div class="say-label">// Sound panel tip &#8212; click to copy</div>
+            <div class="say-text" onclick="copyPara(this)">If voice isn't working, look for the sound icon in the top right of your viewer toolbar &#8212; it's next to the clock. Click it to open a dropdown with sliders for Master, Ambient, Music, Media, and Voice. Make sure the Voice slider is turned up and that Enable Voice Chat is toggled on. This works the same way in both the official SL viewer and Firestorm. If you're on Firestorm and voice keeps dropping out, try toggling Preferences &#8594; Sound &amp; Media &#8594; Enable Voice off and back on.</div>
           </div>
         </div>
       </div>
