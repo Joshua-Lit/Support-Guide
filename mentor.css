@@ -580,7 +580,7 @@ body {
   background:var(--blue-dim); border:1px solid rgba(61,127,255,0.4);
   color:var(--blue); font-family:'Share Tech Mono','Courier New',monospace; font-size:10px;
   display:flex; align-items:center; justify-content:center;
-  flex-shrink:0; margin-top:1px;
+  flex-shrink:0; margin-top:1px; line-height:1; overflow:hidden;
 }
 .sn[onclick] {
   transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
