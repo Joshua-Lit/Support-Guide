@@ -597,12 +597,12 @@ body {
   100% { box-shadow: 0 0 0 0px rgba(61,127,255,0.0); }
 }
 @keyframes say-pulse {
-  0%   { box-shadow: 0 0 0 0px rgba(77,159,255,0.5); }
-  50%  { box-shadow: 0 0 0 6px rgba(77,159,255,0.0); }
+  0%   { box-shadow: 0 0 0 0px rgba(77,159,255,0.7); }
+  40%  { box-shadow: 0 0 0 10px rgba(77,159,255,0.0); }
   100% { box-shadow: 0 0 0 0px rgba(77,159,255,0.0); }
 }
 .say-animate {
-  animation: say-pulse 0.9s ease-out 2;
+  animation: say-pulse 2s ease-out 2;
 }
 .sn-animate {
   animation: sn-pulse 0.55s ease-out 2;
