@@ -450,12 +450,12 @@ body {
 .nr-code { font-family:'Share Tech Mono','Courier New',monospace; font-size:2.5rem; color:var(--border2); margin-bottom:12px; }
 
 /* ═══ FAQ ═══ */
-.faq-list { display:flex; flex-direction:column; gap:2px; }
+.faq-list { display:flex; flex-direction:column; gap:3px; }
 
 .faq-item {
   background:var(--panel); border:1px solid var(--border); border-radius:10px;
   overflow:hidden; transition:border-color 0.2s, box-shadow 0.2s;
-  position:relative; margin-bottom:4px;
+  position:relative; margin-bottom:5px;
 }
 .faq-item::before {
   content:''; position:absolute; left:0; top:0; bottom:0;
@@ -641,7 +641,7 @@ body {
 .b-mentor  { color:var(--teal);   background:var(--teal-dim);            border:1px solid rgba(94,255,200,0.2); }
 
 /* ═══ SCRIPTS ═══ */
-.script-list { display:flex; flex-direction:column; gap:10px; }
+.script-list { display:flex; flex-direction:column; gap:3px; }
 
 .sc-card {
   background:var(--panel); border:1px solid var(--border);
@@ -1483,7 +1483,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   position: relative;
   overflow: hidden;
   transition: border-color 0.2s;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
 }
 .qa-card.open { overflow: visible; }
 .qa-card::before {
