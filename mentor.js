@@ -118,10 +118,26 @@ function copyText(btn) {
   });
 }
 function copyPara(el) {
-  navigator.clipboard.writeText(el.textContent.trim()).then(() => {
-    el.classList.add('copied');
-    setTimeout(() => el.classList.remove('copied'), 1500);
-  });
+  const text = el.textContent.trim();
+  el.classList.add('copied');
+  setTimeout(() => el.classList.remove('copied'), 1500);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    });
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
