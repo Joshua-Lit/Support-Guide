@@ -450,7 +450,7 @@ body {
 .nr-code { font-family:'Share Tech Mono','Courier New',monospace; font-size:2.5rem; color:var(--border2); margin-bottom:12px; }
 
 /* ═══ FAQ ═══ */
-.faq-list { display:flex; flex-direction:column; gap:3px; }
+.faq-list { display:flex; flex-direction:column; gap:0; }
 
 .faq-item {
   background:var(--panel); border:1px solid var(--border); border-radius:10px;
