@@ -608,13 +608,24 @@
           <span class="faq-tog">+</span>
         </div>
         <div class="faq-body">
-          <p><strong>Limits:</strong> Free accounts can join up to <code>42</code> groups; Premium up to <code>70</code>.</p>
-          <p><strong>Joining:</strong> Search via <em>People &#8594; Groups &#8594; Search</em> or click a group sign in-world.</p>
-          <p><strong>Silencing notices:</strong> Right-click the group &#8594; <strong>Edit</strong> &#8594; uncheck <strong>Receive Notices</strong>.</p>
-          <p><strong>Active tag:</strong> Only one group tag shows at a time &#8212; click the group &#8594; press <strong>Activate</strong>.</p>
-          <div class="tip-box">
-            <div class="tip-label">// Mentor Tip</div>
-            <p>To avoid accidentally leaving groups, tell residents to activate <strong>None</strong> at the top of their groups list &#8212; this means no group is active, so they can't inadvertently trigger a group-related action. It's a simple habit that prevents a lot of confusion.</p>
+          <div class="say-block">
+            <div class="say-label">// Click a number to copy that step &middot; Copy all for the full set</div>
+            <div class="steps" style="margin:0;background:none;border:none;padding:0;">
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">1</div><div><strong>Limits:</strong> Free accounts can join up to <code>42</code> groups; Premium up to <code>70</code>.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">2</div><div><strong>Joining:</strong> Search via <em>People &#8594; Groups &#8594; Search</em> or click a group sign in-world.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">3</div><div><strong>Silencing notices:</strong> Right-click the group &#8594; <strong>Edit</strong> &#8594; uncheck <strong>Receive Notices</strong>.</div></div>
+              <div class="step"><div class="sn" onclick="copyStep(this)" style="cursor:pointer;" title="Copy this step">4</div><div><strong>Active tag:</strong> Only one group tag shows at a time &#8212; click the group &#8594; press <strong>Activate</strong>.</div></div>
+            </div>
+            <div class="say-text" style="display:none;">Groups in SL work like this:
+1. Free accounts can join up to 42 groups; Premium up to 70.
+2. To join: People → Groups → Search, or click a group sign in-world.
+3. To silence notifications from a group: right-click it → Edit → uncheck Receive Notices.
+4. Only one group tag shows at a time - click the group and press Activate to switch.</div>
+            <button class="copy-btn" onclick="copyText(this)">Copy all</button>
+          </div>
+          <div class="say-block">
+            <div class="say-label">// Tip to share with resident</div>
+            <div class="say-text" onclick="copyPara(this)">To avoid accidentally leaving a group, activate None at the top of your groups list. That way no group is active and you won’t trigger any group actions by mistake.</div>
           </div>
           <div class="xref">&#128206; See also: <a class="xref-link" href="#" onclick="jumpTo('faq-sffl');return false;">Second Friends for Life</a></div>
         </div>
