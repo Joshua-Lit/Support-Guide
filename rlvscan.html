@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RLV Scan — Mentor Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #0e0e1a;
+    --surface:  #16162a;
+    --border:   #2a2a4a;
+    --accent:   #4a9eff;
+    --danger:   #e94560;
+    --warn:     #f0a500;
+    --ok:       #2ecc71;
+    --text:     #d0d0e8;
+    --muted:    #6868a0;
+    --mono:     'IBM Plex Mono', monospace;
+    --sans:     'IBM Plex Sans', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Top bar */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .shield {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+
+  header h1 {
+    font-family: var(--mono);
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.05em;
+  }
+
+  header .sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+  }
+
+  .badge {
+    margin-left: auto;
+    background: var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  /* Layout */
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+  }
+
+  /* Sections */
+  section {
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeUp 0.4s forwards;
+  }
+  section:nth-child(1)  { animation-delay: 0.05s; }
+  section:nth-child(2)  { animation-delay: 0.10s; }
+  section:nth-child(3)  { animation-delay: 0.15s; }
+  section:nth-child(4)  { animation-delay: 0.20s; }
+  section:nth-child(5)  { animation-delay: 0.25s; }
+  section:nth-child(6)  { animation-delay: 0.30s; }
+  section:nth-child(7)  { animation-delay: 0.35s; }
+  section:nth-child(8)  { animation-delay: 0.40s; }
+  section:nth-child(9)  { animation-delay: 0.45s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-heading .icon { font-size: 0.9rem; }
+
+  p { margin-bottom: 0.8rem; color: var(--text); }
+
+  /* Phase list */
+  .phase-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 1rem 0;
+  }
+
+  .phase {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 0.75rem;
+    align-items: start;
+  }
+
+  .phase-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    background: rgba(74,158,255,0.08);
+    border: 1px solid rgba(74,158,255,0.25);
+    border-radius: 3px;
+    padding: 0.2rem 0.5rem;
+    text-align: center;
+    margin-top: 0.15rem;
+    white-space: nowrap;
+  }
+
+  /* Dot indicators */
+  .dot-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+
+  .dot-item {
+    display: grid;
+    grid-template-columns: 2.2rem 1fr;
+    gap: 0.5rem;
+    align-items: start;
+    padding: 0.8rem 1rem;
+    background: var(--surface);
+    border-radius: 6px;
+    border-left: 3px solid transparent;
+  }
+
+  .dot-item.danger  { border-color: var(--danger); }
+  .dot-item.warn    { border-color: var(--warn); }
+  .dot-item.ok      { border-color: var(--ok); }
+  .dot-item.owned   { border-color: #ff6b35; }
+
+  .dot-icon { font-size: 1.2rem; padding-top: 0.1rem; }
+
+  .dot-title {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+
+  .dot-desc { font-size: 0.85rem; color: var(--text); line-height: 1.5; }
+
+  /* Example result block */
+  .result-example {
+    background: #0a0a14;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    line-height: 1.9;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .result-example .r-sep   { color: #3a3a5a; }
+  .result-example .r-head  { color: #fff; }
+  .result-example .r-red   { color: var(--danger); }
+  .result-example .r-green { color: var(--ok); }
+  .result-example .r-warn  { color: var(--warn); }
+  .result-example .r-muted { color: var(--muted); }
+
+  /* Steps */
+  .step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 2rem 1fr;
+    gap: 0.75rem;
+    align-items: start;
+  }
+
+  .step-num {
+    width: 2rem;
+    height: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .step-content { padding-top: 0.2rem; }
+  .step-content strong {
+    display: block;
+    font-weight: 500;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+
+  /* Command blocks */
+  .cmd-block {
+    background: #0a0a14;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.6rem 0.9rem;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    margin: 0.5rem 0;
+    line-height: 1.8;
+  }
+
+  .cmd-line { display: flex; gap: 1rem; align-items: baseline; }
+  .cmd      { color: var(--accent); }
+  .cmd-desc { color: var(--muted); font-size: 0.75rem; }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.82em;
+    background: rgba(74,158,255,0.1);
+    color: var(--accent);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+  }
+
+  /* System grid */
+  .system-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .system-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.82rem;
+    font-family: var(--mono);
+    color: var(--text);
+  }
+
+  /* Limitation items */
+  .limit-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 1rem 0;
+  }
+
+  .limit-item {
+    padding: 0.75rem 1rem;
+    background: rgba(240,165,0,0.05);
+    border: 1px solid rgba(240,165,0,0.15);
+    border-radius: 5px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  /* Note box */
+  .note-box {
+    background: rgba(233,69,96,0.06);
+    border: 1px solid rgba(233,69,96,0.2);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    font-size: 0.88rem;
+  }
+
+  /* Nav anchors */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.82rem;
+  }
+
+  .toc-title {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .toc a {
+    display: inline-block;
+    color: var(--accent);
+    text-decoration: none;
+    margin-right: 1.2rem;
+    margin-bottom: 0.3rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+  }
+
+  .toc a:hover { text-decoration: underline; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 1rem; }
+    .page  { padding: 1.5rem 1rem 4rem; }
+    .phase { grid-template-columns: 4rem 1fr; }
+    .system-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="shield" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 5 L95 22 L95 58 Q95 85 50 105 Q5 85 5 58 L5 22 Z"
+          fill="#22224a" stroke="#5858a8" stroke-width="3"/>
+    <rect x="18" y="40" width="44" height="28" rx="14"
+          fill="none" stroke="#ffffff" stroke-width="8"/>
+    <rect x="38" y="40" width="44" height="28" rx="14"
+          fill="none" stroke="#ffffff" stroke-width="8"/>
+    <rect x="34" y="47" width="32" height="14" fill="#22224a"/>
+    <line x1="48" y1="52" x2="52" y2="62" stroke="#e94560" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+  <div>
+    <h1>RLV Scan</h1>
+    <div class="sub">Mentor Assistance Guide — GridWorks</div>
+  </div>
+  <div class="badge">v2.0</div>
+</header>
+
+<div class="page">
+
+  <nav class="toc">
+    <div class="toc-title">Contents</div>
+    <a href="#what">What it does</a>
+    <a href="#how">How to use it</a>
+    <a href="#results">Reading results</a>
+    <a href="#escape">Escape steps</a>
+    <a href="#commands">Collar commands</a>
+    <a href="#systems">Known systems</a>
+    <a href="#limitations">Limitations</a>
+  </nav>
+
+  <!-- WHAT IT DOES -->
+  <section id="what">
+    <div class="section-heading"><span class="icon">🔍</span> What this HUD does</div>
+    <p>RLV Scan is a Mentor welfare tool for identifying unwanted RLV control on a resident's avatar in Firestorm. Touch the HUD, select the resident from a nearby avatar menu, and within seconds you receive a full IM report.</p>
+    <p>The resident receives a notification in local chat before the scan begins.</p>
+    <div class="phase-list">
+      <div class="phase">
+        <span class="phase-label">Phase 1</span>
+        <span>Finds all nearby avatars sorted by distance and presents them as a touch menu. You pick who to scan.</span>
+      </div>
+      <div class="phase">
+        <span class="phase-label">Phase 2</span>
+        <span>Calls <code>llGetAttachedList()</code> on the selected avatar across three passes, assessing each attachment by name, description, owner, and script count against a database of known RLV products.</span>
+      </div>
+      <div class="phase">
+        <span class="phase-label">Phase 3</span>
+        <span>Pings the RLVrs relay channel <code>-1812221819</code>. If an active relay is present it forwards the query to the resident's Firestorm viewer, which responds with its RLVa version string. Catches relay HUDs invisible to the attachment scan.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO USE -->
+  <section id="how">
+    <div class="section-heading"><span class="icon">🕹️</span> How to use it</div>
+    <div class="step-list">
+      <div class="step"><div class="step-num">1</div><div class="step-content">Wear the HUD.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content">Stand near the resident you are helping.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Touch the HUD</strong> — a menu appears listing nearby avatars sorted by distance.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content">Tap the resident's name.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content">Results arrive in your IM window within a few seconds.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content">Tap <strong>Help</strong> in any post-scan dialog to receive this guide link in IM.</div></div>
+    </div>
+  </section>
+
+  <!-- READING RESULTS -->
+  <section id="results">
+    <div class="section-heading"><span class="icon">📋</span> Reading the results</div>
+    <p>Results arrive as <code>RLV Scan:</code> messages in your IM window. The relay status appears first, then the full attachment manifest.</p>
+
+    <div class="dot-list">
+      <div class="dot-item owned">
+        <div class="dot-icon">⛔</div>
+        <div>
+          <div class="dot-title">EXTERNAL OWNER</div>
+          <div class="dot-desc">The attachment is owned by someone other than the resident wearing it. This is the strongest possible signal of external control — someone else's scripted object is on their body.</div>
+        </div>
+      </div>
+      <div class="dot-item danger">
+        <div class="dot-icon">🔴</div>
+        <div>
+          <div class="dot-title">RELAY / CTRL</div>
+          <div class="dot-desc">Matches a known RLV relay or controller product by name, description, or script count.</div>
+        </div>
+      </div>
+      <div class="dot-item warn">
+        <div class="dot-icon">🟡</div>
+        <div>
+          <div class="dot-title">CHECK</div>
+          <div class="dot-desc">A weaker keyword match. Use the script count in brackets and context to judge significance.</div>
+        </div>
+      </div>
+      <div class="dot-item ok">
+        <div class="dot-icon">🟢</div>
+        <div>
+          <div class="dot-title">CLEAN</div>
+          <div class="dot-desc">No flags detected on this item.</div>
+        </div>
+      </div>
+    </div>
+
+    <p>Example output:</p>
+    <div class="result-example">
+<span class="r-sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="r-head">RLV Scan — Alicia Alexandre</span>
+<span class="r-muted">12 attachments | 3 passes</span>
+<span class="r-red">🔴 ACTIVE RELAY CONFIRMED: RestrainedLife viewer v3.4.3 (RLVa 2.4.2)</span>
+<span class="r-sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="r-red">🔴 OpenCollar (28)</span>
+<span class="r-green">🟢 [BODY] Legacy (f) Perky (1.7.1) (16)</span>
+<span class="r-green">🟢 / HEAD / lel evox / CAMILA 4.0 (6)</span>
+<span class="r-green">🟢 TRUTH Collective / Hope / Size 1 (4)</span>
+<span class="r-muted">... 8 more clean items ...</span>
+<span class="r-sep">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+<span class="r-muted">⛔ External owner : 0</span>
+<span class="r-red">🔴 Relay/Control  : 1</span>
+<span class="r-green">🟢 Clean          : 11</span>
+    </div>
+
+    <p>The number in brackets after each attachment name is its <strong>script count</strong>. High counts on flagged items confirm suspicion — OpenCollar v8 typically carries 20–28 scripts.</p>
+
+    <p>If the relay is set to Off you will see:</p>
+    <div class="result-example"><span class="r-green">🟢 No relay response (relay OFF or absent)</span>
+<span class="r-muted">Note: collar restrictions set by an owner still apply even when the relay is Off.</span></div>
+  </section>
+
+  <!-- ESCAPE STEPS -->
+  <section id="escape">
+    <div class="section-heading"><span class="icon">🚨</span> Helping the resident escape</div>
+    <div class="step-list">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>SAFEWORD — fastest first step</strong>
+          Ask the resident to type <code>SAFEWORD</code> in local chat. OpenCollar (all versions), Peanut N°9, and Whim all respond and drop restrictions. OC 8.4 also stops all animations and animlock.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Use collar commands if you have access</strong>
+          If the resident grants you owner or trusted access, see the Collar Commands section below.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Turn off RLVa in Firestorm</strong>
+          Guide the resident to: <code>Avatar &gt; Preferences &gt; Firestorm &gt; General</code> — uncheck <em>Allow Remote Scripted Viewer Controls (RLVa)</em> — then relog. Clears all restrictions immediately.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Relog on the official SL viewer</strong>
+          The official viewer has no RLVa at all. All restrictions clear on login. The resident can then detach flagged items freely.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>Detach flagged items</strong>
+          Right-click the flagged attachment &gt; Detach. If detach is blocked, complete step 3 or 4 first.
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <strong>If control was non-consensual</strong>
+          Advise the resident to file an Abuse Report: <code>Help &gt; Report Abuse</code>. Document names, times, and location. Escalate to Senior Mentor if needed.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLAR COMMANDS -->
+  <section id="commands">
+    <div class="section-heading"><span class="icon">⌨️</span> Collar commands</div>
+    <p>If the resident grants you owner or trusted access to their collar, these chat commands work in local chat. The prefix defaults to the resident's initials — for Alicia Alexandre it would be <code>aa</code>.</p>
+
+    <div class="cmd-block">
+      <div class="cmd-line"><span class="cmd">[prefix] clear</span><span class="cmd-desc">removes ALL restrictions including relay-enforced ones</span></div>
+      <div class="cmd-line"><span class="cmd">[prefix] restriction list</span><span class="cmd-desc">shows every active restriction</span></div>
+      <div class="cmd-line"><span class="cmd">[prefix] rlv off</span><span class="cmd-desc">turns the collar relay off (collar restrictions still apply)</span></div>
+      <div class="cmd-line"><span class="cmd">[prefix] unsit</span><span class="cmd-desc">forces the resident to stand if force-sat</span></div>
+    </div>
+
+    <p>What the resident may be experiencing — OpenCollar restriction presets:</p>
+    <div class="cmd-block">
+      <div class="cmd-line"><span class="cmd">Hear</span><span class="cmd-desc">cannot see local chat</span></div>
+      <div class="cmd-line"><span class="cmd">Talk</span><span class="cmd-desc">cannot speak, or speech is muffled</span></div>
+      <div class="cmd-line"><span class="cmd">Touch</span><span class="cmd-desc">cannot touch rezzed objects or avatars</span></div>
+      <div class="cmd-line"><span class="cmd">Stray</span><span class="cmd-desc">cannot TP, use landmarks, or sit from distance</span></div>
+      <div class="cmd-line"><span class="cmd">Inventory</span><span class="cmd-desc">cannot open inventory, edit, or rez</span></div>
+      <div class="cmd-line"><span class="cmd">Dress</span><span class="cmd-desc">cannot add or remove attachments or clothing</span></div>
+      <div class="cmd-line"><span class="cmd">Blur</span><span class="cmd-desc">vision is blurred</span></div>
+      <div class="cmd-line"><span class="cmd">Names</span><span class="cmd-desc">cannot see names, hovertext, or minimap</span></div>
+      <div class="cmd-line"><span class="cmd">IM</span><span class="cmd-desc">cannot send or receive IMs</span></div>
+    </div>
+
+    <p>Relay modes — what to tell the resident:</p>
+    <div class="cmd-block">
+      <div class="cmd-line"><span class="cmd">Auto-accept</span><span class="cmd-desc">relay passes all commands silently — most dangerous</span></div>
+      <div class="cmd-line"><span class="cmd">Ask</span><span class="cmd-desc">resident is prompted per command — safer</span></div>
+      <div class="cmd-line"><span class="cmd">Off</span><span class="cmd-desc">relay does nothing — external objects cannot control</span></div>
+    </div>
+  </section>
+
+  <!-- KNOWN SYSTEMS -->
+  <section id="systems">
+    <div class="section-heading"><span class="icon">🛡️</span> Known systems detected</div>
+    <p>RLV Scan recognises these products by name, description, and script count:</p>
+    <div class="system-grid">
+      <div class="system-item">OpenCollar v7 / v8 / v8.4</div>
+      <div class="system-item">Peanut Collar / N°9 series</div>
+      <div class="system-item">Whim RLV System</div>
+      <div class="system-item">Heartcore</div>
+      <div class="system-item">Dutchie Collar</div>
+      <div class="system-item">L.A. Posture Collar</div>
+      <div class="system-item">DEM Relay HUD</div>
+      <div class="system-item">Satomi's Multi-Relay HUD</div>
+      <div class="system-item">Turbo Safety RLV Relay</div>
+      <div class="system-item">LockMeister / LockGuard</div>
+      <div class="system-item">Free RLV Relay HUD 2.1</div>
+      <div class="system-item">Quick Collar</div>
+    </div>
+    <p>Any relay responding on channel <code>-1812221819</code> is also detected by the relay ping, regardless of what the object is named.</p>
+  </section>
+
+  <!-- LIMITATIONS -->
+  <section id="limitations">
+    <div class="section-heading"><span class="icon">⚠️</span> Limitations</div>
+    <div class="limit-list">
+      <div class="limit-item"><strong>HUDs worn by others are invisible to SL.</strong> They will never appear in the attachment list. The relay ping is the only evidence of a HUD-based relay.</div>
+      <div class="limit-item"><strong>A relay set to Off will not respond to the ping.</strong> Results may show clean even if collar-based restrictions are still active on the resident. A relay in Off mode still allows the collar owner to set restrictions directly.</div>
+      <div class="limit-item"><strong>Custom-named relays</strong> (e.g. "Pretty Ring") are only caught by the relay ping or by an owner mismatch on the attachment.</div>
+      <div class="limit-item"><strong>Some regions</strong> restrict script permissions and may limit attachment enumeration, reducing scan completeness.</div>
+    </div>
+  </section>
+
+  <!-- NOTE -->
+  <section>
+    <div class="note-box">
+      <strong>For SL Mentor use only.</strong> Please do not redistribute RLV Scan. This guide is provided at <code>joshualit.uk/rlvscan</code> for Mentors in the field.
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  RLV Scan v2.0 &nbsp;·&nbsp; GridWorks &nbsp;·&nbsp; For SL Mentor use only
+</footer>
+
+</body>
+</html>
