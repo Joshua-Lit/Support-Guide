@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adult Hub — Second Life Guide</title>
+<title>Adult HUD — Second Life Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -628,15 +628,100 @@
 
   /* ── Section anchors offset for fixed nav ── */
   [id] { scroll-margin-top: 75px; }
+
+  /* ── Disclaimer banner ── */
+  #disclaimer {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 200;
+    background: rgba(13, 6, 16, 0.96);
+    border-top: 1px solid var(--border-pink);
+    backdrop-filter: blur(12px);
+    padding: 0.9rem 1.5rem;
+    box-shadow: 0 -4px 30px rgba(255,31,110,0.12);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+
+  #disclaimer.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .disclaimer-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .disclaimer-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+  #disclaimer p {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  #disclaimer p strong {
+    color: var(--pink-bright);
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+  }
+
+  #disclaimer p a { color: var(--cyan); text-decoration: none; }
+  #disclaimer p a:hover { text-decoration: underline; }
+
+  #disclaimer-close {
+    flex-shrink: 0;
+    background: none;
+    border: 1px solid var(--border-pink);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    width: 28px; height: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s, color 0.2s;
+    font-family: var(--font-mono);
+    padding: 0;
+  }
+
+  #disclaimer-close:hover {
+    border-color: var(--pink);
+    color: var(--pink-bright);
+  }
 </style>
 </head>
 <body>
 
 <!-- ══════════════════════════════════════
+     DISCLAIMER BANNER
+════════════════════════════════════════ -->
+<div id="disclaimer" role="alert">
+  <div class="disclaimer-inner">
+    <span class="disclaimer-icon">⚠️</span>
+    <p>
+      <strong>Independent Fan Resource</strong> —
+      This site is not affiliated with, endorsed by, or connected to
+      <a href="https://secondlife.com" target="_blank" rel="noopener">Linden Research, Inc.</a>
+      or the official Second Life platform. Second Life® is a registered trademark of Linden Research, Inc.
+      This is an independent guide created by GridWorks / Joshua Lit for informational purposes.
+    </p>
+    <button id="disclaimer-close" aria-label="Dismiss disclaimer">✕</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
      NAV
 ════════════════════════════════════════ -->
 <nav>
-  <a class="nav-logo" href="#">Adult Hub</a>
+  <a class="nav-logo" href="#">Adult HUD</a>
   <ul class="nav-links">
     <li><a href="#maturity">Maturity</a></li>
     <li><a href="#portals">Portals</a></li>
@@ -662,7 +747,7 @@
   </div>
 
   <p class="hero-eyebrow">Second Life · GridWorks</p>
-  <h1 class="hero-title">Adult<br><span>Hub</span></h1>
+  <h1 class="hero-title">Adult<br><span>HUD</span></h1>
   <p class="hero-sub">Your Complete Guide to Adult Second Life</p>
   <p class="hero-desc">Everything you need to step confidently into SL's adult world — age settings, portals, avatar bodies, furniture and consent, all in one place.</p>
 
@@ -1057,13 +1142,24 @@
      FOOTER
 ════════════════════════════════════════ -->
 <footer>
-  <div class="footer-logo">Adult Hub Guide</div>
-  <p>A <a href="#">GridWorks</a> resource · Created by Joshua Lit</p>
+  <div class="footer-logo">Adult HUD Guide</div>
+  <p>A <a href="https://joshualit.uk/">GridWorks</a> resource · Created by Joshua Lit</p>
   <p style="margin-top:0.5rem">This page is the online companion to the Adult HUD available in Second Life.</p>
 </footer>
 
 
 <script>
+  // Disclaimer dismiss
+  const disclaimer = document.getElementById('disclaimer');
+  const closeBtn   = document.getElementById('disclaimer-close');
+  closeBtn.addEventListener('click', () => {
+    disclaimer.classList.add('hidden');
+    sessionStorage.setItem('disclaimerDismissed', '1');
+  });
+  if (sessionStorage.getItem('disclaimerDismissed')) {
+    disclaimer.classList.add('hidden');
+  }
+
   // Scroll-reveal
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
