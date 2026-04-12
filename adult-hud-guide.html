@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adult HUD — User Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&family=Noto+Sans+Devanagari:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep:     #0d0610;
+    --bg-card:     #180d1e;
+    --bg-panel:    #1f1028;
+    --pink:        #ff1f6e;
+    --pink-bright: #ff4d8f;
+    --pink-dim:    #c4145a;
+    --pink-glow:   rgba(255,31,110,0.35);
+    --cyan:        #00e8d5;
+    --cyan-dim:    #00a898;
+    --cyan-glow:   rgba(0,232,213,0.25);
+    --white:       #ffffff;
+    --text-body:   #e8d0db;
+    --text-muted:  #9e7a8a;
+    --border-pink: rgba(255,31,110,0.3);
+    --border-cyan: rgba(0,232,213,0.25);
+    --font-display:'Syncopate', sans-serif;
+    --font-body:   'DM Sans', sans-serif;
+    --font-mono:   'Space Mono', monospace;
+    --font-hindi:  'Noto Sans Devanagari', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-body);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  body.lang-hi                     { font-family: var(--font-hindi); }
+  body.lang-hi .feature-title,
+  body.lang-hi .section-title,
+  body.lang-hi .footer-logo        { font-family: var(--font-hindi); letter-spacing: 0; }
+  body.lang-hi .nav-logo           { font-family: var(--font-hindi); letter-spacing: 0.05em; font-size: 0.85rem; }
+  body.lang-hi .nav-links a        { font-family: var(--font-hindi); letter-spacing: 0; font-size: 0.8rem; }
+  body.lang-hi .step-num           { font-family: var(--font-mono); }
+  body.lang-hi .step-label         { font-family: var(--font-hindi); letter-spacing: 0; font-size: 0.9rem; }
+  body.lang-hi .tag                { font-family: var(--font-hindi); letter-spacing: 0; font-size: 0.75rem; }
+  body.lang-hi .callout strong     { font-family: var(--font-hindi); letter-spacing: 0; }
+  body.lang-hi .tip-label          { font-family: var(--font-hindi); letter-spacing: 0; }
+  body.lang-hi footer p            { font-family: var(--font-hindi); letter-spacing: 0; font-size: 0.8rem; }
+  body.lang-hi .feature-num        { font-family: var(--font-mono); }
+  body.lang-hi .hero-sub           { font-family: var(--font-hindi); letter-spacing: 0.05em; }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999; opacity: 0.4;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 2rem; height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(13,6,16,0.9); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-pink);
+  }
+
+  .nav-left { display: flex; align-items: center; gap: 1.5rem; }
+
+  .nav-logo {
+    font-family: var(--font-display); font-size: 0.65rem;
+    letter-spacing: 0.2em; color: var(--pink);
+    text-shadow: 0 0 12px var(--pink-glow);
+    text-transform: uppercase; text-decoration: none;
+  }
+
+  .nav-back {
+    font-family: var(--font-mono); font-size: 0.6rem;
+    letter-spacing: 0.1em; color: var(--text-muted);
+    text-decoration: none; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--cyan); }
+
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+
+  .nav-links { display: flex; gap: 1.4rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--font-mono); font-size: 0.6rem;
+    letter-spacing: 0.1em; color: var(--text-muted);
+    text-decoration: none; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  #lang-btn {
+    font-family: var(--font-mono); font-size: 0.62rem;
+    letter-spacing: 0.1em; padding: 0.35rem 0.9rem;
+    border: 1px solid var(--border-cyan);
+    background: rgba(0,232,213,0.06); color: var(--cyan);
+    cursor: pointer; transition: all 0.2s;
+  }
+  #lang-btn:hover { background: rgba(0,232,213,0.15); border-color: var(--cyan); color: var(--white); box-shadow: 0 0 12px var(--cyan-glow); }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 60vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 8rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero::before {
+    content: ''; position: absolute;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,31,110,0.1) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-mono); font-size: 0.65rem;
+    letter-spacing: 0.3em; color: var(--cyan);
+    text-transform: uppercase; margin-bottom: 1rem;
+    opacity: 0; animation: fadeUp 0.7s 0.1s forwards;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 700; line-height: 1.05;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--white);
+    text-shadow: 0 0 40px var(--pink-glow);
+    margin-bottom: 0.3em;
+    opacity: 0; animation: fadeUp 0.7s 0.25s forwards;
+  }
+
+  .hero-title span { color: var(--pink); }
+
+  .hero-sub {
+    font-family: var(--font-display); font-size: clamp(0.7rem, 1.5vw, 0.95rem);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.7s 0.4s forwards;
+  }
+
+  .hero-desc {
+    max-width: 560px; font-size: 1rem; color: var(--text-body);
+    opacity: 0; animation: fadeUp 0.7s 0.55s forwards;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Quick-jump pills */
+  .jump-pills {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    justify-content: center; max-width: 700px;
+    opacity: 0; animation: fadeUp 0.7s 0.7s forwards;
+  }
+
+  .jump-pill {
+    font-family: var(--font-mono); font-size: 0.6rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.4rem 1rem; border-radius: 2px;
+    border: 1px solid var(--border-pink);
+    color: var(--text-muted); background: rgba(255,31,110,0.04);
+    text-decoration: none; transition: all 0.2s; white-space: nowrap;
+  }
+  body.lang-hi .jump-pill { font-family: var(--font-hindi); letter-spacing: 0; font-size: 0.78rem; }
+  .jump-pill:hover { border-color: var(--pink); color: var(--pink-bright); background: rgba(255,31,110,0.1); }
+
+  /* ── Main layout ── */
+  .guide-wrap { max-width: 860px; margin: 0 auto; padding: 0 2rem 6rem; }
+
+  .neon-divider { height: 1px; background: linear-gradient(to right, transparent, var(--pink), transparent); box-shadow: 0 0 10px var(--pink-glow); opacity: 0.4; margin: 0; }
+
+  /* ── Feature block ── */
+  .feature {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid rgba(255,31,110,0.08);
+  }
+  .feature:last-child { border-bottom: none; }
+
+  .feature-header {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .feature-num {
+    font-family: var(--font-mono); font-size: 0.65rem;
+    color: var(--pink); background: rgba(255,31,110,0.08);
+    border: 1px solid var(--border-pink);
+    width: 36px; height: 36px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .feature-meta { flex: 1; }
+
+  .feature-icon { font-size: 1.4rem; display: block; margin-bottom: 0.3rem; }
+
+  .feature-title {
+    font-family: var(--font-display); font-size: clamp(1.1rem, 3vw, 1.7rem);
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--white); line-height: 1.1; margin-bottom: 0.3rem;
+  }
+
+  .feature-subtitle {
+    font-family: var(--font-mono); font-size: 0.62rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--cyan); text-shadow: 0 0 6px var(--cyan-glow);
+  }
+  body.lang-hi .feature-subtitle { font-family: var(--font-hindi); letter-spacing: 0.05em; font-size: 0.78rem; }
+
+  .feature-intro {
+    font-size: 1rem; color: var(--text-body);
+    max-width: 680px; margin-bottom: 2rem;
+    padding-left: 1.2rem;
+    border-left: 2px solid var(--pink-dim);
+  }
+
+  /* ── Steps ── */
+  .steps { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
+
+  .step {
+    display: grid; grid-template-columns: 36px 1fr;
+    gap: 1rem; align-items: start;
+  }
+
+  .step-num {
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: var(--pink); text-shadow: 0 0 6px var(--pink-glow);
+    background: rgba(255,31,110,0.06);
+    border: 1px solid var(--border-pink);
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  .step-body { padding-top: 0.1rem; }
+
+  .step-label {
+    display: block; font-family: var(--font-mono); font-size: 0.7rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--white); margin-bottom: 0.15rem;
+  }
+
+  .step-body p { font-size: 0.92rem; color: var(--text-body); }
+
+  /* ── Callout / tip / warning ── */
+  .callout {
+    border: 1px solid var(--border-cyan);
+    background: rgba(0,232,213,0.04);
+    padding: 1.1rem 1.5rem 1.1rem 2rem;
+    margin: 1.5rem 0; position: relative;
+  }
+  .callout::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--cyan); box-shadow: 0 0 8px var(--cyan-glow);
+  }
+  .callout strong {
+    display: block; font-family: var(--font-mono); font-size: 0.65rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--cyan); margin-bottom: 0.3rem;
+  }
+  .callout p { font-size: 0.9rem; color: var(--text-body); }
+
+  .tip {
+    display: flex; gap: 0.9rem; align-items: flex-start;
+    background: rgba(255,31,110,0.04);
+    border: 1px solid rgba(255,31,110,0.15);
+    padding: 0.9rem 1.2rem; margin: 1rem 0;
+  }
+  .tip-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .tip-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pink-bright); display: block; margin-bottom: 0.15rem; }
+  .tip p { font-size: 0.88rem; color: var(--text-muted); }
+
+  /* ── Tag badges ── */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0; }
+  .tag {
+    font-family: var(--font-mono); font-size: 0.6rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.25rem 0.7rem; border-radius: 2px;
+    border: 1px solid var(--border-pink);
+    color: var(--pink-bright); background: rgba(255,31,110,0.07);
+  }
+
+  /* ── Button mockup ── */
+  .btn-mock {
+    display: inline-block;
+    font-family: var(--font-mono); font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--pink);
+    color: var(--pink-bright);
+    background: rgba(255,31,110,0.08);
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  /* ── Menu diagram ── */
+  .menu-diagram {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-pink);
+    padding: 1.5rem; margin: 1.5rem 0;
+  }
+
+  .menu-diagram-title {
+    font-family: var(--font-mono); font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 1rem;
+  }
+
+  .menu-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
+  }
+
+  .menu-btn {
+    font-family: var(--font-mono); font-size: 0.62rem;
+    letter-spacing: 0.04em; text-align: center;
+    padding: 0.5rem 0.3rem;
+    border: 1px solid var(--border-pink);
+    color: var(--text-body);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .menu-btn.active {
+    border-color: var(--pink);
+    color: var(--pink-bright);
+    background: rgba(255,31,110,0.1);
+    box-shadow: 0 0 10px rgba(255,31,110,0.15);
+  }
+
+  .menu-btn.filler { opacity: 0.3; }
+
+  /* ── Panel ── */
+  .panel {
+    background: var(--bg-panel); border: 1px solid var(--border-cyan);
+    padding: 1.4rem; margin: 1.5rem 0; position: relative;
+  }
+  .panel::after { content: ''; position: absolute; bottom: 0; right: 0; width: 40px; height: 40px; border-right: 2px solid var(--cyan-dim); border-bottom: 2px solid var(--cyan-dim); opacity: 0.35; }
+  .panel-title { font-family: var(--font-display); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); text-shadow: 0 0 6px var(--cyan-glow); margin-bottom: 0.8rem; }
+  body.lang-hi .panel-title { font-family: var(--font-hindi); letter-spacing: 0; font-size: 0.82rem; }
+  .panel ul { list-style: none; }
+  .panel ul li { font-size: 0.9rem; color: var(--text-body); padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .panel ul li:last-child { border-bottom: none; }
+  .panel ul li::before { content: '→ '; color: var(--pink); }
+
+  /* ── Section label ── */
+  .section-intro-block { padding: 3rem 0 1rem; }
+  .section-title {
+    font-family: var(--font-display); font-size: clamp(0.8rem, 2vw, 1rem);
+    font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--pink); margin-bottom: 0.5rem;
+  }
+
+  /* ── Footer ── */
+  footer { border-top: 1px solid var(--border-pink); padding: 3rem 2rem; text-align: center; }
+  .footer-logo { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--pink); text-shadow: 0 0 16px var(--pink-glow); margin-bottom: 0.5rem; }
+  footer p { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--text-muted); margin-top: 0.4rem; }
+  footer a { color: var(--cyan); text-decoration: none; }
+
+  #to-top { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--border-pink); color: var(--pink-bright); font-size: 1.4rem; text-decoration: none; margin-bottom: 1.5rem; transition: all 0.2s; animation: pulse-glow 3s ease-in-out infinite; }
+  #to-top:hover { border-color: var(--pink); color: var(--white); box-shadow: 0 0 20px var(--pink-glow); }
+
+  /* ── Animations ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 8px var(--pink-glow); } 50% { box-shadow: 0 0 20px var(--pink-glow); } }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  [id] { scroll-margin-top: 80px; }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .menu-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-left">
+    <a class="nav-logo" href="#" data-en="Adult HUD" data-hi="एडल्ट HUD">Adult HUD</a>
+    <a class="nav-back" href="adult.html" data-en="← Resource Guide" data-hi="← रिसोर्स गाइड">← Resource Guide</a>
+  </div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#getting-started" data-en="Start"     data-hi="शुरुआत">Start</a></li>
+      <li><a href="#feat-maturity"   data-en="Maturity"  data-hi="परिपक्वता">Maturity</a></li>
+      <li><a href="#feat-safeword"   data-en="Safe Word" data-hi="Safe Word">Safe Word</a></li>
+      <li><a href="#feat-inspect"    data-en="Inspect"   data-hi="निरीक्षण">Inspect</a></li>
+      <li><a href="#feat-tp"         data-en="Teleport"  data-hi="टेलीपोर्ट">Teleport</a></li>
+      <li><a href="#feat-locations"  data-en="Locations" data-hi="स्थान">Locations</a></li>
+    </ul>
+    <button id="lang-btn" aria-label="Switch to Hindi">हिंदी</button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <p class="hero-eyebrow" data-en="GridWorks · Adult HUD" data-hi="GridWorks · Adult HUD">GridWorks · Adult HUD</p>
+  <h1 class="hero-title">User <span>Guide</span></h1>
+  <p class="hero-sub" data-en="Complete instructions for every feature" data-hi="हर सुविधा के लिए पूर्ण निर्देश">Complete instructions for every feature</p>
+  <p class="hero-desc" data-en="This guide walks you through every feature of the Adult HUD, step by step. No experience needed — if you can click a button, you can use this HUD." data-hi="यह गाइड आपको Adult HUD की हर सुविधा के माध्यम से कदम दर कदम ले जाती है। कोई अनुभव आवश्यक नहीं — अगर आप एक बटन क्लिक कर सकते हैं, तो आप इस HUD का उपयोग कर सकते हैं।">This guide walks you through every feature of the Adult HUD, step by step. No experience needed — if you can click a button, you can use this HUD.</p>
+  <div class="jump-pills">
+    <a class="jump-pill" href="#getting-started" data-en="Getting Started"  data-hi="शुरुआत कैसे करें">Getting Started</a>
+    <a class="jump-pill" href="#feat-maturity"   data-en="🗺️ Maturity Check" data-hi="🗺️ Maturity Check">🗺️ Maturity Check</a>
+    <a class="jump-pill" href="#feat-safeword"   data-en="🔴 Safe Word"      data-hi="🔴 Safe Word">🔴 Safe Word</a>
+    <a class="jump-pill" href="#feat-inspect"    data-en="🔍 Inspect Avatar" data-hi="🔍 Inspect Avatar">🔍 Inspect Avatar</a>
+    <a class="jump-pill" href="#feat-tp"         data-en="🚪 Teleport Board" data-hi="🚪 Teleport Board">🚪 Teleport Board</a>
+    <a class="jump-pill" href="#feat-locations"  data-en="📍 Save Location"  data-hi="📍 Save Location">📍 Save Location</a>
+    <a class="jump-pill" href="#feat-display"    data-en="📐 Adjust Display" data-hi="📐 Adjust Display">📐 Adjust Display</a>
+    <a class="jump-pill" href="#feat-website"    data-en="🌐 Website"        data-hi="🌐 Website">🌐 Website</a>
+  </div>
+</div>
+
+<div class="neon-divider"></div>
+
+<div class="guide-wrap">
+
+  <!-- ══ GETTING STARTED ══ -->
+  <div id="getting-started" class="section-intro-block reveal">
+    <div class="section-title" data-en="Getting Started" data-hi="शुरुआत कैसे करें">Getting Started</div>
+  </div>
+
+  <div class="feature reveal">
+    <div class="feature-header">
+      <div class="feature-meta">
+        <span class="feature-icon">📦</span>
+        <h2 class="feature-title" data-en="Attaching the HUD" data-hi="HUD लगाना">Attaching the HUD</h2>
+        <div class="feature-subtitle" data-en="Do this once — it stays attached between sessions" data-hi="यह एक बार करें — यह सत्रों के बीच लगा रहता है">Do this once — it stays attached between sessions</div>
+      </div>
+    </div>
+
+    <p class="feature-intro" data-en="A HUD (Heads-Up Display) is an object you wear on your screen — not on your avatar's body. It floats in a corner of your view and you click it to use it. Nobody else can see it." data-hi="HUD (Heads-Up Display) एक ऐसी वस्तु है जिसे आप अपनी स्क्रीन पर पहनते हैं — अपने अवतार के शरीर पर नहीं। यह आपके दृश्य के एक कोने में तैरती है और आप इसे उपयोग करने के लिए क्लिक करते हैं। कोई और इसे नहीं देख सकता।">A HUD (Heads-Up Display) is an object you wear on your screen — not on your avatar's body. It floats in a corner of your view and you click it to use it. Nobody else can see it.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Find the HUD in your inventory" data-hi="अपनी inventory में HUD खोजें">Find the HUD in your inventory</span>
+          <p data-en="Open your Inventory (press I on your keyboard). Search for Adult HUD. You'll find it in the Objects folder if it was given to you, or in Received Items if you bought it from the Marketplace." data-hi="अपनी Inventory खोलें (कीबोर्ड पर I दबाएं)। Adult HUD खोजें। अगर यह आपको दिया गया था तो यह Objects फ़ोल्डर में मिलेगा, या अगर आपने Marketplace से खरीदा था तो Received Items में।">Open your Inventory (press I on your keyboard). Search for Adult HUD. You'll find it in the Objects folder if it was given to you, or in Received Items if you bought it from the Marketplace.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Attach it to your HUD" data-hi="इसे अपने HUD से जोड़ें">Attach it to your HUD</span>
+          <p data-en="Right-click the Adult HUD object in your inventory and choose Add to outfit, or simply double-click it. It will appear in the top-right corner of your screen." data-hi="अपनी inventory में Adult HUD object पर राइट-क्लिक करें और Add to outfit चुनें, या बस डबल-क्लिक करें। यह आपकी स्क्रीन के ऊपरी-दाएं कोने में दिखाई देगा।">Right-click the Adult HUD object in your inventory and choose Add to outfit, or simply double-click it. It will appear in the top-right corner of your screen.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Click the logo to open the menu" data-hi="मेनू खोलने के लिए लोगो पर क्लिक करें">Click the logo to open the menu</span>
+          <p data-en="Click the Adult HUD logo on your screen. A blue dialog box will appear in the centre of your screen — this is the main menu. All features are accessed from here." data-hi="अपनी स्क्रीन पर Adult HUD लोगो पर क्लिक करें। आपकी स्क्रीन के बीच में एक नीला dialog box दिखाई देगा — यह मुख्य मेनू है। सभी सुविधाएं यहाँ से एक्सेस की जाती हैं।">Click the Adult HUD logo on your screen. A blue dialog box will appear in the centre of your screen — this is the main menu. All features are accessed from here.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong data-en="What the floating text shows" data-hi="तैरता हुआ टेक्स्ट क्या दिखाता है">What the floating text shows</strong>
+      <p data-en="The HUD shows two sets of floating text above it in-world. The lower block lists all menu options so you can see them at a glance. The upper block shows results and status messages after you use a feature. Both are only visible to you." data-hi="HUD in-world में अपने ऊपर तैरते टेक्स्ट के दो सेट दिखाता है। निचला ब्लॉक सभी मेनू विकल्पों की सूची दिखाता है। ऊपरी ब्लॉक सुविधा उपयोग के बाद परिणाम और स्थिति संदेश दिखाता है। दोनों केवल आपको दिखाई देते हैं।">The HUD shows two sets of floating text above it in-world. The lower block lists all menu options so you can see them at a glance. The upper block shows results and status messages after you use a feature. Both are only visible to you.</p>
+    </div>
+
+    <div class="menu-diagram">
+      <div class="menu-diagram-title" data-en="Main menu — button layout" data-hi="मुख्य मेनू — बटन लेआउट">Main menu — button layout</div>
+      <div class="menu-grid">
+        <div class="menu-btn">1. 🔴 Hide</div>
+        <div class="menu-btn">2. 🗺️</div>
+        <div class="menu-btn">3. 🔴</div>
+        <div class="menu-btn">4. 🔍</div>
+        <div class="menu-btn">5. 🚪</div>
+        <div class="menu-btn">6. 📍</div>
+        <div class="menu-btn">7. 🌐</div>
+        <div class="menu-btn filler">- - -</div>
+        <div class="menu-btn">9. 📐</div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        <span class="tip-label" data-en="Tip" data-hi="सुझाव">Tip</span>
+        <p data-en="If the menu disappears without you choosing anything, don't worry — it closes automatically after 60 seconds to keep things tidy. Just click the HUD logo again to reopen it." data-hi="अगर मेनू बिना कुछ चुने गायब हो जाए, चिंता न करें — यह 60 सेकंड बाद स्वचालित रूप से बंद हो जाता है। बस HUD लोगो पर फिर से क्लिक करें।">If the menu disappears without you choosing anything, don't worry — it closes automatically after 60 seconds to keep things tidy. Just click the HUD logo again to reopen it.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ HIDE / SHOW ══ -->
+  <div class="feature reveal">
+    <div class="feature-header">
+      <div class="feature-num">1</div>
+      <div class="feature-meta">
+        <span class="feature-icon">🔴 🟢</span>
+        <h2 class="feature-title" data-en="Hide / Show HUD Display" data-hi="HUD Display छुपाएं / दिखाएं">Hide / Show HUD Display</h2>
+        <div class="feature-subtitle" data-en="Toggle the floating text on and off" data-hi="तैरते टेक्स्ट को चालू और बंद करें">Toggle the floating text on and off</div>
+      </div>
+    </div>
+
+    <p class="feature-intro" data-en="Sometimes you want to keep the HUD attached but hide the floating text — perhaps you're taking photos, socialising, or just want a cleaner view. This button toggles all HUD text off and back on again." data-hi="कभी-कभी आप HUD को लगाए रखना चाहते हैं लेकिन तैरते टेक्स्ट को छुपाना चाहते हैं — शायद आप फोटो ले रहे हों, मेलजोल कर रहे हों, या बस एक साफ दृश्य चाहते हों।">Sometimes you want to keep the HUD attached but hide the floating text — perhaps you're taking photos, socialising, or just want a cleaner view. This button toggles all HUD text off and back on again.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Open the main menu" data-hi="मुख्य मेनू खोलें">Open the main menu</span>
+          <p data-en="Click the HUD logo on your screen." data-hi="अपनी स्क्रीन पर HUD लोगो पर क्लिक करें।">Click the HUD logo on your screen.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Click the Hide button" data-hi="Hide बटन क्लिक करें">Click the Hide button</span>
+          <p data-en="Press the button labelled 1. 🔴 Hide. All floating text will disappear immediately." data-hi="1. 🔴 Hide लेबल वाला बटन दबाएं। सभी तैरते टेक्स्ट तुरंत गायब हो जाएंगे।">Press the button labelled <span class="btn-mock">1. 🔴 Hide</span>. All floating text will disappear immediately.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <span class="step-label" data-en="To show again" data-hi="फिर से दिखाने के लिए">To show again</span>
+          <p data-en="Click the HUD logo again. The button will now say 1. 🟢 Show. Press it and all text returns." data-hi="HUD लोगो पर फिर से क्लिक करें। बटन अब 1. 🟢 Show कहेगा। इसे दबाएं और सभी टेक्स्ट वापस आ जाएंगे।">Click the HUD logo again. The button will now say <span class="btn-mock">1. 🟢 Show</span>. Press it and all text returns.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MATURITY CHECK ══ -->
+  <div id="feat-maturity" class="feature reveal">
+    <div class="feature-header">
+      <div class="feature-num">2</div>
+      <div class="feature-meta">
+        <span class="feature-icon">🗺️</span>
+        <h2 class="feature-title" data-en="Maturity Check" data-hi="Maturity Check">Maturity Check</h2>
+        <div class="feature-subtitle" data-en="Find out the rating of the region you're in" data-hi="जानें कि आप किस रेटिंग के क्षेत्र में हैं">Find out the rating of the region you're in</div>
+      </div>
+    </div>
+
+    <p class="feature-intro" data-en="Second Life regions are rated General, Moderate, or Adult. This feature checks the region you're standing in right now and tells you exactly what rating it is, what that means, and whether your viewer settings will let you access adult areas." data-hi="Second Life क्षेत्र General, Moderate, या Adult रेट किए जाते हैं। यह सुविधा उस क्षेत्र की जाँच करती है जिसमें आप अभी खड़े हैं और आपको बताती है कि यह किस रेटिंग का है और क्या आपकी viewer settings आपको एडल्ट क्षेत्रों तक पहुँचने देंगी।">Second Life regions are rated General, Moderate, or Adult. This feature checks the region you're standing in right now and tells you exactly what rating it is, what that means, and whether your viewer settings will let you access adult areas.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Open the menu and press 2. 🗺️" data-hi="मेनू खोलें और 2. 🗺️ दबाएं">Open the menu and press 2. 🗺️</span>
+          <p data-en="Click the HUD logo then press the 2. 🗺️ button." data-hi="HUD लोगो पर क्लिक करें फिर 2. 🗺️ बटन दबाएं।">Click the HUD logo then press the <span class="btn-mock">2. 🗺️</span> button.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Read the report in nearby chat" data-hi="Nearby Chat में रिपोर्ट पढ़ें">Read the report in nearby chat</span>
+          <p data-en="A private report appears in your Nearby Chat window — only you can see it. It shows the region name, its maturity rating, the parcel name, and personalised advice about your current viewer settings." data-hi="आपकी Nearby Chat विंडो में एक निजी रिपोर्ट दिखाई देती है — केवल आप इसे देख सकते हैं। यह क्षेत्र का नाम, maturity rating, parcel नाम, और आपकी वर्तमान viewer settings के बारे में व्यक्तिगत सलाह दिखाती है।">A private report appears in your Nearby Chat window — only you can see it. It shows the region name, its maturity rating, the parcel name, and personalised advice about your current viewer settings.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Check the HUD display prim" data-hi="HUD display prim जाँचें">Check the HUD display prim</span>
+          <p data-en="A quick colour-coded summary also appears on the HUD's floating display — 🟢 General, 🟡 Moderate, or 🔴 Adult — so you can see it at a glance without opening chat." data-hi="HUD के तैरते display पर एक त्वरित रंग-कोडित सारांश भी दिखाई देता है — 🟢 General, 🟡 Moderate, या 🔴 Adult।">A quick colour-coded summary also appears on the HUD's floating display — 🟢 General, 🟡 Moderate, or 🔴 Adult — so you can see it at a glance without opening chat.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title" data-en="What the ratings mean" data-hi="रेटिंग का अर्थ">What the ratings mean</div>
+      <ul>
+        <li data-en="🟢 General (PG) — family-friendly, no adult content allowed" data-hi="🟢 General (PG) — पारिवारिक, कोई एडल्ट सामग्री नहीं">🟢 General (PG) — family-friendly, no adult content allowed</li>
+        <li data-en="🟡 Moderate (M) — clubs, mild themes, some suggestive content" data-hi="🟡 Moderate (M) — क्लब, हल्के विषय, कुछ संकेतात्मक सामग्री">🟡 Moderate (M) — clubs, mild themes, some suggestive content</li>
+        <li data-en="🔴 Adult (A) — explicit content permitted, age verification required" data-hi="🔴 Adult (A) — स्पष्ट सामग्री की अनुमति, आयु सत्यापन आवश्यक">🔴 Adult (A) — explicit content permitted, age verification required</li>
+      </ul>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        <span class="tip-label" data-en="Can't reach adult areas?" data-hi="एडल्ट क्षेत्रों तक नहीं पहुँच सकते?">Can't reach adult areas?</span>
+        <p data-en="Run a Maturity Check first. The report will tell you exactly which viewer setting to change and where to find it. In Firestorm: Avatar › Preferences › General › tick Adult. In the official viewer: Me › Preferences › General › select Adult." data-hi="पहले Maturity Check चलाएं। रिपोर्ट आपको बताएगी कि कौन सी viewer setting बदलनी है। Firestorm में: Avatar › Preferences › General › Adult टिक करें।">Run a Maturity Check first. The report will tell you exactly which viewer setting to change and where to find it. In Firestorm: Avatar › Preferences › General › tick Adult. In the official viewer: Me › Preferences › General › select Adult.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SAFE WORD ══ -->
+  <div id="feat-safeword" class="feature reveal">
+    <div class="feature-header">
+      <div class="feature-num">3</div>
+      <div class="feature-meta">
+        <span class="feature-icon">🔴</span>
+        <h2 class="feature-title" data-en="Safe Word" data-hi="Safe Word (सुरक्षा शब्द)">Safe Word</h2>
+        <div class="feature-subtitle" data-en="Emergency stop for any scene — one tap" data-hi="किसी भी scene के लिए आपातकालीन रोक — एक tap">Emergency stop for any scene — one tap</div>
+      </div>
+    </div>
+
+    <p class="feature-intro" data-en="A safe word is a word or phrase that immediately signals you want everything to stop. When you fire the Safe Word feature, the HUD shouts your chosen word on public chat and sends an RLV release command — removing any scripted restrictions that may be active on your avatar." data-hi="Safe word एक शब्द या वाक्यांश है जो तुरंत संकेत देता है कि आप सब कुछ रोकना चाहते हैं। जब आप Safe Word सुविधा का उपयोग करते हैं, HUD आपके चुने हुए शब्द को public chat पर चिल्लाता है और एक RLV release command भेजता है — आपके अवतार पर सक्रिय किसी भी scripted restrictions को हटाता है।">A safe word is a word or phrase that immediately signals you want everything to stop. When you fire the Safe Word feature, the HUD shouts your chosen word on public chat and sends an RLV release command — removing any scripted restrictions that may be active on your avatar.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Open the menu and press 3. 🔴" data-hi="मेनू खोलें और 3. 🔴 दबाएं">Open the menu and press 3. 🔴</span>
+          <p data-en="Click the HUD logo then press the 3. 🔴 button. A confirmation dialog will appear — this prevents accidental firing." data-hi="HUD लोगो पर क्लिक करें फिर 3. 🔴 बटन दबाएं। एक confirmation dialog दिखाई देगा — यह गलती से उपयोग को रोकता है।">Click the HUD logo then press the <span class="btn-mock">3. 🔴</span> button. A confirmation dialog will appear — this prevents accidental firing.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Confirm by pressing 🔴 FIRE" data-hi="🔴 FIRE दबाकर पुष्टि करें">Confirm by pressing 🔴 FIRE</span>
+          <p data-en="Press the 🔴 FIRE button. Your safe word will be shouted publicly, and the RLV @clear command is sent to release any active restrictions. The HUD display flashes a warning so you know it worked." data-hi="🔴 FIRE बटन दबाएं। आपका safe word सार्वजनिक रूप से चिल्लाया जाएगा, और RLV @clear command किसी भी सक्रिय restrictions को release करने के लिए भेजा जाएगा।">Press the <span class="btn-mock">🔴 FIRE</span> button. Your safe word will be shouted publicly, and the RLV @clear command is sent to release any active restrictions. The HUD display flashes a warning so you know it worked.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <span class="step-label" data-en="To change your safe word" data-hi="अपना safe word बदलने के लिए">To change your safe word</span>
+          <p data-en="In the same confirmation dialog, press ✏️ Change Word. A text box will appear. Type your new word or phrase and press Submit. It is saved immediately and shown in the HUD header." data-hi="उसी confirmation dialog में, ✏️ Change Word दबाएं। एक text box दिखाई देगा। अपना नया शब्द या वाक्यांश टाइप करें और Submit दबाएं। यह तुरंत सहेजा जाता है और HUD header में दिखाया जाता है।">In the same confirmation dialog, press <span class="btn-mock">✏️ Change Word</span>. A text box will appear. Type your new word or phrase and press Submit. It is saved immediately and shown in the HUD header.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong data-en="Default safe word" data-hi="डिफ़ॉल्ट safe word">Default safe word</strong>
+      <p data-en="The HUD comes pre-set with RED as the default safe word. This is one of the most widely recognised safe words in SL communities. You can change it to anything you and your partner have agreed on — just keep it short and memorable." data-hi="HUD RED को डिफ़ॉल्ट safe word के रूप में पूर्व-सेट आता है। यह SL समुदायों में सबसे व्यापक रूप से मान्यता प्राप्त safe words में से एक है। आप इसे कुछ भी बदल सकते हैं जिस पर आप और आपके साथी ने सहमति बनाई हो।">The HUD comes pre-set with RED as the default safe word. This is one of the most widely recognised safe words in SL communities. You can change it to anything you and your partner have agreed on — just keep it short and memorable.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">⚠️</span>
+      <div>
+        <span class="tip-label" data-en="Important" data-hi="महत्वपूर्ण">Important</span>
+        <p data-en="RLV must be enabled in your viewer for the @clear command to work. If you haven't enabled RLV, the safe word shout still works — your partner will hear it — but scripted restrictions may not release automatically. See the Resource Guide for RLV setup instructions." data-hi="@clear command काम करने के लिए आपके viewer में RLV सक्षम होना चाहिए। अगर आपने RLV सक्षम नहीं किया है, तो safe word shout फिर भी काम करता है — आपका साथी इसे सुनेगा — लेकिन scripted restrictions स्वचालित रूप से release नहीं हो सकती हैं।">RLV must be enabled in your viewer for the @clear command to work. If you haven't enabled RLV, the safe word shout still works — your partner will hear it — but scripted restrictions may not release automatically. See the Resource Guide for RLV setup instructions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ INSPECT AVATAR ══ -->
+  <div id="feat-inspect" class="feature reveal">
+    <div class="feature-header">
+      <div class="feature-num">4</div>
+      <div class="feature-meta">
+        <span class="feature-icon">🔍</span>
+        <h2 class="feature-title" data-en="Inspect Avatar" data-hi="Inspect Avatar">Inspect Avatar</h2>
+        <div class="feature-subtitle" data-en="Learn about someone nearby before you approach" data-hi="किसी के पास जाने से पहले उनके बारे में जानें">Learn about someone nearby before you approach</div>
+      </div>
+    </div>
+
+    <p class="feature-intro" data-en="This feature scans for avatars within 96 metres of you, lets you pick one from a list, and shows you a profile report — their display name, account age, what group tag they're showing, and the names of any non-HUD attachments visible on their avatar." data-hi="यह सुविधा आपसे 96 मीटर के भीतर अवतारों को स्कैन करती है, आपको एक सूची से एक चुनने देती है, और एक प्रोफ़ाइल रिपोर्ट दिखाती है — उनका display name, account age, वे कौन सा group tag दिखा रहे हैं, और उनके अवतार पर दिखाई देने वाले non-HUD attachments के नाम।">This feature scans for avatars within 96 metres of you, lets you pick one from a list, and shows you a profile report — their display name, account age, what group tag they're showing, and the names of any non-HUD attachments visible on their avatar.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Open the menu and press 4. 🔍" data-hi="मेनू खोलें और 4. 🔍 दबाएं">Open the menu and press 4. 🔍</span>
+          <p data-en="Click the HUD logo then press 4. 🔍. The HUD display will show Scanning... while it searches. This takes just a moment." data-hi="HUD लोगो पर क्लिक करें फिर 4. 🔍 दबाएं। HUD display खोजते समय Scanning... दिखाएगा। इसमें बस एक पल लगता है।">Click the HUD logo then press <span class="btn-mock">4. 🔍</span>. The HUD display will show Scanning… while it searches. This takes just a moment.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Pick an avatar from the list" data-hi="सूची से एक अवतार चुनें">Pick an avatar from the list</span>
+          <p data-en="A dialog appears listing nearby avatars with their names and distance in metres. Press the button for the person you want to inspect. You can see up to 9 avatars per scan." data-hi="एक dialog दिखाई देता है जिसमें पास के अवतारों की सूची होती है जिनके नाम और मीटर में दूरी होती है। उस व्यक्ति के लिए बटन दबाएं जिसे आप inspect करना चाहते हैं।">A dialog appears listing nearby avatars with their names and distance in metres. Press the button for the person you want to inspect. You can see up to 9 avatars per scan.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Read the report in nearby chat" data-hi="Nearby Chat में रिपोर्ट पढ़ें">Read the report in nearby chat</span>
+          <p data-en="A private report appears in your Nearby Chat. While the report is loading, the HUD looks up their account creation date — this may take a second or two, then the full report appears automatically." data-hi="आपकी Nearby Chat में एक निजी रिपोर्ट दिखाई देती है। रिपोर्ट लोड होते समय, HUD उनकी account creation date देखता है — इसमें एक या दो सेकंड लग सकते हैं।">A private report appears in your Nearby Chat. While the report is loading, the HUD looks up their account creation date — this may take a second or two, then the full report appears automatically.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title" data-en="What the report includes" data-hi="रिपोर्ट में क्या शामिल है">What the report includes</div>
+      <ul>
+        <li data-en="Display name and avatar key (unique ID)" data-hi="Display name और avatar key (अद्वितीय ID)">Display name and avatar key (unique ID)</li>
+        <li data-en="Distance from you in metres" data-hi="आपसे मीटर में दूरी">Distance from you in metres</li>
+        <li data-en="Account creation date (born date)" data-hi="Account creation date (born date)">Account creation date (born date)</li>
+        <li data-en="Names of visible non-HUD attachments" data-hi="दिखाई देने वाले non-HUD attachments के नाम">Names of visible non-HUD attachments</li>
+      </ul>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        <span class="tip-label" data-en="Why can't I see their HUD or all their attachments?" data-hi="मैं उनका HUD या सभी attachments क्यों नहीं देख सकता?">Why can't I see their HUD or all their attachments?</span>
+        <p data-en="SL only allows scripts to read the names of non-HUD attachments worn by nearby avatars. HUD items and some private attachments are deliberately hidden by the platform for privacy. This is a system limitation, not a bug." data-hi="SL केवल scripts को पास के अवतारों द्वारा पहने गए non-HUD attachments के नाम पढ़ने की अनुमति देता है। HUD items और कुछ private attachments गोपनीयता के लिए प्लेटफ़ॉर्म द्वारा जानबूझकर छुपाए जाते हैं। यह एक system सीमा है, bug नहीं।">SL only allows scripts to read the names of non-HUD attachments worn by nearby avatars. HUD items and some private attachments are deliberately hidden by the platform for privacy. This is a system limitation, not a bug.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TELEPORT BOARD ══ -->
+  <div id="feat-tp" class="feature reveal">
+    <div class="feature-header">
+      <div class="feature-num">5</div>
+      <div class="feature-meta">
+        <span class="feature-icon">🚪</span>
+        <h2 class="feature-title" data-en="Teleport Board" data-hi="Teleport Board">Teleport Board</h2>
+        <div class="feature-subtitle" data-en="Jump to curated adult destinations and your saved spots" data-hi="Curated एडल्ट destinations और आपके saved स्थानों पर जाएं">Jump to curated adult destinations and your saved spots</div>
+      </div>
+    </div>
+
+    <p class="feature-intro" data-en="The Teleport Board is your quick-access list of adult destinations. It contains a set of curated hub locations built into the HUD, plus any locations you have saved yourself. Selecting one opens the SL world map ready to teleport — you click Teleport to confirm." data-hi="Teleport Board एडल्ट destinations की आपकी quick-access सूची है। इसमें HUD में बनाए गए curated hub locations का एक सेट है, साथ ही आपके द्वारा स्वयं सहेजे गए कोई भी स्थान। एक चुनने से SL world map teleport के लिए तैयार खुलता है।">The Teleport Board is your quick-access list of adult destinations. It contains a set of curated hub locations built into the HUD, plus any locations you have saved yourself. Selecting one opens the SL world map ready to teleport — you click Teleport to confirm.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Open the menu and press 5. 🚪" data-hi="मेनू खोलें और 5. 🚪 दबाएं">Open the menu and press 5. 🚪</span>
+          <p data-en="Click the HUD logo then press 5. 🚪. The teleport board dialog opens, listing all available destinations." data-hi="HUD लोगो पर क्लिक करें फिर 5. 🚪 दबाएं। teleport board dialog खुलता है, सभी उपलब्ध destinations की सूची के साथ।">Click the HUD logo then press <span class="btn-mock">5. 🚪</span>. The teleport board dialog opens, listing all available destinations.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Choose a destination" data-hi="एक destination चुनें">Choose a destination</span>
+          <p data-en="Press the button for where you want to go. Curated locations show as plain names. Your own saved locations appear with a 📍 icon in front." data-hi="जहाँ आप जाना चाहते हैं उसके लिए बटन दबाएं। Curated locations सादे नामों के रूप में दिखती हैं। आपके अपने saved locations 📍 आइकन के साथ दिखाई देते हैं।">Press the button for where you want to go. Curated locations show as plain names. Your own saved locations appear with a 📍 icon in front.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Confirm the teleport on the world map" data-hi="World map पर teleport की पुष्टि करें">Confirm the teleport on the world map</span>
+          <p data-en="The SL world map opens automatically, centred on your chosen destination. Click the Teleport button on the map to travel there." data-hi="SL world map स्वचालित रूप से खुलता है, आपके चुने हुए destination पर केंद्रित। वहाँ जाने के लिए map पर Teleport बटन क्लिक करें।">The SL world map opens automatically, centred on your chosen destination. Click the Teleport button on the map to travel there.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title" data-en="Built-in curated destinations" data-hi="अंतर्निहित curated destinations">Built-in curated destinations</div>
+      <ul>
+        <li data-en="Adult Hub — the main welcome and onboarding hub" data-hi="Adult Hub — मुख्य welcome और onboarding hub">Adult Hub — the main welcome and onboarding hub</li>
+        <li data-en="Zindra Hub — Linden Lab's official adult continent" data-hi="Zindra Hub — Linden Lab का आधिकारिक एडल्ट महाद्वीप">Zindra Hub — Linden Lab's official adult continent</li>
+        <li data-en="Kink Hub — gateway for BDSM and kink communities" data-hi="Kink Hub — BDSM और kink समुदायों के लिए गेटवे">Kink Hub — gateway for BDSM and kink communities</li>
+        <li data-en="The Playground — social hub with events and shopping" data-hi="The Playground — events और shopping के साथ social hub">The Playground — social hub with events and shopping</li>
+      </ul>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        <span class="tip-label" data-en="Your saved locations appear here too" data-hi="आपके saved locations यहाँ भी दिखाई देते हैं">Your saved locations appear here too</span>
+        <p data-en="Any place you save using the 📍 Save Location feature (slot 6) automatically appears in the Teleport Board list. So once you've found a favourite spot, you can jump back to it directly from the board." data-hi="📍 Save Location सुविधा (slot 6) का उपयोग करके आप जो भी स्थान सहेजते हैं वह स्वचालित रूप से Teleport Board सूची में दिखाई देता है।">Any place you save using the 📍 Save Location feature (slot 6) automatically appears in the Teleport Board list. So once you've found a favourite spot, you can jump back to it directly from the board.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SAVE LOCATION ══ -->
+  <div id="feat-locations" class="feature reveal">
+    <div class="feature-header">
+      <div class="feature-num">6</div>
+      <div class="feature-meta">
+        <span class="feature-icon">📍</span>
+        <h2 class="feature-title" data-en="Save Location" data-hi="Save Location">Save Location</h2>
+        <div class="feature-subtitle" data-en="Bookmark up to 5 of your favourite adult spots" data-hi="अपने 5 पसंदीदा एडल्ट स्थान bookmark करें">Bookmark up to 5 of your favourite adult spots</div>
+      </div>
+    </div>
+
+    <p class="feature-intro" data-en="Found a great venue, club or region you want to return to? Save Location stores your current position — region name and exact coordinates — directly inside the HUD object using permanent storage. Your saved spots survive script resets, relogs, and even if you give the HUD to someone else." data-hi="एक शानदार venue, club या region मिला जहाँ आप वापस जाना चाहते हैं? Save Location आपकी वर्तमान स्थिति — region नाम और सटीक coordinates — को HUD object के अंदर स्थायी storage में संग्रहीत करता है।">Found a great venue, club or region you want to return to? Save Location stores your current position — region name and exact coordinates — directly inside the HUD object using permanent storage. Your saved spots survive script resets, relogs, and even if you give the HUD to someone else.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Stand where you want to save" data-hi="जहाँ आप सहेजना चाहते हैं वहाँ खड़े हों">Stand where you want to save</span>
+          <p data-en="Walk or teleport to the exact spot you want to bookmark. The HUD saves your coordinates at the moment you press the button, so position yourself first." data-hi="उस सटीक स्थान पर चलें या teleport करें जिसे आप bookmark करना चाहते हैं। HUD बटन दबाने के क्षण आपके coordinates सहेजता है।">Walk or teleport to the exact spot you want to bookmark. The HUD saves your coordinates at the moment you press the button, so position yourself first.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Open the menu and press 6. 📍" data-hi="मेनू खोलें और 6. 📍 दबाएं">Open the menu and press 6. 📍</span>
+          <p data-en="The Save Location dialog opens. It shows where you are right now, how many slots are used, and the names of your existing saved locations." data-hi="Save Location dialog खुलता है। यह दिखाता है कि आप अभी कहाँ हैं, कितने slots उपयोग किए गए हैं, और आपके मौजूदा saved locations के नाम।">The Save Location dialog opens. It shows where you are right now, how many slots are used, and the names of your existing saved locations.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Press 💾 Save Here" data-hi="💾 Save Here दबाएं">Press 💾 Save Here</span>
+          <p data-en="Press the 💾 Save Here button. The location is saved immediately, named after the region you're in. A confirmation message appears in nearby chat and on the HUD display." data-hi="💾 Save Here बटन दबाएं। स्थान तुरंत सहेजा जाता है, आपके क्षेत्र के नाम पर। Nearby chat और HUD display पर एक confirmation message दिखाई देता है।">Press the <span class="btn-mock">💾 Save Here</span> button. The location is saved immediately, named after the region you're in. A confirmation message appears in nearby chat and on the HUD display.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="steps" style="margin-top:1.5rem;">
+      <div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.8rem;" data-en="To delete a saved location" data-hi="Saved location हटाने के लिए">To delete a saved location</div>
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Open Save Location and press 🗑️ Delete One" data-hi="Save Location खोलें और 🗑️ Delete One दबाएं">Open Save Location and press 🗑️ Delete One</span>
+          <p data-en="From the Save Location dialog press 🗑️ Delete One. A new dialog lists all your saved spots." data-hi="Save Location dialog से 🗑️ Delete One दबाएं। एक नया dialog आपके सभी saved spots की सूची दिखाता है।">From the Save Location dialog press <span class="btn-mock">🗑️ Delete One</span>. A new dialog lists all your saved spots.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Press the ✖ button next to the location to remove" data-hi="हटाने के लिए location के बगल में ✖ बटन दबाएं">Press the ✖ button next to the location to remove</span>
+          <p data-en="Press the ✖ button for the location you want to remove. It is deleted immediately and the remaining slots shift up automatically." data-hi="उस location के लिए ✖ बटन दबाएं जिसे आप हटाना चाहते हैं। यह तुरंत हटा दिया जाता है और शेष slots स्वचालित रूप से ऊपर shift हो जाते हैं।">Press the ✖ button for the location you want to remove. It is deleted immediately and the remaining slots shift up automatically.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        <span class="tip-label" data-en="Maximum 5 locations" data-hi="अधिकतम 5 locations">Maximum 5 locations</span>
+        <p data-en="The HUD stores up to 5 locations. When all slots are full the Save Here button changes to 🚫 Full (5/5). Delete an existing location first to make room for a new one." data-hi="HUD अधिकतम 5 locations संग्रहीत करता है। जब सभी slots भर जाते हैं तो Save Here बटन 🚫 Full (5/5) में बदल जाता है। नए के लिए जगह बनाने के लिए पहले एक मौजूदा location हटाएं।">The HUD stores up to 5 locations. When all slots are full the Save Here button changes to 🚫 Full (5/5). Delete an existing location first to make room for a new one.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ WEBSITE ══ -->
+  <div id="feat-website" class="feature reveal">
+    <div class="feature-header">
+      <div class="feature-num">7</div>
+      <div class="feature-meta">
+        <span class="feature-icon">🌐</span>
+        <h2 class="feature-title" data-en="Website" data-hi="Website">Website</h2>
+        <div class="feature-subtitle" data-en="Opens the full online resource guide" data-hi="पूर्ण ऑनलाइन रिसोर्स गाइड खोलता है">Opens the full online resource guide</div>
+      </div>
+    </div>
+
+    <p class="feature-intro" data-en="The HUD links to a full website covering everything in more detail — maturity ratings, adult portals, mesh bodies, genitalia creators, sex furniture, and the consent guide. The website is also available in Hindi." data-hi="HUD एक पूर्ण website से जुड़ता है जो सब कुछ अधिक विस्तार से कवर करता है — maturity ratings, एडल्ट portals, mesh bodies, genitalia creators, sex furniture, और consent guide। Website हिंदी में भी उपलब्ध है।">The HUD links to a full website covering everything in more detail — maturity ratings, adult portals, mesh bodies, genitalia creators, sex furniture, and the consent guide. The website is also available in Hindi.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Open the menu and press 7. 🌐" data-hi="मेनू खोलें और 7. 🌐 दबाएं">Open the menu and press 7. 🌐</span>
+          <p data-en="Click the HUD logo then press 7. 🌐. A dialog box will appear asking if you want to open an external website." data-hi="HUD लोगो पर क्लिक करें फिर 7. 🌐 दबाएं। एक dialog box दिखाई देगा जो पूछेगा कि क्या आप एक external website खोलना चाहते हैं।">Click the HUD logo then press <span class="btn-mock">7. 🌐</span>. A dialog box will appear asking if you want to open an external website.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Press Open in the SL dialog" data-hi="SL dialog में Open दबाएं">Press Open in the SL dialog</span>
+          <p data-en="SL always asks before opening any external link for your security. Press Open and the website will launch in your default browser." data-hi="आपकी सुरक्षा के लिए SL कोई भी external link खोलने से पहले हमेशा पूछता है। Open दबाएं और website आपके default browser में खुलेगी।">SL always asks before opening any external link for your security. Press Open and the website will launch in your default browser.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong data-en="Website address" data-hi="Website पता">Website address</strong>
+      <p>joshualit.uk/adult.html</p>
+    </div>
+  </div>
+
+  <!-- ══ ADJUST DISPLAY ══ -->
+  <div id="feat-display" class="feature reveal">
+    <div class="feature-header">
+      <div class="feature-num">9</div>
+      <div class="feature-meta">
+        <span class="feature-icon">📐</span>
+        <h2 class="feature-title" data-en="Adjust Display" data-hi="Display समायोजित करें">Adjust Display</h2>
+        <div class="feature-subtitle" data-en="Move and recolour the floating text" data-hi="तैरते टेक्स्ट को हिलाएं और रंग बदलें">Move and recolour the floating text</div>
+      </div>
+    </div>
+
+    <p class="feature-intro" data-en="The floating text that appears above the HUD in-world can be nudged up or down if it overlaps other objects or UI elements. You can also change its colour to suit your preference." data-hi="HUD के ऊपर in-world में दिखाई देने वाले तैरते टेक्स्ट को ऊपर या नीचे nudge किया जा सकता है अगर यह अन्य objects या UI elements के साथ overlap करता है। आप इसका रंग भी बदल सकते हैं।">The floating text that appears above the HUD in-world can be nudged up or down if it overlaps other objects or UI elements. You can also change its colour to suit your preference.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Open the menu and press 9. 📐" data-hi="मेनू खोलें और 9. 📐 दबाएं">Open the menu and press 9. 📐</span>
+          <p data-en="Click the HUD logo then press 9. 📐. The Adjust Display dialog opens, showing the current offset and colour." data-hi="HUD लोगो पर क्लिक करें फिर 9. 📐 दबाएं। Adjust Display dialog खुलता है, वर्तमान offset और रंग दिखाता है।">Click the HUD logo then press <span class="btn-mock">9. 📐</span>. The Adjust Display dialog opens, showing the current offset and colour.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Move the display prim" data-hi="Display prim हिलाएं">Move the display prim</span>
+          <p data-en="Press ▲ Up or ▼ Down to nudge the floating text 1cm at a time. The dialog stays open so you can press multiple times. The position is saved permanently to the object — it persists after relog." data-hi="तैरते टेक्स्ट को एक बार में 1cm nudge करने के लिए ▲ Up या ▼ Down दबाएं। Dialog खुला रहता है ताकि आप कई बार दबा सकें। स्थिति object में स्थायी रूप से सहेजी जाती है।">Press <span class="btn-mock">▲ Up</span> or <span class="btn-mock">▼ Down</span> to nudge the floating text 1cm at a time. The dialog stays open so you can press multiple times. The position is saved permanently to the object — it persists after relog.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Change the text colour" data-hi="Text का रंग बदलें">Change the text colour</span>
+          <p data-en="Press Default, Green, or White to change the colour of the HUD's idle text. Result output colours (yellow for status, green for lists) are not affected." data-hi="HUD के idle text का रंग बदलने के लिए Default, Green, या White दबाएं। Result output colors (status के लिए पीला, lists के लिए हरा) प्रभावित नहीं होते।">Press <span class="btn-mock">Default</span>, <span class="btn-mock">Green</span>, or <span class="btn-mock">White</span> to change the colour of the HUD's idle text. Result output colours (yellow for status, green for lists) are not affected.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <span class="step-label" data-en="Restore original position" data-hi="मूल स्थिति पुनर्स्थापित करें">Restore original position</span>
+          <p data-en="If you've moved the display too far, press ↩ Restore to return it to where it was when you first attached the HUD this session." data-hi="अगर आपने display को बहुत दूर हिला दिया है, तो ↩ Restore दबाएं इसे वापस लाने के लिए जहाँ यह था जब आपने पहली बार इस session में HUD लगाया था।">If you've moved the display too far, press <span class="btn-mock">↩ Restore</span> to return it to where it was when you first attached the HUD this session.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💡</span>
+      <div>
+        <span class="tip-label" data-en="Position range" data-hi="Position range">Position range</span>
+        <p data-en="The display prim can move up to 13cm up or 13cm down from its original position. The dialog always shows your current offset so you know how far you've gone." data-hi="Display prim अपनी मूल स्थिति से 13cm ऊपर या 13cm नीचे तक जा सकता है। Dialog हमेशा आपका current offset दिखाता है।">The display prim can move up to 13cm up or 13cm down from its original position. The dialog always shows your current offset so you know how far you've gone.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end guide-wrap -->
+
+<div class="neon-divider"></div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <a href="#" id="to-top" aria-label="Back to top">&#8679;</a>
+  <div class="footer-logo" data-en="Adult HUD · User Guide" data-hi="Adult HUD · उपयोगकर्ता गाइड">Adult HUD · User Guide</div>
+  <p>
+    <span data-en="A" data-hi="एक">A</span>
+    <a href="https://joshualit.uk/">GridWorks</a>
+    <span data-en="resource · Created by Joshua Lit" data-hi="रिसोर्स · Joshua Lit द्वारा निर्मित">resource · Created by Joshua Lit</span>
+  </p>
+  <p style="margin-top:0.4rem">
+    <a href="adult.html" data-en="← Back to Resource Guide" data-hi="← रिसोर्स गाइड पर वापस">← Back to Resource Guide</a>
+  </p>
+</footer>
+
+<script>
+  // ── Language toggle ──────────────────────────────────────
+  const langBtn = document.getElementById('lang-btn');
+  let currentLang = 'en';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.body.classList.toggle('lang-hi', lang === 'hi');
+    langBtn.textContent = lang === 'en' ? 'हिंदी' : 'English';
+    langBtn.setAttribute('aria-label', lang === 'en' ? 'Switch to Hindi' : 'Switch to English');
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const text = el.getAttribute('data-' + lang);
+      if (text !== null) el.innerHTML = text;
+    });
+    document.title = lang === 'hi'
+      ? 'Adult HUD — उपयोगकर्ता गाइड'
+      : 'Adult HUD — User Guide';
+    sessionStorage.setItem('lang', lang);
+  }
+
+  langBtn.addEventListener('click', () => applyLang(currentLang === 'en' ? 'hi' : 'en'));
+  const saved = sessionStorage.getItem('lang');
+  if (saved === 'hi') applyLang('hi');
+
+  // ── Scroll-reveal ────────────────────────────────────────
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
