@@ -696,6 +696,25 @@
     border-color: var(--pink);
     color: var(--pink-bright);
   }
+  #to-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; height: 44px;
+    border: 1px solid var(--border-pink);
+    color: var(--pink-bright);
+    font-size: 1.4rem;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  #to-top:hover {
+    border-color: var(--pink);
+    color: var(--white);
+    box-shadow: 0 0 20px var(--pink-glow);
+  }
 </style>
 </head>
 <body>
@@ -1142,6 +1161,7 @@
      FOOTER
 ════════════════════════════════════════ -->
 <footer>
+  <a href="#" id="to-top" aria-label="Back to top">&#8679;</a>
   <div class="footer-logo">Adult HUD Guide</div>
   <p>A <a href="https://joshualit.uk/">GridWorks</a> resource · Created by Joshua Lit</p>
   <p style="margin-top:0.5rem">This page is the online companion to the Adult HUD available in Second Life.</p>
