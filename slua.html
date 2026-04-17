@@ -864,7 +864,7 @@ footer .to-top:hover {
     <div class="hero-status">Living document · Updated April 17 2026</div>
     <h1>Porting a production HUD<br><span class="accent">from LSL to SLua</span></h1>
     <p class="hero-lede">
-        Notes from a real port: a two-script Mentor HUD, roughly 1,300 lines of LSL,
+        Notes from a real port: a two-script production HUD, roughly 1,300 lines of LSL,
         rewritten in SLua (Luau) and validated against a running attachment on the beta grid.
         Memory usage dropped ~45%. Several patterns collapsed into single coroutines.
         A few surprises worth documenting.
@@ -896,14 +896,15 @@ footer .to-top:hover {
             <ul>
                 <li><a href="#intro" onclick="event.preventDefault(); scrollToId('intro');">01 &middot; Why port?</a></li>
                 <li><a href="#process" onclick="event.preventDefault(); scrollToId('process');">02 &middot; Process</a></li>
-                <li><a href="#root-core" onclick="event.preventDefault(); scrollToId('root-core');">03 &middot; Root Core findings</a></li>
-                <li><a href="#list-manager" onclick="event.preventDefault(); scrollToId('list-manager');">04 &middot; List Manager &amp; coroutines</a></li>
-                <li><a href="#gotchas" onclick="event.preventDefault(); scrollToId('gotchas');">05 &middot; Gotchas</a></li>
-                <li><a href="#feedback" onclick="event.preventDefault(); scrollToId('feedback');">06 &middot; Feedback for LL</a></li>
-                <li><a href="#validation" onclick="event.preventDefault(); scrollToId('validation');">07 &middot; Validation log</a></li>
-                <li><a href="#resources" onclick="event.preventDefault(); scrollToId('resources');">08 &middot; Resources</a></li>
-                <li><a href="#conclusion" onclick="event.preventDefault(); scrollToId('conclusion');">09 &middot; Conclusion</a></li>
-                <li><a href="#changelog" onclick="event.preventDefault(); scrollToId('changelog');">10 &middot; Changelog</a></li>
+                <li><a href="#migration-strategy" onclick="event.preventDefault(); scrollToId('migration-strategy');">03 &middot; Migration strategy</a></li>
+                <li><a href="#root-core" onclick="event.preventDefault(); scrollToId('root-core');">04 &middot; Root Core findings</a></li>
+                <li><a href="#list-manager" onclick="event.preventDefault(); scrollToId('list-manager');">05 &middot; List Manager &amp; coroutines</a></li>
+                <li><a href="#gotchas" onclick="event.preventDefault(); scrollToId('gotchas');">06 &middot; Gotchas</a></li>
+                <li><a href="#feedback" onclick="event.preventDefault(); scrollToId('feedback');">07 &middot; Feedback for LL</a></li>
+                <li><a href="#validation" onclick="event.preventDefault(); scrollToId('validation');">08 &middot; Validation log</a></li>
+                <li><a href="#resources" onclick="event.preventDefault(); scrollToId('resources');">09 &middot; Resources</a></li>
+                <li><a href="#conclusion" onclick="event.preventDefault(); scrollToId('conclusion');">10 &middot; Conclusion</a></li>
+                <li><a href="#changelog" onclick="event.preventDefault(); scrollToId('changelog');">11 &middot; Changelog</a></li>
             </ul>
         </nav>
     </aside>
@@ -913,8 +914,8 @@ footer .to-top:hover {
         <section id="intro">
             <h2><span class="num">01</span>Why port?</h2>
             <p>
-                The Mentor HUD is a two-script linkset: a Root Core that does radar scanning,
-                display and menu UI, and a List Manager that handles HTTP and mentor-list storage.
+                The production HUD is a two-script linkset: a Root Core that does radar scanning,
+                display and menu UI, and a List Manager that handles HTTP and list storage.
                 Both scripts have been in production for a while. Both work. The question was
                 never whether LSL could do the job &mdash; it does &mdash; but whether SLua would
                 do it better.
@@ -969,14 +970,9 @@ footer .to-top:hover {
                 LSL version running in parallel on the HUD throughout. The cross-script protocol
                 &mdash; four messages from Root Core to List Manager, four the other way, all on
                 channel 400 &mdash; meant I could swap either script out independently and
-                confirm mixed LSL/SLua operation still worked.
-            </p>
-            <p>
-                That mixed-mode testing mattered more than I expected. At one stage the SLua
-                Root Core was talking to an LSL List Manager. It just worked: the
-                <code>link_message</code> string payload flowed both ways without a hiccup. If
-                you're planning a staged port of a multi-script object, that's the single most
-                reassuring thing to know up front.
+                confirm mixed LSL/SLua operation still worked. That turned out to be the single
+                most practically useful property of SLua for a port like this one, and it gets
+                its own section below.
             </p>
 
             <div class="quickstart">
@@ -1033,8 +1029,117 @@ footer .to-top:hover {
             </p>
         </section>
 
+        <section id="migration-strategy">
+            <h2><span class="num">03</span>Migration strategy</h2>
+            <p>
+                The single most practically useful finding from this port isn't about memory
+                savings or coroutines &mdash; it's about the shape of the transition itself. If
+                you have a multi-script HUD or object, you can port it one script at a time,
+                with the other scripts still in LSL, and the whole thing keeps working. SLua and
+                LSL scripts in the same linkset can exchange <code>link_message</code> calls
+                cleanly, in either direction. I'd expected this to be rough at the edges. It
+                wasn't.
+            </p>
+
+            <div class="banner">
+                <div class="banner-icon">!</div>
+                <div class="banner-body">
+                    <p>
+                        <strong>Why this matters:</strong>
+                        a big-bang rewrite of a working multi-script object is the scariest part
+                        of adopting a new language. If you can stage it &mdash; port one script,
+                        verify nothing breaks, port the next &mdash; the risk profile looks much
+                        more like a normal refactor than a platform migration. For anyone
+                        sitting on a production HUD and wondering whether SLua is worth the
+                        jump, this is the finding to internalise first.
+                    </p>
+                </div>
+            </div>
+
+            <h3>How mixed mode works</h3>
+            <p>
+                The HUD's two scripts talk to each other exclusively through
+                <code>link_message</code> on channel 400 &mdash; four messages one way, four the
+                other, all strings. The SLua documentation notes in passing that the fourth
+                parameter of <code>link_message</code> is typed as <code>string</code> in SLua
+                but as <code>key</code> in LSL, and that the runtime typecasts values
+                automatically when they cross the boundary.
+            </p>
+            <p>
+                In practice that means a SLua script sending
+                <code>ll.MessageLinked(LINK_SET, 400, "MENU_OPEN", tostring(userId))</code>
+                lands in an LSL script's <code>link_message</code> handler with <code>id</code>
+                holding the UUID as a key, ready to use. Going the other way, an LSL script
+                sending a plain string lands in a SLua handler with the fourth parameter as a
+                string. Neither side needs to know what the other is written in.
+            </p>
+
+            <h3>The staged port in practice</h3>
+            <p>
+                I ported Root Core first and spent the next day running it against the original
+                LSL List Manager. Everything worked: version checks, list updates, menu
+                open/close, notecard imports triggered by inventory changes. Only after I'd
+                confirmed the mixed-mode setup held up under realistic use did I start on the
+                List Manager port. At no point was the HUD non-functional.
+            </p>
+            <p>
+                That's not a safety feature of SLua &mdash; it's a consequence of the fact that
+                the protocol between scripts was already a small, well-defined surface. LSL
+                projects with clean inter-script boundaries get this for free. Projects with
+                scripts that share state via other mechanisms (Linkset Data, object description,
+                region channels) would still get most of the benefit, because the boundaries
+                those mechanisms create are similarly language-agnostic.
+            </p>
+
+            <h3>What this unlocks</h3>
+            <p>
+                For a staged rollout, three things become possible:
+            </p>
+            <ol>
+                <li>
+                    <strong>Port in priority order, not in dependency order.</strong>
+                    Pick the script that benefits most from SLua first &mdash; usually the one
+                    with the tightest memory or the most async state &mdash; and ship it while
+                    the rest remain LSL.
+                </li>
+                <li>
+                    <strong>A/B the same script in both languages.</strong>
+                    Keep a copy of the original LSL version alongside the SLua port in the same
+                    inventory. If a customer reports a regression, flip one script's "running"
+                    state and reproduce against the previous implementation. No rollback
+                    branching in source control required.
+                </li>
+                <li>
+                    <strong>Delay the deployment decision.</strong>
+                    Because SLua only runs on SLua-enabled regions, a mixed-mode linkset
+                    effectively runs in pure-LSL mode everywhere else. You can develop the SLua
+                    port and have it ready to go, while the product continues to ship as 100%
+                    LSL until SLua goes grid-wide.
+                </li>
+            </ol>
+
+            <h3>Where it doesn't help</h3>
+            <p>
+                Mixed mode covers <code>link_message</code> cleanly. It doesn't automatically
+                bridge everything else that's changed between languages. If two scripts share
+                state through a convention &mdash; say, both writing to the same Linkset Data
+                keys with a specific format &mdash; both scripts need to agree on that format
+                regardless of language. SLua's native tables make it tempting to store
+                structured data as JSON (via <code>lljson</code>) in LSD, but the moment an LSL
+                script has to read that data, you're back to string parsing.
+            </p>
+            <p>
+                For this port, I kept the LSD schema exactly as the LSL v3.1 version defined it
+                (<code>m_&lt;uuid&gt; = "1"</code>, <code>i_&lt;uuid&gt; = "1"</code>,
+                <code>list_version = "&lt;integer&gt;"</code>) precisely so that mixed
+                mode would work without translation shims. That's the shape of decision worth
+                making early in a staged port: keep the cross-language interfaces as boring as
+                possible until both sides are in the same language.
+            </p>
+        </section>
+
         <section id="root-core">
-            <h2><span class="num">03</span>Root Core &mdash; the easy win</h2>
+            <h2><span class="num">04</span>Root Core &mdash; the easy win</h2>
             <p>
                 First-paste compile, no errors. That alone was surprising: around 650 lines of
                 LSL translated idiom-by-idiom to SLua, and the compiler accepted it on the first
@@ -1129,7 +1234,7 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
             </p>
             <div class="code-block">
                 <div class="code-header"><span class="code-lang">SLua</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-<pre><code><span class="tok-kw">local</span> colour = <span class="tok-kw">if</span> isMentor <span class="tok-kw">then</span> COL_MENTOR <span class="tok-kw">else</span> COL_NEW</code></pre>
+<pre><code><span class="tok-kw">local</span> colour = <span class="tok-kw">if</span> isListed <span class="tok-kw">then</span> COL_LISTED <span class="tok-kw">else</span> COL_NEW</code></pre>
             </div>
             <p>
                 Small thing, but LSL scripts accumulate a remarkable amount of scaffolding to
@@ -1139,7 +1244,7 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
         </section>
 
         <section id="list-manager">
-            <h2><span class="num">04</span>List Manager &mdash; where coroutines earn their keep</h2>
+            <h2><span class="num">05</span>List Manager &mdash; where coroutines earn their keep</h2>
             <p>
                 If Root Core was a translation, List Manager was a rewrite. The script has four
                 asynchronous flows &mdash; paginated HTTP fetch, version check, notecard import,
@@ -1166,7 +1271,7 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
 
             <h3>Paginated fetch: before and after</h3>
             <p>
-                In LSL, the paginated mentor-list fetch required: a <code>fetchInProgress</code>
+                In LSL, the paginated list fetch required: a <code>fetchInProgress</code>
                 flag, a <code>fetchPage_(page)</code> sender, a timer for timeout handling, and
                 an <code>http_response</code> event that branched on success / more-pages / done /
                 error and re-entered the sender. In SLua it's one function:
@@ -1209,7 +1314,7 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
         <span class="tok-kw">local</span> choice = awaitDialog(<span class="tok-str">"Manage Lists"</span>, {...})
         <span class="tok-kw">if</span> choice == <span class="tok-kw">nil</span> <span class="tok-kw">or</span> choice == <span class="tok-str">"✖ Close"</span> <span class="tok-kw">then</span> <span class="tok-kw">return</span> <span class="tok-kw">end</span>
         <span class="tok-kw">if</span> choice == <span class="tok-str">"Ignore List"</span> <span class="tok-kw">then</span> submenu(<span class="tok-str">"i_"</span>, <span class="tok-str">"Ignored Avatars"</span>) <span class="tok-kw">end</span>
-        <span class="tok-kw">if</span> choice == <span class="tok-str">"Mentor List"</span> <span class="tok-kw">then</span> submenu(<span class="tok-str">"m_"</span>, <span class="tok-str">"Mentor List"</span>) <span class="tok-kw">end</span>
+        <span class="tok-kw">if</span> choice == <span class="tok-str">"Main List"</span> <span class="tok-kw">then</span> submenu(<span class="tok-str">"m_"</span>, <span class="tok-str">"Main List"</span>) <span class="tok-kw">end</span>
     <span class="tok-kw">end</span>
 <span class="tok-kw">end</span></code></pre>
             </div>
@@ -1244,7 +1349,7 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
         </section>
 
         <section id="gotchas">
-            <h2><span class="num">05</span>Gotchas worth knowing</h2>
+            <h2><span class="num">06</span>Gotchas worth knowing</h2>
             <p>
                 These aren't bugs &mdash; they're behaviours that are correct-but-surprising, the
                 kind that cost you an afternoon the first time and five minutes every time after.
@@ -1379,7 +1484,7 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
         </section>
 
         <section id="feedback">
-            <h2><span class="num">06</span>Feedback for Linden Lab</h2>
+            <h2><span class="num">07</span>Feedback for Linden Lab</h2>
             <p>
                 Rough edges worth raising with the SLua team &mdash; none blocking, all
                 documentation or ergonomic. Listed roughly in order of how often they'd come
@@ -1469,7 +1574,7 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
         </section>
 
         <section id="validation">
-            <h2><span class="num">07</span>Validation log</h2>
+            <h2><span class="num">08</span>Validation log</h2>
             <p>
                 All paths exercised on a running HUD on April 17, 2026. Both scripts compiled
                 clean on first paste. Every structural change &mdash; table-keyed caches,
@@ -1512,7 +1617,7 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
         </section>
 
         <section id="resources">
-            <h2><span class="num">08</span>Resources</h2>
+            <h2><span class="num">09</span>Resources</h2>
             <p>
                 Everything I referenced while porting, grouped by who maintains it. The
                 community guides &mdash; Suzanna's especially &mdash; filled gaps the official
@@ -1643,7 +1748,7 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
         </section>
 
         <section id="conclusion">
-            <h2><span class="num">09</span>Conclusion</h2>
+            <h2><span class="num">10</span>Conclusion</h2>
             <p>
                 The port is structurally complete and the numbers are real: 45% less memory,
                 five times the headroom, and several hundred lines of state-machine scaffolding
@@ -1674,7 +1779,19 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
         </section>
 
         <section id="changelog">
-            <h2><span class="num">10</span>Changelog</h2>
+            <h2><span class="num">11</span>Changelog</h2>
+
+            <div class="changelog-item">
+                <div class="changelog-date">17 April 2026 &middot; update</div>
+                <div class="changelog-title">Domain-neutral language</div>
+                <p>Reworded the page to refer to the ported object as a generic production HUD rather than naming a specific use case. The findings apply to any two-script LSL HUD; removing the domain-specific framing makes that more obvious to readers porting their own projects.</p>
+            </div>
+
+            <div class="changelog-item">
+                <div class="changelog-date">17 April 2026 &middot; update</div>
+                <div class="changelog-title">Added Migration strategy section</div>
+                <p>Expanded the mixed-mode finding into its own section covering how LSL and SLua scripts coexist in a linkset, what a staged port looks like in practice, the three concrete benefits it unlocks for commercial creators, and where the technique stops helping. Existing Process section tightened to avoid overlap.</p>
+            </div>
 
             <div class="changelog-item">
                 <div class="changelog-date">17 April 2026 &middot; update</div>
