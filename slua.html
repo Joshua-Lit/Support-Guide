@@ -639,6 +639,127 @@ code {
 .changelog-title { font-weight: 500; color: var(--text); margin-bottom: 6px; }
 .changelog-item p { margin: 0; font-size: 14px; }
 
+/* Quick-start box */
+.quickstart {
+    margin: 28px 0;
+    border: 1px solid var(--accent-deep);
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(30, 122, 149, 0.08), rgba(30, 122, 149, 0.02));
+    padding: 22px 24px;
+}
+
+.quickstart-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quickstart-label::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+}
+
+.quickstart h3 { margin: 0 0 18px; font-size: 18px; }
+
+.qs-steps { list-style: none; margin: 0; padding: 0; counter-reset: qs; }
+
+.qs-steps li {
+    counter-increment: qs;
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 14px;
+    padding: 10px 0;
+    border-top: 1px solid var(--border-soft);
+    align-items: start;
+}
+
+.qs-steps li:first-child { border-top: 0; padding-top: 4px; }
+
+.qs-steps li::before {
+    content: counter(qs);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--bg-code);
+    border: 1px solid var(--accent-deep);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    margin-top: 2px;
+}
+
+.qs-step-title { font-weight: 500; color: var(--text); font-size: 14.5px; margin-bottom: 4px; }
+.qs-step-body { font-size: 14px; color: var(--text-mid); line-height: 1.55; }
+.qs-step-body code { font-size: 12.5px; }
+
+/* Resources grid */
+.res-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 18px 0 28px;
+}
+
+.res-card {
+    display: block;
+    padding: 14px 18px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: border-color 0.15s, transform 0.15s;
+}
+
+.res-card:hover {
+    border-left-color: var(--accent);
+    border-color: var(--border-soft);
+    transform: translateX(2px);
+}
+
+.res-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.res-title { font-weight: 500; color: var(--text); font-size: 15px; }
+.res-host {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-mute);
+    letter-spacing: 0.3px;
+}
+
+.res-desc { font-size: 13.5px; color: var(--text-mid); margin: 0; line-height: 1.55; }
+
+.res-group-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    margin: 28px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.res-group-title:first-of-type { margin-top: 8px; }
+
 /* Footer */
 footer {
     max-width: 1200px;
@@ -654,6 +775,24 @@ footer {
 
 footer p { color: var(--text-soft); margin-bottom: 8px; }
 footer a { color: var(--accent-dim); }
+footer .to-top {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    transition: border-color 0.15s, color 0.15s;
+}
+footer .to-top:hover {
+    border-color: var(--accent-deep);
+    color: var(--text);
+    border-bottom-style: solid;
+}
 
 /* Cookie notice */
 #cookie-notice {
@@ -762,8 +901,9 @@ footer a { color: var(--accent-dim); }
                 <li><a href="#gotchas" onclick="event.preventDefault(); scrollToId('gotchas');">05 &middot; Gotchas</a></li>
                 <li><a href="#feedback" onclick="event.preventDefault(); scrollToId('feedback');">06 &middot; Feedback for LL</a></li>
                 <li><a href="#validation" onclick="event.preventDefault(); scrollToId('validation');">07 &middot; Validation log</a></li>
-                <li><a href="#conclusion" onclick="event.preventDefault(); scrollToId('conclusion');">08 &middot; Conclusion</a></li>
-                <li><a href="#changelog" onclick="event.preventDefault(); scrollToId('changelog');">09 &middot; Changelog</a></li>
+                <li><a href="#resources" onclick="event.preventDefault(); scrollToId('resources');">08 &middot; Resources</a></li>
+                <li><a href="#conclusion" onclick="event.preventDefault(); scrollToId('conclusion');">09 &middot; Conclusion</a></li>
+                <li><a href="#changelog" onclick="event.preventDefault(); scrollToId('changelog');">10 &middot; Changelog</a></li>
             </ul>
         </nav>
     </aside>
@@ -838,6 +978,45 @@ footer a { color: var(--accent-dim); }
                 you're planning a staged port of a multi-script object, that's the single most
                 reassuring thing to know up front.
             </p>
+
+            <div class="quickstart">
+                <div class="quickstart-label">Quick start for LSL scripters</div>
+                <h3>Three things to try before you port anything</h3>
+                <ol class="qs-steps">
+                    <li>
+                        <div>
+                            <div class="qs-step-title">Download the SLua Project Viewer</div>
+                            <div class="qs-step-body">
+                                Needed to compile SLua. Grab it from the
+                                <a href="https://releasenotes.secondlife.com/viewer.html" target="_blank" rel="noopener">Second Life Alternate Viewers</a>
+                                page. Works alongside your normal viewer; switch between them freely.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <div class="qs-step-title">Visit a SLua Beta region</div>
+                            <div class="qs-step-body">
+                                SLua scripts only compile in designated beta regions. Open the map,
+                                search <code>SLua</code>, teleport to any result. <code>SLua Beta Landing</code>
+                                is the main sandbox.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <div class="qs-step-title">Rez a prim, open the script editor, switch the compiler</div>
+                            <div class="qs-step-body">
+                                There's a new dropdown beside the Save button. Switch it from
+                                <code>Mono</code> to <code>SLua</code>. Write the default
+                                <code>ll.Say(0, "Hello, Avatar!")</code>, save, touch the prim. You're
+                                now running Luau bytecode on the SL simulator.
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
             <h3>What I didn't try to optimise</h3>
             <p>
                 The temptation with a rewrite is to redesign everything. I deliberately resisted
@@ -1128,6 +1307,75 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
                     shifted index base.
                 </p>
             </div>
+
+            <h3>Signposts from Suzanna's guide</h3>
+            <p>
+                These next three I didn't hit first-hand &mdash; I caught them reading
+                <a href="https://suzanna-linn.github.io/slua/moving-llfunctions" target="_blank" rel="noopener">Suzanna Linn's LL Functions page</a>
+                while double-checking my own notes. Documenting them here because they're the kind
+                of thing you'd only discover when something unexpectedly breaks, and if you're
+                porting a script that touches these areas, you'll want them on your radar
+                before you compile.
+            </p>
+
+            <div class="finding gotcha">
+                <div class="finding-head">
+                    <span class="finding-num">Gotcha 04</span>
+                    <h3 class="finding-title">Some LSL functions are removed outright</h3>
+                </div>
+                <p>
+                    <code>ll.SetTimerEvent</code>, <code>ll.ResetTime</code>,
+                    <code>ll.GetAndResetTime</code>, and <code>ll.SetMemoryLimit</code> don't
+                    exist in SLua. If you need them, the <code>llcompat</code> library provides
+                    them &mdash; but the three time functions can't coexist with
+                    <code>LLTimers</code> in the same script. Pick one timing system.
+                </p>
+                <p>
+                    For a port this usually isn't a problem because <code>LLTimers</code> is the
+                    better replacement anyway, but if you're doing a quick-and-dirty compatibility
+                    pass first you'll hit this immediately.
+                </p>
+            </div>
+
+            <div class="finding gotcha">
+                <div class="finding-head">
+                    <span class="finding-num">Gotcha 05</span>
+                    <h3 class="finding-title">Boolean-ish functions now return real booleans</h3>
+                </div>
+                <p>
+                    A cluster of LL functions that returned <code>0</code> or <code>1</code> in
+                    LSL now return actual <code>true</code> / <code>false</code>. Examples:
+                    <code>ll.IsFriend</code>, <code>ll.SameGroup</code>,
+                    <code>ll.OverMyLand</code>, <code>ll.DetectedGroup</code>,
+                    <code>ll.GetStatus</code>, <code>ll.EdgeOfWorld</code>.
+                </p>
+                <p>
+                    Also affects boolean-valued items returned inside lists by
+                    <code>ll.GetPrimitiveParams</code> and <code>ll.GetObjectDetails</code>.
+                    Comparisons like <code>if ll.SameGroup(k) == 1</code> will break silently
+                    &mdash; the comparison is always false. Use the value directly:
+                    <code>if ll.SameGroup(k) then</code>.
+                </p>
+            </div>
+
+            <div class="finding gotcha">
+                <div class="finding-head">
+                    <span class="finding-num">Gotcha 06</span>
+                    <h3 class="finding-title">Linked messages: the 4th parameter is a string, not a UUID</h3>
+                </div>
+                <p>
+                    In LSL the <code>id</code> parameter of <code>llMessageLinked</code> could
+                    carry any string. In SLua the equivalent slot is typed as a string in both
+                    <code>ll.MessageLinked</code> and the <code>link_message</code> event. SLua
+                    UUIDs cannot hold non-UUID strings.
+                </p>
+                <p>
+                    Good news for mixed-mode ports: when an LSL script and a SLua script in the
+                    same linkset exchange link messages, the values are typecast internally.
+                    That's the mechanism that made the staged port described earlier work
+                    without changes to the wire protocol.
+                </p>
+            </div>
         </section>
 
         <section id="feedback">
@@ -1263,8 +1511,139 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
             </div>
         </section>
 
+        <section id="resources">
+            <h2><span class="num">08</span>Resources</h2>
+            <p>
+                Everything I referenced while porting, grouped by who maintains it. The
+                community guides &mdash; Suzanna's especially &mdash; filled gaps the official
+                docs haven't caught up with yet. If you read just one thing before starting your
+                own port, make it her "From LSL to SLua" chapter.
+            </p>
+
+            <div class="res-group-title">Official &middot; Linden Lab</div>
+            <div class="res-grid">
+                <a class="res-card" href="https://create.secondlife.com/script/" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">Creator Portal &middot; Scripting</span>
+                        <span class="res-host">create.secondlife.com</span>
+                    </div>
+                    <p class="res-desc">The newest and best-organised SLua reference. Still a work in progress but already the clearest entry point.</p>
+                </a>
+                <a class="res-card" href="https://wiki.secondlife.com/wiki/SLua_Alpha" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">SLua Alpha wiki page</span>
+                        <span class="res-host">wiki.secondlife.com</span>
+                    </div>
+                    <p class="res-desc">Canonical examples, region list, and the dropdown-compiler walkthrough. Named "Alpha" despite the current beta status.</p>
+                </a>
+                <a class="res-card" href="https://wiki.secondlife.com/wiki/SLua_FAQ" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">SLua FAQ</span>
+                        <span class="res-host">wiki.secondlife.com</span>
+                    </div>
+                    <p class="res-desc">Why Lua, why not C#, what happens to LSL, memory characteristics. Answers the strategic questions, not the implementation ones.</p>
+                </a>
+                <a class="res-card" href="https://feedback.secondlife.com/slua-announcements" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">SLua Announcements &amp; Release Notes</span>
+                        <span class="res-host">feedback.secondlife.com</span>
+                    </div>
+                    <p class="res-desc">Running changelog from the SLua team. Worth subscribing &mdash; beta API changes land here first.</p>
+                </a>
+                <a class="res-card" href="https://releasenotes.secondlife.com/viewer.html" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">SLua Project Viewer</span>
+                        <span class="res-host">releasenotes.secondlife.com</span>
+                    </div>
+                    <p class="res-desc">You'll need this specific viewer to compile SLua scripts. Works alongside your normal viewer.</p>
+                </a>
+            </div>
+
+            <div class="res-group-title">Community guides</div>
+            <div class="res-grid">
+                <a class="res-card" href="https://suzanna-linn.github.io/slua/" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">Suzanna Linn's SLua Guide</span>
+                        <span class="res-host">suzanna-linn.github.io</span>
+                    </div>
+                    <p class="res-desc">The single most practical resource for an LSL-to-SLua port. "Moving from LSL to SLua" covers the differences chapter by chapter; the "Scripts" section has worked examples for menus, async/await, notecards and more.</p>
+                </a>
+                <a class="res-card" href="https://suzanna-linn.github.io/slua/moving-llfunctions" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">LL Functions reference (Suzanna)</span>
+                        <span class="res-host">suzanna-linn.github.io</span>
+                    </div>
+                    <p class="res-desc">The specific page I'd point to first: 1-based indexing changes, removed functions, boolean-return changes, and the <code>llcompat</code> library all in one place.</p>
+                </a>
+                <a class="res-card" href="https://suzanna-linn.github.io/slua/scripts-menus" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">Menus example (Suzanna)</span>
+                        <span class="res-host">suzanna-linn.github.io</span>
+                    </div>
+                    <p class="res-desc">The coroutine-menu pattern applied in full. Directly informed the List Manager menu rewrite described above.</p>
+                </a>
+                <a class="res-card" href="https://suzanna-linn.github.io/slua/scripts-async-await" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">Async / Await example (Suzanna)</span>
+                        <span class="res-host">suzanna-linn.github.io</span>
+                    </div>
+                    <p class="res-desc">The template the <code>httpRequestAwait</code> helper is built on. Good short read if coroutines feel abstract.</p>
+                </a>
+            </div>
+
+            <div class="res-group-title">Tools &amp; code</div>
+            <div class="res-grid">
+                <a class="res-card" href="https://github.com/secondlife/sl-vscode-plugin" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">Official SL VSCode Plugin</span>
+                        <span class="res-host">github.com/secondlife</span>
+                    </div>
+                    <p class="res-desc">Syntax highlighting, preprocessing, <code>require</code> inclusion, error tracking, in-editor object-chat and debug output. Worth setting up on day one.</p>
+                </a>
+                <a class="res-card" href="https://github.com/secondlife/slua" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">SLua source (Luau fork)</span>
+                        <span class="res-host">github.com/secondlife</span>
+                    </div>
+                    <p class="res-desc">Linden Lab's public fork of Luau. Not required reading, but the diff against upstream Luau is useful if you want to understand the VM-state serialisation layer.</p>
+                </a>
+                <a class="res-card" href="https://luau.org/library" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">Luau Standard Library</span>
+                        <span class="res-host">luau.org</span>
+                    </div>
+                    <p class="res-desc">Everything non-SL-specific: <code>string</code>, <code>table</code>, <code>math</code>, <code>bit32</code>, <code>coroutine</code>. If a function isn't in the <code>ll.</code> namespace, it's probably here.</p>
+                </a>
+                <a class="res-card" href="https://suzanna-linn.github.io/slua/transpiler" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">LSL-to-SLua Transpiler (Suzanna)</span>
+                        <span class="res-host">suzanna-linn.github.io</span>
+                    </div>
+                    <p class="res-desc">A mechanical first-pass conversion for LSL scripts. Useful as a starting point, not a finished product &mdash; the output still needs review.</p>
+                </a>
+            </div>
+
+            <div class="res-group-title">Where to ask</div>
+            <div class="res-grid">
+                <a class="res-card" href="https://discord.com/invite/secondlifeofficial" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">Second Life Discord &middot; #scripting-lua</span>
+                        <span class="res-host">discord.com</span>
+                    </div>
+                    <p class="res-desc">The most active SLua conversation. Linden Lab scripting staff drop in regularly.</p>
+                </a>
+                <a class="res-card" href="https://community.secondlife.com/forums/forum/311-slua/" target="_blank" rel="noopener">
+                    <div class="res-card-head">
+                        <span class="res-title">SLua forum</span>
+                        <span class="res-host">community.secondlife.com</span>
+                    </div>
+                    <p class="res-desc">Slower-paced than Discord but better for longer write-ups and searchable history.</p>
+                </a>
+            </div>
+        </section>
+
         <section id="conclusion">
-            <h2><span class="num">08</span>Conclusion</h2>
+            <h2><span class="num">09</span>Conclusion</h2>
             <p>
                 The port is structurally complete and the numbers are real: 45% less memory,
                 five times the headroom, and several hundred lines of state-machine scaffolding
@@ -1295,7 +1674,13 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
         </section>
 
         <section id="changelog">
-            <h2><span class="num">09</span>Changelog</h2>
+            <h2><span class="num">10</span>Changelog</h2>
+
+            <div class="changelog-item">
+                <div class="changelog-date">17 April 2026 &middot; update</div>
+                <div class="changelog-title">Resources, quick-start, three extra gotchas</div>
+                <p>Added a Resources section indexing official docs, Suzanna Linn's guide, community tools, and where to ask questions. Added a three-step quick-start for LSL scripters wanting to try SLua before committing to a port. Three new gotchas lifted from Suzanna's LL Functions page: removed functions, boolean-return changes, and the string-typed linked-message parameter.</p>
+            </div>
 
             <div class="changelog-item">
                 <div class="changelog-date">17 April 2026</div>
@@ -1313,6 +1698,7 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
 </div>
 
 <footer>
+    <p><a class="to-top" href="#" onclick="event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' });">&uarr; Back to top</a></p>
     <p>SLua Findings &middot; Maintained by Joshua Lit</p>
     <p>Not an official Linden Lab site. SLua is a Linden Lab / Second Life project.</p>
 </footer>
