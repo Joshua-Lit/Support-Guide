@@ -211,8 +211,31 @@
     letter-spacing: 0.1em;
     color: var(--text-dim);
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   .sb-footer a { color: var(--cyan); text-decoration: none; }
+  .sb-top-btn {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    background: none;
+    border: 1px solid var(--border-pink);
+    border-radius: 3px;
+    padding: 3px 8px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .sb-top-btn:hover {
+    color: var(--pink-bright);
+    border-color: var(--pink);
+    box-shadow: 0 0 8px var(--pink-glow);
+  }
 
   /* ── Sidebar toggle (mobile) ── */
   #sidebar-toggle {
@@ -588,6 +611,7 @@
 
   <div class="sb-footer">
     <a href="mailto:josh@joshualit.uk">Suggest an edit</a>
+    <button class="sb-top-btn" onclick="scrollToTop()" title="Scroll to top">&#11014; Top</button>
   </div>
 </nav>
 
