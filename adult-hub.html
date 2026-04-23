@@ -402,8 +402,22 @@
 
   /* ── Tags ── */
   .tag-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
-  .tag { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; padding: 0.3rem 0.8rem; border-radius: 2px; border: 1px solid var(--border-pink); color: var(--text-body); background: rgba(255,31,110,0.05); text-transform: uppercase; }
+  .tag { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; padding: 0.3rem 0.8rem; border-radius: 2px; border: 1px solid var(--border-pink); color: var(--text-body); background: rgba(255,31,110,0.05); text-transform: uppercase; cursor: pointer; transition: color 0.15s, background 0.15s, border-color 0.15s, box-shadow 0.15s; user-select: none; }
+  .tag:hover { color: var(--white); background: rgba(255,31,110,0.18); border-color: var(--pink); box-shadow: 0 0 10px rgba(255,31,110,0.25); }
   .tag.featured { border-color: var(--pink); color: var(--pink-bright); background: rgba(255,31,110,0.1); box-shadow: 0 0 8px rgba(255,31,110,0.15); }
+  .tag.featured:hover { color: var(--white); background: rgba(255,31,110,0.25); box-shadow: 0 0 14px rgba(255,31,110,0.35); }
+  .tag.copied { color: var(--bg-deep) !important; background: var(--cyan) !important; border-color: var(--cyan) !important; box-shadow: 0 0 14px var(--cyan-glow) !important; }
+
+  /* ── Inline copyable text (table cells etc.) ── */
+  .copyable {
+    cursor: pointer;
+    border-bottom: 1px dashed rgba(0,232,213,0.4);
+    padding-bottom: 1px;
+    transition: color 0.15s, background 0.15s, border-color 0.15s;
+    user-select: none;
+  }
+  .copyable:hover { color: var(--cyan); border-bottom-color: var(--cyan); background: rgba(0,232,213,0.08); }
+  .copyable.copied { color: var(--bg-deep) !important; background: var(--cyan) !important; border-bottom-color: var(--cyan) !important; padding: 1px 4px; border-radius: 2px; }
 
   /* ── Callout ── */
   .callout { border: 1px solid var(--border-cyan); background: rgba(0,232,213,0.04); padding: 1rem 1.4rem; margin: 1.4rem 0; position: relative; padding-left: 1.8rem; }
@@ -729,10 +743,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr><td><b>Adult Hub</b></td><td>Welcome &amp; onboarding</td><td>Landing area for new adult residents. Info boards, freebies, community. Good first stop.</td></tr>
-      <tr><td><b>Zindra</b></td><td>Official LL continent</td><td>The adult continent created by Linden Lab. Central hub for adult land and commerce.</td></tr>
-      <tr><td><b>Kink Hub</b></td><td>Community portal</td><td>Gateway for BDSM and kink communities. Boards to hundreds of venues.</td></tr>
-      <tr><td><b>The Playground</b></td><td>Social hub</td><td>Events, shopping, socialising. Welcoming to newcomers.</td></tr>
+      <tr><td><b class="copyable" onclick="copyTag(this)" title="Click to copy">Adult Hub</b></td><td>Welcome &amp; onboarding</td><td>Landing area for new adult residents. Info boards, freebies, community. Good first stop.</td></tr>
+      <tr><td><b class="copyable" onclick="copyTag(this)" title="Click to copy">Zindra</b></td><td>Official LL continent</td><td>The adult continent created by Linden Lab. Central hub for adult land and commerce.</td></tr>
+      <tr><td><b class="copyable" onclick="copyTag(this)" title="Click to copy">Kink Hub</b></td><td>Community portal</td><td>Gateway for BDSM and kink communities. Boards to hundreds of venues.</td></tr>
+      <tr><td><b class="copyable" onclick="copyTag(this)" title="Click to copy">The Playground</b></td><td>Social hub</td><td>Events, shopping, socialising. Welcoming to newcomers.</td></tr>
       <tr><td><b>(Destination search)</b></td><td>Find your own</td><td>Ctrl+F &rsaquo; Destinations, enable Adult, search &lsquo;adult hub&rsquo;. Hundreds of options.</td></tr>
     </tbody>
   </table>
@@ -786,12 +800,12 @@
     <table class="styled-table" data-search="mesh body maitreya legacy reborn belleza signature gianni">
       <thead><tr><th>Body</th><th>Gender</th><th>Why it's popular</th></tr></thead>
       <tbody>
-        <tr><td><b>Maitreya Lara / Lara X</b></td><td>Female</td><td>Most widely supported body in SL. Largest range of compatible clothing and add-ons.</td></tr>
-        <tr><td><b>Legacy</b></td><td>Male &amp; Female</td><td>High-quality mesh, strong physics, growing creator support.</td></tr>
-        <tr><td><b>eBODY Reborn</b></td><td>Female</td><td>Curvier shape, good bento support, strong community.</td></tr>
-        <tr><td><b>Belleza Jake</b></td><td>Male</td><td>Detailed, athletic mesh. Wide creator support.</td></tr>
-        <tr><td><b>Signature Gianni / Gianni X</b></td><td>Male</td><td>Clean, muscular build. Popular in male fashion and adult communities.</td></tr>
-        <tr><td><b>Belleza Freya / Isis</b></td><td>Female</td><td>Classic, well-supported bodies with large back-catalogues.</td></tr>
+        <tr><td><b><span class="copyable" onclick="copyTag(this)" title="Click to copy">Maitreya Lara</span> / <span class="copyable" onclick="copyTag(this)" title="Click to copy">Lara X</span></b></td><td>Female</td><td>Most widely supported body in SL. Largest range of compatible clothing and add-ons.</td></tr>
+        <tr><td><b class="copyable" onclick="copyTag(this)" title="Click to copy">Legacy</b></td><td>Male &amp; Female</td><td>High-quality mesh, strong physics, growing creator support.</td></tr>
+        <tr><td><b class="copyable" onclick="copyTag(this)" title="Click to copy">eBODY Reborn</b></td><td>Female</td><td>Curvier shape, good bento support, strong community.</td></tr>
+        <tr><td><b class="copyable" onclick="copyTag(this)" title="Click to copy">Belleza Jake</b></td><td>Male</td><td>Detailed, athletic mesh. Wide creator support.</td></tr>
+        <tr><td><b><span class="copyable" onclick="copyTag(this)" title="Click to copy">Signature Gianni</span> / <span class="copyable" onclick="copyTag(this)" title="Click to copy">Gianni X</span></b></td><td>Male</td><td>Clean, muscular build. Popular in male fashion and adult communities.</td></tr>
+        <tr><td><b><span class="copyable" onclick="copyTag(this)" title="Click to copy">Belleza Freya</span> / <span class="copyable" onclick="copyTag(this)" title="Click to copy">Isis</span></b></td><td>Female</td><td>Classic, well-supported bodies with large back-catalogues.</td></tr>
       </tbody>
     </table>
   </div>
@@ -808,20 +822,20 @@
     <div class="panel" data-search="genitalia creators inm vaw xtc aeros xcite marketplace">
       <div class="panel-title">Common Creators</div>
       <div class="tag-grid">
-        <span class="tag featured">It's Not Mine (INM)</span>
-        <span class="tag featured">VAW</span>
-        <span class="tag featured">XTC</span>
-        <span class="tag featured">Aeros</span>
-        <span class="tag">Good Moaning</span>
-        <span class="tag">Larax</span>
-        <span class="tag">Sensations</span>
-        <span class="tag">Hugsies</span>
-        <span class="tag">Live Cock</span>
-        <span class="tag">Real Penis</span>
-        <span class="tag">Rut</span>
-        <span class="tag">Xcite</span>
+        <span class="tag featured" onclick="copyTag(this)" title="Click to copy">It's Not Mine (INM)</span>
+        <span class="tag featured" onclick="copyTag(this)" title="Click to copy">VAW</span>
+        <span class="tag featured" onclick="copyTag(this)" title="Click to copy">XTC</span>
+        <span class="tag featured" onclick="copyTag(this)" title="Click to copy">Aeros</span>
+        <span class="tag" onclick="copyTag(this)" title="Click to copy">Good Moaning</span>
+        <span class="tag" onclick="copyTag(this)" title="Click to copy">Larax</span>
+        <span class="tag" onclick="copyTag(this)" title="Click to copy">Sensations</span>
+        <span class="tag" onclick="copyTag(this)" title="Click to copy">Hugsies</span>
+        <span class="tag" onclick="copyTag(this)" title="Click to copy">Live Cock</span>
+        <span class="tag" onclick="copyTag(this)" title="Click to copy">Real Penis</span>
+        <span class="tag" onclick="copyTag(this)" title="Click to copy">Rut</span>
+        <span class="tag" onclick="copyTag(this)" title="Click to copy">Xcite</span>
       </div>
-      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:1rem;">Names are provided for recognition only. This page does not endorse or link to specific products &mdash; direct residents to Marketplace or the creator's own in-world store.</p>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:1rem;">Click any name to copy. Listed for recognition only &mdash; this page does not endorse or link to specific products. Direct residents to Marketplace or the creator's own in-world store.</p>
     </div>
   </div>
 
@@ -1015,6 +1029,32 @@
         el.classList.remove('copied');
         if (btn) btn.textContent = origBtn;
       }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        done();
+      });
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      done();
+    }
+  }
+
+  // ── Tag click-to-copy (small chips like creator names) ───
+  function copyTag(el) {
+    const text = el.textContent.trim();
+    const done = () => {
+      el.classList.add('copied');
+      setTimeout(() => el.classList.remove('copied'), 1400);
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(done).catch(() => {
