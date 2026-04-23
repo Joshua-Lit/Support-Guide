@@ -377,6 +377,7 @@
 
   /* ── Cards ── */
   .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.6rem; }
+  .card-grid-2col { grid-template-columns: repeat(2, 1fr); }
   .card { background: var(--bg-card); border: 1px solid var(--border-pink); padding: 1.3rem; position: relative; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; overflow: hidden; }
   .card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(to bottom, var(--pink), transparent); }
   .card:hover { border-color: var(--pink); box-shadow: 0 0 24px var(--pink-glow), inset 0 0 30px rgba(255,31,110,0.04); transform: translateY(-3px); }
@@ -528,6 +529,7 @@
   }
   @media (max-width: 640px) {
     .two-col { grid-template-columns: 1fr; }
+    .card-grid-2col { grid-template-columns: 1fr; }
     section.section { padding: 3rem 1.2rem; }
     .hero { padding: 2rem 1.2rem 2.5rem; }
   }
@@ -859,7 +861,7 @@
 
   <div style="margin-top:2rem" class="reveal">
     <div class="panel-title" style="font-family:var(--font-display);font-size:0.7rem;letter-spacing:0.2em;color:var(--cyan);margin-bottom:1rem;">Animation Engines</div>
-    <div class="card-grid">
+    <div class="card-grid card-grid-2col">
       <div class="card" data-search="xtac xtc engine widely used"><div class="card-title">XTAC / XTC</div><p>Widely used, clean menus, good sync. The most common engine a resident will encounter.</p></div>
       <div class="card" data-search="rlv rlva advanced restraint automatic body"><div class="card-title">RLV / RLVA</div><p>Advanced engine enabling automatic body interaction and restraint play. Requires RLV enabled in the viewer.</p></div>
       <div class="card" data-search="bento native finger toe facial bones"><div class="card-title">Bento-Native</div><p>Newer furniture that animates finger, toe and facial Bento bones for expressive, natural movement.</p></div>
@@ -881,7 +883,7 @@
   <h2 class="section-title reveal"><span>Consent </span><span class="accent">Matters</span></h2>
   <p class="section-intro reveal">This is the most common area where a newcomer gets themselves into trouble &mdash; not by malice, but by assuming adult spaces mean open permission. Consent is required for everything. If you're fielding a resident complaint, nine times out of ten the root cause is that one side didn't ask first.</p>
 
-  <div class="card-grid reveal">
+  <div class="card-grid card-grid-2col reveal">
     <div class="card" data-search="built in sl protection click sit object permission animate"><span class="card-icon">&#128737;&#65039;</span><div class="card-title">Built-in SL Protections</div><p>A resident must click to sit on anything. Objects must request permission to animate the avatar. Scripts must request permission to attach items. They can always stand up.</p></div>
     <div class="card" data-search="rlv restrained love viewer choice firestorm preferences"><span class="card-icon">&#128274;</span><div class="card-title">RLV &mdash; Their Choice</div><p>Restrained Love Viewer is off by default. Enable only with trusted partners. In Firestorm: Avatar &rsaquo; Preferences &rsaquo; Firestorm &rsaquo; RLV.</p></div>
     <div class="card" data-search="safe word red safeword restricted play scene"><span class="card-icon">&#128308;</span><div class="card-title">Safe Words</div><p>Agree a safe word before any restricted-play scene. &lsquo;Red&rsquo; or &lsquo;Safeword&rsquo; are universally understood. A good partner will offer one up front.</p></div>
