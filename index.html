@@ -191,6 +191,7 @@
 
   </div>
 
+  <button class="sidebar-adult-btn" onclick="openAdultWarningModal()" title="Adult content reference (Mentor-facing)">&#10084;&#65039; Adult HUD <span class="sab-arrow">&#8250;</span></button>
   <button class="sidebar-checklist-btn" id="sidebar-checklist-btn" onclick="openChecklistModal()" style="display:block;">&#128203; Session Checklist</button>
   <div class="sidebar-status">
     <div class="status-dot"></div>
@@ -2017,6 +2018,24 @@ Full overview at: secondlife.com/land</div>
       <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#129496;</span>Stay calm &#8212; don't react, respond</div>
       <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#9749;</span>Beverage of choice to hand</div>
       <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);"><span style="font-size:15px;">&#128701;</span>Empty your bladder beforehand</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ Adult HUD warning modal ══ -->
+<div id="adult-warning-modal" onclick="if(event.target===this)closeAdultWarningModal()" role="dialog" aria-modal="true" aria-labelledby="awm-title">
+  <div id="adult-warning-modal-inner">
+    <button id="adult-warning-modal-close" onclick="closeAdultWarningModal()" aria-label="Close">&#10005;</button>
+    <div class="awm-eyebrow">&#9888;&#65039; Adult Content Ahead</div>
+    <div class="awm-title" id="awm-title">Mentor Reference &#8212; Adult HUD</div>
+    <div class="awm-body">
+      <p>This page is a Mentor-facing reference for fielding questions about adult content in Second Life &#8212; age-gating, bodies, furniture and consent. It contains explicit subject matter written in plain language, along with copy-paste answers for IM.</p>
+      <p>It's here because these questions come up and residents need accurate information. If you'd rather not cover this area in your mentoring, that's completely fine &#8212; just close this and hand off when the topic arises.</p>
+    </div>
+    <div class="awm-actions">
+      <button class="awm-btn awm-btn-cancel" onclick="closeAdultWarningModal()">Not for me</button>
+      <button class="awm-btn awm-btn-confirm" onclick="confirmAdultGuide()">Open the guide &rsaquo;</button>
     </div>
   </div>
 </div>

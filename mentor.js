@@ -465,3 +465,29 @@ function toggleTheme() {
 function updateThemeToggle() {
   // CSS handles visual state via [data-theme="light"] selectors — no JS needed
 }
+
+
+// ══ Adult HUD warning modal ══
+function openAdultWarningModal() {
+  // If the mentor confirmed earlier in this session, skip straight to the page
+  try {
+    if (sessionStorage.getItem('adult-warning-ack') === '1') {
+      window.location.href = 'adult-hud.html';
+      return;
+    }
+  } catch(e) {}
+  const m = document.getElementById('adult-warning-modal');
+  if (!m) { window.location.href = 'adult-hud.html'; return; }
+  m.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeAdultWarningModal() {
+  const m = document.getElementById('adult-warning-modal');
+  if (!m) return;
+  m.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function confirmAdultGuide() {
+  try { sessionStorage.setItem('adult-warning-ack', '1'); } catch(e) {}
+  window.location.href = 'adult-hud.html';
+}
