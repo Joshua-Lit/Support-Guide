@@ -467,17 +467,17 @@ function updateThemeToggle() {
 }
 
 
-// ══ Adult HUD warning modal ══
+// ══ Adult Hub warning modal ══
 function openAdultWarningModal() {
   // If the mentor confirmed earlier in this session, skip straight to the page
   try {
     if (sessionStorage.getItem('adult-warning-ack') === '1') {
-      window.location.href = 'adult-hud.html';
+      window.location.href = 'adult-hub.html';
       return;
     }
   } catch(e) {}
   const m = document.getElementById('adult-warning-modal');
-  if (!m) { window.location.href = 'adult-hud.html'; return; }
+  if (!m) { window.location.href = 'adult-hub.html'; return; }
   m.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -489,5 +489,5 @@ function closeAdultWarningModal() {
 }
 function confirmAdultGuide() {
   try { sessionStorage.setItem('adult-warning-ack', '1'); } catch(e) {}
-  window.location.href = 'adult-hud.html';
+  window.location.href = 'adult-hub.html';
 }

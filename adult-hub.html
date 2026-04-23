@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adult Hub — Mentor Reference</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj48cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjMGQwNjEwIi8+PHBhdGggZD0iTTE2IDI2TDUuNSAxNS41QTUuNSA1LjUgMCAwIDEgMTYgOGE1LjUgNS41IDAgMCAxIDEwLjUgNy41TDE2IDI2eiIgZmlsbD0iI2ZmMWY2ZSIvPjwvc3ZnPg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep:       #0d0610;
+    --bg-card:       #180d1e;
+    --bg-panel:      #1f1028;
+    --bg-sidebar:    #110714;
+    --pink:          #ff1f6e;
+    --pink-bright:   #ff4d8f;
+    --pink-dim:      #c4145a;
+    --pink-glow:     rgba(255,31,110,0.35);
+    --cyan:          #00e8d5;
+    --cyan-dim:      #00a898;
+    --cyan-glow:     rgba(0,232,213,0.25);
+    --white:         #ffffff;
+    --text-body:     #e8d0db;
+    --text-muted:    #9e7a8a;
+    --text-dim:      #6b5260;
+    --border-pink:   rgba(255,31,110,0.3);
+    --border-cyan:   rgba(0,232,213,0.25);
+    --border-soft:   rgba(255,255,255,0.06);
+    --font-display:  'Syncopate', sans-serif;
+    --font-body:     'DM Sans', sans-serif;
+    --font-mono:     'Space Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text-body);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999; opacity: 0.4;
+  }
+
+  /* ══════════════════════════════════════════
+     LAYOUT — sidebar + main
+     ══════════════════════════════════════════ */
+  #app { display: flex; min-height: 100vh; position: relative; }
+
+  /* ── Sidebar ── */
+  #sidebar {
+    width: 270px;
+    flex-shrink: 0;
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border-pink);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    z-index: 50;
+  }
+  #sidebar::-webkit-scrollbar { width: 6px; }
+  #sidebar::-webkit-scrollbar-track { background: transparent; }
+  #sidebar::-webkit-scrollbar-thumb { background: rgba(255,31,110,0.15); border-radius: 3px; }
+  #sidebar::-webkit-scrollbar-thumb:hover { background: rgba(255,31,110,0.35); }
+
+  .sb-logo {
+    padding: 18px 18px 14px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .sb-logo-row {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--pink);
+    text-shadow: 0 0 10px var(--pink-glow);
+    text-transform: uppercase;
+  }
+  .sb-logo-hex {
+    width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,31,110,0.08);
+    border: 1px solid var(--border-pink);
+    border-radius: 3px;
+  }
+  .sb-logo-sub {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+
+  /* ── Page nav (Home / Technical / Adult) ── */
+  .page-nav {
+    display: flex;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .page-nav-link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 4px;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    cursor: pointer;
+    background: none;
+  }
+  .page-nav-link:hover { color: var(--text-body); background: rgba(255,31,110,0.08); }
+  .page-nav-link.active {
+    color: var(--pink-bright);
+    border-bottom-color: var(--pink);
+    background: rgba(255,31,110,0.08);
+  }
+  .pn-icon { font-size: 11px; }
+
+  /* ── Search ── */
+  .search-wrap { padding: 14px 14px 10px; border-bottom: 1px solid var(--border-soft); }
+  .search-inner {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-pink);
+    padding: 6px 10px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .search-inner:focus-within { border-color: var(--pink); box-shadow: 0 0 10px var(--pink-glow); }
+  .search-icon { font-family: var(--font-mono); color: var(--cyan); font-size: 0.7rem; }
+  #global-search {
+    flex: 1; background: none; border: none; outline: none;
+    color: var(--text-body); font-family: var(--font-body); font-size: 0.85rem;
+  }
+  #global-search::placeholder { color: var(--text-dim); }
+  #search-clear {
+    display: none; background: none; border: none; color: var(--text-muted);
+    cursor: pointer; font-size: 0.75rem; padding: 2px 4px;
+  }
+  #search-clear:hover { color: var(--pink-bright); }
+  #search-count {
+    font-family: var(--font-mono); font-size: 0.65rem;
+    color: var(--cyan); margin-top: 6px; min-height: 14px; letter-spacing: 0.05em;
+  }
+
+  /* ── Sidebar nav groups ── */
+  .sb-nav { padding: 10px 8px; flex: 1; }
+  .nav-group { margin-bottom: 2px; }
+  .nav-group-hdr {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 10px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+    border-radius: 3px;
+    user-select: none;
+  }
+  .nav-group-hdr:hover { color: var(--white); background: rgba(255,31,110,0.06); }
+  .nav-group-hdr .ng-arrow { margin-left: auto; font-size: 9px; transition: transform 0.2s; color: var(--pink); }
+  .nav-group-hdr.open .ng-arrow { transform: rotate(90deg); }
+  .nav-items {
+    display: none;
+    flex-direction: column;
+    padding: 2px 0 6px 8px;
+    border-left: 1px solid var(--border-soft);
+    margin-left: 12px;
+  }
+  .nav-items.open { display: flex; }
+  .nav-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 10px;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+    border-radius: 2px;
+  }
+  .nav-item:hover { color: var(--cyan); background: rgba(0,232,213,0.05); }
+  .ni-dot { width: 3px; height: 3px; background: var(--pink-dim); border-radius: 50%; flex-shrink: 0; }
+  .nav-item:hover .ni-dot { background: var(--cyan); }
+
+  .sb-footer {
+    padding: 10px 14px;
+    border-top: 1px solid var(--border-soft);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .sb-footer a { color: var(--cyan); text-decoration: none; }
+
+  /* ── Sidebar toggle (mobile) ── */
+  #sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 14px; left: 14px;
+    z-index: 150;
+    width: 40px; height: 40px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-pink);
+    color: var(--pink-bright);
+    font-size: 1.2rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ══════════════════════════════════════════
+     MAIN
+     ══════════════════════════════════════════ */
+  #main { flex: 1; min-width: 0; position: relative; }
+
+  /* ── Hero (compact banner ~25vh) ── */
+  .hero {
+    min-height: 25vh;
+    padding: 1.8rem 2rem 1.8rem;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.4rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,31,110,0.10) 0%, transparent 70%);
+    top: 50%; left: 18%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,232,213,0.07) 0%, transparent 70%);
+    top: 50%; right: 8%;
+    transform: translate(50%, -50%);
+    pointer-events: none;
+  }
+  .hero-heart {
+    position: relative;
+    width: 80px; height: 80px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-heart svg {
+    width: 80px; height: 80px;
+    filter: drop-shadow(0 0 18px var(--pink-glow));
+    opacity: 0.9;
+  }
+  .hero-body {
+    position: relative;
+    min-width: 0;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.1s forwards;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-shadow: 0 0 30px var(--pink-glow);
+    margin-bottom: 0.55rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.25s forwards;
+  }
+  .hero-title span {
+    color: var(--pink);
+    text-shadow: 0 0 16px var(--pink), 0 0 40px var(--pink-glow);
+  }
+  .hero-desc {
+    font-size: 0.82rem;
+    color: var(--text-body);
+    max-width: 620px;
+    margin-bottom: 0.85rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.4s forwards;
+    line-height: 1.55;
+  }
+  .hero-nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.55s forwards;
+  }
+  @media (max-width: 640px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 1.4rem 1.2rem;
+      text-align: center;
+      gap: 0.8rem;
+    }
+    .hero-heart { margin: 0 auto; width: 56px; height: 56px; }
+    .hero-heart svg { width: 56px; height: 56px; }
+    .hero-nav-pills { justify-content: center; }
+  }
+
+  .pill { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.45rem 1rem; border-radius: 2px; border: 1px solid var(--border-pink); color: var(--pink-bright); background: rgba(255,31,110,0.06); text-decoration: none; transition: all 0.2s; white-space: nowrap; cursor: pointer; }
+  .pill:hover { background: rgba(255,31,110,0.15); border-color: var(--pink); box-shadow: 0 0 16px var(--pink-glow); color: var(--white); }
+
+  /* ── Sections ── */
+  section.section { padding: 4rem 2rem; max-width: 980px; margin: 0 auto; position: relative; }
+  .section-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.3em; color: var(--cyan); text-transform: uppercase; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-label::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
+  .section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3.5vw, 2.2rem); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); line-height: 1.1; margin-bottom: 1.2rem; }
+  .section-title .accent { color: var(--pink); }
+  .section-intro { font-size: 0.95rem; color: var(--text-body); max-width: 680px; margin-bottom: 2rem; border-left: 2px solid var(--pink-dim); padding-left: 1.2rem; }
+  .neon-divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--pink), transparent); box-shadow: 0 0 10px var(--pink-glow); opacity: 0.5; }
+
+  /* ── Cards ── */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.6rem; }
+  .card { background: var(--bg-card); border: 1px solid var(--border-pink); padding: 1.3rem; position: relative; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; overflow: hidden; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(to bottom, var(--pink), transparent); }
+  .card:hover { border-color: var(--pink); box-shadow: 0 0 24px var(--pink-glow), inset 0 0 30px rgba(255,31,110,0.04); transform: translateY(-3px); }
+  .card-icon { font-size: 1.4rem; margin-bottom: 0.6rem; display: block; }
+  .card-title { font-family: var(--font-display); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink-bright); margin-bottom: 0.5rem; }
+  .card p { font-size: 0.88rem; color: var(--text-body); line-height: 1.6; }
+
+  /* ── Steps ── */
+  .steps { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 1.4rem; }
+  .step { display: grid; grid-template-columns: 40px 1fr; gap: 1rem; align-items: start; }
+  .step-num { font-family: var(--font-mono); font-size: 0.72rem; color: var(--pink); text-shadow: 0 0 8px var(--pink-glow); background: rgba(255,31,110,0.08); border: 1px solid var(--border-pink); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .step-body strong { display: block; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--white); margin-bottom: 0.2rem; text-transform: uppercase; }
+  .step-body p { font-size: 0.88rem; color: var(--text-body); }
+
+  /* ── Two col ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; margin-top: 1.6rem; }
+
+  /* ── Panel ── */
+  .panel { background: var(--bg-panel); border: 1px solid var(--border-cyan); padding: 1.4rem; position: relative; }
+  .panel::after { content: ''; position: absolute; bottom: 0; right: 0; width: 60px; height: 60px; border-right: 2px solid var(--cyan-dim); border-bottom: 2px solid var(--cyan-dim); opacity: 0.4; }
+  .panel-title { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); text-shadow: 0 0 8px var(--cyan-glow); margin-bottom: 0.8rem; }
+
+  /* ── Tags ── */
+  .tag-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+  .tag { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; padding: 0.3rem 0.8rem; border-radius: 2px; border: 1px solid var(--border-pink); color: var(--text-body); background: rgba(255,31,110,0.05); text-transform: uppercase; }
+  .tag.featured { border-color: var(--pink); color: var(--pink-bright); background: rgba(255,31,110,0.1); box-shadow: 0 0 8px rgba(255,31,110,0.15); }
+
+  /* ── Callout ── */
+  .callout { border: 1px solid var(--border-cyan); background: rgba(0,232,213,0.04); padding: 1rem 1.4rem; margin: 1.4rem 0; position: relative; padding-left: 1.8rem; }
+  .callout::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--cyan); box-shadow: 0 0 8px var(--cyan-glow); }
+  .callout strong { display: block; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.3rem; }
+  .callout p { font-size: 0.88rem; color: var(--text-body); }
+
+  /* ── Note ── */
+  .note { border: 1px solid rgba(255,31,110,0.2); background: rgba(255,31,110,0.04); padding: 0.9rem 1.2rem; margin: 1.2rem 0; font-size: 0.85rem; color: var(--text-muted); }
+  .note b { color: var(--pink-bright); }
+
+  /* ── Table ── */
+  .styled-table { width: 100%; border-collapse: collapse; margin-top: 1.2rem; font-size: 0.85rem; }
+  .styled-table th { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border-cyan); background: rgba(0,232,213,0.04); }
+  .styled-table td { padding: 0.7rem 0.9rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text-body); vertical-align: top; }
+  .styled-table tr:hover td { background: rgba(255,31,110,0.03); }
+
+  /* ── Copy block (mentor-facing paste blocks) ── */
+  .copy-block {
+    background: rgba(0,232,213,0.03);
+    border: 1px solid var(--border-cyan);
+    border-left: 3px solid var(--cyan);
+    padding: 0.9rem 1.1rem 0.9rem 1.1rem;
+    margin: 1rem 0;
+    position: relative;
+    font-size: 0.88rem;
+    color: var(--text-body);
+    line-height: 1.6;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    padding-right: 4.5rem;
+  }
+  .copy-block:hover { background: rgba(0,232,213,0.08); border-color: var(--cyan); }
+  .copy-block .cb-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 0.4rem;
+  }
+  .copy-block .cb-btn {
+    position: absolute;
+    top: 0.7rem; right: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    background: rgba(0,232,213,0.08);
+    border: 1px solid var(--border-cyan);
+    color: var(--cyan);
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  .copy-block.copied { background: rgba(0,232,213,0.15); border-color: var(--cyan); }
+  .copy-block.copied .cb-btn { background: var(--cyan); color: var(--bg-deep); }
+
+  /* ── Footer ── */
+  footer { border-top: 1px solid var(--border-pink); padding: 2.5rem 2rem; text-align: center; margin-top: 2rem; }
+  .footer-logo { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.3em; color: var(--pink); text-shadow: 0 0 16px var(--pink-glow); text-transform: uppercase; margin-bottom: 0.5rem; }
+  footer p { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--text-muted); margin-top: 0.4rem; }
+  footer a { color: var(--cyan); text-decoration: none; }
+
+  #to-top { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--border-pink); color: var(--pink-bright); font-size: 1.2rem; text-decoration: none; margin-bottom: 1.2rem; transition: border-color 0.2s, color 0.2s, box-shadow 0.2s; animation: pulse-glow 3s ease-in-out infinite; cursor: pointer; background: none; font-family: var(--font-body); }
+  #to-top:hover { border-color: var(--pink); color: var(--white); box-shadow: 0 0 20px var(--pink-glow); }
+
+  /* ── Disclaimer banner ── */
+  #disclaimer {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+    background: rgba(255,31,110,0.05); border-bottom: 1px solid var(--border-pink);
+    padding: 0.7rem 1.3rem;
+  }
+  #disclaimer.hidden { display: none; }
+  .disclaimer-inner { display: flex; gap: 0.8rem; align-items: flex-start; max-width: 100%; flex: 1; }
+  .disclaimer-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+  #disclaimer p { font-size: 0.74rem; color: var(--text-muted); line-height: 1.5; flex: 1; }
+  #disclaimer p strong { color: var(--pink-bright); font-family: var(--font-mono); letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.7rem; margin-right: 4px; }
+  #disclaimer p a { color: var(--cyan); text-decoration: none; }
+  #disclaimer p a:hover { text-decoration: underline; }
+  #disclaimer-close { flex-shrink: 0; background: none; border: 1px solid var(--border-pink); color: var(--text-muted); font-size: 0.7rem; width: 26px; height: 26px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; font-family: var(--font-mono); padding: 0; }
+  #disclaimer-close:hover { border-color: var(--pink); color: var(--pink-bright); }
+
+  /* ── No-results ── */
+  #no-results {
+    display: none;
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+  }
+  #no-results strong { color: var(--pink-bright); font-size: 1rem; display: block; margin-bottom: 0.5rem; }
+
+  mark { background: rgba(255,31,110,0.35); color: var(--white); padding: 0 2px; border-radius: 2px; }
+
+  .hidden-search { display: none !important; }
+
+  /* ── Animations ── */
+  @keyframes fadeUp   { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn   { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 8px var(--pink-glow); } 50% { box-shadow: 0 0 20px var(--pink-glow), 0 0 40px rgba(255,31,110,0.1); } }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  [id] { scroll-margin-top: 20px; }
+
+  /* ══════════════════════════════════════════
+     RESPONSIVE
+     ══════════════════════════════════════════ */
+  @media (max-width: 900px) {
+    #sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      width: 280px;
+    }
+    #sidebar.open { transform: translateX(0); box-shadow: 4px 0 24px rgba(0,0,0,0.5); }
+    #sidebar-toggle { display: flex; }
+    #main { padding-top: 64px; }
+    .hero { padding-top: 2rem; }
+  }
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+    section.section { padding: 3rem 1.2rem; }
+    .hero { padding: 2rem 1.2rem 2.5rem; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SIDEBAR
+     ═══════════════════════════════════════════════════════════════════ -->
+<nav id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-logo-row">
+      <div class="sb-logo-hex">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 21L3.5 12.5A5.5 5.5 0 0 1 12 5.5a5.5 5.5 0 0 1 8.5 7L12 21z" fill="#ff1f6e"/>
+        </svg>
+      </div>
+      ADULT HUB
+    </div>
+    <div class="sb-logo-sub">Mentor Reference</div>
+  </div>
+
+  <div class="page-nav">
+    <a class="page-nav-link" href="index.html"><span class="pn-icon">&#127968;</span>Home</a>
+    <a class="page-nav-link" href="technical.html"><span class="pn-icon">&#9881;&#65039;</span>Tech</a>
+    <a class="page-nav-link active" href="adult-hub.html"><span class="pn-icon">&#10084;&#65039;</span>Adult</a>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-inner">
+      <span class="search-icon">//</span>
+      <input type="text" id="global-search" placeholder="search adult guide..." autocomplete="off" spellcheck="false">
+      <button id="search-clear" onclick="clearSearch()" title="Clear search">&#10005;</button>
+    </div>
+    <div id="search-count"></div>
+  </div>
+
+  <div class="sb-nav">
+    <div class="nav-group">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
+        <span>&#128269;</span> Quick Jump <span class="ng-arrow">&#9654;</span>
+      </div>
+      <div class="nav-items">
+        <span class="nav-item" onclick="jumpTo('maturity')"><span class="ni-dot"></span>Age &amp; Maturity</span>
+        <span class="nav-item" onclick="jumpTo('portals')"><span class="ni-dot"></span>Adult Portals</span>
+        <span class="nav-item" onclick="jumpTo('bodies')"><span class="ni-dot"></span>Bodies &amp; Genitalia</span>
+        <span class="nav-item" onclick="jumpTo('furniture')"><span class="ni-dot"></span>Sex Furniture</span>
+        <span class="nav-item" onclick="jumpTo('consent')"><span class="ni-dot"></span>Consent &amp; Safety</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
+        <span>&#128221;</span> Copy-Paste Answers <span class="ng-arrow">&#9654;</span>
+      </div>
+      <div class="nav-items">
+        <span class="nav-item" onclick="jumpTo('cp-enable-adult')"><span class="ni-dot"></span>Enabling Adult content</span>
+        <span class="nav-item" onclick="jumpTo('cp-age-verify')"><span class="ni-dot"></span>Age verification</span>
+        <span class="nav-item" onclick="jumpTo('cp-where-go')"><span class="ni-dot"></span>Where to go</span>
+        <span class="nav-item" onclick="jumpTo('cp-body-upgrade')"><span class="ni-dot"></span>Body upgrade path</span>
+        <span class="nav-item" onclick="jumpTo('cp-genital-addon')"><span class="ni-dot"></span>Genitalia add-ons</span>
+        <span class="nav-item" onclick="jumpTo('cp-furniture-use')"><span class="ni-dot"></span>Using sex furniture</span>
+        <span class="nav-item" onclick="jumpTo('cp-consent-norms')"><span class="ni-dot"></span>Consent basics</span>
+        <span class="nav-item" onclick="jumpTo('cp-block-report')"><span class="ni-dot"></span>Block &amp; Report</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
+        <span>&#9888;&#65039;</span> Mentor Notes <span class="ng-arrow">&#9654;</span>
+      </div>
+      <div class="nav-items">
+        <span class="nav-item" onclick="jumpTo('mentor-boundaries')"><span class="ni-dot"></span>Your boundaries</span>
+        <span class="nav-item" onclick="jumpTo('mentor-no-slurl')"><span class="ni-dot"></span>No adult SLURLs</span>
+        <span class="nav-item" onclick="jumpTo('mentor-handoff')"><span class="ni-dot"></span>When to hand off</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sb-footer">
+    <a href="mailto:josh@joshualit.uk">Suggest an edit</a>
+  </div>
+</nav>
+
+<button id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">&#9776;</button>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MAIN
+     ═══════════════════════════════════════════════════════════════════ -->
+<div id="main">
+
+<!-- Disclaimer banner -->
+<div id="disclaimer" role="alert">
+  <div class="disclaimer-inner">
+    <span class="disclaimer-icon">&#9888;&#65039;</span>
+    <p>
+      <strong>Mentor Reference</strong>
+      This page is part of an independent volunteer Mentor reference. It is not affiliated with, endorsed by, or connected to <a href="https://secondlife.com" target="_blank" rel="noopener">Linden Research, Inc.</a> or the official Second Life platform. Second Life&reg; is a registered trademark of Linden Research, Inc. Content is provided for Mentor information only.
+    </p>
+    <button id="disclaimer-close" aria-label="Dismiss">&#10005;</button>
+  </div>
+</div>
+
+<!-- HERO (compact banner) -->
+<div class="hero">
+  <div class="hero-heart">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 160 L20 80 A40 40 0 0 1 100 40 A40 40 0 0 1 180 80 Z" fill="none" stroke="#ff1f6e" stroke-width="2.5"/>
+      <circle cx="100" cy="100" r="90" fill="none" stroke="#ff1f6e" stroke-width="1" opacity="0.5"/>
+      <circle cx="100" cy="100" r="60" fill="none" stroke="#ff1f6e" stroke-width="0.8" opacity="0.4"/>
+    </svg>
+  </div>
+  <div class="hero-body">
+    <p class="hero-eyebrow">Second Life &middot; Mentor Reference</p>
+    <h1 class="hero-title">Adult <span>Hub</span></h1>
+    <p class="hero-desc">Reference for Mentors fielding adult-content questions &mdash; age-gating, bodies, furniture, consent. Click any cyan-bordered block to copy a ready-made answer for IM.</p>
+    <div class="hero-nav-pills">
+      <a class="pill" href="#maturity">&#9989; Age &amp; Maturity</a>
+      <a class="pill" href="#portals">&#128682; Portals</a>
+      <a class="pill" href="#bodies">&#129516; Bodies</a>
+      <a class="pill" href="#furniture">&#128717;&#65039; Furniture</a>
+      <a class="pill" href="#consent">&#129309; Consent</a>
+    </div>
+  </div>
+</div>
+
+<div class="neon-divider"></div>
+
+<!-- ══ MATURITY ══ -->
+<section class="section" id="maturity" data-section="maturity">
+  <div class="section-label reveal">Age &amp; Maturity</div>
+  <h2 class="section-title reveal"><span>Getting </span><span class="accent">Access</span></h2>
+  <p class="section-intro reveal">A resident needs two things before they can see adult SL: age verification on their Linden Lab account, and the correct maturity rating enabled in their viewer. These are separate &mdash; verifying the account alone won't show adult regions until the viewer filter is changed.</p>
+
+  <div class="callout reveal" data-search="age 18 requirement verification account">
+    <strong>Age Requirement</strong>
+    <p>All SL residents must be 18 or older. Age is asserted at account creation. Direct residents to <a href="https://accounts.secondlife.com" target="_blank" rel="noopener" style="color:var(--cyan)">accounts.secondlife.com</a> if they need to check or update their details.</p>
+  </div>
+
+  <div id="cp-age-verify" class="copy-block reveal" data-search="age verify copy paste answer 18 account" onclick="copyBlock(this)">
+    <span class="cb-label">&#128203; Copy-paste &mdash; Age verification</span>
+    <span class="cb-btn">Copy</span>
+    You need to be 18 or older to use Second Life at all. Adult content and the Adult maturity rating are only available to verified accounts &mdash; you can check your account details at accounts.secondlife.com. If you're already signed up you're fine; the next step is enabling the right maturity rating in your viewer.
+  </div>
+
+  <div class="two-col reveal">
+    <div class="panel" data-search="firestorm maturity preferences general adult moderate toolbar">
+      <div class="panel-title">Firestorm Viewer</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">01</div><div class="step-body"><strong>Open Preferences</strong><p>Top menu: Avatar &rsaquo; Preferences</p></div></div>
+        <div class="step"><div class="step-num">02</div><div class="step-body"><strong>General Tab</strong><p>Click the General tab in the left column.</p></div></div>
+        <div class="step"><div class="step-num">03</div><div class="step-body"><strong>Enable All Ratings</strong><p>Under Maturity Rating tick General, Moderate, and Adult.</p></div></div>
+        <div class="step"><div class="step-num">04</div><div class="step-body"><strong>Quick Bar</strong><p>You can also click the G / M / A icons in the top toolbar to toggle ratings instantly.</p></div></div>
+      </div>
+    </div>
+    <div class="panel" data-search="official sl viewer maturity preferences general">
+      <div class="panel-title">Official SL Viewer</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">01</div><div class="step-body"><strong>Open Preferences</strong><p>Top menu: Me &rsaquo; Preferences</p></div></div>
+        <div class="step"><div class="step-num">02</div><div class="step-body"><strong>General Tab</strong><p>Click the General tab.</p></div></div>
+        <div class="step"><div class="step-num">03</div><div class="step-body"><strong>Select Adult</strong><p>Under &lsquo;Maturity ratings I want to see&rsquo; select Adult &mdash; this also enables General and Moderate automatically.</p></div></div>
+        <div class="step"><div class="step-num">04</div><div class="step-body"><strong>Click OK</strong><p>Takes effect immediately.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cp-enable-adult" class="copy-block reveal" data-search="enable adult content maturity rating firestorm viewer answer" onclick="copyBlock(this)">
+    <span class="cb-label">&#128203; Copy-paste &mdash; Enabling Adult content</span>
+    <span class="cb-btn">Copy</span>
+    In Firestorm, go to Avatar &rsaquo; Preferences &rsaquo; General and tick General, Moderate and Adult under Maturity Rating. On the official Second Life viewer it's Me &rsaquo; Preferences &rsaquo; General, then set &lsquo;Maturity ratings I want to see&rsquo; to Adult. Both take effect straight away &mdash; you may need to teleport or relog to see new regions listed in Search.
+  </div>
+
+  <div class="card-grid reveal" style="margin-top:2rem">
+    <div class="card" data-search="general g rating family friendly no sexual violent"><span class="card-icon">&#128994;</span><div class="card-title">General (G)</div><p>Family-friendly spaces. No sexual or violent content. Default starting rating for new accounts.</p></div>
+    <div class="card" data-search="moderate m rating clubs mild violence suggestive social"><span class="card-icon">&#128993;</span><div class="card-title">Moderate (M)</div><p>Clubs, mild violence, some suggestive content. Most social SL lives here.</p></div>
+    <div class="card" data-search="adult a rating explicit sexual content verified age"><span class="card-icon">&#128308;</span><div class="card-title">Adult (A)</div><p>Explicit sexual content and mature themes. Only visible with Adult rating enabled.</p></div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ══ PORTALS ══ -->
+<section class="section" id="portals" data-section="portals">
+  <div class="section-label reveal">Portals &amp; Destinations</div>
+  <h2 class="section-title reveal"><span class="accent">Where</span><span> to Send Them</span></h2>
+  <p class="section-intro reveal">Adult portal hubs are rated-A gateway regions packed with teleport boards, freebies and community info. They're a safer first stop than throwing a resident into a random adult venue. As always &mdash; send the resident to the <em>destination search</em> in their viewer (Ctrl+F) rather than giving out SLURLs directly.</p>
+
+  <table class="styled-table reveal" data-search="adult hub zindra kink playground portal destination">
+    <thead>
+      <tr>
+        <th>Search Term</th>
+        <th>Type</th>
+        <th>What to tell the resident</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><b>Adult Hub</b></td><td>Welcome &amp; onboarding</td><td>Landing area for new adult residents. Info boards, freebies, community. Good first stop.</td></tr>
+      <tr><td><b>Zindra</b></td><td>Official LL continent</td><td>The adult continent created by Linden Lab. Central hub for adult land and commerce.</td></tr>
+      <tr><td><b>Kink Hub</b></td><td>Community portal</td><td>Gateway for BDSM and kink communities. Boards to hundreds of venues.</td></tr>
+      <tr><td><b>The Playground</b></td><td>Social hub</td><td>Events, shopping, socialising. Welcoming to newcomers.</td></tr>
+      <tr><td><b>(Destination search)</b></td><td>Find your own</td><td>Ctrl+F &rsaquo; Destinations, enable Adult, search &lsquo;adult hub&rsquo;. Hundreds of options.</td></tr>
+    </tbody>
+  </table>
+
+  <div id="cp-where-go" class="copy-block reveal" data-search="where to go adult portal hub zindra search answer" onclick="copyBlock(this)">
+    <span class="cb-label">&#128203; Copy-paste &mdash; Where to go first</span>
+    <span class="cb-btn">Copy</span>
+    Press Ctrl+F to open Search, switch to Destinations, make sure Adult is ticked, and search &lsquo;adult hub&rsquo;. The Adult Hub is a good first stop &mdash; it's a welcome area with info boards, freebies and teleport boards to other adult regions. Zindra is the official adult continent if you want somewhere to explore, and the Playground is more of a social/shopping hub.
+  </div>
+
+  <div class="callout reveal" data-search="arrival age gate group rules explicit">
+    <strong>What Mentors should expect</strong>
+    <p>Most adult regions have an age-gate door on arrival &mdash; click and confirm 18+. Some require joining a group for full access. Explicit content will be visible &mdash; that's normal for Adult regions. Posted rules vary by venue; if a resident asks about a specific region, ask them to read the rules card at the landing point first.</p>
+  </div>
+
+  <div class="note reveal" data-search="landmark tip world menu">
+    <b>Tip for new residents:</b>
+    <span>Before leaving a welcome hub, advise them to create a Landmark (World &rsaquo; Landmark This Place). It's the easiest way back if they get lost.</span>
+  </div>
+
+  <div class="callout reveal" id="mentor-no-slurl" data-search="mentor note no slurl campwich public adult" style="border-color:var(--border-pink); background:rgba(255,31,110,0.04)">
+    <strong style="color:var(--pink-bright)">Mentor Note &mdash; No Adult SLURLs</strong>
+    <p>Never paste adult-region SLURLs in public channels or in the Newcomer page. Use search terms and let the resident find it via Destinations. Campwich Woodland Cabin is Mentors Only &mdash; it should never appear in public materials under any circumstances.</p>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ══ BODIES ══ -->
+<section class="section" id="bodies" data-section="bodies">
+  <div class="section-label reveal">Bodies &amp; Genitalia</div>
+  <h2 class="section-title reveal"><span>Building A </span><span class="accent">Body</span></h2>
+  <p class="section-intro reveal">Default SL avatars don't have functional genitalia. When a resident asks how to &lsquo;do sex&rsquo; in SL, the usual answer is: upgrade to a mesh body first, then add a compatible genital add-on. Most residents upgrade their body anyway for clothing choice, so the adult path piggybacks on that.</p>
+
+  <div class="two-col reveal">
+    <div class="card" style="border-color:rgba(0,232,213,0.3);" data-search="male default body flat smooth groin no genital">
+      <span class="card-icon">&#9794;&#65039;</span>
+      <div class="card-title" style="color:var(--cyan)">Male Default Body</div>
+      <p>Completely flat and smooth at the groin. No genital mesh of any kind. Upgrade required for any adult-capable anatomy.</p>
+    </div>
+    <div class="card" style="border-color:rgba(0,232,213,0.3);" data-search="female default body basic groin non interactive">
+      <span class="card-icon">&#9792;&#65039;</span>
+      <div class="card-title" style="color:var(--cyan)">Female Default Body</div>
+      <p>A very basic, non-detailed groin shape is present but it is not interactive or realistic. Still requires an add-on for adult use.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem" class="reveal">
+    <div class="section-label">Step 1 &mdash; Choose a Mesh Body</div>
+    <p style="color:var(--text-body);margin:0.75rem 0 1rem;max-width:680px;">Body choice matters because genitalia add-ons must be compatible with the specific body. Most creators label which bodies their product fits. The table below is the current popularity ranking most Mentors will recognise from 2025-26 stores.</p>
+    <table class="styled-table" data-search="mesh body maitreya legacy reborn belleza signature gianni">
+      <thead><tr><th>Body</th><th>Gender</th><th>Why it's popular</th></tr></thead>
+      <tbody>
+        <tr><td><b>Maitreya Lara / Lara X</b></td><td>Female</td><td>Most widely supported body in SL. Largest range of compatible clothing and add-ons.</td></tr>
+        <tr><td><b>Legacy</b></td><td>Male &amp; Female</td><td>High-quality mesh, strong physics, growing creator support.</td></tr>
+        <tr><td><b>eBODY Reborn</b></td><td>Female</td><td>Curvier shape, good bento support, strong community.</td></tr>
+        <tr><td><b>Belleza Jake</b></td><td>Male</td><td>Detailed, athletic mesh. Wide creator support.</td></tr>
+        <tr><td><b>Signature Gianni / Gianni X</b></td><td>Male</td><td>Clean, muscular build. Popular in male fashion and adult communities.</td></tr>
+        <tr><td><b>Belleza Freya / Isis</b></td><td>Female</td><td>Classic, well-supported bodies with large back-catalogues.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="cp-body-upgrade" class="copy-block reveal" data-search="body upgrade path answer mesh maitreya legacy copy paste" onclick="copyBlock(this)">
+    <span class="cb-label">&#128203; Copy-paste &mdash; Body upgrade path</span>
+    <span class="cb-btn">Copy</span>
+    The default SL avatar doesn't have functional genitalia &mdash; you'll want a mesh body first, then a compatible add-on. The most popular choices are Maitreya Lara (female), Legacy (both), eBODY Reborn (female), Belleza Jake or Signature Gianni (male). Pick one based on the clothing styles you like &mdash; every creator lists which bodies they support. Always try the demo on before buying.
+  </div>
+
+  <div style="margin-top:2rem" class="reveal">
+    <div class="section-label">Step 2 &mdash; Add Genitalia</div>
+    <p style="color:var(--text-body);margin:0.75rem 0 1rem;max-width:680px;">Genitalia are sold as separate add-ons. Residents should always grab the demo first because compatibility and visual quality vary enormously. Common engines/creators they'll see referenced:</p>
+    <div class="panel" data-search="genitalia creators inm vaw xtc aeros xcite marketplace">
+      <div class="panel-title">Common Creators</div>
+      <div class="tag-grid">
+        <span class="tag featured">It's Not Mine (INM)</span>
+        <span class="tag featured">VAW</span>
+        <span class="tag featured">XTC</span>
+        <span class="tag featured">Aeros</span>
+        <span class="tag">Good Moaning</span>
+        <span class="tag">Larax</span>
+        <span class="tag">Sensations</span>
+        <span class="tag">Hugsies</span>
+        <span class="tag">Live Cock</span>
+        <span class="tag">Real Penis</span>
+        <span class="tag">Rut</span>
+        <span class="tag">Xcite</span>
+      </div>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:1rem;">Names are provided for recognition only. This page does not endorse or link to specific products &mdash; direct residents to Marketplace or the creator's own in-world store.</p>
+    </div>
+  </div>
+
+  <div id="cp-genital-addon" class="copy-block reveal" data-search="genitalia add on copy paste demo compatibility" onclick="copyBlock(this)">
+    <span class="cb-label">&#128203; Copy-paste &mdash; Genitalia add-ons</span>
+    <span class="cb-btn">Copy</span>
+    Genitalia are sold separately from the body &mdash; common creators on Marketplace include It's Not Mine (INM), VAW, XTC, Aeros and Xcite among others. Always grab the demo before buying because compatibility and look vary a lot. Check the listing for your specific body (e.g. Maitreya Lara, Legacy) and look for Bento rigged or animesh for proper animation.
+  </div>
+
+  <div class="callout reveal" data-search="demo first bento rigged animesh compatibility">
+    <strong>Always Demo First</strong>
+    <p>Remind residents: most creators offer a free demo. Try it on the body before buying &mdash; compatibility and visual quality vary enormously. Look for &lsquo;Bento rigged&rsquo; or &lsquo;animesh&rsquo; labels for realistic animation.</p>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ══ FURNITURE ══ -->
+<section class="section" id="furniture" data-section="furniture">
+  <div class="section-label reveal">Sex Furniture</div>
+  <h2 class="section-title reveal"><span>How It </span><span class="accent">Works</span></h2>
+  <p class="section-intro reveal">&lsquo;Sex furniture&rsquo; is any in-world object containing animations for adult poses &mdash; beds, sofas, bondage equipment, wall mounts, portable pose balls. The object drives the animation; the resident just sits and picks from a menu.</p>
+
+  <div class="steps reveal" data-search="sit furniture pose menu invite adjust stand">
+    <div class="step"><div class="step-num">01</div><div class="step-body"><strong>Sit on it</strong><p>Right-click the furniture and select Sit, or simply touch it. Some objects use a menu ball nearby.</p></div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-body"><strong>Choose a pose</strong><p>A dialog menu lists available poses or activities. Select one &mdash; the avatar moves into position automatically.</p></div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-body"><strong>Invite others (optional)</strong><p>Multi-avatar furniture will prompt nearby people to join. They must accept &mdash; nobody is force-sat.</p></div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-body"><strong>Adjust position</strong><p>Most furniture has X/Y/Z nudge buttons in the menu so residents can align their specific body shape. Some save settings.</p></div></div>
+    <div class="step"><div class="step-num">05</div><div class="step-body"><strong>Stand up to exit</strong><p>Press Page Up or click Stand. Residents are always free to leave any animation at any time.</p></div></div>
+  </div>
+
+  <div id="cp-furniture-use" class="copy-block reveal" data-search="using sex furniture answer copy paste sit menu" onclick="copyBlock(this)">
+    <span class="cb-label">&#128203; Copy-paste &mdash; Using sex furniture</span>
+    <span class="cb-btn">Copy</span>
+    To use sex furniture, right-click the object and pick Sit (or touch it if there's a menu ball nearby). A dialog menu will appear with poses or activities &mdash; pick one and your avatar moves into place automatically. For multi-avatar furniture, the other person has to accept the invite &mdash; nobody can be force-sat. You can nudge position with the X/Y/Z buttons in the menu, and Page Up or Stand lets you out at any time.
+  </div>
+
+  <div style="margin-top:2rem" class="reveal">
+    <div class="panel-title" style="font-family:var(--font-display);font-size:0.7rem;letter-spacing:0.2em;color:var(--cyan);margin-bottom:1rem;">Animation Engines</div>
+    <div class="card-grid">
+      <div class="card" data-search="xtac xtc engine widely used"><div class="card-title">XTAC / XTC</div><p>Widely used, clean menus, good sync. The most common engine a resident will encounter.</p></div>
+      <div class="card" data-search="rlv rlva advanced restraint automatic body"><div class="card-title">RLV / RLVA</div><p>Advanced engine enabling automatic body interaction and restraint play. Requires RLV enabled in the viewer.</p></div>
+      <div class="card" data-search="bento native finger toe facial bones"><div class="card-title">Bento-Native</div><p>Newer furniture that animates finger, toe and facial Bento bones for expressive, natural movement.</p></div>
+      <div class="card" data-search="xcite interaction touch arousal response"><div class="card-title">Xcite</div><p>Interaction specific to Xcite body parts. Adds touch, arousal and response systems.</p></div>
+    </div>
+  </div>
+
+  <div class="callout reveal" data-search="buying checklist bento pose count compatibility land impact copy modify demo">
+    <strong>Buying Checklist</strong>
+    <p>When a resident asks what to check before buying: Bento support &middot; pose count (20+ is good) &middot; body compatibility list &middot; land impact (LI) &middot; copy/modify permissions &middot; demo room available.</p>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ══ CONSENT ══ -->
+<section class="section" id="consent" data-section="consent">
+  <div class="section-label reveal">Consent &amp; Safety</div>
+  <h2 class="section-title reveal"><span>Consent </span><span class="accent">Matters</span></h2>
+  <p class="section-intro reveal">This is the most common area where a newcomer gets themselves into trouble &mdash; not by malice, but by assuming adult spaces mean open permission. Consent is required for everything. If you're fielding a resident complaint, nine times out of ten the root cause is that one side didn't ask first.</p>
+
+  <div class="card-grid reveal">
+    <div class="card" data-search="built in sl protection click sit object permission animate"><span class="card-icon">&#128737;&#65039;</span><div class="card-title">Built-in SL Protections</div><p>A resident must click to sit on anything. Objects must request permission to animate the avatar. Scripts must request permission to attach items. They can always stand up.</p></div>
+    <div class="card" data-search="rlv restrained love viewer choice firestorm preferences"><span class="card-icon">&#128274;</span><div class="card-title">RLV &mdash; Their Choice</div><p>Restrained Love Viewer is off by default. Enable only with trusted partners. In Firestorm: Avatar &rsaquo; Preferences &rsaquo; Firestorm &rsaquo; RLV.</p></div>
+    <div class="card" data-search="safe word red safeword restricted play scene"><span class="card-icon">&#128308;</span><div class="card-title">Safe Words</div><p>Agree a safe word before any restricted-play scene. &lsquo;Red&rsquo; or &lsquo;Safeword&rsquo; are universally understood. A good partner will offer one up front.</p></div>
+    <div class="card" data-search="block report right click avatar abuse tos"><span class="card-icon">&#128683;</span><div class="card-title">Block &amp; Report</div><p>Right-click any avatar &rsaquo; Block to stop all contact. Help &rsaquo; Report Abuse for ToS violations. Report rule-breaking to region moderators.</p></div>
+  </div>
+
+  <div id="cp-consent-norms" class="copy-block reveal" data-search="consent norms copy paste answer explicit yes enthusiasm silence" onclick="copyBlock(this)">
+    <span class="cb-label">&#128203; Copy-paste &mdash; Consent basics</span>
+    <span class="cb-btn">Copy</span>
+    Consent in SL means getting a clear yes before any sexual interaction &mdash; sitting someone on furniture, touching them, sending explicit messages or starting roleplay. Silence is not yes; enthusiasm is. If you're unsure, ask &mdash; most people in adult SL are happy to talk openly about what they do and don't want. If someone declines, accept it and move on. Persistence after a no is harassment and can result in a region ban or an abuse report to Linden Lab.
+
+    Built-in protections: you can't be force-sat, scripts need permission to attach or animate, and you can always stand (Page Up). Right-click an avatar &rsaquo; Block to cut all contact, and Help &rsaquo; Report Abuse for ToS violations.
+  </div>
+
+  <div class="callout reveal" data-search="consent what means explicit yes silence enthusiasm">
+    <strong>What Consent Means Here</strong>
+    <p>Clear yes before any sexual interaction &mdash; sitting someone on furniture, touching them, sending explicit messages, or starting roleplay. Silence is not a yes. Enthusiasm is. If unsure, ask. Most people in adult SL are happy to talk openly about what they do and don't want. This is considered normal and respectful, not awkward.</p>
+  </div>
+
+  <div class="callout reveal" data-search="no means no harassment pressure bargain persistence ban">
+    <strong>No Means No &mdash; Always</strong>
+    <p>If someone declines &mdash; for any reason, or no reason at all &mdash; the resident should accept it gracefully and move on. No pressure, no bargaining, no guilt, no repeating. This applies to everyone regardless of gender, avatar appearance, or prior behaviour. Persistence after a no is harassment and can result in a region ban or an abuse report to Linden Lab.</p>
+  </div>
+
+  <div id="cp-block-report" class="copy-block reveal" data-search="block report copy paste right click abuse" onclick="copyBlock(this)">
+    <span class="cb-label">&#128203; Copy-paste &mdash; Block &amp; Report</span>
+    <span class="cb-btn">Copy</span>
+    If someone is bothering you, right-click their avatar and choose Block &mdash; that cuts off all IMs, chat and interaction from them. For anything that breaks the Terms of Service (harassment, age issues, non-consensual content) use Help &rsaquo; Report Abuse &mdash; Linden Lab reviews every report. For rule-breaking at a specific venue, also contact the region's moderators or group owners. You're always free to log off or teleport away &mdash; no explanation needed.
+  </div>
+
+  <div class="note reveal" data-search="personal safety real world information privacy">
+    <b>Personal Safety reminder:</b>
+    <span>Residents should never share real-world personal information in SL &mdash; no real name, location, phone number, or photos. Advise caution with anyone who rushes intimacy or applies pressure. They're always free to log off &mdash; no explanation needed.</span>
+  </div>
+
+  <div class="callout reveal" data-search="golden rule culture community thrive members look after">
+    <strong>The Golden Rule</strong>
+    <p>Consent is not just a rule &mdash; it's the culture that makes adult SL work. Communities that thrive are ones where members look after each other. Passing that on is the most useful thing a Mentor does here.</p>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ══ MENTOR NOTES ══ -->
+<section class="section" id="mentor-notes" data-section="mentor-notes">
+  <div class="section-label reveal">Mentor Notes</div>
+  <h2 class="section-title reveal"><span>For </span><span class="accent">Mentors</span></h2>
+  <p class="section-intro reveal">A few things that are Mentor-facing only &mdash; not for paste to residents.</p>
+
+  <div class="callout reveal" id="mentor-boundaries" data-search="mentor boundaries comfortable opt out" style="border-color:var(--border-pink);background:rgba(255,31,110,0.04)">
+    <strong style="color:var(--pink-bright)">Your Comfort Comes First</strong>
+    <p>Not every Mentor wants to field adult-content questions &mdash; and that's completely fine. If you'd rather not engage, say so politely and hand off. There's never any expectation to discuss adult topics in any mentoring role, and no resident is entitled to your time on this subject. &lsquo;Sorry, that's outside what I cover &mdash; try Destinations search for &laquo;adult hub&raquo;&rsquo; is a complete answer.</p>
+  </div>
+
+  <div class="callout reveal" id="mentor-handoff" data-search="hand off another mentor escalate destination">
+    <strong>When to hand off</strong>
+    <p>Hand off a question rather than guessing if: you're not sure about a specific product or body compatibility; the resident is describing distress, harassment or non-consensual behaviour (point them at Report Abuse, then let another Mentor or Linden Lab take it from there); the conversation is drifting toward 1:1 roleplay or personal attention that isn't mentoring.</p>
+  </div>
+
+  <div class="callout reveal" data-search="viola mole coordinator approval community standards" style="border-color:var(--border-cyan)">
+    <strong>Keep it community-standard</strong>
+    <p>This page is framed as Mentor reference, not an LL-endorsed resource. Creator and product names are listed for recognition only &mdash; no endorsements, no direct Marketplace links out. If in doubt about a specific piece of content, raise it with Viola before adding it.</p>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- FOOTER -->
+<footer>
+  <button id="to-top" onclick="scrollToTop()" aria-label="Back to top">&#8679;</button>
+  <div class="footer-logo">Adult Hub &middot; Mentor Reference</div>
+  <p>Part of the Mentor Reference Guide &middot; <a href="index.html">Home</a> &middot; <a href="technical.html">Technical</a></p>
+  <p style="margin-top:0.4rem">Independent volunteer resource &middot; Not affiliated with or endorsed by Linden Research, Inc.</p>
+</footer>
+
+<div id="no-results">
+  <strong>No matches</strong>
+  Try a different search term, or clear the search to browse.
+</div>
+
+</div><!-- /#main -->
+</div><!-- /#app -->
+
+<script>
+  // ── Sidebar toggle (mobile) ──────────────────────────────
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+  }
+  // close sidebar when clicking a nav item on mobile
+  document.querySelectorAll('.nav-item, .page-nav-link, .pill').forEach(el => {
+    el.addEventListener('click', () => {
+      if (window.innerWidth <= 900) {
+        document.getElementById('sidebar').classList.remove('open');
+      }
+    });
+  });
+
+  // ── Nav group collapse ───────────────────────────────────
+  function toggleNav(hdr) {
+    hdr.classList.toggle('open');
+    hdr.nextElementSibling.classList.toggle('open');
+  }
+  // Open all by default
+  document.querySelectorAll('.nav-group-hdr').forEach(h => {
+    h.classList.add('open');
+    h.nextElementSibling.classList.add('open');
+  });
+
+  // ── Jump + smooth scroll ─────────────────────────────────
+  function jumpTo(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ── Copy block ───────────────────────────────────────────
+  function copyBlock(el) {
+    // Copy only the body text, not the label or button
+    const clone = el.cloneNode(true);
+    clone.querySelectorAll('.cb-label, .cb-btn').forEach(x => x.remove());
+    const text = clone.textContent.trim().replace(/\s+\n/g, '\n').replace(/\n\s+/g, '\n\n').replace(/[ \t]+/g, ' ').trim();
+    const btn = el.querySelector('.cb-btn');
+    const origBtn = btn ? btn.textContent : 'Copy';
+    const done = () => {
+      el.classList.add('copied');
+      if (btn) btn.textContent = 'Copied';
+      setTimeout(() => {
+        el.classList.remove('copied');
+        if (btn) btn.textContent = origBtn;
+      }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        done();
+      });
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      done();
+    }
+  }
+
+  // ── Disclaimer ───────────────────────────────────────────
+  (function(){
+    const disclaimer = document.getElementById('disclaimer');
+    const closeBtn   = document.getElementById('disclaimer-close');
+    if (!disclaimer || !closeBtn) return;
+    closeBtn.addEventListener('click', () => {
+      disclaimer.classList.add('hidden');
+      try { sessionStorage.setItem('adult-disclaimer-dismissed', '1'); } catch(e) {}
+    });
+    try {
+      if (sessionStorage.getItem('adult-disclaimer-dismissed')) disclaimer.classList.add('hidden');
+    } catch(e) {}
+  })();
+
+  // ── Scroll-reveal ────────────────────────────────────────
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.querySelectorAll('.card-grid, .steps, .two-col').forEach(grid => {
+    Array.from(grid.children).forEach((child, i) => { child.style.transitionDelay = (i * 0.06) + 's'; });
+  });
+
+  // ── Search ───────────────────────────────────────────────
+  (function(){
+    const srch   = document.getElementById('global-search');
+    const cnt    = document.getElementById('search-count');
+    const nr     = document.getElementById('no-results');
+    const clrBtn = document.getElementById('search-clear');
+    if (!srch) return;
+
+    function n(s) { return (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' '); }
+
+    function clearMarks(el) {
+      el.querySelectorAll('[data-orig]').forEach(t => {
+        t.innerHTML = t.dataset.orig;
+        delete t.dataset.orig;
+      });
+    }
+
+    function addMarks(el, terms) {
+      // Only mark heading-like elements to avoid breaking inner HTML
+      el.querySelectorAll('.card-title, .panel-title, .cb-label, strong, .section-label').forEach(t => {
+        if (!t.dataset.orig) t.dataset.orig = t.innerHTML;
+        let h = t.dataset.orig;
+        terms.forEach(term => {
+          const re = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+          h = h.replace(re, '<mark>$1</mark>');
+        });
+        t.innerHTML = h;
+      });
+    }
+
+    function doSearch(raw) {
+      const q = n(raw);
+      const cards = document.querySelectorAll('[data-search]');
+      let hits = 0;
+      cards.forEach(el => { el.classList.remove('hidden-search'); clearMarks(el); });
+
+      if (!q.trim()) {
+        cnt.textContent = '';
+        nr.style.display = 'none';
+        document.querySelectorAll('section.section').forEach(s => s.style.display = '');
+        return;
+      }
+      const terms = q.trim().split(/\s+/).filter(Boolean);
+      cards.forEach(el => {
+        const hay = n((el.dataset.search || '') + ' ' + el.textContent);
+        if (terms.every(t => hay.includes(t))) { hits++; addMarks(el, terms); }
+        else el.classList.add('hidden-search');
+      });
+
+      document.querySelectorAll('section.section').forEach(sec => {
+        const anyVisible = sec.querySelectorAll('[data-search]:not(.hidden-search)').length > 0;
+        sec.style.display = anyVisible ? '' : 'none';
+      });
+
+      cnt.textContent = hits > 0 ? (hits + ' result' + (hits !== 1 ? 's' : '')) : '';
+      nr.style.display = hits === 0 ? 'block' : 'none';
+    }
+
+    srch.addEventListener('input', () => {
+      clrBtn.style.display = srch.value ? 'block' : 'none';
+      doSearch(srch.value);
+    });
+    clrBtn.addEventListener('click', () => {
+      srch.value = '';
+      clrBtn.style.display = 'none';
+      doSearch('');
+      srch.focus();
+    });
+    window.clearSearch = () => {
+      srch.value = '';
+      clrBtn.style.display = 'none';
+      doSearch('');
+      srch.focus();
+    };
+  })();
+</script>
+</body>
+</html>

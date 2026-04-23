@@ -1149,7 +1149,7 @@
 }
 [data-theme="light"] .fc-btn:hover { background: rgba(26,106,191,0.08); }
 
-/* ══ Adult HUD — sidebar button + warning modal ══ */
+/* ══ Adult Hub — sidebar button + warning modal ══ */
 .sidebar-adult-btn {
   display: block;
   width: 100%;
@@ -1226,16 +1226,16 @@
 </style>
 <script>
 
-// ══ Adult HUD warning modal ══
+// ══ Adult Hub warning modal ══
 function openAdultWarningModal() {
   try {
     if (sessionStorage.getItem('adult-warning-ack') === '1') {
-      window.location.href = 'adult-hud.html';
+      window.location.href = 'adult-hub.html';
       return;
     }
   } catch(e) {}
   const m = document.getElementById('adult-warning-modal');
-  if (!m) { window.location.href = 'adult-hud.html'; return; }
+  if (!m) { window.location.href = 'adult-hub.html'; return; }
   m.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -1247,7 +1247,7 @@ function closeAdultWarningModal() {
 }
 function confirmAdultGuide() {
   try { sessionStorage.setItem('adult-warning-ack', '1'); } catch(e) {}
-  window.location.href = 'adult-hud.html';
+  window.location.href = 'adult-hub.html';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -1423,7 +1423,7 @@ function updateThemeToggle() {
     <a class="page-nav-link active" href="https://www.joshualit.uk/technical.html"><span class="pn-icon">⚙️</span>Technical</a>
   </div>
 
-  <button class="sidebar-adult-btn" onclick="openAdultWarningModal()" title="Adult content reference (Mentor-facing)">❤️ Adult HUD <span class="sab-arrow">›</span></button>
+  <button class="sidebar-adult-btn" onclick="openAdultWarningModal()" title="Adult content reference (Mentor-facing)">❤️ Adult Hub <span class="sab-arrow">›</span></button>
 
   <div class="search-wrap">
     <div class="search-inner">
@@ -2495,13 +2495,15 @@ function updateThemeToggle() {
 
 <div id="cookie-notice" class="hidden">
   <p>This site uses localStorage to remember your preferences. It does not use tracking cookies or advertising. Our hosting provider may set technical cookies. <a href="https://lindenlab.com/legal/privacy-policy" target="_blank">More info</a></p>
-  <button onclick="document.getElementById(&#39;cookie-notice&#39;).classList.add(&#39;hidden&#39;);localStorage.setItem(&#39;cookie-ok-v2&#39;,&#39;1&#39;)">
+  <button onclick="document.getElementById(&#39;cookie-notice&#39;).classList.add(&#39;hidden&#39;);localStorage.setItem(&#39;cookie-ok-v2&#39;,&#39;1&#39;)">OK</button>
+</div>
 
+<!-- ══ Adult Hub warning modal ══ -->
 <div id="adult-warning-modal" onclick="if(event.target===this)closeAdultWarningModal()" role="dialog" aria-modal="true" aria-labelledby="awm-title">
   <div id="adult-warning-modal-inner">
     <button id="adult-warning-modal-close" onclick="closeAdultWarningModal()" aria-label="Close">✕</button>
     <div class="awm-eyebrow">⚠️ Adult Content Ahead</div>
-    <div class="awm-title" id="awm-title">Mentor Reference — Adult HUD</div>
+    <div class="awm-title" id="awm-title">Mentor Reference — Adult Hub</div>
     <div class="awm-body">
       <p>This page is a Mentor-facing reference for fielding questions about adult content in Second Life — age-gating, bodies, furniture and consent. It contains explicit subject matter written in plain language, along with copy-paste answers for IM.</p>
       <p>It's here because these questions come up and residents need accurate information. If you'd rather not cover this area in your mentoring, that's completely fine — just close this and hand off when the topic arises.</p>
@@ -2512,3 +2514,5 @@ function updateThemeToggle() {
     </div>
   </div>
 </div>
+
+</body></html>
