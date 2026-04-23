@@ -261,14 +261,14 @@
   /* ── Hero (compact banner ~25vh) ── */
   .hero {
     min-height: 25vh;
-    padding: 1.8rem 2rem 1.8rem;
+    padding: 1.8rem 2.5rem 1.8rem;
     position: relative;
     overflow: hidden;
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 1.4rem;
     align-items: center;
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 0 auto;
   }
   .hero::before {
@@ -367,7 +367,7 @@
   .pill:hover { background: rgba(255,31,110,0.15); border-color: var(--pink); box-shadow: 0 0 16px var(--pink-glow); color: var(--white); }
 
   /* ── Sections ── */
-  section.section { padding: 4rem 2rem; max-width: 980px; margin: 0 auto; position: relative; }
+  section.section { padding: 4rem 2.5rem; max-width: 1400px; margin: 0 auto; position: relative; }
   .section-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.3em; color: var(--cyan); text-transform: uppercase; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.75rem; }
   .section-label::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
   .section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3.5vw, 2.2rem); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); line-height: 1.1; margin-bottom: 1.2rem; }
@@ -376,7 +376,7 @@
   .neon-divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--pink), transparent); box-shadow: 0 0 10px var(--pink-glow); opacity: 0.5; }
 
   /* ── Cards ── */
-  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.6rem; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.6rem; }
   .card-grid-2col { grid-template-columns: repeat(2, 1fr); }
   .card { background: var(--bg-card); border: 1px solid var(--border-pink); padding: 1.3rem; position: relative; transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; overflow: hidden; }
   .card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(to bottom, var(--pink), transparent); }
@@ -861,7 +861,7 @@
 
   <div style="margin-top:2rem" class="reveal">
     <div class="panel-title" style="font-family:var(--font-display);font-size:0.7rem;letter-spacing:0.2em;color:var(--cyan);margin-bottom:1rem;">Animation Engines</div>
-    <div class="card-grid card-grid-2col">
+    <div class="card-grid">
       <div class="card" data-search="xtac xtc engine widely used"><div class="card-title">XTAC / XTC</div><p>Widely used, clean menus, good sync. The most common engine a resident will encounter.</p></div>
       <div class="card" data-search="rlv rlva advanced restraint automatic body"><div class="card-title">RLV / RLVA</div><p>Advanced engine enabling automatic body interaction and restraint play. Requires RLV enabled in the viewer.</p></div>
       <div class="card" data-search="bento native finger toe facial bones"><div class="card-title">Bento-Native</div><p>Newer furniture that animates finger, toe and facial Bento bones for expressive, natural movement.</p></div>
