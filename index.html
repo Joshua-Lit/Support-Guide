@@ -74,6 +74,7 @@
         <span class="nav-item" onclick="jumpTo('faq-land')"><span class="ni-dot"></span>Land &amp; Parcels</span>
         <span class="nav-item" onclick="jumpTo('faq-account')"><span class="ni-dot"></span>Account &amp; Membership</span>
         <span class="nav-item" onclick="jumpTo('faq-economy')"><span class="ni-dot"></span>Economy &amp; L$</span>
+        <span class="nav-item" onclick="jumpTo('faq-lindex-limits')"><span class="ni-dot"></span>LindeX Buy Limits</span>
         <span class="nav-item" onclick="jumpTo('faq-adult')"><span class="ni-dot"></span>Adult Content</span>
         <span class="nav-item" onclick="jumpTo('faq-sex')"><span class="ni-dot"></span>Is sex possible?</span>
         <span class="nav-item" onclick="jumpTo('faq-asl')"><span class="ni-dot"></span>ASL / Social Media Requests</span>
@@ -207,7 +208,7 @@
     <p>Searchable reference for SL Mentors &#8212; FAQs, landmarks, scripts, and tips for helping new residents.</p>
     <div class="stat-row">
       <div class="stat-chip" onclick="jumpTo('sec-mobile')" title="Go to Mobile" style="cursor:pointer;"><span class="sc-val">2</span><span class="sc-lbl">Mobile</span></div>
-      <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">25</span><span class="sc-lbl">FAQs</span></div>
+      <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">26</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">11</span><span class="sc-lbl">Landmarks</span></div>
     </div>
   </div>
@@ -523,6 +524,52 @@
             <p>The "SL = easy money" myth is strongest among newcomers arriving from social media ads. Be gentle but honest &#8212; it's kinder to reset expectations early than let them spend weeks on fishing hoping it'll add up. If they're drawn to creation, point them at the Marketplace to see what sells and at free Blender tutorials as a starting point.</p>
             <p style="margin-top:8px;"><strong>Never accept or solicit L$ from residents as a mentor.</strong> If a resident reports a failed purchase, direct them to <em>Help &rarr; Support Portal &rarr; Billing</em>.</p>
           </div>
+        </div>
+      </div>
+
+
+      <div class="faq-item edge-acc" id="faq-lindex-limits" data-search="lindex limit purchase buy L$ linden dollars 30 day monthly daily cap maximum new resident young account fraud money laundering raise increase support ticket economic limits dashboard 500 USD">
+        <div class="faq-q" onclick="tog(this)">
+          <span class="faq-q-text">Can a new resident raise their LindeX buy limit?</span>
+          <span class="faq-tag t-acc">Economy</span>
+          <span class="faq-tog">+</span>
+        </div>
+        <div class="faq-body">
+          <p>Short answer: <strong>no &#8212; not directly.</strong> LindeX purchase limits exist to prevent fraud and money laundering, and they rise automatically over time as the account ages and builds a purchase history. There is no self-serve way to raise them.</p>
+
+          <p style="margin-top:12px;"><strong>&#128202; Checking the current limit</strong></p>
+          <p>Residents can see their own limits and remaining balance on the LindeX economic limits dashboard:</p>
+          <div class="say-block">
+            <div class="say-label">// Click to copy</div>
+            <div class="say-text" onclick="copyPara(this)">https://accounts.secondlife.com/lindex/economic_limits?lang=en-US</div>
+          </div>
+
+          <p style="margin-top:12px;"><strong>&#128176; Rough sense of scale</strong></p>
+          <div class="bullets" style="margin-top:6px;">
+            <div class="bullet"><strong>New residents</strong> typically start around <code>US$500 / 30 days</code>.</div>
+            <div class="bullet"><strong>Moderately active accounts</strong> sit around <code>US$2,000 / 30 days</code>.</div>
+            <div class="bullet"><strong>Long-established active traders</strong> can reach <code>US$1,000/day</code> and <code>US$3,000/month</code> or higher.</div>
+          </div>
+          <p style="margin-top:8px;font-size:12.5px;color:var(--text-dim);">These figures are indicative &#8212; LL doesn't publish the exact formula, and limits scale with account age <em>and</em> purchase history together.</p>
+
+          <p style="margin-top:12px;"><strong>&#128221; If a resident needs more</strong></p>
+          <div class="bullets" style="margin-top:6px;">
+            <div class="bullet"><strong>Wait.</strong> Limits rise on their own as the account matures. For most newcomers this is the right answer.</div>
+            <div class="bullet"><strong>Use a second account.</strong> Residents are permitted to hold more than one account, each with its own limit.</div>
+            <div class="bullet"><strong>Support ticket.</strong> Technically possible to request a raise, but unlikely to succeed for a very young account. More realistic for older accounts with a specific, legitimate need (e.g. land purchase, large charity donation).</div>
+          </div>
+
+          <div class="say-block">
+            <div class="say-label">// Click to copy &#8212; gentle explanation for a new resident</div>
+            <div class="say-text" onclick="copyPara(this)">The LindeX has monthly buy limits to protect against fraud and money laundering, and they rise automatically as your account ages and builds a purchase history. There isn't a way to raise them directly, but honestly $500/month is plenty for most of what people spend on in Second Life &#8212; it'll give you time to explore, window-shop and work out what you actually want. You can check your current limit at https://accounts.secondlife.com/lindex/economic_limits. If you genuinely need more capacity now (for land, say), you can also run a second account &#8212; that's allowed, and each account has its own limit.</div>
+          </div>
+
+          <div class="tip-box">
+            <div class="tip-label">// Mentor Tip</div>
+            <p>Don't dismiss the resident's concern out of hand &#8212; land purchases and large one-off buys genuinely can push against the limit. But for most newcomers, hitting the cap in week one is a sign to slow down, not to raise it. A useful gentle framing: <em>"a little patience gives someone more time to window-shop and learn what they actually want."</em> Flag the second-account option if they have a concrete need now.</p>
+            <p style="margin-top:8px;"><strong>LL reference:</strong> <a href="https://community.secondlife.com/forums/topic/188246-linden-purchase-limits/" target="_blank" style="color:var(--c-elecblue);text-decoration:none;border-bottom:1px solid rgba(77,159,255,0.4);">Linden Purchase Limits forum thread</a> (older post, but still reflects current policy).</p>
+          </div>
+          <div class="xref">&#128206; See also: <a class="xref-link" href="#" onclick="jumpTo('faq-economy');return false;">Economy &amp; L$ FAQ</a></div>
         </div>
       </div>
 
