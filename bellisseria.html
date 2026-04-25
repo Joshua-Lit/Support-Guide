@@ -44,6 +44,10 @@
     hdr.parentElement.classList.toggle('collapsed');
   }
 
+  function togBfaq(q) {
+    q.parentElement.classList.toggle('open');
+  }
+
   function dismissCookie() {
     document.getElementById('cookie-notice').classList.add('hidden');
     try { localStorage.setItem('cookie-ok-v2', '1'); } catch (e) {}
@@ -726,6 +730,55 @@
   }
   .fact-card .fc-body { font-size: 13.5px; color: var(--text-mid); line-height: 1.55; }
 
+  /* ─── BELLI FAQ CARDS ─── */
+  .bfaq-list { display: flex; flex-direction: column; gap: 8px; }
+  .bfaq-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .bfaq-card:hover { border-color: var(--border-strong); }
+  .bfaq-card.open { border-color: var(--accent); }
+  .bfaq-q {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .bfaq-q-text {
+    flex: 1;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .bfaq-tog {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 18px;
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .bfaq-card.open .bfaq-tog { transform: rotate(45deg); }
+  .bfaq-body {
+    display: none;
+    padding: 0 18px 16px;
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+  }
+  .bfaq-card.open .bfaq-body { display: block; padding-top: 14px; }
+  .bfaq-body p:first-child { margin-top: 0; }
+  .bfaq-body p:last-child { margin-bottom: 0; }
+  .bfaq-body strong { color: var(--text); }
+  .bfaq-body a { color: var(--accent); }
+
   .theme-intro {
     background: var(--pastel-sand);
     color: var(--pastel-sand-ink);
@@ -1178,6 +1231,7 @@
         <span class="nav-item" onclick="jumpTo('sec-overview')"><span class="ni-dot"></span>What is Bellisseria?</span>
         <span class="nav-item" onclick="jumpTo('sec-themes')"><span class="ni-dot"></span>Linden Home themes</span>
         <span class="nav-item" onclick="jumpTo('sec-claim')"><span class="ni-dot"></span>How to claim a home</span>
+        <span class="nav-item" onclick="jumpTo('sec-faq')"><span class="ni-dot"></span>Most-asked questions</span>
         <span class="nav-item" onclick="jumpTo('sec-mechanics')"><span class="ni-dot"></span>Linden Home mechanics</span>
         <span class="nav-item" onclick="jumpTo('sec-places')"><span class="ni-dot"></span>Places to visit</span>
         <span class="nav-item" onclick="jumpTo('sec-events')"><span class="ni-dot"></span>Events &amp; community</span>
@@ -1466,6 +1520,131 @@
       <p style="margin-top: 18px;"><strong>Abandoning &amp; swapping:</strong> About Land &rarr; General &rarr; Abandon Land releases a Linden Home back to the pool. Residents can claim a different one immediately &mdash; but Linden Lab limits this to <strong>5 swaps per 24 hours</strong> to keep the pool fair for everyone.</p>
     </div>
 
+  </div>
+</section>
+
+<section class="section collapsed" id="sec-faq" data-section="faq">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon">❓</div>
+    <div style="flex:1;">
+      <div class="section-title">Most-asked questions</div>
+      <div class="section-sub">Real questions from residents &middot; click to expand</div>
+    </div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+
+    <div class="bfaq-list">
+
+      <div class="bfaq-card" data-search="when will theme available again ranch tiki aspen ridgewood premium plus high demand check website webpage no notification">
+        <div class="bfaq-q" onclick="togBfaq(this)">
+          <span class="bfaq-q-text">When will [theme] be available again?</span>
+          <span class="bfaq-tog">+</span>
+        </div>
+        <div class="bfaq-body">
+          <p>Linden Lab does not announce when new Linden Home regions become available. Homes only return to the pool when residents abandon or swap them, and high-demand themes (Ranch, Tiki, Aspen Ridge, Ridgewood Enclave) are claimed within minutes.</p>
+          <p>Tell the resident to keep checking <a href="https://secondlife.com/land/lindenhomes" target="_blank">secondlife.com/land/lindenhomes</a> &mdash; with newer themes, more regions are released gradually to meet demand. There is no email notification or waitlist; patience and persistence are the only tools.</p>
+        </div>
+      </div>
+
+      <div class="bfaq-card" data-search="rez furniture inside house mesh problem permissions platform invisible prim cube workaround">
+        <div class="bfaq-q" onclick="togBfaq(this)">
+          <span class="bfaq-q-text">Why can't I rez furniture inside my home?</span>
+          <span class="bfaq-tog">+</span>
+        </div>
+        <div class="bfaq-body">
+          <p>This is a known mesh-building quirk &mdash; some Linden Home interior surfaces prevent rezzing directly onto them, even when the resident has full parcel permissions.</p>
+          <p><strong>Workaround:</strong> rez the object outside the home and move it in, OR rez a flat platform/cube over the floor first, rez everything onto it, then take up the platform. Many residents leave a permanent invisible prim covering the floor for this reason.</p>
+        </div>
+      </div>
+
+      <div class="bfaq-card" data-search="let friend decorate home whitelist access list security panel house controller permissions guests">
+        <div class="bfaq-q" onclick="togBfaq(this)">
+          <span class="bfaq-q-text">How do I let a friend help decorate my home?</span>
+          <span class="bfaq-tog">+</span>
+        </div>
+        <div class="bfaq-body">
+          <p>Linden Homes have a built-in security panel accessed via the house controller. Whitelist the friend's avatar via the access list &mdash; this also grants decorating permissions through the control panel.</p>
+        </div>
+      </div>
+
+      <div class="bfaq-card" data-search="orientation change rotate home tiki camper log grand view facing direction">
+        <div class="bfaq-q" onclick="togBfaq(this)">
+          <span class="bfaq-q-text">Can I change which way my home faces?</span>
+          <span class="bfaq-tog">+</span>
+        </div>
+        <div class="bfaq-body">
+          <p>Most Linden Home models have a fixed orientation. Three exceptions can be rotated through the house controller: <strong>Tiki, Camper, and Log Grand View</strong>.</p>
+        </div>
+      </div>
+
+      <div class="bfaq-card" data-search="legacy linden home retiring transition lifetime premium plus upgrade ticket abandon allotment 4096 2048">
+        <div class="bfaq-q" onclick="togBfaq(this)">
+          <span class="bfaq-q-text">I have a Legacy home — what are my options now?</span>
+          <span class="bfaq-tog">+</span>
+        </div>
+        <div class="bfaq-body">
+          <p>Linden Lab is retiring the older Legacy regions and personally helping legacy home owners transition to new Bellisseria homes &mdash; including PP-only themes for a limited time.</p>
+          <p><strong>Process:</strong> abandon the legacy home, then either pick a new one from <a href="https://secondlife.com/land/lindenhomes" target="_blank">secondlife.com/land/lindenhomes</a>, OR scout neighbourhoods, collect 2-3 SLURLs, and file a ticket with preferences. LL handles these within 24-48 hours.</p>
+          <p><strong>Important Lifetime Legacy detail:</strong> Lifetime Legacy members keep their 4,096&nbsp;m² allotment and can split it between a Bellisseria home (512 or 1024) and mainland. But to claim a Premium Plus theme home (Ranch, Mediterranean, Tiki), they'd need to upgrade to PP &mdash; which means <em>losing</em> their Lifetime Legacy plan. Workaround: keep Legacy on main account, buy PP on an alt.</p>
+          <p>Official guide: <a href="https://community.secondlife.com/news/featured-news/honoring-the-past-embracing-the-future-your-new-linden-home-awaits-r11188/" target="_blank">community.secondlife.com — Honoring the Past, Embracing the Future</a></p>
+        </div>
+      </div>
+
+      <div class="bfaq-card" data-search="commercial store linden home premium plus both at same time additional cost free ridgewood enclave">
+        <div class="bfaq-q" onclick="togBfaq(this)">
+          <span class="bfaq-q-text">Can I have a Linden Home AND a commercial store?</span>
+          <span class="bfaq-tog">+</span>
+        </div>
+        <div class="bfaq-body">
+          <p>Yes &mdash; Premium Plus members can have both. The commercial store is additional, doesn't count against tier, and is free. Common resident misconception that it's one or the other.</p>
+          <p>One store per account, first come, no guarantee. Available parcels in the Ridgewood Enclave Commercial Districts are marked with an "Available" sign.</p>
+        </div>
+      </div>
+
+      <div class="bfaq-card" data-search="broken door animation house controller reset 10 seconds 30 seconds re-rez script ticket">
+        <div class="bfaq-q" onclick="togBfaq(this)">
+          <span class="bfaq-q-text">My door (or other animation) is broken — how do I fix it?</span>
+          <span class="bfaq-tog">+</span>
+        </div>
+        <div class="bfaq-body">
+          <p>Right-click the house controller, hold for ~10 seconds, release, wait 30 seconds for scripts to reset, then re-rez the house from the controller. If still broken after that, file a ticket and a Mole will visit to fix the scripts.</p>
+        </div>
+      </div>
+
+      <div class="bfaq-card" data-search="floor plans available online wiki layouts 2d above walls bellihub demo regions">
+        <div class="bfaq-q" onclick="togBfaq(this)">
+          <span class="bfaq-q-text">Are floor plans available online anywhere?</span>
+          <span class="bfaq-tog">+</span>
+        </div>
+        <div class="bfaq-body">
+          <p>Linden Lab does not publish 2D floor plans for Linden Homes. The official answer is to send residents to the <strong>BelliHub</strong> demo region or <strong>Sandbox Bellisseria</strong> to walk through every model in person.</p>
+          <p>Inara Pey's blog (in Resources) covers some themes with photos and floor descriptions, and the official SL wiki has model names and parcel sizes &mdash; but neither has true overhead floor plans.</p>
+        </div>
+      </div>
+
+      <div class="bfaq-card" data-search="sail stilt home houseboat boating water access difficult sailable waterways rez zones">
+        <div class="bfaq-q" onclick="togBfaq(this)">
+          <span class="bfaq-q-text">Can I sail from my stilt home?</span>
+          <span class="bfaq-tog">+</span>
+        </div>
+        <div class="bfaq-body">
+          <p>Stilt homes have water access but the immediate area is hard to actually sail in &mdash; the waterways are narrow and obstructed. Houseboats are easier for sailing.</p>
+          <p>That said, no Linden Home owns the surrounding water. Public waterways across Bellisseria are open to all sailors, with rez zones throughout.</p>
+        </div>
+      </div>
+
+      <div class="bfaq-card" data-search="chimney smoke ranch knotty view turn off cannot disable cosmetic part of model">
+        <div class="bfaq-q" onclick="togBfaq(this)">
+          <span class="bfaq-q-text">Can I turn off the chimney smoke?</span>
+          <span class="bfaq-tog">+</span>
+        </div>
+        <div class="bfaq-body">
+          <p>No &mdash; chimney smoke on Ranch Knotty View (and similar themes) is part of the model and cannot be turned off.</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
