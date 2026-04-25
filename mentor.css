@@ -85,7 +85,7 @@ body {
   top: 0;
   height: 100vh;
   overflow-y: auto;
-  overflow-x: visible;
+  overflow-x: hidden;
 }
 
 .logo {
@@ -363,16 +363,18 @@ body {
   border-bottom: 1px solid var(--border);
 }
 .page-nav-link {
-  flex: 1;
+  flex: 1 1 0;
   min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  padding: 10px 4px;
+  gap: 4px;
+  padding: 10px 2px;
   font-family: 'Share Tech Mono','Courier New',monospace;
   font-size: 10px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-dim);
   text-decoration: none;
@@ -381,7 +383,7 @@ body {
 }
 .page-nav-link:hover { color: var(--text-hi); background: var(--blue-dim); }
 .page-nav-link.active { color: var(--blue); border-bottom-color: var(--blue); background: var(--blue-dim); }
-.pn-icon { font-size: 12px; }
+.pn-icon { font-size: 11px; flex-shrink: 0; }
 .nav-item-modal { color: var(--text-mid); }
 .nav-item-modal:hover { color: var(--text-hi); }
 .ni-modal-hint {
