@@ -544,12 +544,12 @@
   /* ─── HERO ─── */
   .hero {
     position: relative;
-    padding: 48px 28px 56px;
+    padding: 48px 52px 56px;
     background: var(--bg-hero);
     border-bottom: 1px solid var(--border);
     overflow: hidden;
   }
-  .hero-inner { max-width: 920px; margin: 0 auto; position: relative; z-index: 2; }
+  .hero-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
 
   .hero-eyebrow {
     font-family: 'Share Tech Mono', monospace;
@@ -601,9 +601,9 @@
 
   /* ─── CONTENT ─── */
   .content {
-    max-width: 920px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 32px 28px 64px;
+    padding: 32px 52px 64px;
   }
 
   .section {
@@ -1114,6 +1114,7 @@
         <span class="nav-item" onclick="jumpTo('sec-places')"><span class="ni-dot"></span>Places to visit</span>
         <span class="nav-item" onclick="jumpTo('sec-events')"><span class="ni-dot"></span>Events &amp; community</span>
         <span class="nav-item" onclick="jumpTo('sec-transport')"><span class="ni-dot"></span>Getting around</span>
+        <span class="nav-item" onclick="jumpTo('sec-resources')"><span class="ni-dot"></span>Useful resources</span>
       </div>
     </div>
 
@@ -1223,9 +1224,9 @@
         <div class="fc-label">Parcel sizes</div>
         <div class="fc-body">512&nbsp;m² (Plus), 1,024&nbsp;m² (Premium), and 2,048&nbsp;m² (Premium Plus exclusive themes).</div>
       </div>
-      <div class="fact-card" data-search="use restrictions residential commerce rentals advertising ridgewood enclave commercial districts">
+      <div class="fact-card" data-search="use restrictions residential commerce rentals advertising ridgewood enclave commercial districts ban lines security orb skybox 2000 metres">
         <div class="fc-label">Use restrictions</div>
-        <div class="fc-body">Residential only &mdash; no commerce, rentals, or advertising (except in the new Ridgewood Enclave commercial districts).</div>
+        <div class="fc-body">Residential only &mdash; no commerce, rentals, or advertising (except Ridgewood Enclave's commercial districts). <strong>No ban lines</strong> are allowed; security orbs only. Skyboxes permitted above 2,000m.</div>
       </div>
       <div class="fact-card" data-search="staying in theme presentable covenant neighbourhood">
         <div class="fc-label">Staying in theme</div>
@@ -1246,20 +1247,20 @@
   </div>
   <div class="section-body">
 
-    <div class="theme-intro" data-search="tier guide plus 512 premium 1024 premium plus 2048 mixed copperfield">
-      <strong>Tier guide:</strong> Plus members access 512&nbsp;m² themes &middot; Premium adds 1,024&nbsp;m² themes &middot; Premium Plus unlocks the larger 2,048&nbsp;m² exclusive themes. Newer themes such as Copperfield Heights mix all three tiers in one community.
+    <div class="theme-intro" data-search="tier guide plus 512 premium 1024 premium plus 2048 mixed copperfield bellihub demo open plan variants every model">
+      <strong>Tier guide:</strong> Plus = 512m² &middot; Premium = 1,024m² &middot; Premium Plus = 2,048m² (exclusive themes). Most themes also offer an <strong>open-plan variant</strong> of each model with fewer interior walls. To see every theme and model in person, send residents to <strong>BelliHub</strong> &mdash; the official walkthrough region.
     </div>
 
     <div class="theme-grid">
 
-      <div class="theme-card" id="theme-traditional" data-search="traditional original bellisseria suburban house garden picket fence neighbourhood premium 1024">
+      <div class="theme-card" id="theme-traditional" data-search="traditional original bellisseria suburban house garden picket fence neighbourhood premium 1024 winchester model shingle one two storey porch">
         <div class="theme-name">Traditional <span class="theme-tier tier-premium">Premium</span></div>
-        <div class="theme-desc">The original Bellisseria look &mdash; suburban houses with gardens, picket fences, a friendly neighbourhood feel. The continent's heart.</div>
+        <div class="theme-desc">Suburban one and two-storey homes with shingle roofs, gardens, and picket fences. The continent's heart and most-modded theme &mdash; <strong>Winchester</strong> in particular has a huge add-on community.</div>
       </div>
 
-      <div class="theme-card" id="theme-houseboats" data-search="houseboats floating water waterway dock boat sailing premium 1024">
+      <div class="theme-card" id="theme-houseboats" data-search="houseboats floating water waterway dock boat sailing premium 1024 evening star jolly roger color hud wall update">
         <div class="theme-name">Houseboats <span class="theme-tier tier-premium">Premium</span></div>
-        <div class="theme-desc">Floating homes moored along Bellisseria's waterways. Boat access from the dock. Popular for water-themed roleplay and sailing.</div>
+        <div class="theme-desc">Floating homes moored along waterways with private boat-rezzing docks. Newer styles (Evening Star, Jolly Roger) include a colour HUD for wall tints; older styles don't.</div>
       </div>
 
       <div class="theme-card" id="theme-campers" data-search="campers caravan camping wooded compact 512 plus entry-level vintage">
@@ -1267,39 +1268,39 @@
         <div class="theme-desc">Compact 512&nbsp;m² parcels with a vintage caravan. Wooded camping-ground feel. Entry-level option for Plus members.</div>
       </div>
 
-      <div class="theme-card" id="theme-victorian" data-search="victorian gaslit cobbles ornate trim park railway atmospheric night premium 1024">
+      <div class="theme-card" id="theme-victorian" data-search="victorian gaslit cobbles ornate trim park railway atmospheric night premium 1024 32x32 shelley hardy verne doyle turret bay window porch eight models">
         <div class="theme-name">Victorian <span class="theme-tier tier-premium">Premium</span></div>
-        <div class="theme-desc">Gaslit cobbles, ornate trim, parks with reflecting pools. Connected by an extensive railway network. Atmospheric at night.</div>
+        <div class="theme-desc">Gaslit cobbles, ornate trim, parks with reflecting pools. 32×32m parcels with eight models featuring turrets, bay windows, expansive porches &mdash; including Shelley, Hardy and Verne (two-floor) and Doyle (single-floor). Connected by an extensive railway.</div>
       </div>
 
-      <div class="theme-card" id="theme-log" data-search="log homes cabin forested hills valleys country rural horse riding hiking premium 1024">
+      <div class="theme-card" id="theme-log" data-search="log homes cabin forested hills valleys country rural horse riding hiking premium 1024 timberline fireplace high ceilings balcony eight styles two floor">
         <div class="theme-name">Log Homes <span class="theme-tier tier-premium">Premium</span></div>
-        <div class="theme-desc">Upscale log cabins set in forested hills and valleys. Country living with modern interiors. Hiking and horse-riding country.</div>
+        <div class="theme-desc">Upscale log cabins in forested hills and valleys. Eight styles with high ceilings and two floors &mdash; <strong>Timberline</strong> is the only one with a fireplace. Hiking and horse-riding country.</div>
       </div>
 
-      <div class="theme-card" id="theme-stilt" data-search="stilt homes water raised coastal sea view boat house controller premium 1024">
+      <div class="theme-card" id="theme-stilt" data-search="stilt homes water raised coastal sea view boat house controller premium 1024 havana tortuga four styles southeastern florida hurricane">
         <div class="theme-name">Stilt Homes <span class="theme-tier tier-premium">Premium</span></div>
-        <div class="theme-desc">Houses raised over water on stilts. Coastal feel, sea views, easy boat access. House controller is in the water.</div>
+        <div class="theme-desc">Coastal homes raised on stilts, inspired by the southeastern US. Four styles &mdash; including <strong>Havana</strong> (3-room cross-shape) and <strong>Tortuga</strong> (open-plan single-storey). Some on the beach, some over water. House controller sits in the water.</div>
       </div>
 
-      <div class="theme-card" id="theme-chalets" data-search="chalets alpine mountain pine railway cosy winter premium 1024">
+      <div class="theme-card" id="theme-chalets" data-search="chalets alpine mountain pine railway cosy winter premium 1024 matterhorn eiger mont blanc jungfrau open plan eight variants four styles">
         <div class="theme-name">Chalets <span class="theme-tier tier-premium">Premium</span></div>
-        <div class="theme-desc">Alpine-style cabins set among mountains and pine, with their own railway. Cosy interiors suited to winter scenery.</div>
+        <div class="theme-desc">Alpine cabins among mountains and pine, with their own railway. Four base styles (Matterhorn, Eiger, Mont Blanc, Jungfrau) each in a closed or open-plan variant &mdash; eight choices in total.</div>
       </div>
 
-      <div class="theme-card" id="theme-fantasy" data-search="fantasy whimsical treehouse mushroom magical fairstone quarry wedding premium 1024">
+      <div class="theme-card" id="theme-fantasy" data-search="fantasy whimsical treehouse mushroom magical fairstone quarry wedding premium 1024 amberbrooke fairybrooke mistbrooke rosebrooke stonebrooke six models open plan">
         <div class="theme-name">Fantasy <span class="theme-tier tier-premium">Premium</span></div>
-        <div class="theme-desc">Whimsical dwellings &mdash; treehouses, mushroom homes, magical themes. Includes the Fairstone Quarry wedding venue.</div>
+        <div class="theme-desc">Whimsical dwellings &mdash; treehouses, mushroom homes, magical themes. Six base models (Amberbrooke, Fairybrooke, Mistbrooke, Rosebrooke, Stonebrooke and one more) each with an open-plan variant. Includes the Fairstone Quarry wedding venue.</div>
       </div>
 
-      <div class="theme-card" id="theme-newbrooke" data-search="newbrooke modern suburban customisable siding trim brickwork plus premium 512 1024 eight models">
+      <div class="theme-card" id="theme-newbrooke" data-search="newbrooke modern suburban customisable siding trim brickwork plus premium 512 1024 eight models aldridge bradbury coniston heaton denver ender faraday gatewood">
         <div class="theme-name">Newbrooke <span class="theme-tier tier-plus">Plus</span> <span class="theme-tier tier-premium">Premium</span></div>
-        <div class="theme-desc">Modern suburban homes with customisable siding, trim, and brickwork colours. Eight models across 512 and 1,024&nbsp;m².</div>
+        <div class="theme-desc">Modern suburban homes with customisable siding, trim and brickwork colours. Eight models &mdash; Aldridge, Bradbury, Coniston, Heaton (1024m² only) and Denver, Ender, Faraday, Gatewood (either 512 or 1024m²).</div>
       </div>
 
-      <div class="theme-card" id="theme-sakura" data-search="sakura japanese cherry blossom traditional garden 19th birthday 2022 plus premium">
+      <div class="theme-card" id="theme-sakura" data-search="sakura japanese cherry blossom traditional garden 19th birthday 2022 plus premium shion ajisai renge kaneshon kosumosu tenjikubotan botan himawari open plan flowers eight models">
         <div class="theme-name">Sakura <span class="theme-tier tier-plus">Plus</span> <span class="theme-tier tier-premium">Premium</span></div>
-        <div class="theme-desc">Japanese-inspired homes among cherry blossoms and traditional gardens. Released for SL's 19th birthday in 2022.</div>
+        <div class="theme-desc">Japanese-inspired homes among cherry blossoms. Eight models named after Japanese flowers &mdash; Shion, Ajisai, Renge, Kaneshon (1024m²) and Kosumosu, Tenjikubotan, Botan, Himawari (either size). Each available with closed or open-plan layout.</div>
       </div>
 
       <div class="theme-card" id="theme-ranch" data-search="ranch large 2048 paddocks rural horse premium plus exclusive">
@@ -1307,9 +1308,9 @@
         <div class="theme-desc">Large 2,048&nbsp;m² parcels with ranch-style houses, paddocks, and rural landscapes. Horse country.</div>
       </div>
 
-      <div class="theme-card" id="theme-mediterranean" data-search="mediterranean coastal villa terracotta stucco railway premium plus exclusive 2048">
+      <div class="theme-card" id="theme-mediterranean" data-search="mediterranean coastal villa terracotta stucco railway premium plus exclusive 2048 four styles eleven rooms open plan sandy soil cacti adobe">
         <div class="theme-name">Mediterranean <span class="theme-tier tier-pp">Premium Plus</span></div>
-        <div class="theme-desc">Sun-drenched coastal villas with terracotta tiles and stucco walls. Has its own railway connecting the regions.</div>
+        <div class="theme-desc">Coastal villas in pastel rose and ochre, with terracotta tiles, stucco and adobe. 2,048m² parcels with four base styles, each up to eleven rooms or open-plan. Has its own railway.</div>
       </div>
 
       <div class="theme-card" id="theme-thousand" data-search="thousand island lakeside archipelago small islands quiet water premium plus exclusive 2048">
@@ -1322,14 +1323,14 @@
         <div class="theme-desc">Mountain homes with seasonal landscape changes &mdash; the regions visibly shift through the seasons.</div>
       </div>
 
-      <div class="theme-card" id="theme-ridgewood" data-search="ridgewood enclave commercial districts march 2026 premium plus shops merchants exclusive">
+      <div class="theme-card" id="theme-ridgewood" data-search="ridgewood enclave commercial districts march 2026 premium plus shops merchants exclusive six designs tropical palm trees modern contemporary layout variations greenbush hill">
         <div class="theme-name">Ridgewood Enclave <span class="theme-tier tier-pp">Premium Plus</span></div>
-        <div class="theme-desc">Premium Plus theme that now also hosts Bellisseria's first <strong>commercial districts</strong> (March 2026) &mdash; the only place commerce is permitted on the continent.</div>
+        <div class="theme-desc">Modern Premium Plus homes among palm trees and tropical landscaping. Six unique designs with optional layout variations. Now also hosts Bellisseria's first <strong>commercial districts</strong> (March 2026) &mdash; the only place commerce is allowed on the continent.</div>
       </div>
 
-      <div class="theme-card" id="theme-copperfield" data-search="copperfield heights 2026 craftsman mixed all tiers plus premium premium plus first community">
+      <div class="theme-card" id="theme-copperfield" data-search="copperfield heights 2026 craftsman mixed all tiers plus premium premium plus first community 12 standard 8 open floorplans arts crafts wood stone">
         <div class="theme-name">Copperfield Heights <span class="theme-tier tier-mixed">All tiers</span></div>
-        <div class="theme-desc">2026 release. Craftsman-style homes that mix Plus, Premium, and Premium Plus parcels in the same community for the first time.</div>
+        <div class="theme-desc">2026 release. Craftsman-style Arts &amp; Crafts homes with warm wood tones, exposed beams and natural stone. <strong>12 standard floor plans + 8 open variants</strong>. First Bellisseria theme to mix Plus, Premium, and Premium Plus parcels in one community.</div>
       </div>
 
     </div>
@@ -1399,8 +1400,8 @@
       <strong>Premium Plus tip:</strong> Premium Plus members can request a specific Linden Home via a support ticket if a particular parcel becomes available. They also get exclusive access to Ranch, Mediterranean, Thousand Island, and Ridgewood Enclave themes.
     </div>
 
-    <div class="prose" data-search="abandoning swapping about land general abandon release pool cooldown">
-      <p style="margin-top: 18px;"><strong>Abandoning &amp; swapping:</strong> About Land &rarr; General &rarr; Abandon Land releases a Linden Home back to the pool. The resident can claim a different one immediately &mdash; there's no cooldown.</p>
+    <div class="prose" data-search="abandoning swapping about land general abandon release pool cooldown 5 swaps 24 hours rate limit">
+      <p style="margin-top: 18px;"><strong>Abandoning &amp; swapping:</strong> About Land &rarr; General &rarr; Abandon Land releases a Linden Home back to the pool. Residents can claim a different one immediately &mdash; but Linden Lab limits this to <strong>5 swaps per 24 hours</strong> to keep the pool fair for everyone.</p>
     </div>
 
   </div>
@@ -1620,6 +1621,58 @@
 
     <div class="callout" data-search="newcomer note vehicles tricky sim crossings hiccups teleport exploration viewer">
       <strong>Note for newcomers:</strong> Vehicles can be tricky for new residents &mdash; sim crossings still occasionally cause hiccups. If a resident is struggling, suggest a teleport for now and an exploration trip once they're more comfortable with the viewer.
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="sec-resources" data-section="resources">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon">📚</div>
+    <div style="flex:1;">
+      <div class="section-title">Useful resources</div>
+      <div class="section-sub">Where to send a resident wanting more &middot; reference blogs &middot; community sites</div>
+    </div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+
+    <div class="prose" data-search="floor plans no official reference linden lab bellihub demo region sandbox">
+      <p>Linden Lab does not publish floor plans for the homes &mdash; the official answer is to send residents to the <strong>BelliHub</strong> demo region or <strong>Sandbox Bellisseria</strong> to walk through every model in person. The community resources below fill in much of the rest.</p>
+    </div>
+
+    <div class="events-list" style="margin-top: 16px;">
+
+      <div class="event-row" data-search="inara pey modemworld blog linden homes coverage detailed model descriptions">
+        <div class="e-name">Inara Pey's blog</div>
+        <div class="e-desc">The closest thing to authoritative third-party documentation. Detailed release coverage of every theme with model-by-model descriptions. <a href="https://modemworld.me/tag/linden-homes/" target="_blank">modemworld.me/tag/linden-homes</a></div>
+      </div>
+
+      <div class="event-row" data-search="bellisseria citizens community wiki places linden homes destinations">
+        <div class="e-name">Bellisseria Citizens site</div>
+        <div class="e-desc">Resident-curated destinations, community spots, and continent landmarks &mdash; companion to the in-world group. <a href="https://sites.google.com/view/bellisseriacitizens/" target="_blank">sites.google.com/view/bellisseriacitizens</a></div>
+      </div>
+
+      <div class="event-row" data-search="add ons list linden home models marketplace winchester evening star addon furniture decor expansion">
+        <div class="e-name">Add-ons list (community)</div>
+        <div class="e-desc">A community-maintained inventory of marketplace add-ons organised by home model name &mdash; useful when a resident asks for a porch, pergola or expansion kit for their specific home. <a href="https://bellisseriacommunity.wixsite.com/home/list-of-add-ons" target="_blank">bellisseriacommunity.wixsite.com</a></div>
+      </div>
+
+      <div class="event-row" data-search="second glances arabella windsor blog linden homes themes review log homes">
+        <div class="e-name">Second Glances with Arabella</div>
+        <div class="e-desc">Reflective theme-by-theme reviews of Linden Homes with screenshots and resident perspective. <a href="https://arabellawindsor.com/" target="_blank">arabellawindsor.com</a></div>
+      </div>
+
+      <div class="event-row" data-search="official sl wiki linden homes 2019 themes models specifications floor sizes">
+        <div class="e-name">Official SL wiki</div>
+        <div class="e-desc">Linden Lab's official theme documentation including model names, parcel sizes, and release notes. <a href="https://wiki.secondlife.com/wiki/Linden_Lab_Official:New_Linden_Homes_2019" target="_blank">wiki.secondlife.com</a></div>
+      </div>
+
+      <div class="event-row" data-search="linden homes knowledge base support covenant rules house controller official help">
+        <div class="e-name">Linden Lab knowledge base</div>
+        <div class="e-desc">Official help docs covering covenants, house controller features, abandon/swap procedures, and support ticket routes. <a href="https://community.secondlife.com/knowledgebase/english/linden-homes-r44/" target="_blank">community.secondlife.com</a></div>
+      </div>
+
     </div>
 
   </div>
