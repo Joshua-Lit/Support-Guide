@@ -296,6 +296,82 @@ html, body { overflow-x: hidden; }
 .page-hdr p { color:var(--text-dim); margin-top:10px; font-size:13px; max-width:580px; }
 .stat-row { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
 
+/* ═══ GRID STATUS PILL (dynamic, hero area) ═══ */
+.grid-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 8px 14px;
+  background: var(--panel2);
+  border: 1px solid var(--border2);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--text-dim);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.grid-status-pill:hover {
+  border-color: var(--blue);
+  color: var(--text);
+  background: var(--blue-dim);
+}
+.gsp-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.gsp-label { color: var(--text); font-weight: 600; }
+.gsp-url { color: var(--blue); }
+
+/* State: loading / fallback (neutral green) */
+.gsp-loading .gsp-dot,
+.gsp-fallback .gsp-dot {
+  background: #2bb673;
+  box-shadow: 0 0 0 0 rgba(43, 182, 115, 0.7);
+  animation: gspPulseSlow 2.4s ease-out infinite;
+}
+/* State: ok (green, slow pulse) */
+.gsp-ok .gsp-dot {
+  background: #2bb673;
+  box-shadow: 0 0 0 0 rgba(43, 182, 115, 0.7);
+  animation: gspPulseSlow 2.4s ease-out infinite;
+}
+/* State: warn (amber, medium pulse) */
+.gsp-warn .gsp-dot {
+  background: #e0a040;
+  box-shadow: 0 0 0 0 rgba(224, 160, 64, 0.7);
+  animation: gspPulseMed 1.6s ease-out infinite;
+}
+.gsp-warn { border-color: #e0a040; }
+.gsp-warn .gsp-url { color: #e0a040; }
+/* State: major (red, fast pulse) */
+.gsp-major .gsp-dot {
+  background: #d8453a;
+  box-shadow: 0 0 0 0 rgba(216, 69, 58, 0.8);
+  animation: gspPulseFast 1.0s ease-out infinite;
+}
+.gsp-major { border-color: #d8453a; }
+.gsp-major .gsp-url { color: #d8453a; }
+
+@keyframes gspPulseSlow {
+  0%   { box-shadow: 0 0 0 0 rgba(43, 182, 115, 0.7); }
+  70%  { box-shadow: 0 0 0 8px rgba(43, 182, 115, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(43, 182, 115, 0); }
+}
+@keyframes gspPulseMed {
+  0%   { box-shadow: 0 0 0 0 rgba(224, 160, 64, 0.7); }
+  70%  { box-shadow: 0 0 0 9px rgba(224, 160, 64, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(224, 160, 64, 0); }
+}
+@keyframes gspPulseFast {
+  0%   { box-shadow: 0 0 0 0 rgba(216, 69, 58, 0.8); }
+  70%  { box-shadow: 0 0 0 10px rgba(216, 69, 58, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(216, 69, 58, 0); }
+}
+
 /* ═══ SESSION CHECKLIST PANEL ═══ */
 #session-checklist {
   background: var(--panel2);

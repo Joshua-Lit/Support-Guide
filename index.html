@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;900&family=Share+Tech+Mono&family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="mentor.css">
 <script src="mentor.js"></script>
+<script src="gridstatus.js" defer></script>
 </head>
 <body>
 <div id="app">
@@ -216,6 +217,12 @@
       <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">26</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
     </div>
+
+    <a id="grid-status-pill" class="grid-status-pill gsp-fallback" href="https://status.secondlifegrid.net/" target="_blank" title="Check the SL grid status page in a new tab">
+      <span class="gsp-dot"></span>
+      <span class="gsp-label">Things acting strange? Check grid status</span>
+      <span class="gsp-url">status.secondlifegrid.net &rarr;</span>
+    </a>
   </div>
 
   <div id="no-results">

@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;900&family=Share+Tech+Mono&family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="mentor.css">
 <link rel="stylesheet" href="technical.css">
+<script src="gridstatus.js" defer></script>
 <script>
 
 // ══ Adult Hub warning modal ══
@@ -385,10 +386,16 @@ function updateThemeToggle() {
     <div class="header-title">Technical <span>Q&amp;A</span></div>
     <p class="header-sub">Answers to more technical questions from residents — streaming, scripting, media, and more.</p>
     <div class="stat-row">
-      <div class="stat-chip" onclick="document.getElementById(&#39;qa-video-stream&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">11</span><span class="sc-lbl">Q&amp;As</span></div>
+      <div class="stat-chip" onclick="document.getElementById(&#39;qa-video-stream&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">12</span><span class="sc-lbl">Q&amp;As</span></div>
       <div class="stat-chip" onclick="document.getElementById(&#39;sec-flowcharts&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Flowcharts" style="cursor:pointer;"><span class="sc-val">4</span><span class="sc-lbl">Flowcharts</span></div>
       <div class="stat-chip" onclick="document.getElementById(&#39;qa-head-mouse&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Firestorm Settings" style="cursor:pointer;border-color:rgba(255,100,50,0.4);"><span class="sc-val" style="color:var(--c-fs);">6</span><span class="sc-lbl">Firestorm</span></div>
     </div>
+
+    <a id="grid-status-pill" class="grid-status-pill gsp-fallback" href="https://status.secondlifegrid.net/" target="_blank" title="Check the SL grid status page in a new tab">
+      <span class="gsp-dot"></span>
+      <span class="gsp-label">Things acting strange? Check grid status</span>
+      <span class="gsp-url">status.secondlifegrid.net &rarr;</span>
+    </a>
   </div>
 
   <div class="sec-hdr">

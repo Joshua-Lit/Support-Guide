@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;900&family=Roboto:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<script src="gridstatus.js" defer></script>
 <script>
   (function() {
     try {
@@ -649,6 +650,82 @@
   .hero-chip.c-sky   { background: var(--pastel-sky);   color: var(--pastel-sky-ink); }
   .hero-chip.c-coral { background: var(--pastel-coral); color: var(--pastel-coral-ink); }
   .hero-chip.c-mint  { background: var(--pastel-mint);  color: var(--pastel-mint-ink); }
+
+  /* ─── GRID STATUS PILL (dynamic) ─── */
+  .grid-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 8px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--text-mid);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .grid-status-pill:hover {
+    border-color: var(--accent);
+    color: var(--text);
+    background: var(--accent-soft);
+  }
+  .gsp-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .gsp-label { color: var(--text); font-weight: 600; }
+  .gsp-url { color: var(--accent); }
+
+  /* State: loading / fallback (neutral) */
+  .gsp-loading .gsp-dot,
+  .gsp-fallback .gsp-dot {
+    background: #2bb673;
+    box-shadow: 0 0 0 0 rgba(43, 182, 115, 0.7);
+    animation: gspPulseSlow 2.4s ease-out infinite;
+  }
+  /* State: ok (green, slow pulse) */
+  .gsp-ok .gsp-dot {
+    background: #2bb673;
+    box-shadow: 0 0 0 0 rgba(43, 182, 115, 0.7);
+    animation: gspPulseSlow 2.4s ease-out infinite;
+  }
+  /* State: warn (amber, medium pulse) */
+  .gsp-warn .gsp-dot {
+    background: #e0a040;
+    box-shadow: 0 0 0 0 rgba(224, 160, 64, 0.7);
+    animation: gspPulseMed 1.6s ease-out infinite;
+  }
+  .gsp-warn { border-color: #e0a040; }
+  .gsp-warn .gsp-url { color: #e0a040; }
+  /* State: major (red, fast pulse) */
+  .gsp-major .gsp-dot {
+    background: #d8453a;
+    box-shadow: 0 0 0 0 rgba(216, 69, 58, 0.8);
+    animation: gspPulseFast 1.0s ease-out infinite;
+  }
+  .gsp-major { border-color: #d8453a; }
+  .gsp-major .gsp-url { color: #d8453a; }
+
+  @keyframes gspPulseSlow {
+    0%   { box-shadow: 0 0 0 0 rgba(43, 182, 115, 0.7); }
+    70%  { box-shadow: 0 0 0 8px rgba(43, 182, 115, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(43, 182, 115, 0); }
+  }
+  @keyframes gspPulseMed {
+    0%   { box-shadow: 0 0 0 0 rgba(224, 160, 64, 0.7); }
+    70%  { box-shadow: 0 0 0 9px rgba(224, 160, 64, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(224, 160, 64, 0); }
+  }
+  @keyframes gspPulseFast {
+    0%   { box-shadow: 0 0 0 0 rgba(216, 69, 58, 0.8); }
+    70%  { box-shadow: 0 0 0 10px rgba(216, 69, 58, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(216, 69, 58, 0); }
+  }
 
   /* ─── CONTENT ─── */
   .content {
@@ -1312,6 +1389,12 @@
     <div class="hero-chip c-coral"><strong>2019</strong>Established</div>
     <div class="hero-chip c-mint"><strong>Moles</strong>Built &amp; maintained</div>
   </div>
+
+  <a id="grid-status-pill" class="grid-status-pill gsp-fallback" href="https://status.secondlifegrid.net/" target="_blank" title="Check the SL grid status page in a new tab">
+    <span class="gsp-dot"></span>
+    <span class="gsp-label">Things acting strange? Check grid status</span>
+    <span class="gsp-url">status.secondlifegrid.net &rarr;</span>
+  </a>
 </div>
 
 <div id="no-results">No matches found. Try a different keyword.</div>
@@ -1535,6 +1618,22 @@
   <div class="section-body">
 
     <div class="bfaq-list">
+
+      <div class="bfaq-card" data-search="orange cloud unrezzed not rezzing avatar bake fail rebake clear cache relog grid status outage broken issue can&#39;t see avatar friends invisible">
+        <div class="bfaq-q" onclick="togBfaq(this)">
+          <span class="bfaq-q-text">Why am I (or my visitor) stuck as an orange cloud?</span>
+          <span class="bfaq-tog">+</span>
+        </div>
+        <div class="bfaq-body">
+          <p>Orange-cloud avatars are a "bake fail" &mdash; the viewer hasn't received or assembled the avatar's appearance textures. Standard troubleshooting:</p>
+          <ol style="margin: 8px 0 0 18px; padding: 0;">
+            <li><strong>Rebake.</strong> Avatar &rarr; Avatar Health &rarr; Rebake Texture (Ctrl+Alt+R in most viewers).</li>
+            <li><strong>Clear cache &amp; relog.</strong> Preferences &rarr; Network &amp; Cache &rarr; Clear Cache, then restart the viewer.</li>
+            <li><strong>Check the grid status page.</strong> When many residents are unrezzed at the same time, it's usually a grid-wide bake or asset server issue, not an avatar problem &mdash; <a href="https://status.secondlifegrid.net/" target="_blank">status.secondlifegrid.net</a> will list the incident. The pill at the top of this page should be reading the live status; if it's amber or red, that's your answer.</li>
+          </ol>
+          <p style="margin-top: 12px;"><em>Mentor tip:</em> if multiple residents report the same issue at the same time, check grid status <strong>first</strong> &mdash; rebakes won't help if the bake service itself is degraded.</p>
+        </div>
+      </div>
 
       <div class="bfaq-card" data-search="when will theme available again ranch tiki aspen ridgewood premium plus high demand check website webpage no notification">
         <div class="bfaq-q" onclick="togBfaq(this)">
