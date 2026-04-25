@@ -1178,6 +1178,7 @@
         <span class="nav-item" onclick="jumpTo('sec-overview')"><span class="ni-dot"></span>What is Bellisseria?</span>
         <span class="nav-item" onclick="jumpTo('sec-themes')"><span class="ni-dot"></span>Linden Home themes</span>
         <span class="nav-item" onclick="jumpTo('sec-claim')"><span class="ni-dot"></span>How to claim a home</span>
+        <span class="nav-item" onclick="jumpTo('sec-mechanics')"><span class="ni-dot"></span>Linden Home mechanics</span>
         <span class="nav-item" onclick="jumpTo('sec-places')"><span class="ni-dot"></span>Places to visit</span>
         <span class="nav-item" onclick="jumpTo('sec-events')"><span class="ni-dot"></span>Events &amp; community</span>
         <span class="nav-item" onclick="jumpTo('sec-transport')"><span class="ni-dot"></span>Getting around</span>
@@ -1215,9 +1216,10 @@
       </div>
       <div class="nav-items">
         <span class="nav-item" onclick="jumpTo('place-fairgrounds')"><span class="ni-dot"></span>Bellisseria Fairgrounds</span>
+        <span class="nav-item" onclick="jumpTo('place-treeowatoor')"><span class="ni-dot"></span>Treeowatoor</span>
         <span class="nav-item" onclick="jumpTo('place-bellihub')"><span class="ni-dot"></span>BelliHub</span>
         <span class="nav-item" onclick="jumpTo('place-demo')"><span class="ni-dot"></span>Linden Homes Demo</span>
-        <span class="nav-item" onclick="jumpTo('place-chippewa')"><span class="ni-dot"></span>Chippewa Town Hall</span>
+        <span class="nav-item" onclick="jumpTo('place-chippewa')"><span class="ni-dot"></span>Chippewa Junction</span>
         <span class="nav-item" onclick="jumpTo('place-merrymount')"><span class="ni-dot"></span>Merrymount</span>
         <span class="nav-item" onclick="jumpTo('place-sandbox')"><span class="ni-dot"></span>Sandbox Bellisseria</span>
         <span class="nav-item" onclick="jumpTo('place-fairstone')"><span class="ni-dot"></span>Fairstone Quarry</span>
@@ -1383,9 +1385,9 @@
         <div class="theme-desc">Mountain homes with seasonal landscape changes &mdash; the regions visibly shift through the seasons.</div>
       </div>
 
-      <div class="theme-card" id="theme-ridgewood" data-search="ridgewood enclave commercial districts march 2026 premium plus shops merchants exclusive six designs tropical palm trees modern contemporary layout variations greenbush hill">
+      <div class="theme-card" id="theme-ridgewood" data-search="ridgewood enclave commercial districts march 2026 premium plus shops merchants exclusive six designs tropical palm trees modern contemporary layout variations greenbush hill brackenrock verdemont v2.0">
         <div class="theme-name">Ridgewood Enclave <span class="theme-tier tier-pp">Premium Plus</span></div>
-        <div class="theme-desc">Modern Premium Plus homes among palm trees and tropical landscaping. Six unique designs with optional layout variations. Now also hosts Bellisseria's first <strong>commercial districts</strong> (March 2026) &mdash; the only place commerce is allowed on the continent.</div>
+        <div class="theme-desc">Modern Premium Plus homes among palm trees and tropical landscaping. Six unique designs with optional layout variations. Now also hosts Bellisseria's first <strong>commercial districts</strong> (March 2026) &mdash; the only place commerce is allowed on the continent. <em>Brackenrock vs Verdemont:</em> visually similar; Brackenrock has an extra wall+door dividing the living area to the left of the entrance.</div>
       </div>
 
       <div class="theme-card" id="theme-copperfield" data-search="copperfield heights 2026 craftsman mixed all tiers plus premium premium plus first community 12 standard 8 open floorplans arts crafts wood stone">
@@ -1467,6 +1469,68 @@
   </div>
 </section>
 
+<section class="section collapsed" id="sec-mechanics" data-section="mechanics">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon">🛠️</div>
+    <div style="flex:1;">
+      <div class="section-title">Linden Home mechanics</div>
+      <div class="section-sub">House controller, security, common quirks &middot; what residents ask once they're in</div>
+    </div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+
+    <div class="overview-grid">
+
+      <div class="fact-card" data-search="security panel whitelist guests access list decorating permissions house controller">
+        <div class="fc-label">Built-in security &amp; whitelist</div>
+        <div class="fc-body">Linden Homes have a built-in security panel accessed via the house controller. Residents can whitelist specific avatars to grant access &mdash; including granting <strong>decorating permissions</strong> through the control panel.</div>
+      </div>
+
+      <div class="fact-card" data-search="house controller reset broken animation door scripts re-rez 10 seconds 30 seconds ticket support">
+        <div class="fc-label">Reset broken animations</div>
+        <div class="fc-body">If a door or other animation breaks: right-click the house controller, hold for ~10 seconds, release, wait 30 seconds for scripts to reset, then re-rez the house from the controller. If still broken, file a ticket.</div>
+      </div>
+
+      <div class="fact-card" data-search="theme model update re-rez windows aspen ridge bellihub welcome hub demo regions">
+        <div class="fc-label">Theme model updates</div>
+        <div class="fc-body">When LL pushes a model update (e.g. window updates), residents must re-rez their house from the controller for the changes to apply. The latest version is always visible at <strong>BelliHub</strong> and <strong>WelcomeHubLindenHomes</strong> demo regions.</div>
+      </div>
+
+      <div class="fact-card" data-search="postbox stuck updated message 24 hours after theme update settles ticket">
+        <div class="fc-label">"Updated" message stuck</div>
+        <div class="fc-body">Common post-update behaviour &mdash; usually settles within ~24 hours of a theme update. If still showing after that, file a ticket.</div>
+      </div>
+
+      <div class="fact-card" data-search="mesh rezz problem furniture inside house workaround platform invisible prim cube floor">
+        <div class="fc-label">Can't rez furniture inside</div>
+        <div class="fc-body">Some mesh homes prevent rezzing directly onto interior surfaces. Workaround: rez outside and move objects in, OR rez a flat platform/cube over the floor first, rez everything onto it, then take up the platform. Many residents leave a permanent invisible prim covering the floor for this reason.</div>
+      </div>
+
+      <div class="fact-card" data-search="orientation changeable rotate tiki camper log grand view themes">
+        <div class="fc-label">Orientation-changeable homes</div>
+        <div class="fc-body">Most Linden Home models have a fixed orientation, but <strong>Tiki, Camper, and Log Grand View</strong> can be rotated through the controller &mdash; useful when a resident wants a different view from their windows.</div>
+      </div>
+
+      <div class="fact-card" data-search="chimney smoke ranch knotty view cannot turn off cosmetic part of model">
+        <div class="fc-label">Chimney smoke (Ranch)</div>
+        <div class="fc-body">Chimney smoke on Ranch Knotty View (and similar themes) cannot be turned off &mdash; it's part of the model.</div>
+      </div>
+
+      <div class="fact-card" data-search="water privileges sailable open public bellisseria stilt houseboat rez zones">
+        <div class="fc-label">Public waterways</div>
+        <div class="fc-body">No Linden Home owns the surrounding water. Public waterways around Bellisseria are open to all sailors, boaters, and fishers, with rez zones throughout. <em>Tip:</em> stilt homes have water access but the immediate area is hard to actually sail in &mdash; houseboats are easier for sailing.</div>
+      </div>
+
+    </div>
+
+    <div class="callout" data-search="ridgewood enclave commercial districts shops stores premium plus seven styles cityview vault edgeworks bridgecrest seamstone overlook gridline breedables izzy linden one per account first come available sign no extra cost">
+      <strong>Commercial districts (Ridgewood Enclave)</strong> &mdash; Premium Plus members can claim a free commercial parcel <em>in addition to</em> their existing P+ Linden Home (no extra cost, doesn't count against tier). One store per account, first come, no guarantee. Available parcels are marked with an "Available" sign. Seven building styles: Cityview, Vault, Edgeworks, Bridgecrest, Seamstone, Overlook, Gridline. <strong>Breedables:</strong> selling unborn breedable boxes is permitted; breeding inside the store is not (clarification from Izzy Linden, March 2026 land meeting). Stores must be retail-style mercantile &mdash; no event-based businesses, set up within 7 days of claim.
+    </div>
+
+  </div>
+</section>
+
 <section class="section collapsed" id="sec-places" data-section="places">
   <div class="section-header" onclick="toggleSection(this)">
     <div class="section-icon">📍</div>
@@ -1491,6 +1555,20 @@
         <div class="place-actions">
           <a class="btn btn-primary" href="secondlife://Bellisseria%20Fairgrounds/164/168/23">Open in SL</a>
           <button class="btn btn-ghost" onclick="copySLURL(this,'secondlife://Bellisseria Fairgrounds/164/168/23')">Copy SLURL</button>
+        </div>
+      </div>
+
+      <div class="place-card" id="place-treeowatoor" data-search="treeowatoor beach surfing swimming party space refreshment shack patch linden treasure flat patch hidden waves">
+        <div class="place-name">Treeowatoor</div>
+        <div class="place-desc">Beachfront community area on Bellisseria &mdash; surfing, swimming, party space, and a refreshment shack. Hides one of Patch Linden's "flat-Patch" treasures.</div>
+        <div class="place-tags">
+          <span class="place-tag">Beach</span>
+          <span class="place-tag">Community</span>
+        </div>
+        <div class="place-slurl">secondlife://Treeowatoor/206/37/22</div>
+        <div class="place-actions">
+          <a class="btn btn-primary" href="secondlife://Treeowatoor/206/37/22">Open in SL</a>
+          <button class="btn btn-ghost" onclick="copySLURL(this,'secondlife://Treeowatoor/206/37/22')">Copy SLURL</button>
         </div>
       </div>
 
@@ -1520,16 +1598,17 @@
         </div>
       </div>
 
-      <div class="place-card placeholder" id="place-chippewa" data-search="chippewa town hall traditional theme community centre conferences garden parties weddings railway">
-        <div class="place-name">Chippewa Town Hall</div>
-        <div class="place-desc">Community centre for the Traditional theme &mdash; reservable for conferences, garden parties, and weddings. Sits on the main railway hub.</div>
+      <div class="place-card" id="place-chippewa" data-search="chippewa junction town hall traditional theme community centre conferences garden parties weddings railway train station amazing buildings">
+        <div class="place-name">Chippewa Junction</div>
+        <div class="place-desc">Community hub on the Traditional Linden Homes regions &mdash; train station, town hall, and community spaces. The town hall can be booked for weddings and other events.</div>
         <div class="place-tags">
           <span class="place-tag">Community</span>
           <span class="place-tag">Events</span>
         </div>
-        <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+        <div class="place-slurl">secondlife://Chippewa%20Junction/152/124/64</div>
         <div class="place-actions">
-          <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
+          <a class="btn btn-primary" href="secondlife://Chippewa%20Junction/152/124/64">Open in SL</a>
+          <button class="btn btn-ghost" onclick="copySLURL(this,'secondlife://Chippewa Junction/152/124/64')">Copy SLURL</button>
         </div>
       </div>
 
@@ -1738,9 +1817,24 @@
         <div class="e-desc">Linden Lab's official theme documentation including model names, parcel sizes, and release notes. <a href="https://wiki.secondlife.com/wiki/Linden_Lab_Official:New_Linden_Homes_2019" target="_blank">wiki.secondlife.com</a></div>
       </div>
 
-      <div class="event-row" data-search="linden homes knowledge base support covenant rules house controller official help">
+      <div class="event-row" data-search="linden lab knowledge base support covenant rules house controller official help">
         <div class="e-name">Linden Lab knowledge base</div>
         <div class="e-desc">Official help docs covering covenants, house controller features, abandon/swap procedures, and support ticket routes. <a href="https://community.secondlife.com/knowledgebase/english/linden-homes-r44/" target="_blank">community.secondlife.com</a></div>
+      </div>
+
+      <div class="event-row" data-search="daniel voyager blog linden homes news ssp regions theme expansion releases tracker map updates">
+        <div class="e-name">Daniel Voyager</div>
+        <div class="e-desc">The most current Linden Home news source &mdash; new region releases, theme expansions, and SSP region tracking with screenshots. The first place to look when a resident asks "is X expanding?" or "when's Y coming?". <a href="https://danielvoyager.wordpress.com/tag/linden-homes/" target="_blank">danielvoyager.wordpress.com</a></div>
+      </div>
+
+      <div class="event-row" data-search="parade of homes review teresa firelight landscaping interior design decorating linden home blog forum thread">
+        <div class="e-name">Parade of Homes Review</div>
+        <div class="e-desc">Teresa Firelight's long-running blog dedicated to Linden Home landscaping and interior design &mdash; useful when residents ask how to make their home look good or want ideas for their specific theme. <a href="https://community.secondlife.com/forums/topic/524525-parade-of-homes-review-articles-are-back/" target="_blank">forum thread</a></div>
+      </div>
+
+      <div class="event-row" data-search="the gazette bellisseria bureau bbb community publication events resident profiles theme commentary newsletter">
+        <div class="e-name">The Gazette (BBB)</div>
+        <div class="e-desc">The Bellisserian Bureau of Bureaucracy's community publication &mdash; events, resident profiles, theme commentary, what's happening on the continent right now. <a href="https://gazetteorg.wordpress.com/" target="_blank">gazetteorg.wordpress.com</a></div>
       </div>
 
     </div>

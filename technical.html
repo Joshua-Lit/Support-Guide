@@ -340,6 +340,7 @@ function updateThemeToggle() {
         <span class="nav-item" onclick="jumpTo(&#39;qa-lookat&#39;)"><span class="ni-dot"></span>Turn off lookat crosshairs</span>
         <span class="nav-item" onclick="jumpTo(&#39;qa-spam-protection&#39;)"><span class="ni-dot"></span>Spam / griefing protection</span>
         <span class="nav-item" onclick="jumpTo(&#39;qa-pay-confirm&#39;)"><span class="ni-dot"></span>Confirm before paying</span>
+        <span class="nav-item" onclick="jumpTo(&#39;qa-reflection-probes&#39;)"><span class="ni-dot"></span>PBR reflection probes</span>
         <span class="nav-item nav-item--fs" onclick="jumpTo(&#39;qa-head-mouse&#39;)"><span class="ni-dot"></span>Stop head following mouse</span>
         <span class="nav-item nav-item--fs" onclick="jumpTo(&#39;qa-selection-beam&#39;)"><span class="ni-dot"></span>Turn off selection beam</span>
         <span class="nav-item nav-item--fs" onclick="jumpTo(&#39;qa-script-particles&#39;)"><span class="ni-dot"></span>Turn off script particles</span>
@@ -393,7 +394,7 @@ function updateThemeToggle() {
   <div class="sec-hdr">
     <div class="sec-icon">⚙️</div>
     <div class="sec-title">Media &amp; Streaming</div>
-    <div class="sec-count" id="qa-count">1 entry</div>
+    <div class="sec-count" id="qa-count">12 entries</div>
   </div>
 
   <!-- Q1 -->
@@ -564,6 +565,29 @@ function updateThemeToggle() {
       <div class="tip-box">
         <div class="tip-label">// Tip</div>
         <p>Setting the threshold to <code>0</code> means every payment requires confirmation, no matter how small — useful for new residents who accidentally click pay buttons.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card" id="qa-reflection-probes" data-search="pbr reflection probes physically based rendering setup automatic manual zanibar pixelbottom artsy marie tutorial video shiny materials reflective glass mirrors metals lighting environment">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">How do I set up reflection probes for PBR?</span>
+      <span class="qa-tag">Graphics</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <p><strong>Reflection probes</strong> tell the viewer how to render reflective PBR surfaces (glass, polished metals, mirrors, water, etc) within a given area. Without them, PBR materials look flat or wrong; placed correctly, they make the space look properly lit and reflective.</p>
+
+      <p style="margin-top:12px;">There's no single "set up" button &mdash; it's a multi-step process involving rezzing probe objects, sizing them to cover the relevant volume, and tuning their settings. Two community video tutorials cover it well:</p>
+
+      <div class="bullets" style="margin-top:8px;">
+        <div class="bullet"><strong>Zanibar Pixelbottom &mdash; Setting up Reflection Probes for PBR</strong> &mdash; <a href="https://www.youtube.com/watch?v=Y3-0q2XD_Jg" target="_blank">youtube.com/watch?v=Y3-0q2XD_Jg</a></div>
+        <div class="bullet"><strong>Artsy Marie &mdash; [ARTSY] Manual Reflection Probes for Second Life PBR</strong> &mdash; <a href="https://www.youtube.com/watch?v=GaDU8WKmGFQ" target="_blank">youtube.com/watch?v=GaDU8WKmGFQ</a></div>
+      </div>
+
+      <div class="tip-box">
+        <div class="tip-label">// Mentor note</div>
+        <p>Both videos were pinned in the Bellisseria Mentors channel by Mini Mole as the recommended walkthroughs for residents asking about PBR reflection probe setup. If a resident is unfamiliar with PBR generally, point them at the videos rather than trying to talk them through it in chat &mdash; it's genuinely easier to follow visually.</p>
       </div>
     </div>
   </div>
