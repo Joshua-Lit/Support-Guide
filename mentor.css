@@ -257,6 +257,26 @@ body {
   padding-bottom: 22px;
   border-bottom: 1px solid var(--border);
   position: relative;
+  overflow: hidden;
+}
+.page-hdr-art {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 240px;
+  height: 240px;
+  opacity: 0.13;
+  pointer-events: none;
+  color: var(--c-elecblue);
+}
+.page-hdr-art svg { width: 100%; height: 100%; display: block; }
+.page-hdr > *:not(.page-hdr-art) { position: relative; z-index: 1; }
+@media (max-width: 880px) {
+  .page-hdr-art { width: 180px; height: 180px; right: -50px; opacity: 0.10; }
+}
+@media (max-width: 640px) {
+  .page-hdr-art { display: none; }
 }
 .page-hdr::after {
   content:''; position:absolute; bottom:-1px; left:0;
@@ -1461,7 +1481,8 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 }
 
 /* ── Tech page header ── */
-#page-header { padding: 0 0 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
+#page-header { padding: 0 0 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 0; position: relative; overflow: hidden; }
+#page-header > *:not(.page-hdr-art) { position: relative; z-index: 1; }
 .header-eyebrow {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
   font-size: 10px;
