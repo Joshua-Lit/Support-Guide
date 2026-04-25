@@ -360,21 +360,20 @@ body {
 .tech-chip:hover { border-color: var(--c-skyblue); background: rgba(124,127,255,0.15); }
 .page-nav {
   display: flex;
+  flex-wrap: wrap;
   border-bottom: 1px solid var(--border);
 }
 .page-nav-link {
-  flex: 1 1 0;
+  flex: 1 1 50%;
   min-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  padding: 10px 2px;
+  gap: 6px;
+  padding: 10px 8px;
   font-family: 'Share Tech Mono','Courier New',monospace;
-  font-size: 10px;
-  letter-spacing: 0.04em;
+  font-size: 11px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-dim);
   text-decoration: none;
@@ -383,7 +382,7 @@ body {
 }
 .page-nav-link:hover { color: var(--text-hi); background: var(--blue-dim); }
 .page-nav-link.active { color: var(--blue); border-bottom-color: var(--blue); background: var(--blue-dim); }
-.pn-icon { font-size: 11px; flex-shrink: 0; }
+.pn-icon { font-size: 13px; flex-shrink: 0; }
 .nav-item-modal { color: var(--text-mid); }
 .nav-item-modal:hover { color: var(--text-hi); }
 .ni-modal-hint {

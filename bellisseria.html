@@ -291,22 +291,23 @@
     padding-left: 36px;
   }
 
-  /* ─── PAGE NAV (4 TABS) ─── */
+  /* ─── PAGE NAV (4 TABS, 2x2 IN SIDEBAR) ─── */
   .page-nav {
     display: flex;
+    flex-wrap: wrap;
     border-bottom: 1px solid var(--border);
   }
   .page-nav-link {
-    flex: 1;
+    flex: 1 1 50%;
     min-width: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    padding: 10px 4px;
+    gap: 6px;
+    padding: 10px 8px;
     font-family: 'Share Tech Mono', 'Courier New', monospace;
-    font-size: 10px;
-    letter-spacing: 0.06em;
+    font-size: 11px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-dim);
     text-decoration: none;
@@ -328,7 +329,7 @@
     border-bottom-color: var(--accent);
     background: var(--accent-soft);
   }
-  .pn-icon { font-size: 12px; }
+  .pn-icon { font-size: 13px; flex-shrink: 0; }
 
   /* ─── SEARCH ─── */
   .search-wrap {
