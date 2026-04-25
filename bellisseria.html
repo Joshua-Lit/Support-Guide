@@ -541,53 +541,63 @@
     justify-content: center;
   }
 
-  /* ─── HERO ─── */
-  .hero {
+  /* ─── PAGE HEADER ─── */
+  .page-hdr {
+    margin-bottom: 40px;
+    padding-bottom: 22px;
     position: relative;
-    padding: 48px 52px 56px;
-    background: var(--bg-hero);
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
   }
-  .hero-inner { max-width: 1400px; margin: 0 auto; position: relative; z-index: 2; }
-  .hero-art {
+  .page-hdr::after {
+    content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.5;
+    box-shadow: 0 0 10px rgba(240,153,123,0.3);
+  }
+  .page-hdr-art {
     position: absolute;
-    right: -30px;
+    right: -160px;
     top: 50%;
     transform: translateY(-50%);
-    width: 320px;
-    height: 320px;
-    opacity: 0.16;
+    width: 280px;
+    height: 280px;
+    opacity: 0.14;
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
   }
-  .hero-art svg { width: 100%; height: 100%; display: block; }
-  @media (max-width: 1100px) {
-    .hero-art { width: 240px; height: 240px; right: -50px; opacity: 0.12; }
+  .page-hdr-art svg { width: 100%; height: 100%; display: block; }
+  .page-hdr > *:not(.page-hdr-art) { position: relative; z-index: 1; }
+  @media (max-width: 880px) {
+    .page-hdr-art { width: 200px; height: 200px; right: -80px; opacity: 0.10; }
   }
-  @media (max-width: 720px) {
-    .hero-art { display: none; }
+  @media (max-width: 640px) {
+    .page-hdr-art { display: none; }
   }
 
-  .hero-eyebrow {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
+  .eyebrow {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 10px;
     color: var(--accent);
-    letter-spacing: 0.18em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
     margin-bottom: 8px;
   }
-  .hero h1 {
-    font-size: 44px;
-    font-weight: 900;
-    line-height: 1.05;
-    margin-bottom: 14px;
+  .page-hdr h1 {
+    font-family: 'Oxanium', 'Courier New', monospace;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin: 0;
   }
-  .hero h1 .accent { color: var(--accent); }
-  .hero .lede {
-    font-size: 16px;
+  .page-hdr h1 .accent { color: var(--accent); }
+  .page-hdr .lede {
     color: var(--text-mid);
-    max-width: 620px;
-    margin-bottom: 22px;
+    margin-top: 10px;
+    font-size: 13px;
+    max-width: 580px;
+    line-height: 1.55;
   }
 
   .hero-meta {
@@ -1072,11 +1082,9 @@
     }
     #sidebar-toggle { display: flex; }
     #main { padding-top: 64px; }
-    .hero { padding-top: 24px; }
   }
   @media (max-width: 720px) {
-    .hero { padding: 24px 18px 36px; }
-    .hero h1 { font-size: 32px; }
+    .page-hdr h1 { font-size: 1.4rem; }
     .content { padding: 24px 16px 48px; }
     .section-header { padding: 14px 16px; }
     .section-body { padding: 16px; }
@@ -1199,8 +1207,10 @@
 
 <div id="main">
 
-<header class="hero">
-  <div class="hero-art" aria-hidden="true">
+<div class="content">
+
+<div class="page-hdr">
+  <div class="page-hdr-art" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="none">
       <circle cx="18" cy="6" r="3" fill="#f5c788" opacity="0.9"/>
       <path d="M2 14c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0 4 1.5 6 0" stroke="#f0997b" stroke-width="1.4" stroke-linecap="round" fill="none"/>
@@ -1208,21 +1218,17 @@
       <path d="M2 22c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0 4 1.5 6 0" stroke="#f0997b" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.7"/>
     </svg>
   </div>
-  <div class="hero-inner">
-    <div class="hero-eyebrow">// CONTINENT REFERENCE</div>
-    <h1>Bellisseria <span class="accent">Reference</span></h1>
-    <p class="lede">A mentor's quick guide to Second Life's community-built continent &mdash; themes, claiming a Linden Home, places to send residents, and how to get around.</p>
+  <div class="eyebrow">// CONTINENT REFERENCE</div>
+  <h1>Bellisseria <span class="accent">Reference</span></h1>
+  <p class="lede">A mentor's quick guide to Second Life's community-built continent &mdash; themes, claiming a Linden Home, places to send residents, and how to get around.</p>
 
-    <div class="hero-meta">
-      <div class="hero-chip c-sand"><strong>2,800+</strong>Regions</div>
-      <div class="hero-chip c-sky"><strong>16+</strong>Home themes</div>
-      <div class="hero-chip c-coral"><strong>2019</strong>Established</div>
-      <div class="hero-chip c-mint"><strong>Moles</strong>Built &amp; maintained</div>
-    </div>
+  <div class="hero-meta">
+    <div class="hero-chip c-sand"><strong>2,800+</strong>Regions</div>
+    <div class="hero-chip c-sky"><strong>16+</strong>Home themes</div>
+    <div class="hero-chip c-coral"><strong>2019</strong>Established</div>
+    <div class="hero-chip c-mint"><strong>Moles</strong>Built &amp; maintained</div>
   </div>
-</header>
-
-<div class="content">
+</div>
 
 <div id="no-results">No matches found. Try a different keyword.</div>
 

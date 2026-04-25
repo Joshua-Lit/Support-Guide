@@ -250,22 +250,21 @@ body {
 .sidebar-top-btn:hover { color: var(--c-teal); border-color: var(--c-teal); }
 
 /* ═══ MAIN ═══ */
-#main { flex:1; max-width: 1400px; margin: 0 auto; padding:20px 52px 40px; overflow-x:hidden; min-width:0; }
+html, body { overflow-x: hidden; }
+#main { flex:1; max-width: 1400px; margin: 0 auto; padding:20px 52px 40px; min-width:0; }
 
 .page-hdr {
   margin-bottom: 40px;
   padding-bottom: 22px;
-  border-bottom: 1px solid var(--border);
   position: relative;
-  overflow: hidden;
 }
 .page-hdr-art {
   position: absolute;
-  right: -40px;
+  right: -160px;
   top: 50%;
   transform: translateY(-50%);
-  width: 240px;
-  height: 240px;
+  width: 280px;
+  height: 280px;
   opacity: 0.13;
   pointer-events: none;
   color: var(--c-elecblue);
@@ -273,15 +272,17 @@ body {
 .page-hdr-art svg { width: 100%; height: 100%; display: block; }
 .page-hdr > *:not(.page-hdr-art) { position: relative; z-index: 1; }
 @media (max-width: 880px) {
-  .page-hdr-art { width: 180px; height: 180px; right: -50px; opacity: 0.10; }
+  .page-hdr-art { width: 200px; height: 200px; right: -80px; opacity: 0.10; }
 }
 @media (max-width: 640px) {
   .page-hdr-art { display: none; }
 }
 .page-hdr::after {
-  content:''; position:absolute; bottom:-1px; left:0;
-  width:100px; height:1px;
-  background: linear-gradient(90deg, var(--blue), transparent);
+  content:''; position:absolute; bottom:-1px; left:0; right:0;
+  height:1px;
+  background: linear-gradient(90deg, transparent, var(--c-elecblue), transparent);
+  opacity: 0.5;
+  box-shadow: 0 0 10px rgba(77,159,255,0.3);
 }
 .eyebrow {
   font-family:'Share Tech Mono','Courier New',monospace; font-size:10px;
@@ -1481,7 +1482,14 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 }
 
 /* ── Tech page header ── */
-#page-header { padding: 0 0 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 0; position: relative; overflow: hidden; }
+#page-header { padding: 0 0 24px 0; margin-bottom: 0; position: relative; }
+#page-header::after {
+  content:''; position:absolute; bottom:0; left:0; right:0;
+  height:1px;
+  background: linear-gradient(90deg, transparent, var(--c-elecblue), transparent);
+  opacity: 0.5;
+  box-shadow: 0 0 10px rgba(77,159,255,0.3);
+}
 #page-header > *:not(.page-hdr-art) { position: relative; z-index: 1; }
 .header-eyebrow {
   font-family: 'Share Tech Mono', 'Courier New', monospace;
@@ -1977,11 +1985,9 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 [data-theme="light"] .header-eyebrow {
   color: var(--c-elecblue);
 }
-[data-theme="light"] #page-header {
-  border-bottom-color: var(--border);
-}
 [data-theme="light"] #page-header::after {
-  background: var(--c-violet);
+  background: linear-gradient(90deg, transparent, var(--c-elecblue), transparent);
+  opacity: 0.45;
 }
 
 /* ── Light theme: stat chips ── */
@@ -2276,12 +2282,10 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 [data-theme="light"] .status-dot { background: var(--c-elecblue); }
 [data-theme="light"] .sidebar-top-btn { border-color: var(--border); color: var(--text-mid); }
 [data-theme="light"] .sidebar-top-btn:hover { color: var(--c-teal); border-color: var(--c-teal); }
-[data-theme="light"] .page-hdr { border-bottom-color: var(--border); }
-[data-theme="light"] .page-hdr::after { background: var(--c-elecblue); }
+[data-theme="light"] .page-hdr::after { background: linear-gradient(90deg, transparent, var(--c-elecblue), transparent); opacity: 0.45; }
 [data-theme="light"] .eyebrow,
 [data-theme="light"] .header-eyebrow { color: var(--c-elecblue); }
-[data-theme="light"] #page-header { border-bottom-color: var(--border); }
-[data-theme="light"] #page-header::after { background: var(--c-violet); }
+[data-theme="light"] #page-header::after { background: linear-gradient(90deg, transparent, var(--c-elecblue), transparent); opacity: 0.45; }
 [data-theme="light"] .stat-chip { background: var(--panel); border-color: var(--border); }
 [data-theme="light"] .section-hdr,
 [data-theme="light"] .sec-hdr { border-bottom-color: var(--border); }
