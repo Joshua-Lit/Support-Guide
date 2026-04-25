@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bellisseria Reference — SL Mentor Guide</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj4KICA8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjMGYxZjMzIi8+CiAgPHBhdGggZD0iTTQgMjBjMi41LTEuNSA1LTEuNSA4IDAgMy0xLjUgNS0xLjUgOCAwIDIuNS0xLjUgNS0xLjUgOCAwIiBzdHJva2U9IiNmMDk5N2IiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8cGF0aCBkPSJNNCAyNWMyLjUtMS41IDUtMS41IDggMCAzLTEuNSA1LTEuNSA4IDAgMi41LTEuNSA1LTEuNSA4IDAiIHN0cm9rZT0iI2JmZGZlZSIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxjaXJjbGUgY3g9IjI0IiBjeT0iOSIgcj0iMyIgZmlsbD0iI2Y1Yzc4OCIvPgo8L3N2Zz4K">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;900&family=Roboto:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<script>
+  (function() {
+    try {
+      if (localStorage.getItem('sl-mentor-theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (e) {}
+  })();
+
+  function toggleTheme() {
+    var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      document.documentElement.removeAttribute('data-theme');
+      try { localStorage.setItem('sl-mentor-theme', 'dark'); } catch (e) {}
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      try { localStorage.setItem('sl-mentor-theme', 'light'); } catch (e) {}
+    }
+  }
+
+  function copySLURL(btn, slurl) {
+    navigator.clipboard.writeText(slurl).then(function() {
+      var original = btn.textContent;
+      btn.textContent = 'COPIED';
+      btn.classList.add('copied');
+      setTimeout(function() {
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 1400);
+    });
+  }
+
+  function toggleSection(hdr) {
+    hdr.parentElement.classList.toggle('collapsed');
+  }
+
+  function dismissCookie() {
+    document.getElementById('cookie-notice').classList.add('hidden');
+    try { localStorage.setItem('cookie-ok-v2', '1'); } catch (e) {}
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (localStorage.getItem('cookie-ok-v2')) {
+      var cn = document.getElementById('cookie-notice');
+      if (cn) cn.classList.add('hidden');
+    }
+  });
+</script>
+<style>
+  :root {
+    --bg-page:        #0a1828;
+    --bg-hero:        #0f1f33;
+    --bg-card:        #14263d;
+    --bg-card-soft:   #182d47;
+    --bg-card-hover:  #1d3654;
+    --border:         #1f3450;
+    --border-strong:  #2a4868;
+    --text:           #e8f1fa;
+    --text-mid:       #a8c4dc;
+    --text-dim:       #6e8aa8;
+    --pastel-sand:    #f5ecd8;
+    --pastel-sand-ink:#6b4f1c;
+    --pastel-sky:     #bfdfee;
+    --pastel-sky-ink: #14304a;
+    --pastel-coral:   #f5c4b3;
+    --pastel-coral-ink:#4a1b0c;
+    --pastel-mint:    #c8e8d8;
+    --pastel-mint-ink:#1f5238;
+    --accent:         #f0997b;
+    --accent-strong:  #e07a5f;
+    --accent-soft:    rgba(240,153,123,0.12);
+    --tier-plus-bg:   #1f3a2c;  --tier-plus-fg:   #97c459;
+    --tier-prem-bg:   #3d2a14;  --tier-prem-fg:   #f5c788;
+    --tier-pp-bg:     #2e1f3d;  --tier-pp-fg:     #cea8e8;
+    --tier-mix-bg:    #1a3450;  --tier-mix-fg:    #85b7eb;
+  }
+
+  html[data-theme="light"] {
+    --bg-page:        #f4fafd;
+    --bg-hero:        #e3f1f8;
+    --bg-card:        #ffffff;
+    --bg-card-soft:   #f6fafd;
+    --bg-card-hover:  #eef6fb;
+    --border:         #d6e4ee;
+    --border-strong:  #b3cee0;
+    --text:           #14304a;
+    --text-mid:       #3a5a7a;
+    --text-dim:       #6b8298;
+    --pastel-mint:    #d6efe1;
+    --accent:         #d85a30;
+    --accent-strong:  #b85b3f;
+    --accent-soft:    rgba(216,90,48,0.10);
+    --tier-plus-bg:   #e8f4ec;  --tier-plus-fg:   #2d6b3f;
+    --tier-prem-bg:   #fef0e0;  --tier-prem-fg:   #a85a14;
+    --tier-pp-bg:     #f0e3f5;  --tier-pp-fg:     #6b3585;
+    --tier-mix-bg:    #e3eef8;  --tier-mix-fg:    #1a4970;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text);
+    line-height: 1.6;
+    background: var(--bg-page);
+    min-height: 100vh;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Oxanium', sans-serif;
+    color: var(--text);
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 48px 24px 64px;
+    background: var(--bg-hero);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .hero-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 2; }
+
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+  .top-nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .top-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--text-mid);
+    transition: all 0.15s ease;
+  }
+  .top-nav-link:hover { border-color: var(--accent); color: var(--text); text-decoration: none; }
+  .top-nav-link.active {
+    background: var(--pastel-coral);
+    color: var(--pastel-coral-ink);
+    border-color: var(--pastel-coral);
+    font-weight: 700;
+  }
+
+  /* THEME SWITCH */
+  .theme-switch { cursor: pointer; user-select: none; flex-shrink: 0; }
+  .theme-switch-track {
+    position: relative;
+    width: 52px; height: 26px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    justify-content: space-between;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-switch-track:hover { border-color: var(--accent); }
+  .theme-switch-sun, .theme-switch-moon {
+    font-size: 11px;
+    line-height: 1;
+    color: var(--text-dim);
+    z-index: 2;
+    transition: color 0.2s ease;
+  }
+  .theme-switch-moon { color: var(--text); }
+  html[data-theme="light"] .theme-switch-moon { color: var(--text-dim); }
+  html[data-theme="light"] .theme-switch-sun { color: var(--accent); }
+  .theme-switch-knob {
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 20px; height: 20px;
+    background: var(--accent);
+    border-radius: 50%;
+    transition: transform 0.22s ease, background 0.2s ease;
+    z-index: 1;
+  }
+  html[data-theme="light"] .theme-switch-knob { transform: translateX(26px); }
+
+  .hero-eyebrow {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.18em;
+    margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .lede {
+    font-size: 16px;
+    color: var(--text-mid);
+    max-width: 620px;
+    margin-bottom: 22px;
+  }
+
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+    max-width: 720px;
+  }
+  .hero-chip {
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .hero-chip strong {
+    font-family: 'Oxanium', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 2px;
+    letter-spacing: -0.01em;
+  }
+  .hero-chip.c-sand  { background: var(--pastel-sand);  color: var(--pastel-sand-ink); }
+  .hero-chip.c-sky   { background: var(--pastel-sky);   color: var(--pastel-sky-ink); }
+  .hero-chip.c-coral { background: var(--pastel-coral); color: var(--pastel-coral-ink); }
+  .hero-chip.c-mint  { background: var(--pastel-mint);  color: var(--pastel-mint-ink); }
+
+  /* MAIN */
+  main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 64px; }
+
+  .section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 26px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s ease;
+  }
+  .section-header:hover { background: var(--bg-card-hover); }
+  .section-icon {
+    width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 9px;
+    flex-shrink: 0;
+    font-size: 17px;
+  }
+  .section-title { font-size: 20px; font-weight: 700; flex: 1; }
+  .section-sub {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    margin-top: 2px;
+  }
+  .section-toggle {
+    color: var(--text-dim);
+    font-size: 13px;
+    transition: transform 0.2s ease;
+  }
+  .section.collapsed .section-toggle { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+  .section.collapsed .section-header { border-bottom: none; }
+  .section-body { padding: 24px 26px 26px; }
+
+  .prose p { margin: 0 0 12px; color: var(--text-mid); }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--text); font-weight: 600; }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .fact-card {
+    background: var(--bg-card-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .fact-card .fc-label {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .fact-card .fc-body { font-size: 13.5px; color: var(--text-mid); line-height: 1.55; }
+
+  .theme-intro {
+    background: var(--pastel-sand);
+    color: var(--pastel-sand-ink);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .theme-intro strong { font-weight: 700; }
+
+  .theme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .theme-card {
+    background: var(--bg-card-soft);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 15px;
+    transition: all 0.15s ease;
+  }
+  .theme-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .theme-name {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .theme-tier {
+    display: inline-block;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 2px 7px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .tier-plus    { background: var(--tier-plus-bg); color: var(--tier-plus-fg); }
+  .tier-premium { background: var(--tier-prem-bg); color: var(--tier-prem-fg); }
+  .tier-pp      { background: var(--tier-pp-bg);   color: var(--tier-pp-fg); }
+  .tier-mixed   { background: var(--tier-mix-bg);  color: var(--tier-mix-fg); }
+  .theme-desc { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+
+  .claim-steps { counter-reset: step; display: grid; gap: 10px; }
+  .claim-step {
+    counter-increment: step;
+    display: flex;
+    gap: 14px;
+    background: var(--bg-card-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .claim-step::before {
+    content: counter(step);
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    background: var(--accent);
+    color: #ffffff;
+    font-family: 'Oxanium', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .claim-step-body { flex: 1; font-size: 13.5px; color: var(--text-mid); line-height: 1.55; }
+  .claim-step-body strong {
+    color: var(--text);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .callout {
+    background: var(--pastel-sand);
+    color: var(--pastel-sand-ink);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 18px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .callout strong { font-weight: 700; }
+
+  .places-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .place-card {
+    background: var(--bg-card-soft);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .place-card.placeholder {
+    border-style: dashed;
+    border-color: var(--border-strong);
+    opacity: 0.85;
+  }
+  .place-name {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .place-desc { font-size: 13px; color: var(--text-mid); line-height: 1.5; flex: 1; }
+  .place-slurl {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    background: var(--bg-page);
+    padding: 6px 10px;
+    border-radius: 6px;
+    word-break: break-all;
+    border: 1px solid var(--border);
+  }
+  .place-slurl.empty { font-style: italic; }
+  .place-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .place-tag {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .place-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-decoration: none;
+  }
+  .btn-primary { background: var(--accent); color: #ffffff; }
+  .btn-primary:hover { background: var(--accent-strong); text-decoration: none; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+  }
+  .btn-ghost:hover { background: var(--bg-card-hover); text-decoration: none; }
+  .btn-ghost.copied {
+    background: var(--pastel-mint);
+    color: var(--pastel-mint-ink);
+    border-color: var(--pastel-mint);
+  }
+
+  .events-list { display: grid; gap: 10px; }
+  .event-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 16px;
+    padding: 14px 16px;
+    background: var(--bg-card-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    align-items: start;
+  }
+  .event-row .e-name {
+    font-family: 'Oxanium', sans-serif;
+    font-weight: 700;
+    color: var(--text);
+    font-size: 14px;
+  }
+  .event-row .e-desc { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
+
+  .transport-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .transport-card {
+    background: var(--bg-card-soft);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 16px;
+    transition: border-color 0.15s ease;
+  }
+  .transport-card:hover { border-color: var(--accent); }
+  .transport-card .t-icon { font-size: 22px; margin-bottom: 8px; }
+  .transport-card .t-name {
+    font-family: 'Oxanium', sans-serif;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+  .transport-card .t-desc { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
+
+  footer {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 32px 24px 40px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  footer a { color: var(--accent); }
+
+  #cookie-notice {
+    position: fixed;
+    bottom: 16px; left: 16px; right: 16px;
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    color: var(--text-mid);
+    z-index: 100;
+  }
+  #cookie-notice.hidden { display: none; }
+  #cookie-notice p { margin: 0; flex: 1; }
+  #cookie-notice button {
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-family: 'Oxanium', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  #cookie-notice button:hover { background: var(--accent-strong); }
+
+  @media (max-width: 720px) {
+    .hero { padding: 28px 18px 44px; }
+    .hero h1 { font-size: 34px; }
+    main { padding: 24px 16px 48px; }
+    .section-header { padding: 16px 18px; }
+    .section-body { padding: 18px; }
+    .overview-grid { grid-template-columns: 1fr; }
+    .event-row { grid-template-columns: 1fr; gap: 4px; }
+    .top-bar { gap: 10px; }
+    .top-nav-link { font-size: 11px; padding: 5px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+
+    <div class="top-bar">
+      <nav class="top-nav">
+        <a href="index.html" class="top-nav-link">🏠 Home</a>
+        <a href="technical.html" class="top-nav-link">⚙️ Technical</a>
+        <a href="bellisseria.html" class="top-nav-link active">🌊 Bellisseria</a>
+      </nav>
+      <label class="theme-switch" title="Toggle light / dark theme" onclick="toggleTheme(); return false;" aria-label="Toggle theme">
+        <div class="theme-switch-track">
+          <span class="theme-switch-sun">☀</span>
+          <span class="theme-switch-moon">☾</span>
+          <span class="theme-switch-knob"></span>
+        </div>
+      </label>
+    </div>
+
+    <div class="hero-eyebrow">// CONTINENT REFERENCE</div>
+    <h1>Bellisseria <span class="accent">Reference</span></h1>
+    <p class="lede">A mentor's quick guide to Second Life's community-built continent &mdash; themes, claiming a Linden Home, places to send residents, and how to get around.</p>
+
+    <div class="hero-meta">
+      <div class="hero-chip c-sand"><strong>2,800+</strong>Regions</div>
+      <div class="hero-chip c-sky"><strong>16+</strong>Home themes</div>
+      <div class="hero-chip c-coral"><strong>2019</strong>Established</div>
+      <div class="hero-chip c-mint"><strong>Moles</strong>Built &amp; maintained</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="section" id="sec-overview">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon">🗺</div>
+      <div style="flex:1;">
+        <div class="section-title">What is Bellisseria?</div>
+        <div class="section-sub">Continent overview &middot; the basics in plain language</div>
+      </div>
+      <div class="section-toggle">▼</div>
+    </div>
+    <div class="section-body">
+      <div class="prose">
+        <p>Bellisseria is a Linden-Lab-owned continent that hosts the <strong>second generation of Linden Homes</strong> &mdash; the homes included with paid memberships. It launched in 2019, has grown to over 2,800 regions, and is built and maintained by the <strong>Moles</strong> (a small team of long-time SL residents employed by Linden Lab).</p>
+        <p>Unlike older themed estates, Bellisseria <strong>blends themes across one connected continent</strong>: a Victorian neighbourhood might sit beside a houseboat dock, with a log-home valley a short railway ride away. The whole thing is navigable by boat, train, road, and air.</p>
+      </div>
+
+      <div class="overview-grid">
+        <div class="fact-card">
+          <div class="fc-label">Who lives there</div>
+          <div class="fc-body">Plus, Premium, and Premium Plus members. Basic accounts cannot claim a Linden Home but are welcome to visit.</div>
+        </div>
+        <div class="fact-card">
+          <div class="fc-label">Parcel sizes</div>
+          <div class="fc-body">512&nbsp;m² (Plus), 1,024&nbsp;m² (Premium), and 2,048&nbsp;m² (Premium Plus exclusive themes).</div>
+        </div>
+        <div class="fact-card">
+          <div class="fc-label">Use restrictions</div>
+          <div class="fc-body">Residential only &mdash; no commerce, rentals, or advertising (except in the new Ridgewood Enclave commercial districts).</div>
+        </div>
+        <div class="fact-card">
+          <div class="fc-label">Staying in theme</div>
+          <div class="fc-body">Parcels must be kept presentable and broadly in keeping with their neighbourhood's theme.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-themes">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon">🏘</div>
+      <div style="flex:1;">
+        <div class="section-title">Linden Home themes</div>
+        <div class="section-sub">All current themes &middot; tier eligibility &middot; quick descriptions</div>
+      </div>
+      <div class="section-toggle">▼</div>
+    </div>
+    <div class="section-body">
+
+      <div class="theme-intro">
+        <strong>Tier guide:</strong> Plus members access 512&nbsp;m² themes &middot; Premium adds 1,024&nbsp;m² themes &middot; Premium Plus unlocks the larger 2,048&nbsp;m² exclusive themes. Newer themes such as Copperfield Heights mix all three tiers in one community.
+      </div>
+
+      <div class="theme-grid">
+
+        <div class="theme-card">
+          <div class="theme-name">Traditional <span class="theme-tier tier-premium">Premium</span></div>
+          <div class="theme-desc">The original Bellisseria look &mdash; suburban houses with gardens, picket fences, a friendly neighbourhood feel. The continent's heart.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Houseboats <span class="theme-tier tier-premium">Premium</span></div>
+          <div class="theme-desc">Floating homes moored along Bellisseria's waterways. Boat access from the dock. Popular for water-themed roleplay and sailing.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Campers <span class="theme-tier tier-plus">Plus</span></div>
+          <div class="theme-desc">Compact 512&nbsp;m² parcels with a vintage caravan. Wooded camping-ground feel. Entry-level option for Plus members.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Victorian <span class="theme-tier tier-premium">Premium</span></div>
+          <div class="theme-desc">Gaslit cobbles, ornate trim, parks with reflecting pools. Connected by an extensive railway network. Atmospheric at night.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Log Homes <span class="theme-tier tier-premium">Premium</span></div>
+          <div class="theme-desc">Upscale log cabins set in forested hills and valleys. Country living with modern interiors. Hiking and horse-riding country.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Stilt Homes <span class="theme-tier tier-premium">Premium</span></div>
+          <div class="theme-desc">Houses raised over water on stilts. Coastal feel, sea views, easy boat access. House controller is in the water.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Chalets <span class="theme-tier tier-premium">Premium</span></div>
+          <div class="theme-desc">Alpine-style cabins set among mountains and pine, with their own railway. Cosy interiors suited to winter scenery.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Fantasy <span class="theme-tier tier-premium">Premium</span></div>
+          <div class="theme-desc">Whimsical dwellings &mdash; treehouses, mushroom homes, magical themes. Includes the Fairstone Quarry wedding venue.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Newbrooke <span class="theme-tier tier-plus">Plus</span> <span class="theme-tier tier-premium">Premium</span></div>
+          <div class="theme-desc">Modern suburban homes with customisable siding, trim, and brickwork colours. Eight models across 512 and 1,024&nbsp;m².</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Sakura <span class="theme-tier tier-plus">Plus</span> <span class="theme-tier tier-premium">Premium</span></div>
+          <div class="theme-desc">Japanese-inspired homes among cherry blossoms and traditional gardens. Released for SL's 19th birthday in 2022.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Ranch <span class="theme-tier tier-pp">Premium Plus</span></div>
+          <div class="theme-desc">Large 2,048&nbsp;m² parcels with ranch-style houses, paddocks, and rural landscapes. Horse country.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Mediterranean <span class="theme-tier tier-pp">Premium Plus</span></div>
+          <div class="theme-desc">Sun-drenched coastal villas with terracotta tiles and stucco walls. Has its own railway connecting the regions.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Thousand Island <span class="theme-tier tier-pp">Premium Plus</span></div>
+          <div class="theme-desc">Lakeside homes set across an archipelago of small islands. Quiet, water-focused theme for Premium Plus residents.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Aspen Ridge <span class="theme-tier tier-premium">Premium</span></div>
+          <div class="theme-desc">Mountain homes with seasonal landscape changes &mdash; the regions visibly shift through the seasons.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Ridgewood Enclave <span class="theme-tier tier-pp">Premium Plus</span></div>
+          <div class="theme-desc">Premium Plus theme that now also hosts Bellisseria's first <strong>commercial districts</strong> (March 2026) &mdash; the only place commerce is permitted on the continent.</div>
+        </div>
+
+        <div class="theme-card">
+          <div class="theme-name">Copperfield Heights <span class="theme-tier tier-mixed">All tiers</span></div>
+          <div class="theme-desc">2026 release. Craftsman-style homes that mix Plus, Premium, and Premium Plus parcels in the same community for the first time.</div>
+        </div>
+
+      </div>
+
+      <div class="callout">
+        <strong>First-generation themes</strong> (Tahoe, Elderglen, Sahreta Osumai, Meadowbrook) still exist on older estates but are no longer claimable. Some long-term residents still occupy them. They use older covenants and have a 175-prim limit on 512&nbsp;m².
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-claim">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon">🔑</div>
+      <div style="flex:1;">
+        <div class="section-title">How to claim a Linden Home</div>
+        <div class="section-sub">Step-by-step &middot; what to tell a newcomer asking</div>
+      </div>
+      <div class="section-toggle">▼</div>
+    </div>
+    <div class="section-body">
+
+      <div class="claim-steps">
+        <div class="claim-step">
+          <div class="claim-step-body">
+            <strong>Have an eligible membership</strong>
+            Plus, Premium, or Premium Plus. Basic accounts cannot claim a Linden Home. Tier upgrade is done at <em>secondlife.com</em> &rarr; My Account &rarr; Membership.
+          </div>
+        </div>
+
+        <div class="claim-step">
+          <div class="claim-step-body">
+            <strong>Check land allowance</strong>
+            A Linden Home counts against the resident's land allowance. If they already own mainland that uses their full tier, they need to free up some allowance first.
+          </div>
+        </div>
+
+        <div class="claim-step">
+          <div class="claim-step-body">
+            <strong>Go to the claim page</strong>
+            <em>secondlife.com</em> &rarr; My Account &rarr; <strong>Get a Linden Home</strong>. Available themes are listed by tier, with home models, parcel sizes, and a region map.
+          </div>
+        </div>
+
+        <div class="claim-step">
+          <div class="claim-step-body">
+            <strong>Browse and pick a parcel</strong>
+            Filter by theme. Click an available parcel to preview its surroundings on the map. Don't rush &mdash; neighbours and views matter and swapping is easy if it doesn't work out.
+          </div>
+        </div>
+
+        <div class="claim-step">
+          <div class="claim-step-body">
+            <strong>Confirm and teleport</strong>
+            Once claimed, the resident gets a teleport landmark and a House Controller appears just outside the parcel boundary (or in the water, for stilt homes).
+          </div>
+        </div>
+
+        <div class="claim-step">
+          <div class="claim-step-body">
+            <strong>Furnishing &amp; customising</strong>
+            The House Controller (touch it on the parcel) controls textures, accessories, and reset. Furniture is up to the resident &mdash; Bellisseria covenants forbid replacing the house structure itself.
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Premium Plus tip:</strong> Premium Plus members can request a specific Linden Home via a support ticket if a particular parcel becomes available. They also get exclusive access to Ranch, Mediterranean, Thousand Island, and Ridgewood Enclave themes.
+      </div>
+
+      <div class="prose" style="margin-top: 18px;">
+        <p><strong>Abandoning &amp; swapping:</strong> About Land &rarr; General &rarr; Abandon Land releases a Linden Home back to the pool. The resident can claim a different one immediately &mdash; there's no cooldown.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="sec-places">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon">📍</div>
+      <div style="flex:1;">
+        <div class="section-title">Places to visit</div>
+        <div class="section-sub">Curated SLURLs to send residents &middot; placeholders for us to fill in</div>
+      </div>
+      <div class="section-toggle">▼</div>
+    </div>
+    <div class="section-body">
+
+      <div class="places-grid">
+
+        <div class="place-card">
+          <div class="place-name">Bellisseria Fairgrounds</div>
+          <div class="place-desc">Tall ships, fairground games, seasonal events, friendly crowd. Universally safe recommendation for newcomers exploring beyond starter areas.</div>
+          <div class="place-tags">
+            <span class="place-tag">Community</span>
+            <span class="place-tag">Events</span>
+          </div>
+          <div class="place-slurl">secondlife://Bellisseria%20Fairgrounds/164/168/23</div>
+          <div class="place-actions">
+            <a class="btn btn-primary" href="secondlife://Bellisseria%20Fairgrounds/164/168/23">Open in SL</a>
+            <button class="btn btn-ghost" onclick="copySLURL(this,'secondlife://Bellisseria Fairgrounds/164/168/23')">Copy SLURL</button>
+          </div>
+        </div>
+
+        <div class="place-card placeholder">
+          <div class="place-name">BelliHub</div>
+          <div class="place-desc">Bellisseria's information hub &mdash; demo homes, Premium membership tutorials, and an introduction to the community.</div>
+          <div class="place-tags">
+            <span class="place-tag">Hub</span>
+            <span class="place-tag">Demos</span>
+          </div>
+          <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+          <div class="place-actions">
+            <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
+          </div>
+        </div>
+
+        <div class="place-card placeholder">
+          <div class="place-name">Linden Homes Demo</div>
+          <div class="place-desc">Walk-through demo region showcasing every current Linden Home theme and model. Great for residents weighing options before claiming.</div>
+          <div class="place-tags">
+            <span class="place-tag">Demos</span>
+            <span class="place-tag">Newcomer-safe</span>
+          </div>
+          <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+          <div class="place-actions">
+            <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
+          </div>
+        </div>
+
+        <div class="place-card placeholder">
+          <div class="place-name">Chippewa Town Hall</div>
+          <div class="place-desc">Community centre for the Traditional theme &mdash; reservable for conferences, garden parties, and weddings. Sits on the main railway hub.</div>
+          <div class="place-tags">
+            <span class="place-tag">Community</span>
+            <span class="place-tag">Events</span>
+          </div>
+          <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+          <div class="place-actions">
+            <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
+          </div>
+        </div>
+
+        <div class="place-card placeholder">
+          <div class="place-name">Merrymount</div>
+          <div class="place-desc">Community region for the Victorian theme &mdash; cafe, fairground games, ice skating in winter, gaslit park.</div>
+          <div class="place-tags">
+            <span class="place-tag">Community</span>
+            <span class="place-tag">Seasonal</span>
+          </div>
+          <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+          <div class="place-actions">
+            <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
+          </div>
+        </div>
+
+        <div class="place-card placeholder">
+          <div class="place-name">Sandbox Bellisseria</div>
+          <div class="place-desc">Bellisseria-specific sandbox where residents can demo Linden Home themes and test decorating ideas before claiming.</div>
+          <div class="place-tags">
+            <span class="place-tag">Sandbox</span>
+            <span class="place-tag">Demos</span>
+          </div>
+          <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+          <div class="place-actions">
+            <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
+          </div>
+        </div>
+
+        <div class="place-card placeholder">
+          <div class="place-name">Fairstone Quarry</div>
+          <div class="place-desc">Fantasy theme wedding venue. Bioluminescent lighting, the Tree of Love bonding spot, dance balls, optional radio stream.</div>
+          <div class="place-tags">
+            <span class="place-tag">Venue</span>
+            <span class="place-tag">Weddings</span>
+          </div>
+          <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+          <div class="place-actions">
+            <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout">
+        <strong>SLURL sourcing:</strong> Pull SLURLs from <em>maps.secondlife.com</em> rather than social media posts &mdash; the maps source is reliable. Always test in-world before adding to the guide.
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="sec-events">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon">🎪</div>
+      <div style="flex:1;">
+        <div class="section-title">Events &amp; community</div>
+        <div class="section-sub">Groups, regular events, and where to point a curious resident</div>
+      </div>
+      <div class="section-toggle">▼</div>
+    </div>
+    <div class="section-body">
+
+      <div class="events-list">
+
+        <div class="event-row">
+          <div class="e-name">Bellisseria Citizens</div>
+          <div class="e-desc">The main resident-run group for everyone living on or visiting the continent. Daily chatter, event announcements, mutual help. Searchable in Groups.</div>
+        </div>
+
+        <div class="event-row">
+          <div class="e-name">Bellisseria Bureau</div>
+          <div class="e-desc">Resident-run news outlet covering Bellisseria life, theme reveals, community events, and Mole news. Worth keeping an eye on for current happenings.</div>
+        </div>
+
+        <div class="event-row">
+          <div class="e-name">Pub crawls &amp; tours</div>
+          <div class="e-desc">Resident-organised continent tours by boat, train, or balloon. Listed in the Bellisseria Citizens group and the in-world events feed.</div>
+        </div>
+
+        <div class="event-row">
+          <div class="e-name">Seasonal events</div>
+          <div class="e-desc">The Moles dress the continent for major holidays &mdash; Halloween, winter festivities, spring birthday celebrations. Worth a visit each season.</div>
+        </div>
+
+        <div class="event-row">
+          <div class="e-name">SL Birthday celebrations</div>
+          <div class="e-desc">New Linden Home themes are often revealed at major SL events (SL Birthday, Christmas Expo, Home &amp; Garden Expo). Watch the official blog for announcements.</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="sec-transport">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-icon">🚂</div>
+      <div style="flex:1;">
+        <div class="section-title">Getting around</div>
+        <div class="section-sub">Trains, boats, roads, balloons &middot; how the continent connects</div>
+      </div>
+      <div class="section-toggle">▼</div>
+    </div>
+    <div class="section-body">
+
+      <div class="prose">
+        <p>One of Bellisseria's defining features is that it's <strong>fully traversable</strong>. Residents can travel from any region to any other without teleporting &mdash; by rail, water, road, or air. Several rezzing zones are scattered across the continent for vehicles.</p>
+      </div>
+
+      <div class="transport-grid" style="margin-top: 16px;">
+
+        <div class="transport-card">
+          <div class="t-icon">🚂</div>
+          <div class="t-name">Railway network</div>
+          <div class="t-desc">Continent-spanning rail system with separate networks for Victorian, Chalet, and Mediterranean regions. Trains rez at marked stations &mdash; touch a station sign to ride.</div>
+        </div>
+
+        <div class="transport-card">
+          <div class="t-icon">⛵</div>
+          <div class="t-name">Waterways</div>
+          <div class="t-desc">Bellisseria is built around navigable canals, rivers, and ocean. Boat rezzers at marina parcels and community docks. Houseboats and stilt homes have private rezzers.</div>
+        </div>
+
+        <div class="transport-card">
+          <div class="t-icon">🚗</div>
+          <div class="t-name">Roads</div>
+          <div class="t-desc">A road network connects neighbourhoods. Vehicle rezzing zones are placed at community hubs &mdash; touch the rez board or use a rezzer parcel.</div>
+        </div>
+
+        <div class="transport-card">
+          <div class="t-icon">🎈</div>
+          <div class="t-name">Air &amp; balloons</div>
+          <div class="t-desc">Hot-air balloon rezzers exist at several spots for slow scenic tours. Aircraft are permitted but be mindful of altitude limits and neighbouring parcels.</div>
+        </div>
+
+        <div class="transport-card">
+          <div class="t-icon">🚲</div>
+          <div class="t-name">Bicycles &amp; horses</div>
+          <div class="t-desc">Free bicycle rezzers at many community areas. Some Linden Home residents keep horses (or dragons, or moths) and ride them between parcels.</div>
+        </div>
+
+        <div class="transport-card">
+          <div class="t-icon">📍</div>
+          <div class="t-name">Rezzing zones</div>
+          <div class="t-desc">Marked public rezzing zones let any resident temporarily rez a vehicle on otherwise-restricted parcels. Look for the signposts at major hubs.</div>
+        </div>
+
+      </div>
+
+      <div class="callout">
+        <strong>Note for newcomers:</strong> Vehicles can be tricky for new residents &mdash; sim crossings still occasionally cause hiccups. If a resident is struggling, suggest a teleport for now and an exploration trip once they're more comfortable with the viewer.
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>SL Mentor Reference Guide &middot; Volunteer-maintained &middot; Not an official Linden Lab resource</p>
+  <p>Theme info sourced from <a href="https://wiki.secondlife.com/wiki/Linden_Lab_Official:New_Linden_Homes_2019" target="_blank">the official SL wiki</a> and <a href="https://community.secondlife.com/knowledgebase/english/linden-homes-r44/" target="_blank">Linden Lab knowledge base</a>. Always verify current details with the official sources.</p>
+</footer>
+
+<div id="cookie-notice" class="hidden">
+  <p>This site uses localStorage to remember your preferences. It does not use tracking cookies or advertising. <a href="https://lindenlab.com/legal/privacy-policy" target="_blank">More info</a></p>
+  <button onclick="dismissCookie()">Got it</button>
+</div>
+
+</body>
+</html>
