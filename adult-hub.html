@@ -139,29 +139,57 @@
   .pn-icon { font-size: 13px; flex-shrink: 0; }
 
   /* ── Search ── */
-  .search-wrap { padding: 14px 14px 10px; border-bottom: 1px solid var(--border-soft); }
+  .search-wrap { padding: 12px 14px; border-bottom: 1px solid var(--border-soft); }
   .search-inner {
-    display: flex; align-items: center; gap: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     background: rgba(255,255,255,0.03);
     border: 1px solid var(--border-pink);
+    border-radius: 6px;
     padding: 6px 10px;
     transition: border-color 0.15s, box-shadow 0.15s;
   }
   .search-inner:focus-within { border-color: var(--pink); box-shadow: 0 0 10px var(--pink-glow); }
-  .search-icon { font-family: var(--font-mono); color: var(--cyan); font-size: 0.7rem; }
+  .search-icon {
+    font-family: var(--font-mono);
+    color: var(--cyan);
+    font-size: 11px;
+    flex-shrink: 0;
+    pointer-events: none;
+  }
   #global-search {
-    flex: 1; background: none; border: none; outline: none;
-    color: var(--text-body); font-family: var(--font-body); font-size: 0.85rem;
+    flex: 1;
+    min-width: 0;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-body);
+    font-family: var(--font-mono);
+    font-size: 12px;
   }
   #global-search::placeholder { color: var(--text-dim); }
   #search-clear {
-    display: none; background: none; border: none; color: var(--text-muted);
-    cursor: pointer; font-size: 0.75rem; padding: 2px 4px;
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 11px;
+    line-height: 1;
+    padding: 2px 3px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    transition: color 0.15s;
   }
   #search-clear:hover { color: var(--pink-bright); }
   #search-count {
-    font-family: var(--font-mono); font-size: 0.65rem;
-    color: var(--cyan); margin-top: 6px; min-height: 14px; letter-spacing: 0.05em;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--cyan);
+    margin-top: 6px;
+    min-height: 14px;
+    letter-spacing: 0.05em;
   }
 
   /* ── Sidebar nav groups ── */

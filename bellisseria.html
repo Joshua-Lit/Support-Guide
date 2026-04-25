@@ -333,44 +333,55 @@
 
   /* ─── SEARCH ─── */
   .search-wrap {
-    padding: 12px 14px 8px;
+    padding: 12px 14px;
     border-bottom: 1px solid var(--border);
   }
   .search-inner {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     background: var(--bg-page);
     border: 1px solid var(--border-strong);
     border-radius: 6px;
     padding: 6px 10px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-inner:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
   }
   .search-icon {
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
     color: var(--accent);
     font-size: 11px;
+    flex-shrink: 0;
+    pointer-events: none;
   }
   #global-search {
     flex: 1;
+    min-width: 0;
     background: transparent;
     border: none;
     outline: none;
     color: var(--text);
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
     font-size: 12px;
-    min-width: 0;
   }
   #global-search::placeholder { color: var(--text-dim); }
   #search-clear {
     background: transparent;
     border: none;
     color: var(--text-dim);
-    font-size: 14px;
+    font-size: 11px;
+    line-height: 1;
+    padding: 2px 3px;
+    border-radius: 3px;
     cursor: pointer;
     display: none;
-    padding: 0 4px;
+    flex-shrink: 0;
+    transition: color 0.15s, background 0.15s;
   }
-  #search-clear:hover { color: var(--text); }
+  #search-clear:hover { color: var(--text); background: var(--bg-card-hover); }
   #search-count {
     font-family: 'Share Tech Mono', monospace;
     font-size: 10px;
