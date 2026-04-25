@@ -95,16 +95,28 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  function toggleAllNav() {
+    var btn = document.getElementById('nav-toggle-btn');
+    var headers = document.querySelectorAll('.nav-group-hdr');
+    var anyOpen = false;
+    headers.forEach(function(h) { if (h.classList.contains('open')) anyOpen = true; });
+    headers.forEach(function(h) {
+      if (anyOpen) {
+        h.classList.remove('open');
+        if (h.nextElementSibling) h.nextElementSibling.classList.remove('open');
+      } else {
+        h.classList.add('open');
+        if (h.nextElementSibling) h.nextElementSibling.classList.add('open');
+      }
+    });
+    if (btn) btn.textContent = anyOpen ? '⊞ Expand all' : '⊟ Collapse all';
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('cookie-ok-v2')) {
       var cn = document.getElementById('cookie-notice');
       if (cn) cn.classList.add('hidden');
     }
-    // Open all nav groups by default
-    document.querySelectorAll('.nav-group-hdr').forEach(function(h) {
-      h.classList.add('open');
-      if (h.nextElementSibling) h.nextElementSibling.classList.add('open');
-    });
     // Search wiring
     var srch = document.getElementById('global-search');
     var cnt = document.getElementById('search-count');
@@ -454,13 +466,19 @@
     align-items: center;
     justify-content: space-between;
   }
-  .sb-theme-label {
-    font-family: 'Oxanium', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  #nav-toggle-btn {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
     color: var(--text-dim);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
   }
+  #nav-toggle-btn:hover { color: var(--text); border-color: var(--accent); }
   .theme-switch { cursor: pointer; user-select: none; }
   .theme-switch-track {
     position: relative;
@@ -482,14 +500,15 @@
     color: var(--text-dim);
     transition: color 0.2s ease;
   }
+  .theme-switch-sun { color: #e0a040; }
   .theme-switch-moon { color: var(--text); }
   html[data-theme="light"] .theme-switch-moon { color: var(--text-dim); }
-  html[data-theme="light"] .theme-switch-sun { color: var(--accent); }
+  html[data-theme="light"] .theme-switch-sun { color: #e0a040; }
   .theme-switch-knob {
     position: absolute;
     top: 2px; left: 2px;
     width: 18px; height: 18px;
-    background: var(--accent);
+    background: var(--pastel-sky);
     border-radius: 50%;
     transition: transform 0.22s ease;
     z-index: 1;
@@ -1138,7 +1157,7 @@
   </div>
 
   <div class="sb-theme-row">
-    <span class="sb-theme-label">Theme</span>
+    <button id="nav-toggle-btn" onclick="toggleAllNav()" title="Expand all sections">&#8862; Expand all</button>
     <label class="theme-switch" title="Toggle light / dark theme" onclick="toggleTheme(); return false;" aria-label="Toggle theme">
       <div class="theme-switch-track">
         <span class="theme-switch-sun">☀</span>
@@ -1242,7 +1261,7 @@
 
 <div id="no-results">No matches found. Try a different keyword.</div>
 
-<section class="section" id="sec-overview" data-section="overview">
+<section class="section collapsed" id="sec-overview" data-section="overview">
   <div class="section-header" onclick="toggleSection(this)">
     <div class="section-icon">🗺</div>
     <div style="flex:1;">
@@ -1278,7 +1297,7 @@
   </div>
 </section>
 
-<section class="section" id="sec-themes" data-section="themes">
+<section class="section collapsed" id="sec-themes" data-section="themes">
   <div class="section-header" onclick="toggleSection(this)">
     <div class="section-icon">🏘</div>
     <div style="flex:1;">
@@ -1383,7 +1402,7 @@
   </div>
 </section>
 
-<section class="section" id="sec-claim" data-section="claim">
+<section class="section collapsed" id="sec-claim" data-section="claim">
   <div class="section-header" onclick="toggleSection(this)">
     <div class="section-icon">🔑</div>
     <div style="flex:1;">
@@ -1449,7 +1468,7 @@
   </div>
 </section>
 
-<section class="section" id="sec-places" data-section="places">
+<section class="section collapsed" id="sec-places" data-section="places">
   <div class="section-header" onclick="toggleSection(this)">
     <div class="section-icon">📍</div>
     <div style="flex:1;">
@@ -1563,7 +1582,7 @@
   </div>
 </section>
 
-<section class="section" id="sec-events" data-section="events">
+<section class="section collapsed" id="sec-events" data-section="events">
   <div class="section-header" onclick="toggleSection(this)">
     <div class="section-icon">🎪</div>
     <div style="flex:1;">
@@ -1606,7 +1625,7 @@
   </div>
 </section>
 
-<section class="section" id="sec-transport" data-section="transport">
+<section class="section collapsed" id="sec-transport" data-section="transport">
   <div class="section-header" onclick="toggleSection(this)">
     <div class="section-icon">🚂</div>
     <div style="flex:1;">
@@ -1668,7 +1687,7 @@
   </div>
 </section>
 
-<section class="section" id="sec-resources" data-section="resources">
+<section class="section collapsed" id="sec-resources" data-section="resources">
   <div class="section-header" onclick="toggleSection(this)">
     <div class="section-icon">📚</div>
     <div style="flex:1;">
