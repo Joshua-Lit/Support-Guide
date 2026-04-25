@@ -496,7 +496,7 @@
   .theme-switch-sun, .theme-switch-moon {
     font-size: 10px;
     line-height: 1;
-    z-index: 2;
+    z-index: 1;
     color: var(--text-dim);
     transition: color 0.2s ease;
   }
@@ -511,7 +511,7 @@
     background: var(--pastel-sky);
     border-radius: 50%;
     transition: transform 0.22s ease;
-    z-index: 1;
+    z-index: 2;
   }
   html[data-theme="light"] .theme-switch-knob { transform: translateX(24px); }
 
@@ -960,6 +960,20 @@
     line-height: 1.7;
   }
   footer a { color: var(--accent); }
+  .footer-top-btn {
+    margin-top: 14px;
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    color: var(--text-dim);
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .footer-top-btn:hover { color: var(--accent); border-color: var(--accent); }
 
   /* ─── ADULT WARNING MODAL ─── */
   #adult-warning-modal {
@@ -1481,9 +1495,9 @@
 
     <div class="places-grid">
 
-      <div class="place-card" id="place-fairgrounds" data-search="bellisseria fairgrounds tall ships fairground games seasonal events friendly crowd community newcomer safe">
+      <div class="place-card" id="place-fairgrounds" data-search="bellisseria fairgrounds tall ships fairground games seasonal events friendly crowd community newcomer safe explore beyond starter">
         <div class="place-name">Bellisseria Fairgrounds</div>
-        <div class="place-desc">Tall ships, fairground games, seasonal events, friendly crowd. Universally safe recommendation for newcomers exploring beyond starter areas.</div>
+        <div class="place-desc">Community venue on the Bellisseria continent &mdash; tall ships, fairground games, seasonal events, and a friendly crowd. A universally safe recommendation for newcomers who want somewhere to explore beyond the starter areas.</div>
         <div class="place-tags">
           <span class="place-tag">Community</span>
           <span class="place-tag">Events</span>
@@ -1704,6 +1718,16 @@
 
     <div class="events-list" style="margin-top: 16px;">
 
+      <div class="event-row" data-search="bellisseria shopping community guide shops merchants commercial regions ridgewood enclave search filter teleport stores online directory">
+        <div class="e-name">Bellisseria Shopping</div>
+        <div class="e-desc">Community-maintained directory of shops on the Bellisseria continent &mdash; useful since the Ridgewood Enclave commercial districts opened in March 2026. Searchable, filter by category, teleport links. <a href="https://bellisseria.online/" target="_blank">bellisseria.online</a></div>
+      </div>
+
+      <div class="event-row" data-search="what is bellisseria youtube video introduction tutorial linden homes community continent overview newcomer">
+        <div class="e-name">"What is Bellisseria?" video</div>
+        <div class="e-desc">A short introduction to the continent &mdash; useful for residents asking what Bellisseria is or whether it's worth visiting. <a href="https://www.youtube.com/watch?v=gs2fKrGdBHA" target="_blank">youtube.com/watch?v=gs2fKrGdBHA</a></div>
+      </div>
+
       <div class="event-row" data-search="inara pey modemworld blog linden homes coverage detailed model descriptions">
         <div class="e-name">Inara Pey's blog</div>
         <div class="e-desc">The closest thing to authoritative third-party documentation. Detailed release coverage of every theme with model-by-model descriptions. <a href="https://modemworld.me/tag/linden-homes/" target="_blank">modemworld.me/tag/linden-homes</a></div>
@@ -1744,6 +1768,7 @@
 <footer>
   <p>SL Mentor Reference Guide &middot; Volunteer-maintained &middot; Not an official Linden Lab resource</p>
   <p>Theme info sourced from <a href="https://wiki.secondlife.com/wiki/Linden_Lab_Official:New_Linden_Homes_2019" target="_blank">the official SL wiki</a> and <a href="https://community.secondlife.com/knowledgebase/english/linden-homes-r44/" target="_blank">Linden Lab knowledge base</a>. Always verify current details with the official sources.</p>
+  <button class="footer-top-btn" onclick="scrollToTop()" title="Scroll to top">&#11014; Top</button>
 </footer>
 
 </div><!-- /#main -->
