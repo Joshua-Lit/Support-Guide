@@ -194,6 +194,26 @@
 
   /* ── Sidebar nav groups ── */
   .sb-nav { padding: 10px 8px; flex: 1; }
+  .sb-toolbar {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border-soft);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  #nav-toggle-btn {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    background: none;
+    border: 1px solid var(--border-pink);
+    border-radius: 4px;
+    padding: 3px 8px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  #nav-toggle-btn:hover { color: var(--pink-bright); border-color: var(--pink); }
   .nav-group { margin-bottom: 2px; }
   .nav-group-hdr {
     display: flex; align-items: center; gap: 8px;
@@ -615,6 +635,10 @@
     <div id="search-count"></div>
   </div>
 
+  <div class="sb-toolbar">
+    <button id="nav-toggle-btn" onclick="toggleAllNav()" title="Expand all sections">&#8862; Expand all</button>
+  </div>
+
   <div class="sb-nav">
     <div class="nav-group">
       <div class="nav-group-hdr" onclick="toggleNav(this)">
@@ -1030,11 +1054,22 @@
     hdr.classList.toggle('open');
     hdr.nextElementSibling.classList.toggle('open');
   }
-  // Open all by default
-  document.querySelectorAll('.nav-group-hdr').forEach(h => {
-    h.classList.add('open');
-    h.nextElementSibling.classList.add('open');
-  });
+  function toggleAllNav() {
+    var btn = document.getElementById('nav-toggle-btn');
+    var headers = document.querySelectorAll('.nav-group-hdr');
+    var anyOpen = false;
+    headers.forEach(function(h) { if (h.classList.contains('open')) anyOpen = true; });
+    headers.forEach(function(h) {
+      if (anyOpen) {
+        h.classList.remove('open');
+        if (h.nextElementSibling) h.nextElementSibling.classList.remove('open');
+      } else {
+        h.classList.add('open');
+        if (h.nextElementSibling) h.nextElementSibling.classList.add('open');
+      }
+    });
+    if (btn) btn.textContent = anyOpen ? '⊞ Expand all' : '⊟ Collapse all';
+  }
 
   // ── Jump + smooth scroll ─────────────────────────────────
   function jumpTo(id) {
