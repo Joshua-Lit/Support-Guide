@@ -360,20 +360,19 @@ body {
 .tech-chip:hover { border-color: var(--c-skyblue); background: rgba(124,127,255,0.15); }
 .page-nav {
   display: flex;
-  flex-wrap: wrap;
   border-bottom: 1px solid var(--border);
 }
 .page-nav-link {
-  flex: 1 1 50%;
+  flex: 1;
   min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px 8px;
+  gap: 5px;
+  padding: 10px 4px;
   font-family: 'Share Tech Mono','Courier New',monospace;
-  font-size: 11px;
-  letter-spacing: 1px;
+  font-size: 10px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-dim);
   text-decoration: none;
@@ -382,7 +381,7 @@ body {
 }
 .page-nav-link:hover { color: var(--text-hi); background: var(--blue-dim); }
 .page-nav-link.active { color: var(--blue); border-bottom-color: var(--blue); background: var(--blue-dim); }
-.pn-icon { font-size: 13px; }
+.pn-icon { font-size: 12px; }
 .nav-item-modal { color: var(--text-mid); }
 .nav-item-modal:hover { color: var(--text-hi); }
 .ni-modal-hint {

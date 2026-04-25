@@ -72,11 +72,95 @@
     window.location.href = 'adult-hub.html';
   }
 
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+  }
+
+  function toggleNav(hdr) {
+    hdr.classList.toggle('open');
+    hdr.nextElementSibling.classList.toggle('open');
+  }
+
+  function jumpTo(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (window.innerWidth <= 900) {
+      var sb = document.getElementById('sidebar');
+      if (sb) sb.classList.remove('open');
+    }
+  }
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('cookie-ok-v2')) {
       var cn = document.getElementById('cookie-notice');
       if (cn) cn.classList.add('hidden');
     }
+    // Open all nav groups by default
+    document.querySelectorAll('.nav-group-hdr').forEach(function(h) {
+      h.classList.add('open');
+      if (h.nextElementSibling) h.nextElementSibling.classList.add('open');
+    });
+    // Search wiring
+    var srch = document.getElementById('global-search');
+    var cnt = document.getElementById('search-count');
+    var clrBtn = document.getElementById('search-clear');
+    var nr = document.getElementById('no-results');
+    if (!srch) return;
+
+    function n(s) { return (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' '); }
+
+    function doSearch(raw) {
+      var q = n(raw);
+      var cards = document.querySelectorAll('[data-search]');
+      var hits = 0;
+      cards.forEach(function(el) { el.classList.remove('hidden-search'); });
+
+      if (!q.trim()) {
+        cnt.textContent = '';
+        if (nr) nr.style.display = 'none';
+        document.querySelectorAll('section.section').forEach(function(s) { s.style.display = ''; });
+        return;
+      }
+      var terms = q.trim().split(/\s+/).filter(Boolean);
+      cards.forEach(function(el) {
+        var hay = n((el.dataset.search || '') + ' ' + el.textContent);
+        if (terms.every(function(t) { return hay.indexOf(t) !== -1; })) {
+          hits++;
+        } else {
+          el.classList.add('hidden-search');
+        }
+      });
+
+      document.querySelectorAll('section.section').forEach(function(sec) {
+        var anyVisible = sec.querySelectorAll('[data-search]:not(.hidden-search)').length > 0;
+        sec.style.display = anyVisible ? '' : 'none';
+      });
+
+      cnt.textContent = hits > 0 ? (hits + ' result' + (hits !== 1 ? 's' : '')) : '';
+      if (nr) nr.style.display = hits === 0 ? 'block' : 'none';
+    }
+
+    srch.addEventListener('input', function() {
+      clrBtn.style.display = srch.value ? 'block' : 'none';
+      doSearch(srch.value);
+    });
+    clrBtn.addEventListener('click', function() {
+      srch.value = '';
+      clrBtn.style.display = 'none';
+      doSearch('');
+      srch.focus();
+    });
+    window.clearSearch = function() {
+      srch.value = '';
+      clrBtn.style.display = 'none';
+      doSearch('');
+      srch.focus();
+    };
   });
 </script>
 <style>
@@ -86,6 +170,7 @@
     --bg-card:        #14263d;
     --bg-card-soft:   #182d47;
     --bg-card-hover:  #1d3654;
+    --bg-sidebar:     #0c1d31;
     --border:         #1f3450;
     --border-strong:  #2a4868;
     --text:           #e8f1fa;
@@ -114,6 +199,7 @@
     --bg-card:        #ffffff;
     --bg-card-soft:   #f6fafd;
     --bg-card-hover:  #eef6fb;
+    --bg-sidebar:     #ffffff;
     --border:         #d6e4ee;
     --border-strong:  #b3cee0;
     --text:           #14304a;
@@ -147,69 +233,241 @@
   }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
+  mark { background: var(--accent-soft); color: var(--accent); padding: 0 2px; border-radius: 2px; }
 
-  /* HERO */
-  .hero {
-    position: relative;
-    padding: 48px 24px 64px;
-    background: var(--bg-hero);
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
+  /* ─── APP LAYOUT ─── */
+  #app {
+    display: flex;
+    min-height: 100vh;
   }
-  .hero-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 2; }
+  #sidebar {
+    width: 258px;
+    min-width: 258px;
+    background: var(--bg-sidebar);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: visible;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  #main {
+    flex: 1;
+    min-width: 0;
+  }
 
-  .top-bar {
+  /* ─── SIDEBAR LOGO ─── */
+  .sb-logo {
+    padding: 18px 18px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sb-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Oxanium', sans-serif;
+    font-weight: 900;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+  .sb-logo-hex {
+    width: 26px; height: 26px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+  }
+  .sb-logo-sub {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    padding-left: 36px;
+  }
+
+  /* ─── PAGE NAV (4 TABS) ─── */
+  .page-nav {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-nav-link {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 4px;
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    cursor: pointer;
+    background: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+  }
+  .page-nav-link:hover {
+    color: var(--text);
+    background: var(--accent-soft);
+    text-decoration: none;
+  }
+  .page-nav-link.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .pn-icon { font-size: 12px; }
+
+  /* ─── SEARCH ─── */
+  .search-wrap {
+    padding: 12px 14px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .search-inner {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-page);
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    padding: 6px 10px;
+  }
+  .search-icon {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--accent);
+    font-size: 11px;
+  }
+  #global-search {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    min-width: 0;
+  }
+  #global-search::placeholder { color: var(--text-dim); }
+  #search-clear {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    display: none;
+    padding: 0 4px;
+  }
+  #search-clear:hover { color: var(--text); }
+  #search-count {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    min-height: 12px;
+  }
+  .hidden-search { display: none !important; }
+
+  /* ─── NAV GROUPS ─── */
+  .sb-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0;
+  }
+  .nav-group { margin-bottom: 2px; }
+  .nav-group-hdr {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-group-hdr:hover { color: var(--text); background: var(--accent-soft); }
+  .nav-group-hdr .ng-arrow {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--accent);
+    transition: transform 0.2s;
+  }
+  .nav-group-hdr.open .ng-arrow { transform: rotate(90deg); }
+  .nav-items {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.25s ease;
+  }
+  .nav-items.open { max-height: 600px; }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 18px 6px 32px;
+    font-size: 12px;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-item:hover { color: var(--text); background: var(--accent-soft); }
+  .ni-dot {
+    width: 4px; height: 4px;
+    background: var(--text-dim);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .nav-item:hover .ni-dot { background: var(--accent); }
+
+  /* ─── THEME SWITCH IN SIDEBAR ─── */
+  .sb-theme-row {
+    padding: 10px 16px;
+    border-top: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
-    margin-bottom: 36px;
-    flex-wrap: wrap;
   }
-  .top-nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .top-nav-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    background: transparent;
-    border: 1px solid var(--border-strong);
-    border-radius: 999px;
+  .sb-theme-label {
     font-family: 'Oxanium', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--text-mid);
-    transition: all 0.15s ease;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
   }
-  .top-nav-link:hover { border-color: var(--accent); color: var(--text); text-decoration: none; }
-  .top-nav-link.active {
-    background: var(--pastel-coral);
-    color: var(--pastel-coral-ink);
-    border-color: var(--pastel-coral);
-    font-weight: 700;
-  }
-
-  /* THEME SWITCH */
-  .theme-switch { cursor: pointer; user-select: none; flex-shrink: 0; }
+  .theme-switch { cursor: pointer; user-select: none; }
   .theme-switch-track {
     position: relative;
-    width: 52px; height: 26px;
+    width: 48px; height: 24px;
     background: var(--bg-card);
     border: 1px solid var(--border-strong);
     border-radius: 999px;
     display: flex;
     align-items: center;
-    padding: 0 6px;
+    padding: 0 5px;
     justify-content: space-between;
-    transition: background 0.2s ease, border-color 0.2s ease;
+    transition: border-color 0.2s ease;
   }
   .theme-switch-track:hover { border-color: var(--accent); }
   .theme-switch-sun, .theme-switch-moon {
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1;
-    color: var(--text-dim);
     z-index: 2;
+    color: var(--text-dim);
     transition: color 0.2s ease;
   }
   .theme-switch-moon { color: var(--text); }
@@ -218,13 +476,68 @@
   .theme-switch-knob {
     position: absolute;
     top: 2px; left: 2px;
-    width: 20px; height: 20px;
+    width: 18px; height: 18px;
     background: var(--accent);
     border-radius: 50%;
-    transition: transform 0.22s ease, background 0.2s ease;
+    transition: transform 0.22s ease;
     z-index: 1;
   }
-  html[data-theme="light"] .theme-switch-knob { transform: translateX(26px); }
+  html[data-theme="light"] .theme-switch-knob { transform: translateX(24px); }
+
+  /* ─── SIDEBAR FOOTER ─── */
+  .sb-footer {
+    padding: 12px 16px 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 11px;
+  }
+  .sb-footer a { color: var(--text-dim); }
+  .sb-footer a:hover { color: var(--accent); text-decoration: none; }
+  .sb-top-btn {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-dim);
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .sb-top-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ─── SIDEBAR TOGGLE (MOBILE) ─── */
+  #sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 12px; left: 12px;
+    z-index: 50;
+    width: 40px; height: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    padding: 48px 28px 56px;
+    background: var(--bg-hero);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .hero-inner { max-width: 920px; margin: 0 auto; position: relative; z-index: 2; }
 
   .hero-eyebrow {
     font-family: 'Share Tech Mono', monospace;
@@ -234,7 +547,7 @@
     margin-bottom: 8px;
   }
   .hero h1 {
-    font-size: 48px;
+    font-size: 44px;
     font-weight: 900;
     line-height: 1.05;
     margin-bottom: 14px;
@@ -249,7 +562,7 @@
 
   .hero-meta {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 10px;
     margin-top: 18px;
     max-width: 720px;
@@ -274,8 +587,12 @@
   .hero-chip.c-coral { background: var(--pastel-coral); color: var(--pastel-coral-ink); }
   .hero-chip.c-mint  { background: var(--pastel-mint);  color: var(--pastel-mint-ink); }
 
-  /* MAIN */
-  main { max-width: 1080px; margin: 0 auto; padding: 32px 24px 64px; }
+  /* ─── CONTENT ─── */
+  .content {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 32px 28px 64px;
+  }
 
   .section {
     background: var(--bg-card);
@@ -289,7 +606,7 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 20px 26px;
+    padding: 18px 22px;
     border-bottom: 1px solid var(--border);
     cursor: pointer;
     user-select: none;
@@ -297,7 +614,7 @@
   }
   .section-header:hover { background: var(--bg-card-hover); }
   .section-icon {
-    width: 38px; height: 38px;
+    width: 36px; height: 36px;
     display: flex; align-items: center; justify-content: center;
     background: var(--accent-soft);
     color: var(--accent);
@@ -305,7 +622,7 @@
     flex-shrink: 0;
     font-size: 17px;
   }
-  .section-title { font-size: 20px; font-weight: 700; flex: 1; }
+  .section-title { font-size: 19px; font-weight: 700; flex: 1; }
   .section-sub {
     font-size: 12px;
     color: var(--text-dim);
@@ -321,7 +638,7 @@
   .section.collapsed .section-toggle { transform: rotate(-90deg); }
   .section.collapsed .section-body { display: none; }
   .section.collapsed .section-header { border-bottom: none; }
-  .section-body { padding: 24px 26px 26px; }
+  .section-body { padding: 22px 22px 24px; }
 
   .prose p { margin: 0 0 12px; color: var(--text-mid); }
   .prose p:last-child { margin-bottom: 0; }
@@ -363,7 +680,7 @@
 
   .theme-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 12px;
   }
   .theme-card {
@@ -447,7 +764,7 @@
 
   .places-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 12px;
   }
   .place-card {
@@ -547,7 +864,7 @@
 
   .transport-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 12px;
   }
   .transport-card {
@@ -568,49 +885,22 @@
   }
   .transport-card .t-desc { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
 
+  #no-results {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-dim);
+    font-style: italic;
+  }
+
   footer {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 32px 24px 40px;
+    padding: 24px 28px 36px;
     text-align: center;
     color: var(--text-dim);
     font-size: 12px;
     line-height: 1.7;
   }
   footer a { color: var(--accent); }
-
-  #cookie-notice {
-    position: fixed;
-    bottom: 16px; left: 16px; right: 16px;
-    max-width: 720px;
-    margin: 0 auto;
-    background: var(--bg-card);
-    border: 1px solid var(--border-strong);
-    border-radius: 12px;
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    font-size: 13px;
-    color: var(--text-mid);
-    z-index: 100;
-  }
-  #cookie-notice.hidden { display: none; }
-  #cookie-notice p { margin: 0; flex: 1; }
-  #cookie-notice button {
-    background: var(--accent);
-    color: #ffffff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-family: 'Oxanium', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-  #cookie-notice button:hover { background: var(--accent-strong); }
 
   /* ─── ADULT WARNING MODAL ─── */
   #adult-warning-modal {
@@ -699,46 +989,187 @@
     border: 1px solid var(--border-strong);
   }
   .awm-btn-cancel:hover { color: var(--text); border-color: var(--text-dim); }
-  .awm-btn-confirm {
-    background: var(--accent);
-    color: #ffffff;
-  }
+  .awm-btn-confirm { background: var(--accent); color: #ffffff; }
   .awm-btn-confirm:hover { background: var(--accent-strong); }
 
+  /* ─── COOKIE NOTICE ─── */
+  #cookie-notice {
+    position: fixed;
+    bottom: 16px; left: 16px; right: 16px;
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+    color: var(--text-mid);
+    z-index: 100;
+  }
+  #cookie-notice.hidden { display: none; }
+  #cookie-notice p { margin: 0; flex: 1; }
+  #cookie-notice button {
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-family: 'Oxanium', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  #cookie-notice button:hover { background: var(--accent-strong); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    #sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      width: 280px;
+      z-index: 40;
+    }
+    #sidebar.open {
+      transform: translateX(0);
+      box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+    }
+    #sidebar-toggle { display: flex; }
+    #main { padding-top: 64px; }
+    .hero { padding-top: 24px; }
+  }
   @media (max-width: 720px) {
-    .hero { padding: 28px 18px 44px; }
-    .hero h1 { font-size: 34px; }
-    main { padding: 24px 16px 48px; }
-    .section-header { padding: 16px 18px; }
-    .section-body { padding: 18px; }
+    .hero { padding: 24px 18px 36px; }
+    .hero h1 { font-size: 32px; }
+    .content { padding: 24px 16px 48px; }
+    .section-header { padding: 14px 16px; }
+    .section-body { padding: 16px; }
     .overview-grid { grid-template-columns: 1fr; }
     .event-row { grid-template-columns: 1fr; gap: 4px; }
-    .top-bar { gap: 10px; }
-    .top-nav-link { font-size: 11px; padding: 5px 10px; }
   }
 </style>
 </head>
 <body>
+<div id="app">
+
+<nav id="sidebar">
+
+  <div class="sb-logo">
+    <div class="sb-logo-row">
+      <div class="sb-logo-hex">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 18c2-1 4-1 6 0s4 1 6 0 4-1 6 0" stroke="#f0997b" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M3 13c2-1 4-1 6 0s4 1 6 0 4-1 6 0" stroke="#f0997b" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.5"/>
+        </svg>
+      </div>
+      SL MENTOR
+    </div>
+    <div class="sb-logo-sub">Bellisseria Reference</div>
+  </div>
+
+  <div class="page-nav">
+    <a href="index.html" class="page-nav-link"><span class="pn-icon">&#127968;</span>Home</a>
+    <a href="technical.html" class="page-nav-link"><span class="pn-icon">&#9881;&#65039;</span>Tech</a>
+    <a href="bellisseria.html" class="page-nav-link active"><span class="pn-icon">&#127754;</span>Belli</a>
+    <a href="javascript:void(0)" class="page-nav-link" onclick="openAdultWarningModal()"><span class="pn-icon">&#10084;&#65039;</span>Adult</a>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-inner">
+      <span class="search-icon">//</span>
+      <input type="text" id="global-search" placeholder="search bellisseria..." autocomplete="off" spellcheck="false">
+      <button id="search-clear" onclick="clearSearch()" title="Clear search">&#10005;</button>
+    </div>
+    <div id="search-count"></div>
+  </div>
+
+  <div class="sb-nav">
+
+    <div class="nav-group">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
+        <span>&#128269;</span> Quick Jump <span class="ng-arrow">&#9654;</span>
+      </div>
+      <div class="nav-items">
+        <span class="nav-item" onclick="jumpTo('sec-overview')"><span class="ni-dot"></span>What is Bellisseria?</span>
+        <span class="nav-item" onclick="jumpTo('sec-themes')"><span class="ni-dot"></span>Linden Home themes</span>
+        <span class="nav-item" onclick="jumpTo('sec-claim')"><span class="ni-dot"></span>How to claim a home</span>
+        <span class="nav-item" onclick="jumpTo('sec-places')"><span class="ni-dot"></span>Places to visit</span>
+        <span class="nav-item" onclick="jumpTo('sec-events')"><span class="ni-dot"></span>Events &amp; community</span>
+        <span class="nav-item" onclick="jumpTo('sec-transport')"><span class="ni-dot"></span>Getting around</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
+        <span>&#127968;</span> Themes by tier <span class="ng-arrow">&#9654;</span>
+      </div>
+      <div class="nav-items">
+        <span class="nav-item" onclick="jumpTo('theme-traditional')"><span class="ni-dot"></span>Traditional</span>
+        <span class="nav-item" onclick="jumpTo('theme-houseboats')"><span class="ni-dot"></span>Houseboats</span>
+        <span class="nav-item" onclick="jumpTo('theme-campers')"><span class="ni-dot"></span>Campers</span>
+        <span class="nav-item" onclick="jumpTo('theme-victorian')"><span class="ni-dot"></span>Victorian</span>
+        <span class="nav-item" onclick="jumpTo('theme-log')"><span class="ni-dot"></span>Log Homes</span>
+        <span class="nav-item" onclick="jumpTo('theme-stilt')"><span class="ni-dot"></span>Stilt Homes</span>
+        <span class="nav-item" onclick="jumpTo('theme-chalets')"><span class="ni-dot"></span>Chalets</span>
+        <span class="nav-item" onclick="jumpTo('theme-fantasy')"><span class="ni-dot"></span>Fantasy</span>
+        <span class="nav-item" onclick="jumpTo('theme-newbrooke')"><span class="ni-dot"></span>Newbrooke</span>
+        <span class="nav-item" onclick="jumpTo('theme-sakura')"><span class="ni-dot"></span>Sakura</span>
+        <span class="nav-item" onclick="jumpTo('theme-ranch')"><span class="ni-dot"></span>Ranch</span>
+        <span class="nav-item" onclick="jumpTo('theme-mediterranean')"><span class="ni-dot"></span>Mediterranean</span>
+        <span class="nav-item" onclick="jumpTo('theme-thousand')"><span class="ni-dot"></span>Thousand Island</span>
+        <span class="nav-item" onclick="jumpTo('theme-aspen')"><span class="ni-dot"></span>Aspen Ridge</span>
+        <span class="nav-item" onclick="jumpTo('theme-ridgewood')"><span class="ni-dot"></span>Ridgewood Enclave</span>
+        <span class="nav-item" onclick="jumpTo('theme-copperfield')"><span class="ni-dot"></span>Copperfield Heights</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-hdr" onclick="toggleNav(this)">
+        <span>&#128205;</span> Places <span class="ng-arrow">&#9654;</span>
+      </div>
+      <div class="nav-items">
+        <span class="nav-item" onclick="jumpTo('place-fairgrounds')"><span class="ni-dot"></span>Bellisseria Fairgrounds</span>
+        <span class="nav-item" onclick="jumpTo('place-bellihub')"><span class="ni-dot"></span>BelliHub</span>
+        <span class="nav-item" onclick="jumpTo('place-demo')"><span class="ni-dot"></span>Linden Homes Demo</span>
+        <span class="nav-item" onclick="jumpTo('place-chippewa')"><span class="ni-dot"></span>Chippewa Town Hall</span>
+        <span class="nav-item" onclick="jumpTo('place-merrymount')"><span class="ni-dot"></span>Merrymount</span>
+        <span class="nav-item" onclick="jumpTo('place-sandbox')"><span class="ni-dot"></span>Sandbox Bellisseria</span>
+        <span class="nav-item" onclick="jumpTo('place-fairstone')"><span class="ni-dot"></span>Fairstone Quarry</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sb-theme-row">
+    <span class="sb-theme-label">Theme</span>
+    <label class="theme-switch" title="Toggle light / dark theme" onclick="toggleTheme(); return false;" aria-label="Toggle theme">
+      <div class="theme-switch-track">
+        <span class="theme-switch-sun">☀</span>
+        <span class="theme-switch-moon">☾</span>
+        <span class="theme-switch-knob"></span>
+      </div>
+    </label>
+  </div>
+
+  <div class="sb-footer">
+    <a href="mailto:josh@joshualit.uk">Suggest an edit</a>
+    <button class="sb-top-btn" onclick="scrollToTop()" title="Scroll to top">&#11014; Top</button>
+  </div>
+
+</nav>
+
+<button id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle menu">&#9776;</button>
+
+<div id="main">
 
 <header class="hero">
   <div class="hero-inner">
-
-    <div class="top-bar">
-      <nav class="top-nav">
-        <a href="index.html" class="top-nav-link">🏠 Home</a>
-        <a href="technical.html" class="top-nav-link">⚙️ Tech</a>
-        <a href="bellisseria.html" class="top-nav-link active">🌊 Belli</a>
-        <a href="javascript:void(0)" class="top-nav-link" onclick="openAdultWarningModal()">❤️ Adult</a>
-      </nav>
-      <label class="theme-switch" title="Toggle light / dark theme" onclick="toggleTheme(); return false;" aria-label="Toggle theme">
-        <div class="theme-switch-track">
-          <span class="theme-switch-sun">☀</span>
-          <span class="theme-switch-moon">☾</span>
-          <span class="theme-switch-knob"></span>
-        </div>
-      </label>
-    </div>
-
     <div class="hero-eyebrow">// CONTINENT REFERENCE</div>
     <h1>Bellisseria <span class="accent">Reference</span></h1>
     <p class="lede">A mentor's quick guide to Second Life's community-built continent &mdash; themes, claiming a Linden Home, places to send residents, and how to get around.</p>
@@ -752,440 +1183,446 @@
   </div>
 </header>
 
-<main>
+<div class="content">
 
-  <section class="section" id="sec-overview">
-    <div class="section-header" onclick="toggleSection(this)">
-      <div class="section-icon">🗺</div>
-      <div style="flex:1;">
-        <div class="section-title">What is Bellisseria?</div>
-        <div class="section-sub">Continent overview &middot; the basics in plain language</div>
-      </div>
-      <div class="section-toggle">▼</div>
+<div id="no-results">No matches found. Try a different keyword.</div>
+
+<section class="section" id="sec-overview" data-section="overview">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon">🗺</div>
+    <div style="flex:1;">
+      <div class="section-title">What is Bellisseria?</div>
+      <div class="section-sub">Continent overview &middot; the basics in plain language</div>
     </div>
-    <div class="section-body">
-      <div class="prose">
-        <p>Bellisseria is a Linden-Lab-owned continent that hosts the <strong>second generation of Linden Homes</strong> &mdash; the homes included with paid memberships. It launched in 2019, has grown to over 2,800 regions, and is built and maintained by the <strong>Moles</strong> (a small team of long-time SL residents employed by Linden Lab).</p>
-        <p>Unlike older themed estates, Bellisseria <strong>blends themes across one connected continent</strong>: a Victorian neighbourhood might sit beside a houseboat dock, with a log-home valley a short railway ride away. The whole thing is navigable by boat, train, road, and air.</p>
-      </div>
-
-      <div class="overview-grid">
-        <div class="fact-card">
-          <div class="fc-label">Who lives there</div>
-          <div class="fc-body">Plus, Premium, and Premium Plus members. Basic accounts cannot claim a Linden Home but are welcome to visit.</div>
-        </div>
-        <div class="fact-card">
-          <div class="fc-label">Parcel sizes</div>
-          <div class="fc-body">512&nbsp;m² (Plus), 1,024&nbsp;m² (Premium), and 2,048&nbsp;m² (Premium Plus exclusive themes).</div>
-        </div>
-        <div class="fact-card">
-          <div class="fc-label">Use restrictions</div>
-          <div class="fc-body">Residential only &mdash; no commerce, rentals, or advertising (except in the new Ridgewood Enclave commercial districts).</div>
-        </div>
-        <div class="fact-card">
-          <div class="fc-label">Staying in theme</div>
-          <div class="fc-body">Parcels must be kept presentable and broadly in keeping with their neighbourhood's theme.</div>
-        </div>
-      </div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+    <div class="prose" data-search="bellisseria continent overview moles linden lab community 2019 second generation linden homes navigable connected themed">
+      <p>Bellisseria is a Linden-Lab-owned continent that hosts the <strong>second generation of Linden Homes</strong> &mdash; the homes included with paid memberships. It launched in 2019, has grown to over 2,800 regions, and is built and maintained by the <strong>Moles</strong> (a small team of long-time SL residents employed by Linden Lab).</p>
+      <p>Unlike older themed estates, Bellisseria <strong>blends themes across one connected continent</strong>: a Victorian neighbourhood might sit beside a houseboat dock, with a log-home valley a short railway ride away. The whole thing is navigable by boat, train, road, and air.</p>
     </div>
-  </section>
 
-  <section class="section" id="sec-themes">
-    <div class="section-header" onclick="toggleSection(this)">
-      <div class="section-icon">🏘</div>
-      <div style="flex:1;">
-        <div class="section-title">Linden Home themes</div>
-        <div class="section-sub">All current themes &middot; tier eligibility &middot; quick descriptions</div>
+    <div class="overview-grid">
+      <div class="fact-card" data-search="who lives bellisseria plus premium premium plus basic membership tier eligibility visitors">
+        <div class="fc-label">Who lives there</div>
+        <div class="fc-body">Plus, Premium, and Premium Plus members. Basic accounts cannot claim a Linden Home but are welcome to visit.</div>
       </div>
-      <div class="section-toggle">▼</div>
-    </div>
-    <div class="section-body">
-
-      <div class="theme-intro">
-        <strong>Tier guide:</strong> Plus members access 512&nbsp;m² themes &middot; Premium adds 1,024&nbsp;m² themes &middot; Premium Plus unlocks the larger 2,048&nbsp;m² exclusive themes. Newer themes such as Copperfield Heights mix all three tiers in one community.
+      <div class="fact-card" data-search="parcel sizes 512 1024 2048 sqm square metres tier plus premium premium plus exclusive">
+        <div class="fc-label">Parcel sizes</div>
+        <div class="fc-body">512&nbsp;m² (Plus), 1,024&nbsp;m² (Premium), and 2,048&nbsp;m² (Premium Plus exclusive themes).</div>
       </div>
-
-      <div class="theme-grid">
-
-        <div class="theme-card">
-          <div class="theme-name">Traditional <span class="theme-tier tier-premium">Premium</span></div>
-          <div class="theme-desc">The original Bellisseria look &mdash; suburban houses with gardens, picket fences, a friendly neighbourhood feel. The continent's heart.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Houseboats <span class="theme-tier tier-premium">Premium</span></div>
-          <div class="theme-desc">Floating homes moored along Bellisseria's waterways. Boat access from the dock. Popular for water-themed roleplay and sailing.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Campers <span class="theme-tier tier-plus">Plus</span></div>
-          <div class="theme-desc">Compact 512&nbsp;m² parcels with a vintage caravan. Wooded camping-ground feel. Entry-level option for Plus members.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Victorian <span class="theme-tier tier-premium">Premium</span></div>
-          <div class="theme-desc">Gaslit cobbles, ornate trim, parks with reflecting pools. Connected by an extensive railway network. Atmospheric at night.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Log Homes <span class="theme-tier tier-premium">Premium</span></div>
-          <div class="theme-desc">Upscale log cabins set in forested hills and valleys. Country living with modern interiors. Hiking and horse-riding country.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Stilt Homes <span class="theme-tier tier-premium">Premium</span></div>
-          <div class="theme-desc">Houses raised over water on stilts. Coastal feel, sea views, easy boat access. House controller is in the water.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Chalets <span class="theme-tier tier-premium">Premium</span></div>
-          <div class="theme-desc">Alpine-style cabins set among mountains and pine, with their own railway. Cosy interiors suited to winter scenery.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Fantasy <span class="theme-tier tier-premium">Premium</span></div>
-          <div class="theme-desc">Whimsical dwellings &mdash; treehouses, mushroom homes, magical themes. Includes the Fairstone Quarry wedding venue.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Newbrooke <span class="theme-tier tier-plus">Plus</span> <span class="theme-tier tier-premium">Premium</span></div>
-          <div class="theme-desc">Modern suburban homes with customisable siding, trim, and brickwork colours. Eight models across 512 and 1,024&nbsp;m².</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Sakura <span class="theme-tier tier-plus">Plus</span> <span class="theme-tier tier-premium">Premium</span></div>
-          <div class="theme-desc">Japanese-inspired homes among cherry blossoms and traditional gardens. Released for SL's 19th birthday in 2022.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Ranch <span class="theme-tier tier-pp">Premium Plus</span></div>
-          <div class="theme-desc">Large 2,048&nbsp;m² parcels with ranch-style houses, paddocks, and rural landscapes. Horse country.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Mediterranean <span class="theme-tier tier-pp">Premium Plus</span></div>
-          <div class="theme-desc">Sun-drenched coastal villas with terracotta tiles and stucco walls. Has its own railway connecting the regions.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Thousand Island <span class="theme-tier tier-pp">Premium Plus</span></div>
-          <div class="theme-desc">Lakeside homes set across an archipelago of small islands. Quiet, water-focused theme for Premium Plus residents.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Aspen Ridge <span class="theme-tier tier-premium">Premium</span></div>
-          <div class="theme-desc">Mountain homes with seasonal landscape changes &mdash; the regions visibly shift through the seasons.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Ridgewood Enclave <span class="theme-tier tier-pp">Premium Plus</span></div>
-          <div class="theme-desc">Premium Plus theme that now also hosts Bellisseria's first <strong>commercial districts</strong> (March 2026) &mdash; the only place commerce is permitted on the continent.</div>
-        </div>
-
-        <div class="theme-card">
-          <div class="theme-name">Copperfield Heights <span class="theme-tier tier-mixed">All tiers</span></div>
-          <div class="theme-desc">2026 release. Craftsman-style homes that mix Plus, Premium, and Premium Plus parcels in the same community for the first time.</div>
-        </div>
-
+      <div class="fact-card" data-search="use restrictions residential commerce rentals advertising ridgewood enclave commercial districts">
+        <div class="fc-label">Use restrictions</div>
+        <div class="fc-body">Residential only &mdash; no commerce, rentals, or advertising (except in the new Ridgewood Enclave commercial districts).</div>
       </div>
-
-      <div class="callout">
-        <strong>First-generation themes</strong> (Tahoe, Elderglen, Sahreta Osumai, Meadowbrook) still exist on older estates but are no longer claimable. Some long-term residents still occupy them. They use older covenants and have a 175-prim limit on 512&nbsp;m².
+      <div class="fact-card" data-search="staying in theme presentable covenant neighbourhood">
+        <div class="fc-label">Staying in theme</div>
+        <div class="fc-body">Parcels must be kept presentable and broadly in keeping with their neighbourhood's theme.</div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="sec-claim">
-    <div class="section-header" onclick="toggleSection(this)">
-      <div class="section-icon">🔑</div>
-      <div style="flex:1;">
-        <div class="section-title">How to claim a Linden Home</div>
-        <div class="section-sub">Step-by-step &middot; what to tell a newcomer asking</div>
-      </div>
-      <div class="section-toggle">▼</div>
+<section class="section" id="sec-themes" data-section="themes">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon">🏘</div>
+    <div style="flex:1;">
+      <div class="section-title">Linden Home themes</div>
+      <div class="section-sub">All current themes &middot; tier eligibility &middot; quick descriptions</div>
     </div>
-    <div class="section-body">
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
 
-      <div class="claim-steps">
-        <div class="claim-step">
-          <div class="claim-step-body">
-            <strong>Have an eligible membership</strong>
-            Plus, Premium, or Premium Plus. Basic accounts cannot claim a Linden Home. Tier upgrade is done at <em>secondlife.com</em> &rarr; My Account &rarr; Membership.
-          </div>
-        </div>
+    <div class="theme-intro" data-search="tier guide plus 512 premium 1024 premium plus 2048 mixed copperfield">
+      <strong>Tier guide:</strong> Plus members access 512&nbsp;m² themes &middot; Premium adds 1,024&nbsp;m² themes &middot; Premium Plus unlocks the larger 2,048&nbsp;m² exclusive themes. Newer themes such as Copperfield Heights mix all three tiers in one community.
+    </div>
 
-        <div class="claim-step">
-          <div class="claim-step-body">
-            <strong>Check land allowance</strong>
-            A Linden Home counts against the resident's land allowance. If they already own mainland that uses their full tier, they need to free up some allowance first.
-          </div>
-        </div>
+    <div class="theme-grid">
 
-        <div class="claim-step">
-          <div class="claim-step-body">
-            <strong>Go to the claim page</strong>
-            <em>secondlife.com</em> &rarr; My Account &rarr; <strong>Get a Linden Home</strong>. Available themes are listed by tier, with home models, parcel sizes, and a region map.
-          </div>
-        </div>
-
-        <div class="claim-step">
-          <div class="claim-step-body">
-            <strong>Browse and pick a parcel</strong>
-            Filter by theme. Click an available parcel to preview its surroundings on the map. Don't rush &mdash; neighbours and views matter and swapping is easy if it doesn't work out.
-          </div>
-        </div>
-
-        <div class="claim-step">
-          <div class="claim-step-body">
-            <strong>Confirm and teleport</strong>
-            Once claimed, the resident gets a teleport landmark and a House Controller appears just outside the parcel boundary (or in the water, for stilt homes).
-          </div>
-        </div>
-
-        <div class="claim-step">
-          <div class="claim-step-body">
-            <strong>Furnishing &amp; customising</strong>
-            The House Controller (touch it on the parcel) controls textures, accessories, and reset. Furniture is up to the resident &mdash; Bellisseria covenants forbid replacing the house structure itself.
-          </div>
-        </div>
+      <div class="theme-card" id="theme-traditional" data-search="traditional original bellisseria suburban house garden picket fence neighbourhood premium 1024">
+        <div class="theme-name">Traditional <span class="theme-tier tier-premium">Premium</span></div>
+        <div class="theme-desc">The original Bellisseria look &mdash; suburban houses with gardens, picket fences, a friendly neighbourhood feel. The continent's heart.</div>
       </div>
 
-      <div class="callout">
-        <strong>Premium Plus tip:</strong> Premium Plus members can request a specific Linden Home via a support ticket if a particular parcel becomes available. They also get exclusive access to Ranch, Mediterranean, Thousand Island, and Ridgewood Enclave themes.
+      <div class="theme-card" id="theme-houseboats" data-search="houseboats floating water waterway dock boat sailing premium 1024">
+        <div class="theme-name">Houseboats <span class="theme-tier tier-premium">Premium</span></div>
+        <div class="theme-desc">Floating homes moored along Bellisseria's waterways. Boat access from the dock. Popular for water-themed roleplay and sailing.</div>
       </div>
 
-      <div class="prose" style="margin-top: 18px;">
-        <p><strong>Abandoning &amp; swapping:</strong> About Land &rarr; General &rarr; Abandon Land releases a Linden Home back to the pool. The resident can claim a different one immediately &mdash; there's no cooldown.</p>
+      <div class="theme-card" id="theme-campers" data-search="campers caravan camping wooded compact 512 plus entry-level vintage">
+        <div class="theme-name">Campers <span class="theme-tier tier-plus">Plus</span></div>
+        <div class="theme-desc">Compact 512&nbsp;m² parcels with a vintage caravan. Wooded camping-ground feel. Entry-level option for Plus members.</div>
+      </div>
+
+      <div class="theme-card" id="theme-victorian" data-search="victorian gaslit cobbles ornate trim park railway atmospheric night premium 1024">
+        <div class="theme-name">Victorian <span class="theme-tier tier-premium">Premium</span></div>
+        <div class="theme-desc">Gaslit cobbles, ornate trim, parks with reflecting pools. Connected by an extensive railway network. Atmospheric at night.</div>
+      </div>
+
+      <div class="theme-card" id="theme-log" data-search="log homes cabin forested hills valleys country rural horse riding hiking premium 1024">
+        <div class="theme-name">Log Homes <span class="theme-tier tier-premium">Premium</span></div>
+        <div class="theme-desc">Upscale log cabins set in forested hills and valleys. Country living with modern interiors. Hiking and horse-riding country.</div>
+      </div>
+
+      <div class="theme-card" id="theme-stilt" data-search="stilt homes water raised coastal sea view boat house controller premium 1024">
+        <div class="theme-name">Stilt Homes <span class="theme-tier tier-premium">Premium</span></div>
+        <div class="theme-desc">Houses raised over water on stilts. Coastal feel, sea views, easy boat access. House controller is in the water.</div>
+      </div>
+
+      <div class="theme-card" id="theme-chalets" data-search="chalets alpine mountain pine railway cosy winter premium 1024">
+        <div class="theme-name">Chalets <span class="theme-tier tier-premium">Premium</span></div>
+        <div class="theme-desc">Alpine-style cabins set among mountains and pine, with their own railway. Cosy interiors suited to winter scenery.</div>
+      </div>
+
+      <div class="theme-card" id="theme-fantasy" data-search="fantasy whimsical treehouse mushroom magical fairstone quarry wedding premium 1024">
+        <div class="theme-name">Fantasy <span class="theme-tier tier-premium">Premium</span></div>
+        <div class="theme-desc">Whimsical dwellings &mdash; treehouses, mushroom homes, magical themes. Includes the Fairstone Quarry wedding venue.</div>
+      </div>
+
+      <div class="theme-card" id="theme-newbrooke" data-search="newbrooke modern suburban customisable siding trim brickwork plus premium 512 1024 eight models">
+        <div class="theme-name">Newbrooke <span class="theme-tier tier-plus">Plus</span> <span class="theme-tier tier-premium">Premium</span></div>
+        <div class="theme-desc">Modern suburban homes with customisable siding, trim, and brickwork colours. Eight models across 512 and 1,024&nbsp;m².</div>
+      </div>
+
+      <div class="theme-card" id="theme-sakura" data-search="sakura japanese cherry blossom traditional garden 19th birthday 2022 plus premium">
+        <div class="theme-name">Sakura <span class="theme-tier tier-plus">Plus</span> <span class="theme-tier tier-premium">Premium</span></div>
+        <div class="theme-desc">Japanese-inspired homes among cherry blossoms and traditional gardens. Released for SL's 19th birthday in 2022.</div>
+      </div>
+
+      <div class="theme-card" id="theme-ranch" data-search="ranch large 2048 paddocks rural horse premium plus exclusive">
+        <div class="theme-name">Ranch <span class="theme-tier tier-pp">Premium Plus</span></div>
+        <div class="theme-desc">Large 2,048&nbsp;m² parcels with ranch-style houses, paddocks, and rural landscapes. Horse country.</div>
+      </div>
+
+      <div class="theme-card" id="theme-mediterranean" data-search="mediterranean coastal villa terracotta stucco railway premium plus exclusive 2048">
+        <div class="theme-name">Mediterranean <span class="theme-tier tier-pp">Premium Plus</span></div>
+        <div class="theme-desc">Sun-drenched coastal villas with terracotta tiles and stucco walls. Has its own railway connecting the regions.</div>
+      </div>
+
+      <div class="theme-card" id="theme-thousand" data-search="thousand island lakeside archipelago small islands quiet water premium plus exclusive 2048">
+        <div class="theme-name">Thousand Island <span class="theme-tier tier-pp">Premium Plus</span></div>
+        <div class="theme-desc">Lakeside homes set across an archipelago of small islands. Quiet, water-focused theme for Premium Plus residents.</div>
+      </div>
+
+      <div class="theme-card" id="theme-aspen" data-search="aspen ridge mountain seasonal landscape changes seasons premium 1024">
+        <div class="theme-name">Aspen Ridge <span class="theme-tier tier-premium">Premium</span></div>
+        <div class="theme-desc">Mountain homes with seasonal landscape changes &mdash; the regions visibly shift through the seasons.</div>
+      </div>
+
+      <div class="theme-card" id="theme-ridgewood" data-search="ridgewood enclave commercial districts march 2026 premium plus shops merchants exclusive">
+        <div class="theme-name">Ridgewood Enclave <span class="theme-tier tier-pp">Premium Plus</span></div>
+        <div class="theme-desc">Premium Plus theme that now also hosts Bellisseria's first <strong>commercial districts</strong> (March 2026) &mdash; the only place commerce is permitted on the continent.</div>
+      </div>
+
+      <div class="theme-card" id="theme-copperfield" data-search="copperfield heights 2026 craftsman mixed all tiers plus premium premium plus first community">
+        <div class="theme-name">Copperfield Heights <span class="theme-tier tier-mixed">All tiers</span></div>
+        <div class="theme-desc">2026 release. Craftsman-style homes that mix Plus, Premium, and Premium Plus parcels in the same community for the first time.</div>
       </div>
 
     </div>
-  </section>
 
-  <section class="section" id="sec-places">
-    <div class="section-header" onclick="toggleSection(this)">
-      <div class="section-icon">📍</div>
-      <div style="flex:1;">
-        <div class="section-title">Places to visit</div>
-        <div class="section-sub">Curated SLURLs to send residents &middot; placeholders for us to fill in</div>
-      </div>
-      <div class="section-toggle">▼</div>
+    <div class="callout" data-search="first generation themes tahoe elderglen sahreta osumai meadowbrook old no longer claimable 175 prim">
+      <strong>First-generation themes</strong> (Tahoe, Elderglen, Sahreta Osumai, Meadowbrook) still exist on older estates but are no longer claimable. Some long-term residents still occupy them. They use older covenants and have a 175-prim limit on 512&nbsp;m².
     </div>
-    <div class="section-body">
+  </div>
+</section>
 
-      <div class="places-grid">
-
-        <div class="place-card">
-          <div class="place-name">Bellisseria Fairgrounds</div>
-          <div class="place-desc">Tall ships, fairground games, seasonal events, friendly crowd. Universally safe recommendation for newcomers exploring beyond starter areas.</div>
-          <div class="place-tags">
-            <span class="place-tag">Community</span>
-            <span class="place-tag">Events</span>
-          </div>
-          <div class="place-slurl">secondlife://Bellisseria%20Fairgrounds/164/168/23</div>
-          <div class="place-actions">
-            <a class="btn btn-primary" href="secondlife://Bellisseria%20Fairgrounds/164/168/23">Open in SL</a>
-            <button class="btn btn-ghost" onclick="copySLURL(this,'secondlife://Bellisseria Fairgrounds/164/168/23')">Copy SLURL</button>
-          </div>
-        </div>
-
-        <div class="place-card placeholder">
-          <div class="place-name">BelliHub</div>
-          <div class="place-desc">Bellisseria's information hub &mdash; demo homes, Premium membership tutorials, and an introduction to the community.</div>
-          <div class="place-tags">
-            <span class="place-tag">Hub</span>
-            <span class="place-tag">Demos</span>
-          </div>
-          <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
-          <div class="place-actions">
-            <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
-          </div>
-        </div>
-
-        <div class="place-card placeholder">
-          <div class="place-name">Linden Homes Demo</div>
-          <div class="place-desc">Walk-through demo region showcasing every current Linden Home theme and model. Great for residents weighing options before claiming.</div>
-          <div class="place-tags">
-            <span class="place-tag">Demos</span>
-            <span class="place-tag">Newcomer-safe</span>
-          </div>
-          <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
-          <div class="place-actions">
-            <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
-          </div>
-        </div>
-
-        <div class="place-card placeholder">
-          <div class="place-name">Chippewa Town Hall</div>
-          <div class="place-desc">Community centre for the Traditional theme &mdash; reservable for conferences, garden parties, and weddings. Sits on the main railway hub.</div>
-          <div class="place-tags">
-            <span class="place-tag">Community</span>
-            <span class="place-tag">Events</span>
-          </div>
-          <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
-          <div class="place-actions">
-            <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
-          </div>
-        </div>
-
-        <div class="place-card placeholder">
-          <div class="place-name">Merrymount</div>
-          <div class="place-desc">Community region for the Victorian theme &mdash; cafe, fairground games, ice skating in winter, gaslit park.</div>
-          <div class="place-tags">
-            <span class="place-tag">Community</span>
-            <span class="place-tag">Seasonal</span>
-          </div>
-          <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
-          <div class="place-actions">
-            <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
-          </div>
-        </div>
-
-        <div class="place-card placeholder">
-          <div class="place-name">Sandbox Bellisseria</div>
-          <div class="place-desc">Bellisseria-specific sandbox where residents can demo Linden Home themes and test decorating ideas before claiming.</div>
-          <div class="place-tags">
-            <span class="place-tag">Sandbox</span>
-            <span class="place-tag">Demos</span>
-          </div>
-          <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
-          <div class="place-actions">
-            <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
-          </div>
-        </div>
-
-        <div class="place-card placeholder">
-          <div class="place-name">Fairstone Quarry</div>
-          <div class="place-desc">Fantasy theme wedding venue. Bioluminescent lighting, the Tree of Love bonding spot, dance balls, optional radio stream.</div>
-          <div class="place-tags">
-            <span class="place-tag">Venue</span>
-            <span class="place-tag">Weddings</span>
-          </div>
-          <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
-          <div class="place-actions">
-            <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="callout">
-        <strong>SLURL sourcing:</strong> Pull SLURLs from <em>maps.secondlife.com</em> rather than social media posts &mdash; the maps source is reliable. Always test in-world before adding to the guide.
-      </div>
-
+<section class="section" id="sec-claim" data-section="claim">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon">🔑</div>
+    <div style="flex:1;">
+      <div class="section-title">How to claim a Linden Home</div>
+      <div class="section-sub">Step-by-step &middot; what to tell a newcomer asking</div>
     </div>
-  </section>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
 
-  <section class="section" id="sec-events">
-    <div class="section-header" onclick="toggleSection(this)">
-      <div class="section-icon">🎪</div>
-      <div style="flex:1;">
-        <div class="section-title">Events &amp; community</div>
-        <div class="section-sub">Groups, regular events, and where to point a curious resident</div>
+    <div class="claim-steps">
+      <div class="claim-step" data-search="eligible membership plus premium premium plus basic upgrade my account">
+        <div class="claim-step-body">
+          <strong>Have an eligible membership</strong>
+          Plus, Premium, or Premium Plus. Basic accounts cannot claim a Linden Home. Tier upgrade is done at <em>secondlife.com</em> &rarr; My Account &rarr; Membership.
+        </div>
       </div>
-      <div class="section-toggle">▼</div>
+
+      <div class="claim-step" data-search="check land allowance counts mainland tier free up">
+        <div class="claim-step-body">
+          <strong>Check land allowance</strong>
+          A Linden Home counts against the resident's land allowance. If they already own mainland that uses their full tier, they need to free up some allowance first.
+        </div>
+      </div>
+
+      <div class="claim-step" data-search="claim page secondlife.com my account get linden home themes models map">
+        <div class="claim-step-body">
+          <strong>Go to the claim page</strong>
+          <em>secondlife.com</em> &rarr; My Account &rarr; <strong>Get a Linden Home</strong>. Available themes are listed by tier, with home models, parcel sizes, and a region map.
+        </div>
+      </div>
+
+      <div class="claim-step" data-search="browse pick parcel filter theme preview surroundings map neighbours views swap">
+        <div class="claim-step-body">
+          <strong>Browse and pick a parcel</strong>
+          Filter by theme. Click an available parcel to preview its surroundings on the map. Don't rush &mdash; neighbours and views matter and swapping is easy if it doesn't work out.
+        </div>
+      </div>
+
+      <div class="claim-step" data-search="confirm teleport landmark house controller stilt water">
+        <div class="claim-step-body">
+          <strong>Confirm and teleport</strong>
+          Once claimed, the resident gets a teleport landmark and a House Controller appears just outside the parcel boundary (or in the water, for stilt homes).
+        </div>
+      </div>
+
+      <div class="claim-step" data-search="furnishing customising house controller textures accessories reset furniture covenant structure">
+        <div class="claim-step-body">
+          <strong>Furnishing &amp; customising</strong>
+          The House Controller (touch it on the parcel) controls textures, accessories, and reset. Furniture is up to the resident &mdash; Bellisseria covenants forbid replacing the house structure itself.
+        </div>
+      </div>
     </div>
-    <div class="section-body">
 
-      <div class="events-list">
-
-        <div class="event-row">
-          <div class="e-name">Bellisseria Citizens</div>
-          <div class="e-desc">The main resident-run group for everyone living on or visiting the continent. Daily chatter, event announcements, mutual help. Searchable in Groups.</div>
-        </div>
-
-        <div class="event-row">
-          <div class="e-name">Bellisseria Bureau</div>
-          <div class="e-desc">Resident-run news outlet covering Bellisseria life, theme reveals, community events, and Mole news. Worth keeping an eye on for current happenings.</div>
-        </div>
-
-        <div class="event-row">
-          <div class="e-name">Pub crawls &amp; tours</div>
-          <div class="e-desc">Resident-organised continent tours by boat, train, or balloon. Listed in the Bellisseria Citizens group and the in-world events feed.</div>
-        </div>
-
-        <div class="event-row">
-          <div class="e-name">Seasonal events</div>
-          <div class="e-desc">The Moles dress the continent for major holidays &mdash; Halloween, winter festivities, spring birthday celebrations. Worth a visit each season.</div>
-        </div>
-
-        <div class="event-row">
-          <div class="e-name">SL Birthday celebrations</div>
-          <div class="e-desc">New Linden Home themes are often revealed at major SL events (SL Birthday, Christmas Expo, Home &amp; Garden Expo). Watch the official blog for announcements.</div>
-        </div>
-
-      </div>
-
+    <div class="callout" data-search="premium plus tip support ticket specific home request ranch mediterranean thousand island ridgewood exclusive">
+      <strong>Premium Plus tip:</strong> Premium Plus members can request a specific Linden Home via a support ticket if a particular parcel becomes available. They also get exclusive access to Ranch, Mediterranean, Thousand Island, and Ridgewood Enclave themes.
     </div>
-  </section>
 
-  <section class="section" id="sec-transport">
-    <div class="section-header" onclick="toggleSection(this)">
-      <div class="section-icon">🚂</div>
-      <div style="flex:1;">
-        <div class="section-title">Getting around</div>
-        <div class="section-sub">Trains, boats, roads, balloons &middot; how the continent connects</div>
-      </div>
-      <div class="section-toggle">▼</div>
+    <div class="prose" data-search="abandoning swapping about land general abandon release pool cooldown">
+      <p style="margin-top: 18px;"><strong>Abandoning &amp; swapping:</strong> About Land &rarr; General &rarr; Abandon Land releases a Linden Home back to the pool. The resident can claim a different one immediately &mdash; there's no cooldown.</p>
     </div>
-    <div class="section-body">
 
-      <div class="prose">
-        <p>One of Bellisseria's defining features is that it's <strong>fully traversable</strong>. Residents can travel from any region to any other without teleporting &mdash; by rail, water, road, or air. Several rezzing zones are scattered across the continent for vehicles.</p>
+  </div>
+</section>
+
+<section class="section" id="sec-places" data-section="places">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon">📍</div>
+    <div style="flex:1;">
+      <div class="section-title">Places to visit</div>
+      <div class="section-sub">Curated SLURLs to send residents &middot; placeholders to fill in</div>
+    </div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+
+    <div class="places-grid">
+
+      <div class="place-card" id="place-fairgrounds" data-search="bellisseria fairgrounds tall ships fairground games seasonal events friendly crowd community newcomer safe">
+        <div class="place-name">Bellisseria Fairgrounds</div>
+        <div class="place-desc">Tall ships, fairground games, seasonal events, friendly crowd. Universally safe recommendation for newcomers exploring beyond starter areas.</div>
+        <div class="place-tags">
+          <span class="place-tag">Community</span>
+          <span class="place-tag">Events</span>
+        </div>
+        <div class="place-slurl">secondlife://Bellisseria%20Fairgrounds/164/168/23</div>
+        <div class="place-actions">
+          <a class="btn btn-primary" href="secondlife://Bellisseria%20Fairgrounds/164/168/23">Open in SL</a>
+          <button class="btn btn-ghost" onclick="copySLURL(this,'secondlife://Bellisseria Fairgrounds/164/168/23')">Copy SLURL</button>
+        </div>
       </div>
 
-      <div class="transport-grid" style="margin-top: 16px;">
-
-        <div class="transport-card">
-          <div class="t-icon">🚂</div>
-          <div class="t-name">Railway network</div>
-          <div class="t-desc">Continent-spanning rail system with separate networks for Victorian, Chalet, and Mediterranean regions. Trains rez at marked stations &mdash; touch a station sign to ride.</div>
+      <div class="place-card placeholder" id="place-bellihub" data-search="bellihub information hub demo homes premium membership tutorials community">
+        <div class="place-name">BelliHub</div>
+        <div class="place-desc">Bellisseria's information hub &mdash; demo homes, Premium membership tutorials, and an introduction to the community.</div>
+        <div class="place-tags">
+          <span class="place-tag">Hub</span>
+          <span class="place-tag">Demos</span>
         </div>
-
-        <div class="transport-card">
-          <div class="t-icon">⛵</div>
-          <div class="t-name">Waterways</div>
-          <div class="t-desc">Bellisseria is built around navigable canals, rivers, and ocean. Boat rezzers at marina parcels and community docks. Houseboats and stilt homes have private rezzers.</div>
+        <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+        <div class="place-actions">
+          <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
         </div>
-
-        <div class="transport-card">
-          <div class="t-icon">🚗</div>
-          <div class="t-name">Roads</div>
-          <div class="t-desc">A road network connects neighbourhoods. Vehicle rezzing zones are placed at community hubs &mdash; touch the rez board or use a rezzer parcel.</div>
-        </div>
-
-        <div class="transport-card">
-          <div class="t-icon">🎈</div>
-          <div class="t-name">Air &amp; balloons</div>
-          <div class="t-desc">Hot-air balloon rezzers exist at several spots for slow scenic tours. Aircraft are permitted but be mindful of altitude limits and neighbouring parcels.</div>
-        </div>
-
-        <div class="transport-card">
-          <div class="t-icon">🚲</div>
-          <div class="t-name">Bicycles &amp; horses</div>
-          <div class="t-desc">Free bicycle rezzers at many community areas. Some Linden Home residents keep horses (or dragons, or moths) and ride them between parcels.</div>
-        </div>
-
-        <div class="transport-card">
-          <div class="t-icon">📍</div>
-          <div class="t-name">Rezzing zones</div>
-          <div class="t-desc">Marked public rezzing zones let any resident temporarily rez a vehicle on otherwise-restricted parcels. Look for the signposts at major hubs.</div>
-        </div>
-
       </div>
 
-      <div class="callout">
-        <strong>Note for newcomers:</strong> Vehicles can be tricky for new residents &mdash; sim crossings still occasionally cause hiccups. If a resident is struggling, suggest a teleport for now and an exploration trip once they're more comfortable with the viewer.
+      <div class="place-card placeholder" id="place-demo" data-search="linden homes demo region walk-through every theme model newcomer claiming">
+        <div class="place-name">Linden Homes Demo</div>
+        <div class="place-desc">Walk-through demo region showcasing every current Linden Home theme and model. Great for residents weighing options before claiming.</div>
+        <div class="place-tags">
+          <span class="place-tag">Demos</span>
+          <span class="place-tag">Newcomer-safe</span>
+        </div>
+        <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+        <div class="place-actions">
+          <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
+        </div>
+      </div>
+
+      <div class="place-card placeholder" id="place-chippewa" data-search="chippewa town hall traditional theme community centre conferences garden parties weddings railway">
+        <div class="place-name">Chippewa Town Hall</div>
+        <div class="place-desc">Community centre for the Traditional theme &mdash; reservable for conferences, garden parties, and weddings. Sits on the main railway hub.</div>
+        <div class="place-tags">
+          <span class="place-tag">Community</span>
+          <span class="place-tag">Events</span>
+        </div>
+        <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+        <div class="place-actions">
+          <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
+        </div>
+      </div>
+
+      <div class="place-card placeholder" id="place-merrymount" data-search="merrymount victorian community region cafe fairground games ice skating winter gaslit park seasonal">
+        <div class="place-name">Merrymount</div>
+        <div class="place-desc">Community region for the Victorian theme &mdash; cafe, fairground games, ice skating in winter, gaslit park.</div>
+        <div class="place-tags">
+          <span class="place-tag">Community</span>
+          <span class="place-tag">Seasonal</span>
+        </div>
+        <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+        <div class="place-actions">
+          <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
+        </div>
+      </div>
+
+      <div class="place-card placeholder" id="place-sandbox" data-search="sandbox bellisseria demo themes test decorating ideas claiming">
+        <div class="place-name">Sandbox Bellisseria</div>
+        <div class="place-desc">Bellisseria-specific sandbox where residents can demo Linden Home themes and test decorating ideas before claiming.</div>
+        <div class="place-tags">
+          <span class="place-tag">Sandbox</span>
+          <span class="place-tag">Demos</span>
+        </div>
+        <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+        <div class="place-actions">
+          <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
+        </div>
+      </div>
+
+      <div class="place-card placeholder" id="place-fairstone" data-search="fairstone quarry fantasy wedding venue bioluminescent tree of love bonding dance balls radio stream">
+        <div class="place-name">Fairstone Quarry</div>
+        <div class="place-desc">Fantasy theme wedding venue. Bioluminescent lighting, the Tree of Love bonding spot, dance balls, optional radio stream.</div>
+        <div class="place-tags">
+          <span class="place-tag">Venue</span>
+          <span class="place-tag">Weddings</span>
+        </div>
+        <div class="place-slurl empty">SLURL to add &mdash; verify on maps.secondlife.com</div>
+        <div class="place-actions">
+          <button class="btn btn-ghost" disabled style="opacity:0.5;cursor:not-allowed;">Add SLURL</button>
+        </div>
       </div>
 
     </div>
-  </section>
 
-</main>
+    <div class="callout" data-search="slurl sourcing maps.secondlife.com social media verify in-world reliable">
+      <strong>SLURL sourcing:</strong> Pull SLURLs from <em>maps.secondlife.com</em> rather than social media posts &mdash; the maps source is reliable. Always test in-world before adding to the guide.
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="sec-events" data-section="events">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon">🎪</div>
+    <div style="flex:1;">
+      <div class="section-title">Events &amp; community</div>
+      <div class="section-sub">Groups, regular events, and where to point a curious resident</div>
+    </div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+
+    <div class="events-list">
+
+      <div class="event-row" data-search="bellisseria citizens main resident group continent daily chatter event announcements mutual help">
+        <div class="e-name">Bellisseria Citizens</div>
+        <div class="e-desc">The main resident-run group for everyone living on or visiting the continent. Daily chatter, event announcements, mutual help. Searchable in Groups.</div>
+      </div>
+
+      <div class="event-row" data-search="bellisseria bureau resident news outlet theme reveals community events mole news">
+        <div class="e-name">Bellisseria Bureau</div>
+        <div class="e-desc">Resident-run news outlet covering Bellisseria life, theme reveals, community events, and Mole news. Worth keeping an eye on for current happenings.</div>
+      </div>
+
+      <div class="event-row" data-search="pub crawls tours resident organised continent boat train balloon">
+        <div class="e-name">Pub crawls &amp; tours</div>
+        <div class="e-desc">Resident-organised continent tours by boat, train, or balloon. Listed in the Bellisseria Citizens group and the in-world events feed.</div>
+      </div>
+
+      <div class="event-row" data-search="seasonal events moles continent halloween winter spring birthday">
+        <div class="e-name">Seasonal events</div>
+        <div class="e-desc">The Moles dress the continent for major holidays &mdash; Halloween, winter festivities, spring birthday celebrations. Worth a visit each season.</div>
+      </div>
+
+      <div class="event-row" data-search="sl birthday celebrations new linden home themes revealed christmas expo home garden">
+        <div class="e-name">SL Birthday celebrations</div>
+        <div class="e-desc">New Linden Home themes are often revealed at major SL events (SL Birthday, Christmas Expo, Home &amp; Garden Expo). Watch the official blog for announcements.</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="sec-transport" data-section="transport">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="section-icon">🚂</div>
+    <div style="flex:1;">
+      <div class="section-title">Getting around</div>
+      <div class="section-sub">Trains, boats, roads, balloons &middot; how the continent connects</div>
+    </div>
+    <div class="section-toggle">▼</div>
+  </div>
+  <div class="section-body">
+
+    <div class="prose" data-search="bellisseria fully traversable rail water road air rezzing zones vehicles teleport">
+      <p>One of Bellisseria's defining features is that it's <strong>fully traversable</strong>. Residents can travel from any region to any other without teleporting &mdash; by rail, water, road, or air. Several rezzing zones are scattered across the continent for vehicles.</p>
+    </div>
+
+    <div class="transport-grid" style="margin-top: 16px;">
+
+      <div class="transport-card" data-search="railway network rail train continent victorian chalet mediterranean station sign rez">
+        <div class="t-icon">🚂</div>
+        <div class="t-name">Railway network</div>
+        <div class="t-desc">Continent-spanning rail system with separate networks for Victorian, Chalet, and Mediterranean regions. Trains rez at marked stations &mdash; touch a station sign to ride.</div>
+      </div>
+
+      <div class="transport-card" data-search="waterways canals rivers ocean boat rezzers marina dock houseboat stilt private">
+        <div class="t-icon">⛵</div>
+        <div class="t-name">Waterways</div>
+        <div class="t-desc">Bellisseria is built around navigable canals, rivers, and ocean. Boat rezzers at marina parcels and community docks. Houseboats and stilt homes have private rezzers.</div>
+      </div>
+
+      <div class="transport-card" data-search="roads network neighbourhoods vehicle rezzing zones community hubs rez board">
+        <div class="t-icon">🚗</div>
+        <div class="t-name">Roads</div>
+        <div class="t-desc">A road network connects neighbourhoods. Vehicle rezzing zones are placed at community hubs &mdash; touch the rez board or use a rezzer parcel.</div>
+      </div>
+
+      <div class="transport-card" data-search="air balloons hot air scenic tours aircraft altitude limits neighbouring parcels">
+        <div class="t-icon">🎈</div>
+        <div class="t-name">Air &amp; balloons</div>
+        <div class="t-desc">Hot-air balloon rezzers exist at several spots for slow scenic tours. Aircraft are permitted but be mindful of altitude limits and neighbouring parcels.</div>
+      </div>
+
+      <div class="transport-card" data-search="bicycles horses dragons moths community areas free rezzers ride parcels">
+        <div class="t-icon">🚲</div>
+        <div class="t-name">Bicycles &amp; horses</div>
+        <div class="t-desc">Free bicycle rezzers at many community areas. Some Linden Home residents keep horses (or dragons, or moths) and ride them between parcels.</div>
+      </div>
+
+      <div class="transport-card" data-search="rezzing zones marked public temporarily rez vehicle restricted parcels signposts hubs">
+        <div class="t-icon">📍</div>
+        <div class="t-name">Rezzing zones</div>
+        <div class="t-desc">Marked public rezzing zones let any resident temporarily rez a vehicle on otherwise-restricted parcels. Look for the signposts at major hubs.</div>
+      </div>
+
+    </div>
+
+    <div class="callout" data-search="newcomer note vehicles tricky sim crossings hiccups teleport exploration viewer">
+      <strong>Note for newcomers:</strong> Vehicles can be tricky for new residents &mdash; sim crossings still occasionally cause hiccups. If a resident is struggling, suggest a teleport for now and an exploration trip once they're more comfortable with the viewer.
+    </div>
+
+  </div>
+</section>
+
+</div>
 
 <footer>
   <p>SL Mentor Reference Guide &middot; Volunteer-maintained &middot; Not an official Linden Lab resource</p>
   <p>Theme info sourced from <a href="https://wiki.secondlife.com/wiki/Linden_Lab_Official:New_Linden_Homes_2019" target="_blank">the official SL wiki</a> and <a href="https://community.secondlife.com/knowledgebase/english/linden-homes-r44/" target="_blank">Linden Lab knowledge base</a>. Always verify current details with the official sources.</p>
 </footer>
+
+</div><!-- /#main -->
+
+</div><!-- /#app -->
 
 <!-- Adult warning modal -->
 <div id="adult-warning-modal" onclick="if(event.target===this)closeAdultWarningModal()" role="dialog" aria-modal="true" aria-labelledby="awm-title">
