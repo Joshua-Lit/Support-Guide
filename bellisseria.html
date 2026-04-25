@@ -49,6 +49,29 @@
     try { localStorage.setItem('cookie-ok-v2', '1'); } catch (e) {}
   }
 
+  function openAdultWarningModal() {
+    try {
+      if (sessionStorage.getItem('adult-warning-ack') === '1') {
+        window.location.href = 'adult-hub.html';
+        return;
+      }
+    } catch (e) {}
+    var m = document.getElementById('adult-warning-modal');
+    if (!m) { window.location.href = 'adult-hub.html'; return; }
+    m.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAdultWarningModal() {
+    var m = document.getElementById('adult-warning-modal');
+    if (!m) return;
+    m.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function confirmAdultGuide() {
+    try { sessionStorage.setItem('adult-warning-ack', '1'); } catch (e) {}
+    window.location.href = 'adult-hub.html';
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('cookie-ok-v2')) {
       var cn = document.getElementById('cookie-notice');
@@ -589,6 +612,99 @@
   }
   #cookie-notice button:hover { background: var(--accent-strong); }
 
+  /* ─── ADULT WARNING MODAL ─── */
+  #adult-warning-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 24, 40, 0.7);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    padding: 24px;
+  }
+  #adult-warning-modal.open { display: flex; }
+  #adult-warning-modal-inner {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    max-width: 480px;
+    width: 100%;
+    padding: 28px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  html[data-theme="light"] #adult-warning-modal-inner {
+    box-shadow: 0 20px 60px rgba(20,48,74,0.2);
+  }
+  #adult-warning-modal-close {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 8px;
+    border-radius: 6px;
+  }
+  #adult-warning-modal-close:hover { color: var(--text); background: var(--bg-card-hover); }
+  .awm-eyebrow {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .awm-title {
+    font-family: 'Oxanium', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .awm-body p {
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin: 0 0 12px;
+  }
+  .awm-body p:last-child { margin-bottom: 0; }
+  .awm-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  .awm-btn {
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .awm-btn-cancel {
+    background: transparent;
+    color: var(--text-mid);
+    border: 1px solid var(--border-strong);
+  }
+  .awm-btn-cancel:hover { color: var(--text); border-color: var(--text-dim); }
+  .awm-btn-confirm {
+    background: var(--accent);
+    color: #ffffff;
+  }
+  .awm-btn-confirm:hover { background: var(--accent-strong); }
+
   @media (max-width: 720px) {
     .hero { padding: 28px 18px 44px; }
     .hero h1 { font-size: 34px; }
@@ -610,8 +726,9 @@
     <div class="top-bar">
       <nav class="top-nav">
         <a href="index.html" class="top-nav-link">🏠 Home</a>
-        <a href="technical.html" class="top-nav-link">⚙️ Technical</a>
-        <a href="bellisseria.html" class="top-nav-link active">🌊 Bellisseria</a>
+        <a href="technical.html" class="top-nav-link">⚙️ Tech</a>
+        <a href="bellisseria.html" class="top-nav-link active">🌊 Belli</a>
+        <a href="javascript:void(0)" class="top-nav-link" onclick="openAdultWarningModal()">❤️ Adult</a>
       </nav>
       <label class="theme-switch" title="Toggle light / dark theme" onclick="toggleTheme(); return false;" aria-label="Toggle theme">
         <div class="theme-switch-track">
@@ -1069,6 +1186,23 @@
   <p>SL Mentor Reference Guide &middot; Volunteer-maintained &middot; Not an official Linden Lab resource</p>
   <p>Theme info sourced from <a href="https://wiki.secondlife.com/wiki/Linden_Lab_Official:New_Linden_Homes_2019" target="_blank">the official SL wiki</a> and <a href="https://community.secondlife.com/knowledgebase/english/linden-homes-r44/" target="_blank">Linden Lab knowledge base</a>. Always verify current details with the official sources.</p>
 </footer>
+
+<!-- Adult warning modal -->
+<div id="adult-warning-modal" onclick="if(event.target===this)closeAdultWarningModal()" role="dialog" aria-modal="true" aria-labelledby="awm-title">
+  <div id="adult-warning-modal-inner">
+    <button id="adult-warning-modal-close" onclick="closeAdultWarningModal()" aria-label="Close">&#10005;</button>
+    <div class="awm-eyebrow">⚠️ Adult content ahead</div>
+    <div class="awm-title" id="awm-title">Mentor reference &mdash; Adult Hub</div>
+    <div class="awm-body">
+      <p>This page is a mentor-facing reference for fielding questions about adult content in Second Life &mdash; age-gating, bodies, furniture and consent. It contains explicit subject matter written in plain language, along with copy-paste answers for IM.</p>
+      <p>It's here because these questions come up and residents need accurate information. If you'd rather not cover this area in your mentoring, that's completely fine &mdash; just close this and hand off when the topic arises.</p>
+    </div>
+    <div class="awm-actions">
+      <button class="awm-btn awm-btn-cancel" onclick="closeAdultWarningModal()">Not for me</button>
+      <button class="awm-btn awm-btn-confirm" onclick="confirmAdultGuide()">Open the guide &rsaquo;</button>
+    </div>
+  </div>
+</div>
 
 <div id="cookie-notice" class="hidden">
   <p>This site uses localStorage to remember your preferences. It does not use tracking cookies or advertising. <a href="https://lindenlab.com/legal/privacy-policy" target="_blank">More info</a></p>

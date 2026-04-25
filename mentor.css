@@ -360,10 +360,12 @@ body {
 .tech-chip:hover { border-color: var(--c-skyblue); background: rgba(124,127,255,0.15); }
 .page-nav {
   display: flex;
+  flex-wrap: wrap;
   border-bottom: 1px solid var(--border);
 }
 .page-nav-link {
-  flex: 1;
+  flex: 1 1 50%;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
