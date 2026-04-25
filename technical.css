@@ -1,0 +1,311 @@
+/* technical.css — page-specific styling for technical.html
+   Loaded AFTER mentor.css so overrides cascade correctly.
+   Covers: flowcharts (.fc-*, #fc-modal*), Q&A cards (.qa-*),
+   viewer comparison (.viewer-cols, .vc-*), Firestorm settings (.fs-*),
+   keyboard shortcuts (.shortcuts-*, .sc-*), tip boxes. */
+
+@keyframes say-pulse {
+    0%   { box-shadow: 0 0 0 0px rgba(77,159,255,0.7); }
+    40%  { box-shadow: 0 0 0 10px rgba(77,159,255,0.0); }
+    100% { box-shadow: 0 0 0 0px rgba(77,159,255,0.0); }
+  }
+
+/* ──────── PAGE-SPECIFIC STYLES ──────── */
+
+.fs-section .qa-card:hover { border-color: rgba(255,100,50,0.35); }
+.fs-section .qa-card:hover::before { background: var(--c-fs); }
+.fs-section .qa-card.open { border-color: rgba(255,100,50,0.35); }
+.fs-section .qa-card.open::before { background: var(--c-fs); }
+.fs-section .qa-card.open .qa-tog { color: var(--c-fs); border-color: var(--c-fs); background: rgba(255,100,50,0.1); }
+.qa-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+    margin-bottom: 5px;
+  }
+.qa-card.open {
+    overflow: visible;
+  }
+.qa-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: var(--border2);
+    transition: background 0.2s;
+    border-radius: 10px 0 0 10px;
+  }
+.qa-card:hover { border-color: var(--border2); }
+.qa-card:hover::before,
+  .qa-card.open::before { background: var(--c-tech); }
+.qa-card.open { border-color: rgba(167,139,255,0.35); }
+.qa-card.hidden { display: none; }
+.qa-q {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px 14px 22px;
+    cursor: pointer;
+    user-select: none;
+  }
+.qa-q-text {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-hi);
+    line-height: 1.4;
+  }
+.qa-tag {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    color: var(--c-tech);
+    background: var(--c-tech-d);
+    border: 1px solid rgba(167,139,255,0.3);
+  }
+.qa-tog {
+    font-size: 18px;
+    color: var(--text-dim);
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--border2);
+    flex-shrink: 0;
+    transition: transform 0.2s, color 0.2s, border-color 0.2s;
+    font-weight: 300;
+  }
+.qa-card.open .qa-tog {
+    transform: rotate(45deg);
+    color: var(--c-tech);
+    border-color: var(--c-tech);
+    background: var(--c-tech-d);
+  }
+.qa-body {
+    display: none;
+    padding: 16px 20px 18px 22px;
+    border-top: 1px solid var(--border);
+  }
+.qa-card.open .qa-body { display: block; }
+.qa-body p { color: var(--text); margin-bottom: 10px; line-height: 1.7; }
+.qa-body a { color: var(--c-tech); text-decoration: none; }
+.qa-body a:hover { text-decoration: underline; }
+.tip-box {
+    background: var(--panel2);
+    border-left: 3px solid var(--c-tech);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    margin-top: 14px;
+  }
+.tip-label {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--c-tech);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+.tip-box p { color: var(--text-mid); font-size: 12.5px; margin: 0; }
+.viewer-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+.viewer-col {
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+.vc-sl { background: var(--c-sl-d); border: 1px solid var(--c-sl-b); }
+.vc-fs { background: var(--c-fs-d); border: 1px solid var(--c-fs-b); }
+.vc-label {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+.vc-sl .vc-label { color: var(--c-sl); }
+.vc-fs .vc-label { color: var(--c-fs); }
+.vc-col-body { font-size: 12.5px; color: var(--text); line-height: 1.65; }
+.vc-col-body .say-block { margin-top: 10px; }
+.vc-col-body .say-text { font-size: 12px; padding-right: 60px; }
+.vc-col-body .say-label { font-size: 8px; }
+.vc-col-body .copy-btn { font-size: 8px; padding: 3px 8px; }
+.vc-col-body .bullets { margin: 6px 0; }
+.vc-col-body .bullet { font-size: 12px; }
+.vc-col-body .steps { margin: 6px 0; }
+.vc-col-body .step { font-size: 12px; }
+.vc-col-body p { margin-bottom: 6px; }
+.fc { font-family: 'Roboto', sans-serif; width:100%; overflow:hidden; }
+.fc-node {
+    border-radius: 8px; padding: 12px 16px; margin: 0 auto 6px;
+    text-align: center; font-size: 13px; position: relative;
+    max-width: 520px; cursor:default; width:100%;
+  }
+.fc-start {
+    background: rgba(167,139,255,0.2);
+    border: 2px solid var(--c-tech);
+    color: var(--text-hi); font-weight: 600;
+    border-radius: 30px;
+  }
+.fc-q {
+    background: rgba(58,134,255,0.1);
+    border: 1px solid rgba(58,134,255,0.5);
+    color: var(--text-hi);
+    border-radius: 8px;
+  }
+.fc-action {
+    background: rgba(29,233,213,0.08);
+    border: 1px solid rgba(29,233,213,0.35);
+    color: var(--text);
+    border-radius: 6px;
+    font-size: 12.5px;
+    text-align: left;
+    padding: 10px 14px;
+  }
+.fc-end-ok {
+    background: rgba(105,255,71,0.1);
+    border: 2px solid rgba(105,255,71,0.5);
+    color: #69FF47;
+    font-weight: 600; border-radius: 30px;
+  }
+.fc-end-bad {
+    background: rgba(255,82,82,0.1);
+    border: 2px solid rgba(255,82,82,0.4);
+    color: #FF5252;
+    font-weight: 600; border-radius: 30px;
+  }
+.fc-end-ticket {
+    background: rgba(255,179,0,0.1);
+    border: 2px solid rgba(255,179,0,0.4);
+    color: #FFB300;
+    font-weight: 600; border-radius: 30px;
+  }
+.fc-arrow {
+    text-align: center; color: var(--text-dim);
+    font-size: 18px; line-height: 1; margin: 0 auto;
+    display: block;
+  }
+.fc-branch {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin: 0 auto; max-width: 700px;
+  }
+.fc-branch-col { display: flex; flex-direction: column; align-items: center; }
+.fc-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 2px 10px; border-radius: 3px; margin-bottom: 4px;
+  }
+.fc-label-yes { color: #69FF47; background: rgba(105,255,71,0.1); border: 1px solid rgba(105,255,71,0.3); }
+.fc-label-no  { color: #FF5252; background: rgba(255,82,82,0.1);  border: 1px solid rgba(255,82,82,0.3); }
+.fc-sep { border:none; border-top: 1px dashed var(--border2); margin: 16px auto; max-width:700px; }
+.fc-merge { text-align:center; color:var(--text-dim); font-size:11px; letter-spacing:1px; font-family:'Share Tech Mono',monospace; margin:4px 0; }
+.fc-note { font-size:11px; color:var(--text-mid); text-align:center; margin-top:4px; }
+.fs-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    flex-shrink: 0;
+    position: relative;
+    top: -1px;
+  }
+.sc-val { font-family:'Oxanium','Courier New',monospace; font-size:12px; font-weight:600; color:var(--blue); }
+.sc-lbl { font-size:11px; color:var(--text-dim); }
+.shortcuts-group-hdr { font-family:'Share Tech Mono','Courier New',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--text-mid); margin:18px 0 8px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+.shortcuts-table { width:100%; border-collapse:collapse; }
+.shortcuts-table tr { border-bottom:1px solid var(--border); }
+.shortcuts-table tr:last-child { border-bottom:none; }
+.shortcuts-table td { padding:7px 8px; font-size:12.5px; vertical-align:middle; }
+.shortcuts-table td:first-child { color:var(--text); width:34%; }
+.shortcuts-table td:nth-child(2), .shortcuts-table td:nth-child(3) { width:26%; }
+.shortcuts-table td:last-child { width:14%; text-align:right; }
+.sc-kbd { font-family:'Share Tech Mono','Courier New',monospace; font-size:11px; color:var(--c-fs); background:rgba(255,100,50,0.1); border:1px solid rgba(255,100,50,0.3); border-radius:4px; padding:2px 6px; white-space:nowrap; }
+.sc-col-hdr { font-family:'Share Tech Mono','Courier New',monospace; font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--text-dim); }
+.sc-copy-btn { background:var(--panel2); border:1px solid var(--border2); border-radius:4px; color:var(--text-dim); font-family:'Share Tech Mono','Courier New',monospace; font-size:8px; letter-spacing:1px; padding:3px 8px; cursor:pointer; transition:color 0.15s, border-color 0.15s; white-space:nowrap; }
+.sc-copy-btn:hover { color:var(--c-teal); border-color:var(--c-teal); }
+.fs-card:hover { border-color:rgba(255,100,50,0.35) !important; }
+.fs-card:hover .qa-tog { color:var(--c-fs); border-color:var(--c-fs); }
+.fs-card:hover::before { background: var(--c-fs) !important; }
+.fs-card.open { border-color:rgba(255,100,50,0.35) !important; }
+.fs-card.open .qa-tog { color:var(--c-fs); border-color:var(--c-fs); background:rgba(255,100,50,0.1); }
+.fs-card.open::before { background: var(--c-fs) !important; }
+.fc-btn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+    margin-top: 4px;
+  }
+.fc-btn {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 6px solid var(--c-tech);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    text-align: left;
+    width: 100%;
+  }
+.fc-btn:hover { transform:translateY(-2px); }
+.fc-btn-icon { font-size: 24px; flex-shrink: 0; }
+.fc-btn-info { flex: 1; }
+.fc-btn-title { font-size:13px; font-weight:500; color:var(--text-hi); line-height:1.3; margin-bottom:3px; }
+.fc-btn-sub { font-family:'Share Tech Mono','Courier New',monospace; font-size:9px; letter-spacing:1px; color:var(--text-dim); text-transform:uppercase; }
+.fc-btn-arrow { font-size:20px; flex-shrink:0; }
+.fc-btn.fc-violet { border-left-color: var(--c-violet); }
+.fc-btn.fc-violet:hover { border-color:var(--c-violet); background:var(--c-violet-d); }
+.fc-btn.fc-violet .fc-btn-arrow { color:var(--c-violet); }
+.fc-btn.fc-mint { border-left-color: var(--c-mint); }
+.fc-btn.fc-mint:hover { border-color:var(--c-mint); background:var(--c-mint-d); }
+.fc-btn.fc-mint .fc-btn-arrow { color:var(--c-mint); }
+.fc-btn.fc-rose { border-left-color: var(--c-rose); }
+.fc-btn.fc-rose:hover { border-color:var(--c-rose); background:var(--c-rose-d); }
+.fc-btn.fc-rose .fc-btn-arrow { color:var(--c-rose); }
+#fc-modal { display:none; position:fixed; inset:0; background:rgba(4,6,14,0.92); z-index:9999; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+#fc-modal.open { display:block; }
+#fc-modal-inner { background:var(--panel); border:1px solid var(--border2); border-radius:12px; margin:24px auto; max-width:1100px; padding:28px 32px 36px; position:relative; }
+#fc-modal-title { font-family:'Oxanium','Courier New',monospace; font-size:1rem; font-weight:600; color:var(--text-hi); letter-spacing:1px; margin-bottom:16px; padding-right:40px; }
+#fc-modal-close { position:absolute; top:20px; right:20px; background:var(--panel2); border:1px solid var(--border2); border-radius:6px; color:var(--text-dim); font-size:18px; width:34px; height:34px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:color 0.15s, border-color 0.15s; }
+#fc-modal-close:hover { color:var(--text-hi); border-color:var(--text-mid); }
+#fc-modal-body { overflow-x:auto; }
+
+/* ──────── RESPONSIVE OVERRIDES ──────── */
+
+@media (max-width: 640px) {
+  .viewer-cols { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .viewer-cols { grid-template-columns: 1fr; }
+  .fc-btn-grid { grid-template-columns: 1fr; }
+  #fc-modal-inner { margin: 8px; padding: 16px 12px 20px; }
+  #fc-modal-title { font-size: 0.85rem; }
+  .fc-branch { grid-template-columns: 1fr !important; }
+  .fc-branch-col { width: 100%; }
+  .fc-node { max-width: 100% !important; width: 100% !important; }
+}
+
+@media (max-width: 900px) and (min-width: 769px) {
+  .viewer-cols { grid-template-columns: 1fr; }
+}
+
+@media (max-width:640px) {
+  #fc-modal-inner { margin:10px; padding:18px 14px 24px; }
+}
