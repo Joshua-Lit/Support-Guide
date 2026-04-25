@@ -250,7 +250,7 @@ body {
 .sidebar-top-btn:hover { color: var(--c-teal); border-color: var(--c-teal); }
 
 /* ═══ MAIN ═══ */
-#main { flex:1; padding:20px 52px 40px; overflow-x:hidden; min-width:0; }
+#main { flex:1; max-width: 1400px; margin: 0 auto; padding:20px 52px 40px; overflow-x:hidden; min-width:0; }
 
 .page-hdr {
   margin-bottom: 40px;
