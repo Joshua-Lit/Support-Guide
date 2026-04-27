@@ -1386,7 +1386,7 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
             <div class="finding gotcha">
     <div class="finding-head">
         <span class="finding-num">Gotcha 02</span>
-        <h3 class="finding-title">math.randomseed is a no-op — and you don't need it</h3>
+        <h3 class="finding-title">math.randomseed is a no-op &mdash; and you don't need it</h3>
     </div>
     <p>
         My instinct from Lua-elsewhere was to seed <code>math.random</code> at startup
@@ -1395,46 +1395,31 @@ LLTimers:once(<span class="tok-num">30.0</span>, closeMenu)</code></pre>
     </p>
     <p>
         First, <code>math.randomseed</code> is a no-op. Calling it has no effect on
-        subsequent <code>math.random</code> output. This is intentional, and visible
-        directly in the SLua source — the function checks for the SLua VM and
-        returns immediately:
+        subsequent <code>math.random</code> output. The
+        <a href="https://github.com/secondlife/slua/blob/f629edcd4316e2177196707c099af23a31d3cc46/VM/src/lmathlib.cpp#L280" target="_blank" rel="noopener">SLua source</a>
+        spells out the reasoning in a comment: <em>"We don't support seeding the RNG
+        in this configuration, just ignore. Some Lua scripts try to seed rand with
+        <code>time()</code> and such manually in an attempt to get more 'random'
+        values which doesn't really work. We stay silent to not break them."</em>
     </p>
-    <div class="code-block">
-        <div class="code-header"><span class="code-lang">C++ · slua/VM/src/lmathlib.cpp</span><button class="copy-btn" onclick="copyCode(this)">copy</button></div>
-<pre><code><span class="tok-kw">static int</span> math_randomseed(lua_State* L)
-{
-    <span class="tok-com">// ServerLua: We don't support seeding the RNG in this configuration, just ignore.</span>
-    <span class="tok-kw">if</span> (LUAU_IS_SL_VM(L))
-    {
-        <span class="tok-com">// TODO: Is explicit warning better? Some Lua scripts try to seed rand</span>
-        <span class="tok-com">// with `time()` and such manually in an attempt to get more "random" values</span>
-        <span class="tok-com">// which doesn't really work. We stay silent to not break them...</span>
-        <span class="tok-kw">return</span> <span class="tok-num">0</span>;
-    }
-    <span class="tok-com">// ...</span>
-}</code></pre>
-    </div>
     <p>
         Second, you don't need it. The random state is shared by everything running
         in the SLua VM and is continuously consumed, so by the time your script
         calls <code>math.random()</code> for the first time the state has already
         been advanced by every other script that touched it. Two freshly-rezzed
-        copies of the same object will not produce the same channel — they're
+        copies of the same object will not produce the same channel &mdash; they're
         drawing from the same continuously-evolving stream.
     </p>
     <p>
         The official wiki's example scripts include calls to
         <code>math.randomseed(ll.GetUnixTime())</code> as a habit imported from
         LSL/Mono and other Lua environments. Those calls don't do anything in SLua.
-        They're harmless, but they suggest a problem that doesn't exist — and
+        They're harmless, but they suggest a problem that doesn't exist &mdash; and
         following the pattern in your own code creates the impression that
         randomness needs careful handling when it doesn't.
     </p>
     <p class="finding-credit">
-        With thanks to <strong>Wolfgang Senizen</strong> for the correction, and for
-        pointing at the
-        <a href="https://github.com/secondlife/slua/blob/f629edcd4316e2177196707c099af23a31d3cc46/VM/src/lmathlib.cpp#L280">SLua source</a>
-        as the canonical reference.
+        With thanks to <strong>Wolfgang Senizen</strong> for the correction.
     </p>
 </div>
 
