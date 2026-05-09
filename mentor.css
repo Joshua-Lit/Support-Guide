@@ -2706,3 +2706,38 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 [data-theme="light"] #adult-warning-modal { background: rgba(240,240,250,0.92); }
 [data-theme="light"] .awm-btn-confirm { background: rgba(196,20,90,0.08); border-color: rgba(196,20,90,0.5); color: #c4145a; }
 [data-theme="light"] .awm-btn-confirm:hover { background: rgba(196,20,90,0.18); color: #ffffff; border-color: #c4145a; }
+
+
+/* ──────── MOBILE FIXES (May 2026) ──────── */
+/* Grid status pill: prevent multi-line wrap and URL overflow on narrow screens */
+@media (max-width: 720px) {
+  .grid-status-pill {
+    font-size: 10px;
+    padding: 7px 12px;
+    gap: 7px;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .grid-status-pill .gsp-url {
+    display: none;
+  }
+  .grid-status-pill .gsp-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  /* Sidebar TOP button: hide unless user has scrolled past the page header.
+     Body class .is-scrolled is toggled by a scroll listener on each page. */
+  .sidebar-top-btn {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  body.is-scrolled .sidebar-top-btn {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
