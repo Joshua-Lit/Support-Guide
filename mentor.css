@@ -2729,15 +2729,31 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     min-width: 0;
   }
 
-  /* Sidebar TOP button: hide unless user has scrolled past the page header.
-     Body class .is-scrolled is toggled by a scroll listener on each page. */
+  /* Sidebar TOP button: convert to floating action button (FAB) at bottom-right.
+     The sidebar-status row sits at the top of the page on mobile and scrolls off-screen
+     as the user scrolls down — taking the in-flow TOP button with it. Detach via fixed
+     positioning so the button stays accessible at bottom-right while scrolled. Hidden
+     when at top of page, fades in once user has scrolled past 80px. Body class
+     .is-scrolled is toggled by a scroll listener on each page. */
   .sidebar-top-btn {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    z-index: 50;
+    margin-left: 0;
+    padding: 8px 14px;
+    font-size: 11px;
+    border-radius: 999px;
+    background: var(--panel);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.2s ease;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
   body.is-scrolled .sidebar-top-btn {
     opacity: 1;
     pointer-events: auto;
+    transform: translateY(0);
   }
 }
