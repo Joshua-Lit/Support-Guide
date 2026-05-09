@@ -1254,6 +1254,160 @@
     .overview-grid { grid-template-columns: 1fr; }
     .event-row { grid-template-columns: 1fr; gap: 4px; }
   }
+
+  /* ── HERO SEARCH BAR (self-contained, mirrors mentor.css pattern) ── */
+  .hero-search-wrap {
+    margin: 24px 0 0;
+    max-width: 760px;
+    position: relative;
+  }
+
+  .hero-search-frame {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .hero-search-frame:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+  }
+
+  .hero-search-icon {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    color: var(--accent);
+    font-size: 18px;
+    padding: 0 14px 0 16px;
+    font-weight: 700;
+    user-select: none;
+    letter-spacing: -1px;
+  }
+
+  .hero-search-input {
+    flex: 1;
+    width: auto;
+    background: transparent;
+    border: none;
+    padding: 18px 0;
+    color: var(--text);
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 16px;
+    outline: none;
+    min-width: 0;
+    border-radius: 0;
+  }
+
+  .hero-search-input::placeholder {
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+
+  .hero-search-kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 10px;
+    margin-right: 10px;
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dim);
+    background: var(--bg-card-soft);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    user-select: none;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
+  }
+
+  .hero-search-frame:focus-within .hero-search-kbd { opacity: 0; }
+
+  .hero-search-clear {
+    display: none;
+    position: static;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    padding: 8px 14px;
+    flex-shrink: 0;
+  }
+
+  .hero-search-clear.visible { display: inline-block; }
+  .hero-search-clear:hover { color: var(--text); }
+
+  .hero-search-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    min-height: 28px;
+  }
+
+  .hero-search-count {
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    min-height: 16px;
+    white-space: nowrap;
+  }
+
+  .hero-search-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hero-search-chips::before {
+    content: '// try:';
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    margin-right: 2px;
+  }
+
+  .search-chip {
+    display: inline-block;
+    padding: 5px 11px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    color: var(--text-mid);
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .search-chip:hover {
+    border-color: var(--accent);
+    color: var(--text);
+    background: var(--accent-soft);
+  }
+
+  @media (max-width: 720px) {
+    .hero-search-icon { padding: 0 10px 0 12px; font-size: 16px; }
+    .hero-search-input { font-size: 15px; padding: 15px 0; }
+    .hero-search-kbd { display: none; }
+    .hero-search-chips::before { display: none; }
+    .hero-search-meta { gap: 10px; }
+    .search-chip { font-size: 11px; padding: 4px 9px; }
+  }
 </style>
 </head>
 <body>
@@ -1381,7 +1535,7 @@
     <div class="hero-chip c-mint"><strong>Moles</strong>Built &amp; maintained</div>
   </div>
 
-  <div class="hero-search-wrap" id="hero-search-wrap" style="--hero-accent: var(--accent);">
+  <div class="hero-search-wrap" id="hero-search-wrap">
     <div class="hero-search-frame">
       <span class="hero-search-icon">//</span>
       <input type="text" id="global-search" class="hero-search-input" placeholder="search bellisseria..." autocomplete="off" spellcheck="false">
