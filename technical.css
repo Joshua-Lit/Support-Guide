@@ -500,3 +500,59 @@
   background: rgba(77,159,255,0.08);
   color: var(--text-hi);
 }
+
+
+/* ──────── MOBILE THEME TOGGLE ──────── */
+/* Lives in .sidebar-status (the always-visible top row on mobile).
+   Hidden on desktop where the existing .theme-switch in .nav-collapse-row handles theming.
+   Promote to mentor.css once added to other pages' sidebar-status. */
+
+.sidebar-theme-btn {
+  display: none;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 13px;
+  color: var(--text-dim);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-left: auto;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+
+.sidebar-theme-btn:hover {
+  color: var(--c-teal);
+  border-color: var(--c-teal);
+}
+
+/* Icon swap based on current theme */
+.sidebar-theme-btn .stb-moon { display: none; }
+[data-theme="light"] .sidebar-theme-btn .stb-sun { display: none; }
+[data-theme="light"] .sidebar-theme-btn .stb-moon { display: inline; }
+
+/* Show on mobile only (matches existing .nav hide breakpoint at 640px) */
+@media (max-width: 640px) {
+  .sidebar-theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* When mobile theme toggle is shown, both buttons share the right edge.
+     Only the theme button takes the auto margin; TOP gets a fixed gap. */
+  .sidebar-status .sidebar-top-btn {
+    margin-left: 6px;
+  }
+}
+
+/* Light theme styling */
+[data-theme="light"] .sidebar-theme-btn {
+  color: var(--text-mid);
+  border-color: var(--border);
+}
+[data-theme="light"] .sidebar-theme-btn:hover {
+  color: var(--c-teal);
+  border-color: var(--c-teal);
+}
