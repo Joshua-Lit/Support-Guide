@@ -2922,7 +2922,7 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
+  gap: 14px;
 }
 
 .hero-search-chips::before {
@@ -2936,23 +2936,27 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
 
 .search-chip {
   display: inline-block;
-  padding: 5px 11px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  color: var(--text-mid);
+  padding: 2px 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: var(--hero-accent);
   font-size: 12px;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
-  transition: all 0.15s;
   user-select: none;
   white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s, opacity 0.2s;
+  opacity: 0.85;
 }
 
 .search-chip:hover {
-  border-color: var(--hero-accent);
-  color: var(--text-hi);
-  background: color-mix(in srgb, var(--hero-accent) 8%, transparent);
+  text-decoration-color: currentColor;
+  opacity: 1;
 }
 
 /* Mobile responsive adjustments */
@@ -2960,9 +2964,8 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   .hero-search-icon { padding: 0 10px 0 12px; font-size: 16px; }
   .hero-search-input { font-size: 15px; padding: 15px 0; }
   .hero-search-kbd { display: none; }
-  .hero-search-chips::before { display: none; }
   .hero-search-meta { gap: 10px; }
-  .search-chip { font-size: 11px; padding: 4px 9px; }
+  .hero-search-chips { gap: 12px; }
 }
 
 /* Light theme */
@@ -2975,11 +2978,4 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   background: var(--bg2);
   color: var(--text-mid);
 }
-[data-theme="light"] .search-chip {
-  background: var(--bg);
-  color: var(--text-mid);
-}
-[data-theme="light"] .search-chip:hover {
-  background: color-mix(in srgb, var(--hero-accent) 10%, transparent);
-  color: var(--text-hi);
-}
+/* .search-chip uses var(--hero-accent) which auto-adapts to light theme via CSS variables */

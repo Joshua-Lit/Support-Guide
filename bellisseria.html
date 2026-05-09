@@ -178,7 +178,30 @@
       doSearch('');
       srch.focus();
     };
+
+    // Hero search: "/" focuses the input
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        const tag = document.activeElement.tagName;
+        if (tag !== 'INPUT' && tag !== 'TEXTAREA' && !document.activeElement.isContentEditable) {
+          e.preventDefault();
+          srch.focus();
+          srch.select();
+        }
+      }
+    });
   });
+
+  // Hero search: chip click handler
+  function tryChip(query) {
+    const srch = document.getElementById('global-search');
+    if (!srch) return;
+    const wrap = srch.closest('.hero-search-wrap');
+    srch.value = query;
+    srch.dispatchEvent(new Event('input', {bubbles: true}));
+    if (wrap) wrap.scrollIntoView({behavior: 'smooth', block: 'start'});
+    srch.focus();
+  }
 </script>
 <style>
   :root {
@@ -1367,7 +1390,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 6px;
+    gap: 14px;
   }
 
   .hero-search-chips::before {
@@ -1381,32 +1404,35 @@
 
   .search-chip {
     display: inline-block;
-    padding: 5px 11px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    color: var(--text-mid);
+    padding: 2px 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    color: var(--accent);
     font-size: 12px;
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
-    transition: all 0.15s;
     user-select: none;
     white-space: nowrap;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s, opacity 0.2s;
+    opacity: 0.85;
   }
 
   .search-chip:hover {
-    border-color: var(--accent);
-    color: var(--text);
-    background: var(--accent-soft);
+    text-decoration-color: currentColor;
+    opacity: 1;
   }
 
   @media (max-width: 720px) {
     .hero-search-icon { padding: 0 10px 0 12px; font-size: 16px; }
     .hero-search-input { font-size: 15px; padding: 15px 0; }
     .hero-search-kbd { display: none; }
-    .hero-search-chips::before { display: none; }
     .hero-search-meta { gap: 10px; }
-    .search-chip { font-size: 11px; padding: 4px 9px; }
+    .hero-search-chips { gap: 12px; }
   }
 </style>
 </head>
