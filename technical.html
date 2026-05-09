@@ -172,19 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // ── Scroll-aware body class (drives mobile-only top-button visibility) ──
-  // Promote to mentor.js when ready to share across pages.
-  let _wasScrolled = false;
-  function updateScrollClass() {
-    const isScrolled = window.scrollY > 80;
-    if (isScrolled !== _wasScrolled) {
-      document.body.classList.toggle('is-scrolled', isScrolled);
-      _wasScrolled = isScrolled;
-    }
-  }
-  window.addEventListener('scroll', updateScrollClass, {passive: true});
-  updateScrollClass();
-
   if (localStorage.getItem('cookie-ok-v2')) document.getElementById('cookie-notice').classList.add('hidden');
 });
 

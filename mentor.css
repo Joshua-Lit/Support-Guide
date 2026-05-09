@@ -63,7 +63,6 @@ body {
   font-size: 14px;
   line-height: 1.65;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 #app { display: flex; min-height: 100vh; position: relative; z-index: 1; }
@@ -250,7 +249,7 @@ body {
 .sidebar-top-btn:hover { color: var(--c-teal); border-color: var(--c-teal); }
 
 /* ═══ MAIN ═══ */
-html, body { overflow-x: hidden; }
+html { overflow-x: hidden; } /* clip horizontal overflow at html level — body left as default to keep position:sticky working on #sidebar */
 #main { flex:1; max-width: 1400px; margin: 0 auto; padding:20px 52px 40px; min-width:0; }
 
 .page-hdr {
@@ -868,7 +867,6 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   #app { flex-direction:column; }
   #sidebar { width:100%; height:auto; position:relative; }
   .nav { display:none; }
-  #main { padding:20px 14px 20px; }
   .page-hdr h1 { font-size:1.3rem; }
 }
 
@@ -1825,9 +1823,6 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   #main { padding: 28px 28px 60px; }
   .viewer-cols { grid-template-columns: 1fr; }
 }
-@media (max-width: 640px) {
-  #page-header, .tech-search-wrap { padding-left: 20px; padding-right: 20px; }
-}
 
 
 /* ── COOKIE NOTICE ── */
@@ -2756,4 +2751,51 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
     pointer-events: auto;
     transform: translateY(0);
   }
+
+  /* Sidebar theme toggle: visible on mobile inside .sidebar-status, since the desktop
+     .theme-switch sits inside .nav which is hidden on mobile. Compact pill-button style
+     matching .sidebar-top-btn. Icon swaps based on current theme. */
+  .sidebar-theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-left: auto;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+  .sidebar-theme-btn:hover {
+    color: var(--c-teal);
+    border-color: var(--c-teal);
+  }
+  /* When mobile theme button is shown alongside TOP fab, the auto margin
+     pushes theme button to the right of the .sidebar-status row */
+}
+
+/* Theme icon swap (works at any viewport — only the button itself is mobile-only) */
+.sidebar-theme-btn .stb-moon { display: none; }
+[data-theme="light"] .sidebar-theme-btn .stb-sun { display: none; }
+[data-theme="light"] .sidebar-theme-btn .stb-moon { display: inline; }
+
+/* Hide the mobile theme button entirely on desktop */
+@media (min-width: 721px) {
+  .sidebar-theme-btn { display: none; }
+}
+
+/* Light theme styling for the mobile theme button */
+[data-theme="light"] .sidebar-theme-btn {
+  color: var(--text-mid);
+  border-color: var(--border);
+}
+[data-theme="light"] .sidebar-theme-btn:hover {
+  color: var(--c-teal);
+  border-color: var(--c-teal);
 }

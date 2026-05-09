@@ -315,39 +315,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Technical page search (tech-search / tech-clear / qa-count)
-  const techSrch = document.getElementById('tech-search');
-  const techClr  = document.getElementById('tech-clear');
-  const techCnt  = document.getElementById('qa-count');
-  if (techSrch) {
-    function n(s) { return s.toLowerCase().replace(/[^a-z0-9 ]/g,' '); }
-
-    function doTechSearch(raw) {
-      const q = n(raw);
-      const cards = document.querySelectorAll('.qa-card');
-      let hits = 0;
-      cards.forEach(el => el.classList.remove('hidden'));
-      if (!q.trim()) { if (techCnt) techCnt.textContent = ''; return; }
-      const terms = q.trim().split(/\s+/).filter(Boolean);
-      cards.forEach(el => {
-        const hay = n(el.dataset.search + ' ' + el.textContent);
-        if (terms.every(t => hay.includes(t))) hits++;
-        else el.classList.add('hidden');
-      });
-      if (techCnt) techCnt.textContent = hits + ' result' + (hits !== 1 ? 's' : '');
+  // ── Scroll-aware body class (drives mobile FAB top-button visibility) ──
+  // Toggled on every page so the .sidebar-top-btn FAB pattern works site-wide.
+  let _wasScrolled = false;
+  function updateScrollClass() {
+    const isScrolled = window.scrollY > 80;
+    if (isScrolled !== _wasScrolled) {
+      document.body.classList.toggle('is-scrolled', isScrolled);
+      _wasScrolled = isScrolled;
     }
-
-    techSrch.addEventListener('input', () => {
-      techClr.style.display = techSrch.value ? 'block' : 'none';
-      doTechSearch(techSrch.value);
-    });
-    techClr.addEventListener('click', () => {
-      techSrch.value = '';
-      techClr.style.display = 'none';
-      doTechSearch('');
-    });
-    // (qa-count text left as-is from HTML on load)
   }
+  window.addEventListener('scroll', updateScrollClass, {passive: true});
+  updateScrollClass();
 });
 
 
