@@ -327,7 +327,35 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   window.addEventListener('scroll', updateScrollClass, {passive: true});
   updateScrollClass();
+
+  // ── Hero search: "/" focuses the search input on any page that has one ──
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      const tag = document.activeElement.tagName;
+      if (tag !== 'INPUT' && tag !== 'TEXTAREA' && !document.activeElement.isContentEditable) {
+        const srch = document.getElementById('tech-search')
+                  || document.getElementById('global-search');
+        if (srch) {
+          e.preventDefault();
+          srch.focus();
+          srch.select();
+        }
+      }
+    }
+  });
 });
+
+// ── Hero search: chip click handler. Works on any page that has a hero search.
+function tryChip(query) {
+  const srch = document.getElementById('tech-search')
+            || document.getElementById('global-search');
+  if (!srch) return;
+  const wrap = srch.closest('.hero-search-wrap');
+  srch.value = query;
+  srch.dispatchEvent(new Event('input', {bubbles: true}));
+  if (wrap) wrap.scrollIntoView({behavior: 'smooth', block: 'start'});
+  srch.focus();
+}
 
 
 

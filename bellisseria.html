@@ -1278,15 +1278,6 @@
     <a href="javascript:void(0)" class="page-nav-link" onclick="openAdultWarningModal()"><span class="pn-icon">&#10084;&#65039;</span>Adult</a>
   </div>
 
-  <div class="search-wrap">
-    <div class="search-inner">
-      <span class="search-icon">//</span>
-      <input type="text" id="global-search" placeholder="search bellisseria..." autocomplete="off" spellcheck="false">
-      <button id="search-clear" onclick="clearSearch()" title="Clear search">&#10005;</button>
-    </div>
-    <div id="search-count"></div>
-  </div>
-
   <div class="sb-theme-row">
     <button id="nav-toggle-btn" onclick="toggleAllNav()" title="Expand all sections">&#8862; Expand all</button>
     <label class="theme-switch" title="Toggle light / dark theme" onclick="toggleTheme(); return false;" aria-label="Toggle theme">
@@ -1388,6 +1379,26 @@
     <div class="hero-chip c-sky"><strong>16+</strong>Home themes</div>
     <div class="hero-chip c-coral"><strong>2019</strong>Established</div>
     <div class="hero-chip c-mint"><strong>Moles</strong>Built &amp; maintained</div>
+  </div>
+
+  <div class="hero-search-wrap" id="hero-search-wrap" style="--hero-accent: var(--accent);">
+    <div class="hero-search-frame">
+      <span class="hero-search-icon">//</span>
+      <input type="text" id="global-search" class="hero-search-input" placeholder="search bellisseria..." autocomplete="off" spellcheck="false">
+      <kbd class="hero-search-kbd" title="Press / to focus search">/</kbd>
+      <button id="search-clear" class="hero-search-clear" onclick="clearSearch()" title="Clear search">&times;</button>
+    </div>
+    <div class="hero-search-meta">
+      <div id="search-count" class="hero-search-count"></div>
+      <div class="hero-search-chips">
+        <span class="search-chip" onclick="tryChip('themes')">Themes</span>
+        <span class="search-chip" onclick="tryChip('claim')">Claim</span>
+        <span class="search-chip" onclick="tryChip('premium')">Premium</span>
+        <span class="search-chip" onclick="tryChip('houseboat')">Houseboat</span>
+        <span class="search-chip" onclick="tryChip('mainland')">Mainland</span>
+        <span class="search-chip" onclick="tryChip('events')">Events</span>
+      </div>
+    </div>
   </div>
 
   <a id="grid-status-pill" class="grid-status-pill gsp-fallback" href="https://status.secondlifegrid.net/" target="_blank" title="Check the SL grid status page in a new tab">

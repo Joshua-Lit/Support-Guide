@@ -160,17 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
     srch.focus();
   });
 
-  // Keyboard shortcut: '/' focuses search (unless already typing in another input)
-  document.addEventListener('keydown', (e) => {
-    if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
-      const tag = document.activeElement.tagName;
-      if (tag !== 'INPUT' && tag !== 'TEXTAREA' && !document.activeElement.isContentEditable) {
-        e.preventDefault();
-        srch.focus();
-        srch.select();
-      }
-    }
-  });
+
 
   if (localStorage.getItem('cookie-ok-v2')) document.getElementById('cookie-notice').classList.add('hidden');
 });
@@ -195,19 +185,6 @@ function copyShortcut(btn, text) {
 function toggleNav(hdr) {
   hdr.classList.toggle('open');
   hdr.nextElementSibling.classList.toggle('open');
-}
-
-function tryChip(query) {
-  const srch = document.getElementById('tech-search');
-  const clr = document.getElementById('tech-clear');
-  const wrap = document.getElementById('tech-search-wrap');
-  if (!srch) return;
-  srch.value = query;
-  if (clr) clr.classList.add('visible');
-  // trigger the input event handler bound on the searchbox
-  srch.dispatchEvent(new Event('input', {bubbles: true}));
-  if (wrap) wrap.scrollIntoView({behavior:'smooth', block:'start'});
-  srch.focus();
 }
 
 function jumpTo(id) {
@@ -476,16 +453,16 @@ function updateThemeToggle() {
       <div class="stat-chip" onclick="document.getElementById(&#39;qa-head-mouse&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Firestorm Settings" style="cursor:pointer;border-color:rgba(255,100,50,0.4);"><span class="sc-val" style="color:var(--c-fs);">6</span><span class="sc-lbl">Firestorm</span></div>
     </div>
 
-    <div class="tech-search-wrap" id="tech-search-wrap">
-      <div class="tech-search-frame">
-        <span class="tech-search-icon">//</span>
-        <input type="text" id="tech-search" placeholder="search Q&amp;As and flowcharts..." autocomplete="off" spellcheck="false">
-        <kbd class="tech-search-kbd" title="Press / to focus search">/</kbd>
-        <button id="tech-clear" title="Clear search">&times;</button>
+    <div class="hero-search-wrap" id="tech-search-wrap" style="--hero-accent: var(--c-tech);">
+      <div class="hero-search-frame">
+        <span class="hero-search-icon">//</span>
+        <input type="text" id="tech-search" class="hero-search-input" placeholder="search Q&amp;As and flowcharts..." autocomplete="off" spellcheck="false">
+        <kbd class="hero-search-kbd" title="Press / to focus search">/</kbd>
+        <button id="tech-clear" class="hero-search-clear" title="Clear search">&times;</button>
       </div>
-      <div class="tech-search-meta">
-        <div id="tech-search-count" class="tech-search-count"></div>
-        <div class="tech-search-chips">
+      <div class="hero-search-meta">
+        <div id="tech-search-count" class="hero-search-count"></div>
+        <div class="hero-search-chips">
           <span class="search-chip" onclick="tryChip(&#39;cloud&#39;)">Cloud / grey avatar</span>
           <span class="search-chip" onclick="tryChip(&#39;teleport&#39;)">Teleport fail</span>
           <span class="search-chip" onclick="tryChip(&#39;disable&#39;)">Disable</span>

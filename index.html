@@ -35,15 +35,6 @@
     <a class="page-nav-link" href="javascript:void(0)" onclick="openAdultWarningModal()"><span class="pn-icon">&#10084;&#65039;</span>Adult</a>
   </div>
 
-  <div class="search-wrap">
-    <div class="search-inner">
-      <span class="search-icon">//</span>
-      <input type="text" id="global-search" placeholder="search guide..." autocomplete="off" spellcheck="false">
-      <button id="search-clear" onclick="clearSearch()" title="Clear search">&#10005;</button>
-    </div>
-    <div id="search-count"></div>
-  </div>
-
   <div class="nav">
     <div class="nav-collapse-row">
       <button id="nav-toggle-btn" onclick="toggleAllNav()" title="Expand all sections">&#8862; Expand all</button>
@@ -196,10 +187,6 @@
   <div class="sidebar-status">
     <div class="status-dot"></div>
     <div class="status-text">GUIDE ONLINE &#8212; SL MENTORS</div>
-    <button class="sidebar-theme-btn" onclick="toggleTheme()" title="Toggle light / dark theme" aria-label="Toggle theme">
-      <span class="stb-sun">&#9728;</span>
-      <span class="stb-moon">&#9790;</span>
-    </button>
     <button class="sidebar-top-btn" onclick="scrollToTop()" title="Scroll to top">&#11014; TOP</button>
   </div>
 </nav>
@@ -220,6 +207,26 @@
       <div class="stat-chip" onclick="jumpTo('sec-mobile')" title="Go to Mobile" style="cursor:pointer;"><span class="sc-val">2</span><span class="sc-lbl">Mobile</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-faqs')" title="Go to FAQs" style="cursor:pointer;"><span class="sc-val">26</span><span class="sc-lbl">FAQs</span></div>
       <div class="stat-chip" onclick="jumpTo('sec-landmarks')" title="Go to Landmarks" style="cursor:pointer;"><span class="sc-val">10</span><span class="sc-lbl">Landmarks</span></div>
+    </div>
+
+    <div class="hero-search-wrap" id="hero-search-wrap">
+      <div class="hero-search-frame">
+        <span class="hero-search-icon">//</span>
+        <input type="text" id="global-search" class="hero-search-input" placeholder="search guide..." autocomplete="off" spellcheck="false">
+        <kbd class="hero-search-kbd" title="Press / to focus search">/</kbd>
+        <button id="search-clear" class="hero-search-clear" onclick="clearSearch()" title="Clear search">&times;</button>
+      </div>
+      <div class="hero-search-meta">
+        <div id="search-count" class="hero-search-count"></div>
+        <div class="hero-search-chips">
+          <span class="search-chip" onclick="tryChip('account')">Account</span>
+          <span class="search-chip" onclick="tryChip('inventory')">Inventory</span>
+          <span class="search-chip" onclick="tryChip('movement')">Movement</span>
+          <span class="search-chip" onclick="tryChip('landmarks')">Landmarks</span>
+          <span class="search-chip" onclick="tryChip('mobile')">Mobile</span>
+          <span class="search-chip" onclick="tryChip('clara')">CLARA</span>
+        </div>
+      </div>
     </div>
 
     <a id="grid-status-pill" class="grid-status-pill gsp-fallback" href="https://status.secondlifegrid.net/" target="_blank" title="Check the SL grid status page in a new tab">
