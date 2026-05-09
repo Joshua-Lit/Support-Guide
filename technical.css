@@ -570,3 +570,14 @@
     padding-right: 0;
   }
 }
+
+
+/* ──────── DESKTOP SIDEBAR HEIGHT FIX ──────── */
+/* mentor.css declares #sidebar with position:sticky, top:0, height:100vh, but as a flex
+   child of #app (display:flex with default align-items:stretch), the sidebar is forced
+   to stretch to match #main's very-tall content, overriding height:100vh. The sticky
+   element then ends partway down the page. align-self:flex-start prevents the stretch
+   so height:100vh and sticky behave as intended. */
+#sidebar {
+  align-self: flex-start;
+}
