@@ -556,3 +556,17 @@
   color: var(--c-teal);
   border-color: var(--c-teal);
 }
+
+
+/* ──────── MOBILE LAYOUT ALIGNMENT ──────── */
+/* mentor.css line 1829 adds +20px horizontal padding to #page-header and .tech-search-wrap
+   at <=640px, which double-pads with #main's 16px and pushes hero content visibly inboard
+   compared to .sidebar-logo (18px). Remove the extra padding so all content aligns to
+   #main's edge, matching the spanner icon position at the top. */
+@media (max-width: 640px) {
+  #page-header,
+  .tech-search-wrap {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
