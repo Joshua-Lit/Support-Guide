@@ -572,12 +572,14 @@
 }
 
 
-/* ──────── DESKTOP SIDEBAR HEIGHT FIX ──────── */
-/* mentor.css declares #sidebar with position:sticky, top:0, height:100vh, but as a flex
-   child of #app (display:flex with default align-items:stretch), the sidebar is forced
-   to stretch to match #main's very-tall content, overriding height:100vh. The sticky
-   element then ends partway down the page. align-self:flex-start prevents the stretch
-   so height:100vh and sticky behave as intended. */
-#sidebar {
-  align-self: flex-start;
-}
+/* ──────── STICKY SIDEBAR FIX ──────── */
+/* mentor.css sets `body { overflow-x: hidden }` (lines 66 and 253), which makes <body>
+   a scroll container. Per CSS spec, position:sticky descendants then stick relative to
+   the body's scroll context, which interacts badly with body's natural height equalling
+   the document height — the sticky element appears to "truncate" at the sidebar's
+   natural content height instead of filling 100vh.
+
+   Fix: keep horizontal overflow clipped at <html> level (already declared in mentor.css
+   line 253) and remove it from <body>, so body is no longer a scroll container and
+   sticky on #sidebar stickies relative to the viewport as intended. */
+body { overflow-x: visible; }
