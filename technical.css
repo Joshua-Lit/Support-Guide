@@ -309,3 +309,194 @@
 @media (max-width:640px) {
   #fc-modal-inner { margin:10px; padding:18px 14px 24px; }
 }
+
+
+/* ──────── HERO SEARCH BAR ──────── */
+/* Overrides the .tech-search-wrap from mentor.css to be a prominent hero element */
+
+.tech-search-wrap {
+  margin: 24px 0 0;
+  max-width: 760px;
+  position: relative;
+}
+
+.tech-search-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 4px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tech-search-frame:focus-within {
+  border-color: var(--c-tech);
+  box-shadow: 0 0 0 4px rgba(77,159,255,0.12);
+}
+
+.tech-search-icon {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  color: var(--c-tech);
+  font-size: 18px;
+  padding: 0 14px 0 16px;
+  font-weight: 700;
+  user-select: none;
+  letter-spacing: -1px;
+}
+
+/* Override mentor.css #tech-search defaults — hero version is bigger */
+#tech-search {
+  flex: 1;
+  width: auto;
+  background: transparent;
+  border: none;
+  padding: 18px 0;
+  color: var(--text-hi);
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 16px;
+  outline: none;
+  min-width: 0;
+  border-radius: 0;
+}
+
+#tech-search:focus { border-color: transparent; }
+#tech-search::placeholder {
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}
+
+.tech-search-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 10px;
+  margin-right: 10px;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-dim);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  user-select: none;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+}
+
+.tech-search-frame:focus-within .tech-search-kbd { opacity: 0; }
+
+/* Override mentor.css #tech-clear positioning — hero version is in-flow */
+#tech-clear {
+  display: none;
+  position: static;
+  transform: none;
+  right: auto;
+  top: auto;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+  padding: 8px 14px;
+  flex-shrink: 0;
+}
+
+#tech-clear.visible { display: inline-block; }
+#tech-clear:hover { color: var(--text-hi); }
+
+/* Search meta row: result count + chips */
+.tech-search-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  min-height: 28px;
+}
+
+.tech-search-count {
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--c-tech);
+  letter-spacing: 0.05em;
+  min-height: 16px;
+  white-space: nowrap;
+}
+
+.tech-search-count.no-results { color: var(--c-fs); }
+
+.tech-search-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.tech-search-chips::before {
+  content: '// try:';
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+  margin-right: 2px;
+}
+
+.search-chip {
+  display: inline-block;
+  padding: 5px 11px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text-mid);
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: all 0.15s;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.search-chip:hover {
+  border-color: var(--c-tech);
+  color: var(--text-hi);
+  background: rgba(77,159,255,0.06);
+}
+
+/* Hide elements during filtered search */
+.sec-hdr.hidden { display: none; }
+.fc-btn-grid.hidden { display: none; }
+.fc-btn.hidden { display: none; }
+
+/* Mobile responsive adjustments */
+@media (max-width: 720px) {
+  .tech-search-icon { padding: 0 10px 0 12px; font-size: 16px; }
+  #tech-search { font-size: 15px; padding: 15px 0; }
+  .tech-search-kbd { display: none; }
+  .tech-search-chips::before { display: none; }
+  .tech-search-meta { gap: 10px; }
+  .search-chip { font-size: 11px; padding: 4px 9px; }
+}
+
+/* Light theme support */
+[data-theme="light"] .tech-search-frame {
+  background: var(--bg);
+  border-color: var(--border2);
+}
+[data-theme="light"] #tech-search { color: var(--text-hi); }
+[data-theme="light"] .tech-search-kbd {
+  background: var(--bg2);
+  color: var(--text-mid);
+}
+[data-theme="light"] .search-chip {
+  background: var(--bg);
+  color: var(--text-mid);
+}
+[data-theme="light"] .search-chip:hover {
+  background: rgba(77,159,255,0.08);
+  color: var(--text-hi);
+}

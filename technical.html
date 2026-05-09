@@ -59,29 +59,94 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.key === 'Escape') closeModal();
   });
 
-  // ── Sidebar search ──
+  // ── Hero search ──
   const srch = document.getElementById('tech-search');
   const clr  = document.getElementById('tech-clear');
   const cnt  = document.getElementById('tech-search-count');
 
   function n(s) { return s.toLowerCase().replace(/[^a-z0-9 ]/g,' '); }
 
+  // Build a list of section headers and their child cards/flowcharts
+  // so we can hide section headers when their content is filtered out
+  function buildSectionInfo() {
+    const allHdrs = [...document.querySelectorAll('.sec-hdr')];
+    return allHdrs.map((hdr, i) => {
+      const next = allHdrs[i + 1];
+      const cards = [];
+      let el = hdr.nextElementSibling;
+      while (el && el !== next) {
+        if (el.classList) {
+          if (el.classList.contains('qa-card')) {
+            cards.push({el, type: 'qa'});
+          } else if (el.classList.contains('fc-btn-grid')) {
+            el.querySelectorAll('.fc-btn').forEach(btn => cards.push({el: btn, type: 'fc'}));
+          }
+        }
+        el = el.nextElementSibling;
+      }
+      return { hdr, cards };
+    });
+  }
+
+  const sectionInfo = buildSectionInfo();
+
   function doTechSearch(raw) {
     const q = n(raw);
-    const cards = document.querySelectorAll('.qa-card');
+    const qaCards = document.querySelectorAll('.qa-card');
+    const fcBtns = document.querySelectorAll('.fc-btn');
     let hits = 0;
-    cards.forEach(el => el.classList.remove('hidden'));
+
     if (!q.trim()) {
+      qaCards.forEach(el => el.classList.remove('hidden'));
+      fcBtns.forEach(el => el.classList.remove('hidden'));
+      document.querySelectorAll('.sec-hdr').forEach(el => el.classList.remove('hidden'));
+      document.querySelectorAll('.fc-btn-grid').forEach(el => el.classList.remove('hidden'));
       cnt.textContent = '';
+      cnt.classList.remove('no-results');
       return;
     }
+
     const terms = q.trim().split(/\s+/).filter(Boolean);
-    cards.forEach(el => {
+
+    qaCards.forEach(el => {
       const hay = n((el.dataset.search || '') + ' ' + el.textContent);
-      if (terms.every(t => hay.includes(t))) hits++;
-      else el.classList.add('hidden');
+      if (terms.every(t => hay.includes(t))) {
+        el.classList.remove('hidden');
+        hits++;
+      } else {
+        el.classList.add('hidden');
+      }
     });
-    cnt.textContent = hits > 0 ? hits + ' result' + (hits !== 1 ? 's' : '') : 'no results';
+
+    fcBtns.forEach(el => {
+      const hay = n((el.dataset.search || '') + ' ' + el.textContent);
+      if (terms.every(t => hay.includes(t))) {
+        el.classList.remove('hidden');
+        hits++;
+      } else {
+        el.classList.add('hidden');
+      }
+    });
+
+    // Hide section headers with no visible cards
+    sectionInfo.forEach(({hdr, cards}) => {
+      const visible = cards.filter(c => !c.el.classList.contains('hidden')).length;
+      hdr.classList.toggle('hidden', visible === 0);
+    });
+
+    // Hide flowchart grid wrappers that have no visible flowcharts
+    document.querySelectorAll('.fc-btn-grid').forEach(grid => {
+      const anyVisible = [...grid.querySelectorAll('.fc-btn')].some(el => !el.classList.contains('hidden'));
+      grid.classList.toggle('hidden', !anyVisible);
+    });
+
+    if (hits > 0) {
+      cnt.textContent = '> ' + hits + ' result' + (hits !== 1 ? 's' : '');
+      cnt.classList.remove('no-results');
+    } else {
+      cnt.textContent = '> no results';
+      cnt.classList.add('no-results');
+    }
   }
 
   srch.addEventListener('input', () => {
@@ -93,6 +158,18 @@ document.addEventListener('DOMContentLoaded', function() {
     clr.classList.remove('visible');
     doTechSearch('');
     srch.focus();
+  });
+
+  // Keyboard shortcut: '/' focuses search (unless already typing in another input)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      const tag = document.activeElement.tagName;
+      if (tag !== 'INPUT' && tag !== 'TEXTAREA' && !document.activeElement.isContentEditable) {
+        e.preventDefault();
+        srch.focus();
+        srch.select();
+      }
+    }
   });
 
   if (localStorage.getItem('cookie-ok-v2')) document.getElementById('cookie-notice').classList.add('hidden');
@@ -118,6 +195,19 @@ function copyShortcut(btn, text) {
 function toggleNav(hdr) {
   hdr.classList.toggle('open');
   hdr.nextElementSibling.classList.toggle('open');
+}
+
+function tryChip(query) {
+  const srch = document.getElementById('tech-search');
+  const clr = document.getElementById('tech-clear');
+  const wrap = document.getElementById('tech-search-wrap');
+  if (!srch) return;
+  srch.value = query;
+  if (clr) clr.classList.add('visible');
+  // trigger the input event handler bound on the searchbox
+  srch.dispatchEvent(new Event('input', {bubbles: true}));
+  if (wrap) wrap.scrollIntoView({behavior:'smooth', block:'start'});
+  srch.focus();
 }
 
 function jumpTo(id) {
@@ -210,15 +300,6 @@ function updateThemeToggle() {
     <a class="page-nav-link active" href="https://www.joshualit.uk/technical.html"><span class="pn-icon">⚙️</span>Tech</a>
     <a class="page-nav-link" href="https://www.joshualit.uk/bellisseria.html"><span class="pn-icon"><svg width="13" height="13" viewBox="0 0 100 100" style="display:inline-block;vertical-align:-2px"><circle cx="50" cy="50" r="44" fill="#f0997b"/><circle cx="50" cy="50" r="22" fill="#f5c788"/></svg></span>Belli</a>
     <a class="page-nav-link" href="javascript:void(0)" onclick="openAdultWarningModal()"><span class="pn-icon">❤️</span>Adult</a>
-  </div>
-
-  <div class="search-wrap">
-    <div class="search-inner">
-      <span class="search-icon">//</span>
-      <input type="text" id="tech-search" placeholder="search technical Q&amp;A..." autocomplete="off" spellcheck="false">
-      <button id="tech-clear" title="Clear search">✕</button>
-    </div>
-    <div id="tech-search-count"></div>
   </div>
 
   <div class="nav">
@@ -389,6 +470,26 @@ function updateThemeToggle() {
       <div class="stat-chip" onclick="document.getElementById(&#39;qa-video-stream&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">12</span><span class="sc-lbl">Q&amp;As</span></div>
       <div class="stat-chip" onclick="document.getElementById(&#39;sec-flowcharts&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Flowcharts" style="cursor:pointer;"><span class="sc-val">4</span><span class="sc-lbl">Flowcharts</span></div>
       <div class="stat-chip" onclick="document.getElementById(&#39;qa-head-mouse&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Firestorm Settings" style="cursor:pointer;border-color:rgba(255,100,50,0.4);"><span class="sc-val" style="color:var(--c-fs);">6</span><span class="sc-lbl">Firestorm</span></div>
+    </div>
+
+    <div class="tech-search-wrap" id="tech-search-wrap">
+      <div class="tech-search-frame">
+        <span class="tech-search-icon">//</span>
+        <input type="text" id="tech-search" placeholder="search Q&amp;As and flowcharts &mdash; try &#39;cloud&#39; or &#39;reset&#39;..." autocomplete="off" spellcheck="false">
+        <kbd class="tech-search-kbd" title="Press / to focus search">/</kbd>
+        <button id="tech-clear" title="Clear search">&times;</button>
+      </div>
+      <div class="tech-search-meta">
+        <div id="tech-search-count" class="tech-search-count"></div>
+        <div class="tech-search-chips">
+          <span class="search-chip" onclick="tryChip(&#39;cloud&#39;)">Cloud / grey avatar</span>
+          <span class="search-chip" onclick="tryChip(&#39;teleport&#39;)">Teleport fail</span>
+          <span class="search-chip" onclick="tryChip(&#39;disable&#39;)">Disable</span>
+          <span class="search-chip" onclick="tryChip(&#39;reset&#39;)">Reset</span>
+          <span class="search-chip" onclick="tryChip(&#39;shortcuts&#39;)">Shortcuts</span>
+          <span class="search-chip" onclick="tryChip(&#39;spam&#39;)">Spam</span>
+        </div>
+      </div>
     </div>
 
     <a id="grid-status-pill" class="grid-status-pill gsp-fallback" href="https://status.secondlifegrid.net/" target="_blank" title="Check the SL grid status page in a new tab">
@@ -576,7 +677,7 @@ function updateThemeToggle() {
     </div>
   </div>
 
-  <div class="qa-card" id="qa-reflection-probes" data-search="pbr reflection probes physically based rendering setup automatic manual zanibar pixelbottom artsy marie tutorial video shiny materials reflective glass mirrors metals lighting environment">
+  <div class="qa-card" id="qa-reflection-probes" data-search="pbr reflection probes physically based rendering setup automatic manual zanibar pixelbottom artsy marie tutorial video shiny materials reflective glass mirrors metals lighting environment graphics rendering">
     <div class="qa-q" onclick="tog(this)">
       <span class="qa-q-text">How do I set up reflection probes for PBR?</span>
       <span class="qa-tag">Graphics</span>
@@ -643,7 +744,7 @@ function updateThemeToggle() {
     </div>
   </div>
 
-  <div class="qa-card fs-card" id="qa-script-particles" data-search="script particles swirling particles disable objects chatting turn off firestorm extras">
+  <div class="qa-card fs-card" id="qa-script-particles" data-search="script particles swirling particles disable objects chatting turn off firestorm extras lag performance slow visual visuals fps">
     <div class="qa-q" onclick="tog(this)">
       <span class="qa-q-text">How do I turn off the swirling particles that appear when scripts communicate?</span>
       <span class="qa-tag" style="color:var(--c-fs);background:rgba(255,100,50,0.1);border-color:rgba(255,100,50,0.3);">Display</span>
@@ -665,7 +766,7 @@ function updateThemeToggle() {
 
 
 
-  <div class="qa-card fs-card" id="qa-clean-install" data-search="clean install firestorm reinstall uninstall settings cache wipe fresh start problems viewer broken">
+  <div class="qa-card fs-card" id="qa-clean-install" data-search="clean install firestorm reinstall uninstall settings cache wipe fresh start problems viewer broken crash crashes crashing freeze frozen hang hangs lag lagging slow performance">
     <div class="qa-q" onclick="tog(this)">
       <span class="qa-q-text">How do I do a clean install of Firestorm?</span>
       <span class="qa-tag" style="color:var(--c-fs);background:rgba(255,100,50,0.1);border-color:rgba(255,100,50,0.3);">Viewer</span>
@@ -729,7 +830,7 @@ function updateThemeToggle() {
 
   <!-- KEYBOARD SHORTCUTS SECTION -->
 
-  <div class="qa-card fs-card" id="qa-reset-settings" data-search="reset settings firestorm preferences advanced broken menu fix viewer behaviour unexpected">
+  <div class="qa-card fs-card" id="qa-reset-settings" data-search="reset settings firestorm preferences advanced broken menu fix viewer behaviour unexpected crash crashing freeze frozen weird">
     <div class="qa-q" onclick="tog(this)">
       <span class="qa-q-text">How do I reset all Firestorm settings to default?</span>
       <span class="qa-tag" style="color:var(--c-fs);background:rgba(255,100,50,0.1);border-color:rgba(255,100,50,0.3);">Viewer</span>
