@@ -598,6 +598,164 @@
     section.section { padding: 3rem 1.2rem; }
     .hero { padding: 2rem 1.2rem 2.5rem; }
   }
+
+  /* ── HERO SEARCH BAR (self-contained, mirrors mentor.css pattern) ── */
+  .hero-search-wrap {
+    margin: 1.2rem 0 0;
+    max-width: 760px;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.65s forwards;
+  }
+
+  .hero-search-frame {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-pink);
+    border-radius: 4px;
+    padding: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .hero-search-frame:focus-within {
+    border-color: var(--pink);
+    box-shadow: 0 0 16px var(--pink-glow);
+  }
+
+  .hero-search-icon {
+    font-family: var(--font-mono);
+    color: var(--pink);
+    font-size: 18px;
+    padding: 0 14px 0 16px;
+    font-weight: 700;
+    user-select: none;
+    letter-spacing: -1px;
+  }
+
+  .hero-search-input {
+    flex: 1;
+    width: auto;
+    background: transparent;
+    border: none;
+    padding: 18px 0;
+    color: var(--text-body);
+    font-family: var(--font-mono);
+    font-size: 15px;
+    outline: none;
+    min-width: 0;
+    border-radius: 0;
+  }
+
+  .hero-search-input::placeholder {
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .hero-search-kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 10px;
+    margin-right: 10px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: var(--bg-deep);
+    border: 1px solid var(--border-soft);
+    border-radius: 3px;
+    user-select: none;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
+  }
+
+  .hero-search-frame:focus-within .hero-search-kbd { opacity: 0; }
+
+  .hero-search-clear {
+    display: none;
+    position: static;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    padding: 8px 14px;
+    flex-shrink: 0;
+  }
+  .hero-search-clear.visible { display: inline-block; }
+  .hero-search-clear:hover { color: var(--text-body); }
+
+  .hero-search-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 0.7rem;
+    flex-wrap: wrap;
+    min-height: 24px;
+  }
+
+  .hero-search-count {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--pink);
+    letter-spacing: 0.05em;
+    min-height: 14px;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .hero-search-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .hero-search-chips::before {
+    content: '// try:';
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    margin-right: 2px;
+  }
+
+  .search-chip {
+    display: inline-block;
+    padding: 2px 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    color: var(--pink);
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s, opacity 0.2s;
+    opacity: 0.85;
+  }
+  .search-chip:hover {
+    text-decoration-color: currentColor;
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .hero-search-icon { padding: 0 10px 0 12px; font-size: 16px; }
+    .hero-search-input { font-size: 14px; padding: 15px 0; }
+    .hero-search-kbd { display: none; }
+    .hero-search-meta { gap: 10px; }
+    .hero-search-chips { gap: 12px; }
+  }
 </style>
 </head>
 <body>
@@ -624,15 +782,6 @@
     <a class="page-nav-link" href="technical.html"><span class="pn-icon">&#9881;&#65039;</span>Tech</a>
     <a class="page-nav-link" href="bellisseria.html"><span class="pn-icon"><svg width="13" height="13" viewBox="0 0 100 100" style="display:inline-block;vertical-align:-2px"><circle cx="50" cy="50" r="44" fill="#f0997b"/><circle cx="50" cy="50" r="22" fill="#f5c788"/></svg></span>Belli</a>
     <a class="page-nav-link active" href="adult-hub.html"><span class="pn-icon">&#10084;&#65039;</span>Adult</a>
-  </div>
-
-  <div class="search-wrap">
-    <div class="search-inner">
-      <span class="search-icon">//</span>
-      <input type="text" id="global-search" placeholder="search adult guide..." autocomplete="off" spellcheck="false">
-      <button id="search-clear" onclick="clearSearch()" title="Clear search">&#10005;</button>
-    </div>
-    <div id="search-count"></div>
   </div>
 
   <div class="sb-toolbar">
@@ -729,6 +878,26 @@
       <a class="pill" href="#bodies">&#129516; Bodies</a>
       <a class="pill" href="#furniture">&#128717;&#65039; Furniture</a>
       <a class="pill" href="#consent">&#129309; Consent</a>
+    </div>
+
+    <div class="hero-search-wrap" id="hero-search-wrap">
+      <div class="hero-search-frame">
+        <span class="hero-search-icon">//</span>
+        <input type="text" id="global-search" class="hero-search-input" placeholder="search adult guide..." autocomplete="off" spellcheck="false">
+        <kbd class="hero-search-kbd" title="Press / to focus search">/</kbd>
+        <button id="search-clear" class="hero-search-clear" onclick="clearSearch()" title="Clear search">&times;</button>
+      </div>
+      <div class="hero-search-meta">
+        <div id="search-count" class="hero-search-count"></div>
+        <div class="hero-search-chips">
+          <span class="search-chip" onclick="tryChip('maturity')">Maturity</span>
+          <span class="search-chip" onclick="tryChip('bodies')">Bodies</span>
+          <span class="search-chip" onclick="tryChip('furniture')">Furniture</span>
+          <span class="search-chip" onclick="tryChip('demo')">Demo</span>
+          <span class="search-chip" onclick="tryChip('consent')">Consent</span>
+          <span class="search-chip" onclick="tryChip('newcomer')">Newcomer</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -1326,7 +1495,30 @@
       doSearch('');
       srch.focus();
     };
+
+    // Hero search: "/" focuses the input
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        const tag = document.activeElement.tagName;
+        if (tag !== 'INPUT' && tag !== 'TEXTAREA' && !document.activeElement.isContentEditable) {
+          e.preventDefault();
+          srch.focus();
+          srch.select();
+        }
+      }
+    });
   })();
+
+  // Hero search: chip click handler
+  function tryChip(query) {
+    const srch = document.getElementById('global-search');
+    if (!srch) return;
+    const wrap = srch.closest('.hero-search-wrap');
+    srch.value = query;
+    srch.dispatchEvent(new Event('input', {bubbles: true}));
+    if (wrap) wrap.scrollIntoView({behavior: 'smooth', block: 'start'});
+    srch.focus();
+  }
 </script>
 </body>
 </html>
