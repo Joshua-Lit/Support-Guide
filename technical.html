@@ -400,6 +400,7 @@ function updateThemeToggle() {
         <span class="nav-item" onclick="jumpTo(&#39;qa-spam-protection&#39;)"><span class="ni-dot"></span>Spam / griefing protection</span>
         <span class="nav-item" onclick="jumpTo(&#39;qa-pay-confirm&#39;)"><span class="ni-dot"></span>Confirm before paying</span>
         <span class="nav-item" onclick="jumpTo(&#39;qa-reflection-probes&#39;)"><span class="ni-dot"></span>PBR reflection probes</span>
+        <span class="nav-item" onclick="jumpTo(&#39;qa-appliers&#39;)"><span class="ni-dot"></span>Makeup / appliers won't show</span>
         <span class="nav-item nav-item--fs" onclick="jumpTo(&#39;qa-head-mouse&#39;)"><span class="ni-dot"></span>Stop head following mouse</span>
         <span class="nav-item nav-item--fs" onclick="jumpTo(&#39;qa-selection-beam&#39;)"><span class="ni-dot"></span>Turn off selection beam</span>
         <span class="nav-item nav-item--fs" onclick="jumpTo(&#39;qa-script-particles&#39;)"><span class="ni-dot"></span>Turn off script particles</span>
@@ -676,6 +677,27 @@ function updateThemeToggle() {
       <div class="tip-box">
         <div class="tip-label">// Mentor note</div>
         <p>Both videos were pinned in the Bellisseria Mentors channel by Mini Mole as the recommended walkthroughs for residents asking about PBR reflection probe setup. If a resident is unfamiliar with PBR generally, point them at the videos rather than trying to talk them through it in chat &mdash; it's genuinely easier to follow visually.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card" id="qa-appliers" data-search="hd applier appliers makeup lipstick eyeshadow blush not showing avatar welcome pack awp lite head free head mesh head lelutka evox firestorm social island bom bake on mesh cosmetics won't appear missing texture layers">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">Why won't lipstick, eyeshadow or makeup show up on a resident's head?</span>
+      <span class="qa-tag">Appearance</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <p>The usual cause is the head itself. The <strong>Avatar Welcome Pack</strong> "Lite" mesh heads cannot use <strong>HD appliers</strong> &#8212; the scripted texture layers many creators use for lipstick, eyeshadow, blush and other detailed makeup. The makeup applies without any error, but it never becomes visible.</p>
+      <p style="margin-top:8px;">This is a built-in limitation of the free Lite head, not something the resident can fix with a rebake or relog. To wear HD-applier makeup they need a head that supports it:</p>
+      <div class="bullets" style="margin-top:6px;">
+        <div class="bullet">A <strong>free mesh head</strong> from Firestorm Social Island (Milena for female, Mike for male) &#8212; available to avatars under 90 days old.</div>
+        <div class="bullet">A <strong>full mesh head</strong> such as LeLutka &#8212; free demos are available in-store before buying.</div>
+      </div>
+      <p style="margin-top:8px;">Basic system-layer (BOM) makeup will still show on a Lite head &#8212; it is specifically the HD scripted appliers that don't work.</p>
+      <div class="say-block" style="margin-top:10px;">
+        <div class="say-label">// Click to copy</div>
+        <div class="say-text" onclick="copyPara(this)">If your makeup like lipstick or eyeshadow won't show up, it's most likely because the Avatar Welcome Pack "Lite" head can't use HD appliers. You'll need a full mesh head, or a free mesh head from Firestorm Social Island, for that makeup to appear.</div>
       </div>
     </div>
   </div>
