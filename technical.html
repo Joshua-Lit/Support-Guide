@@ -401,6 +401,8 @@ function updateThemeToggle() {
         <span class="nav-item" onclick="jumpTo(&#39;qa-pay-confirm&#39;)"><span class="ni-dot"></span>Confirm before paying</span>
         <span class="nav-item" onclick="jumpTo(&#39;qa-reflection-probes&#39;)"><span class="ni-dot"></span>PBR reflection probes</span>
         <span class="nav-item" onclick="jumpTo(&#39;qa-appliers&#39;)"><span class="ni-dot"></span>Makeup / appliers won't show</span>
+        <span class="nav-item" onclick="jumpTo(&#39;qa-mesh-blender-version&#39;)"><span class="ni-dot"></span>Blender .dae export missing</span>
+        <span class="nav-item" onclick="jumpTo(&#39;qa-mesh-upload-textured&#39;)"><span class="ni-dot"></span>Upload textured mesh (steps)</span>
         <span class="nav-item nav-item--fs" onclick="jumpTo(&#39;qa-head-mouse&#39;)"><span class="ni-dot"></span>Stop head following mouse</span>
         <span class="nav-item nav-item--fs" onclick="jumpTo(&#39;qa-selection-beam&#39;)"><span class="ni-dot"></span>Turn off selection beam</span>
         <span class="nav-item nav-item--fs" onclick="jumpTo(&#39;qa-script-particles&#39;)"><span class="ni-dot"></span>Turn off script particles</span>
@@ -449,7 +451,7 @@ function updateThemeToggle() {
     <div class="header-title">Technical <span>Q&amp;A</span></div>
     <p class="header-sub">Answers to more technical questions from residents — streaming, scripting, media, and more.</p>
     <div class="stat-row">
-      <div class="stat-chip" onclick="document.getElementById(&#39;qa-video-stream&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">12</span><span class="sc-lbl">Q&amp;As</span></div>
+      <div class="stat-chip" onclick="document.getElementById(&#39;qa-video-stream&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">15</span><span class="sc-lbl">Q&amp;As</span></div>
       <div class="stat-chip" onclick="document.getElementById(&#39;sec-flowcharts&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Flowcharts" style="cursor:pointer;"><span class="sc-val">4</span><span class="sc-lbl">Flowcharts</span></div>
       <div class="stat-chip" onclick="document.getElementById(&#39;qa-head-mouse&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Firestorm Settings" style="cursor:pointer;border-color:rgba(255,100,50,0.4);"><span class="sc-val" style="color:var(--c-fs);">6</span><span class="sc-lbl">Firestorm</span></div>
     </div>
@@ -698,6 +700,86 @@ function updateThemeToggle() {
       <div class="say-block" style="margin-top:10px;">
         <div class="say-label">// Click to copy</div>
         <div class="say-text" onclick="copyPara(this)">If your makeup like lipstick or eyeshadow won't show up, it's most likely because the Avatar Welcome Pack "Lite" head can't use HD appliers. You'll need a full mesh head, or a free mesh head from Firestorm Social Island, for that makeup to appear.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card" id="qa-mesh-blender-version" data-search="blender collada dae export missing option mesh upload version 4.5 LTS 5.0 5.x removed deprecated legacy gaia clary avastar addon creators creator newcomer modeller modelling 3d software opencollada">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">A newcomer can't export .dae from Blender — the Collada option is missing.</span>
+      <span class="qa-tag">Mesh</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <p>They're almost certainly on Blender 5.x. Collada I/O was marked <em>legacy</em> in Blender 4.2 (July 2024) and fully removed in Blender 5.0 — Linden Lab was apparently the last major user of the format, so the Blender devs let it go.</p>
+      <p style="margin-top:8px;">The fix, in rough order of practicality:</p>
+      <div class="bullets" style="margin-top:6px;">
+        <div class="bullet"><strong>Recommend Blender 4.5 LTS.</strong> It's the last version with built-in Collada support, and it's supported until July 2027. Anyone creating for SL should be on 4.5 LTS, not the rolling latest. Direct them to <a href="https://www.blender.org/download/lts/" target="_blank">blender.org's LTS download page</a>, not the homepage's big green button.</div>
+        <div class="bullet"><strong>Install a Collada addon for Blender 4.x+.</strong> Gaia Clary — who maintained Blender's built-in Collada exporter for years before letting it go — distributes a Collada addon for Blender 4.x, including in Avastar. Useful for creators who need newer Blender for other reasons.</div>
+      </div>
+      <p style="margin-top:8px;">If they've already modelled in 5.x, the work isn't lost — they just need to either downgrade Blender or add the addon to get the file out.</p>
+      <div class="tip-box" style="margin-top:14px;">
+        <div class="tip-label">// Watching brief</div>
+        <p>Blender 4.5 LTS reaches end-of-life July 2027, and there's no announced replacement upload format on the SL side yet. There's an open feature request asking LL about the roadmap, with no answer so far. Worth flagging to creators planning a long-term workflow.</p>
+      </div>
+      <div class="say-block" style="margin-top:10px;">
+        <div class="say-label">// Click to copy</div>
+        <div class="say-text" onclick="copyPara(this)">If your Blender doesn't have a .dae / Collada export option, you're on Blender 5.x — Collada was removed in 5.0. The simplest fix is to download Blender 4.5 LTS from blender.org's LTS page instead. It's the last version with built-in Collada and is supported until July 2027.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-card" id="qa-mesh-upload-textured" data-search="upload textured mesh how to steps walkthrough guide newcomer beginner creator collada dae blender uv unwrap texture power of two payment info ip terms include textures calculate weights fee select face apply texture inventory objects build menu model upload">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">How does a newcomer upload textured mesh? (full walkthrough)</span>
+      <span class="qa-tag">Mesh</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <p>Use this when a newcomer is trying to upload their first textured mesh and getting stuck. Whole flow below — you can read it through yourself first, or share the relevant section depending on where they're hitting the wall.</p>
+
+      <p style="margin-top:14px;"><strong>Before they start</strong></p>
+      <div class="bullets" style="margin-top:6px;">
+        <div class="bullet">Use <strong>Blender 4.5 LTS</strong> — newer versions don't export .dae (see the Blender version Q&amp;A above).</div>
+        <div class="bullet">On their SL account dashboard they need <strong>payment info on file</strong> and they need to <strong>accept the IP Terms</strong> on the Mesh Upload Status page (one-click acceptance — the old 10-question quiz was retired years ago). Without these, the Upload Model option will be greyed out in the viewer.</div>
+      </div>
+
+      <p style="margin-top:14px;"><strong>In Blender</strong></p>
+      <div class="steps" style="margin-top:6px;">
+        <div class="step"><div class="sn">1</div><div>Build the model.</div></div>
+        <div class="step"><div class="sn">2</div><div><strong>UV unwrap it.</strong> In Edit Mode, select all (A), press U, choose Unwrap. <em>Skipping this is the #1 reason textures don't show up properly.</em></div></div>
+        <div class="step"><div class="sn">3</div><div>Save the texture image in the <strong>same folder</strong> as the .blend file. Use a power-of-2 size: <strong>512×512, 1024×1024, or 2048×2048</strong>.</div></div>
+        <div class="step"><div class="sn">4</div><div>In the material settings, assign the texture image to the model.</div></div>
+        <div class="step"><div class="sn">5</div><div>Export: <strong>File → Export → Collada (.dae)</strong>. Save the .dae in the same folder as the texture.</div></div>
+      </div>
+
+      <p style="margin-top:14px;"><strong>In Second Life</strong></p>
+      <div class="steps" style="margin-top:6px;">
+        <div class="step"><div class="sn">6</div><div>Open the viewer. Go to <strong>Build → Upload → Model</strong>.</div></div>
+        <div class="step"><div class="sn">7</div><div>Browse to the .dae file.</div></div>
+        <div class="step"><div class="sn">8</div><div>In the upload dialog, find the <strong>Upload Options</strong> tab and tick <strong>"Include textures"</strong>.</div></div>
+        <div class="step"><div class="sn">9</div><div>Click <strong>Calculate weights &amp; fee</strong> and wait for the price to appear.</div></div>
+        <div class="step"><div class="sn">10</div><div>Click <strong>Upload</strong> and pay the fee.</div></div>
+      </div>
+
+      <p style="margin-top:14px;"><strong>After upload</strong></p>
+      <div class="steps" style="margin-top:6px;">
+        <div class="step"><div class="sn">11</div><div>The mesh is now in <strong>Inventory → Objects</strong>. Textures are in <strong>Inventory → Textures</strong>.</div></div>
+        <div class="step"><div class="sn">12</div><div>Drag the mesh from inventory onto the ground to rez it.</div></div>
+        <div class="step"><div class="sn">13</div><div>If the texture isn't on it already: right-click the mesh → <strong>Edit</strong> → tick <strong>Select Face</strong> → click the face → drag the texture from inventory onto that face. Repeat for each face.</div></div>
+      </div>
+
+      <p style="margin-top:14px;"><strong>If it looks wrong</strong></p>
+      <div class="bullets" style="margin-top:6px;">
+        <div class="bullet"><strong>White or smeared mesh</strong> — UV unwrap is missing or broken. Back to step 2.</div>
+        <div class="bullet"><strong>No texture at all</strong> — they probably didn't tick "Include textures", or the .dae couldn't find the image file. Upload the texture separately (Build → Upload → Image) and apply it as in step 13.</div>
+        <div class="bullet"><strong>Blurry texture</strong> — re-upload at a power-of-2 size like 1024×1024.</div>
+        <div class="bullet"><strong>Greyed-out Upload Model option</strong> — payment info or IP Terms haven't been sorted on the dashboard yet.</div>
+      </div>
+
+      <div class="say-block" style="margin-top:14px;">
+        <div class="say-label">// Click to copy — quick offer to help</div>
+        <div class="say-text" onclick="copyPara(this)">Happy to walk you through the textured mesh upload — there are a few common snags (UV unwrap, "Include textures" tickbox, applying textures to faces after rezzing). If you tell me which step you're stuck on, or what you're seeing on the mesh once it's in-world, I can help you sort it.</div>
       </div>
     </div>
   </div>
