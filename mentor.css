@@ -217,6 +217,67 @@ body {
 .ni-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.6; flex-shrink: 0; }
 .nav-item:hover .ni-dot { opacity: 1; }
 
+/* ═══ MENTOR HUD PROMO PANEL (sidebar) ═══ */
+.hud-promo {
+  margin: 4px 14px 14px;
+  padding: 14px 14px 12px;
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  border-left: 3px solid var(--c-elecblue);
+  border-radius: 8px;
+}
+.hud-promo-hdr {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.hud-promo-icon {
+  width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--blue-dim);
+  border-radius: 6px;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.hud-promo-title {
+  font-family: 'Oxanium', 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-hi);
+  letter-spacing: 0.5px;
+}
+.hud-promo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.hud-promo-list li {
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+}
+.hud-promo-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 6px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--c-elecblue);
+}
+.hud-promo-cta {
+  font-size: 10.5px;
+  color: var(--text-mid);
+  line-height: 1.5;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+.hud-promo-cta strong { color: var(--c-elecblue); }
+
 .sidebar-status {
   border-top: 1px solid var(--border);
   padding: 10px 16px;
