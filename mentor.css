@@ -179,7 +179,7 @@ body {
   min-height: 18px;
 }
 
-.nav { flex: 1; padding: 4px 0 14px; }
+.nav { flex: 1; padding: 4px 0 0; }
 .nav-group { margin-bottom: 0; }
 .nav-group-hdr {
   display: flex;
@@ -219,7 +219,7 @@ body {
 
 /* ═══ MENTOR HUD PROMO PANEL (sidebar) ═══ */
 .hud-promo {
-  margin: 4px 14px 14px;
+  margin: 4px 14px 6px;
   padding: 14px 14px 12px;
   background: var(--panel);
   border: 1px solid var(--border2);
