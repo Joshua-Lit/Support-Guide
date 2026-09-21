@@ -2986,15 +2986,6 @@ mark { background:rgba(255,198,84,0.22); color:var(--gold); border-radius:2px; p
   gap: 14px;
 }
 
-.hero-search-chips::before {
-  content: '// try:';
-  font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 0.06em;
-  margin-right: 2px;
-}
-
 .search-chip {
   display: inline-block;
   padding: 2px 0;
