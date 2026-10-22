@@ -127,7 +127,7 @@ table.changes td.num { font-family: var(--mono); font-variant-numeric: tabular-n
 <body>
 <div class="wrap">
   <div class="topbar">
-    <a class="back" href="index.html">&#8592; SL Mentor Guide</a>
+    <a class="back" id="backLink" href="index.html" hidden>&#8592; SL Mentor Guide</a>
     <button type="button" class="ghost" id="themeBtn"></button>
   </div>
   <header>
@@ -676,6 +676,18 @@ function readXml(text) {
     e.textContent = err.message; e.hidden = false;
   }
 }
+
+// Only show the link back to the mentor guide to people who arrived from a mentor page.
+// Residents (from newcomer.html or a pasted link) don't see it.
+(function () {
+  try {
+    const ref = document.referrer ? new URL(document.referrer) : null;
+    if (!ref || ref.host !== location.host) return;
+    const page = ref.pathname.split('/').pop() || 'index.html';
+    const mentorPages = ['index.html', 'technical.html', 'bellisseria.html', 'adult-hub.html', 'slua.html', 'rlvscan.html'];
+    if (mentorPages.includes(page)) $('backLink').hidden = false;
+  } catch (e) {}
+})();
 
 function syncThemeBtn() {
   const light = document.documentElement.getAttribute('data-theme') === 'light';
