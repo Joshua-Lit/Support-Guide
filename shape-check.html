@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shape Check - SL Mentor Guide</title>
+<meta name="description" content="Check a Second Life avatar's body sliders against real human proportions and get exact slider changes.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj4KICA8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjMDgwYjE0Ii8+CiAgPHBhdGggZD0iTTE5LjUgNGE2LjUgNi41IDAgMCAwLTYuMyA4LjFMNS42IDE5LjdhMi44IDIuOCAwIDAgMCA0IDRsNy42LTcuNkE2LjUgNi41IDAgMCAwIDI1LjUgOGwtMy4yIDMuMi0yLjMtLjctLjctMi4zTDIyLjUgNUE2LjUgNi41IDAgMCAwIDE5LjUgNHoiIGZpbGw9IiMzQTg2RkYiIHN0cm9rZT0ibm9uZSIvPgogIDxjaXJjbGUgY3g9IjcuOCIgY3k9IjIxLjgiIHI9IjEuMiIgZmlsbD0iIzA4MGIxNCIvPgo8L3N2Zz4K">
+<script>try{if(localStorage.getItem('sl-mentor-theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxanium:wght@600;700&family=Share+Tech+Mono&family=Roboto:wght@400;500;600&display=swap">
+<style>
+/* Layout: workbench. Inputs on the left like the Edit Shape panel, the verdict on the right; one column on phones. */
+:root {
+  --bg: #080b14; --panel: #121830; --ink: #e8f0ff; --text: #b8cae8; --muted: #8aa0cc; --line: #1e2d52;
+  --accent: #4d9fff; --accent-soft: rgba(77,159,255,0.12); --on-accent: #080b14;
+  --ok: #4dc832; --ok-soft: rgba(77,200,50,0.14); --warn: #ffb300; --warn-soft: rgba(255,179,0,0.14);
+  --bad: #ff5252; --bad-soft: rgba(255,82,82,0.14); --band: rgba(77,159,255,0.28); --field: #0c1020;
+  --display: "Oxanium", "Segoe UI", sans-serif;
+  --body: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "Share Tech Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #f5f3f0; --panel: #faf9f7; --ink: #100800; --text: #28201a; --muted: #6a6058; --line: #ccc8c2;
+  --accent: #1a6abf; --accent-soft: rgba(26,106,191,0.10); --on-accent: #ffffff;
+  --ok: #2d7a1e; --ok-soft: rgba(45,122,30,0.12); --warn: #a35a00; --warn-soft: rgba(184,88,0,0.12);
+  --bad: #b82020; --bad-soft: rgba(184,32,32,0.10); --band: rgba(26,106,191,0.22); --field: #eeecea;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--text); font: 15px/1.55 var(--body); margin: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 48px;
+}
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 22px; }
+header { display: grid; gap: 6px; }
+.topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.back { font: 400 0.85rem var(--mono); color: var(--accent); text-decoration: none; letter-spacing: 0.04em; }
+.back:hover { text-decoration: underline; }
+h1 { font: 700 2rem/1.1 var(--display); margin: 0; letter-spacing: 0.02em; color: var(--ink); text-wrap: balance; }
+h1 span { color: var(--accent); }
+.lede { margin: 0; color: var(--muted); max-width: 64ch; }
+h2 { font: 600 1.05rem/1.2 var(--display); margin: 0; color: var(--ink); letter-spacing: 0.02em; }
+.eyebrow { font: 400 0.75rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+.grid { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 22px; align-items: start; }
+@media (max-width: 860px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 16px; min-width: 0; }
+
+label, .lab { font-size: 0.85rem; color: var(--muted); }
+.field { display: grid; gap: 5px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+select, input[type=number], input[type=text], textarea {
+  font: inherit; color: var(--ink); background: var(--field); border: 1px solid var(--line);
+  border-radius: 6px; padding: 7px 9px; width: 100%;
+}
+input[type=number] { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+textarea { font: 12px/1.4 var(--mono); min-height: 120px; resize: vertical; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.seg button { font: 500 0.85rem var(--body); background: transparent; color: var(--muted); border: 0; padding: 7px 12px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+
+.tabgroup { display: grid; gap: 8px; }
+.tabgroup .eyebrow { padding-top: 4px; }
+.sl { display: grid; grid-template-columns: 1fr 74px; align-items: center; gap: 10px; }
+.sl label { color: var(--text); font-size: 0.9rem; }
+
+button.primary {
+  font: 600 0.95rem var(--body); background: var(--accent); color: var(--on-accent); border: 0;
+  border-radius: 8px; padding: 10px 16px; cursor: pointer;
+}
+button.ghost { font: 500 0.85rem var(--body); background: transparent; color: var(--accent); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; cursor: pointer; }
+.hint { font-size: 0.8rem; color: var(--muted); margin: 0; }
+.err { color: var(--bad); font-size: 0.85rem; margin: 0; }
+
+/* Results */
+.verdict { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 18px; }
+.verdict .big { font: 700 1.5rem/1.1 var(--display); color: var(--ink); }
+.chip { display: inline-flex; align-items: center; gap: 6px; font: 600 0.75rem/1 var(--body); letter-spacing: 0.03em; padding: 5px 9px; border-radius: 99px; }
+.chip.ok { background: var(--ok-soft); color: var(--ok); }
+.chip.warn { background: var(--warn-soft); color: var(--warn); }
+.chip.bad { background: var(--bad-soft); color: var(--bad); }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.85rem; color: var(--muted); }
+.meta b { color: var(--ink); font-family: var(--mono); font-weight: 500; }
+.example { font-size: 0.8rem; background: var(--accent-soft); color: var(--accent); padding: 6px 10px; border-radius: 6px; }
+
+.checks { display: grid; gap: 0; }
+.check { display: grid; grid-template-columns: 7px minmax(0, 1fr) minmax(120px, 210px); gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); align-items: center; }
+.check:first-child { border-top: 0; }
+.stripe { align-self: stretch; border-radius: 4px; }
+.stripe.ok { background: var(--ok); } .stripe.warn { background: var(--warn); } .stripe.bad { background: var(--bad); }
+.check .name { font-weight: 600; color: var(--ink); }
+.check .val { font-family: var(--mono); font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.check .why { font-size: 0.85rem; color: var(--muted); }
+.gauge { position: relative; height: 26px; }
+.gauge .track { position: absolute; left: 0; right: 0; top: 11px; height: 4px; background: var(--line); border-radius: 2px; }
+.gauge .zone { position: absolute; top: 7px; height: 12px; background: var(--band); border-radius: 3px; }
+.gauge .dot { position: absolute; top: 5px; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; border: 3px solid var(--panel); }
+.gauge .dot.ok { background: var(--ok); } .gauge .dot.warn { background: var(--warn); } .gauge .dot.bad { background: var(--bad); }
+.gauge .cap { position: absolute; top: -2px; font: 10px/1 var(--mono); color: var(--muted); transform: translateX(-50%); white-space: nowrap; }
+@media (max-width: 520px) { .check { grid-template-columns: 7px minmax(0, 1fr); } .gauge { grid-column: 2; } }
+
+table.changes { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+table.changes th { text-align: left; font: 500 0.72rem var(--body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 6px 8px 6px 0; border-bottom: 1px solid var(--line); }
+table.changes td { padding: 8px 8px 8px 0; border-bottom: 1px solid var(--line); }
+table.changes td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.arrow { color: var(--muted); padding: 0 4px; }
+.to { color: var(--accent); font-weight: 500; }
+.tablewrap { overflow-x: auto; }
+
+.imbox { white-space: pre-wrap; font: 13px/1.5 var(--mono); background: var(--field); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 12px; margin: 0; }
+.notes { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 0.9rem; }
+.notes li::marker { color: var(--accent); }
+.foot { font-size: 0.8rem; color: var(--muted); margin: 0; }
+.working { opacity: 0.55; transition: opacity 0.15s; }
+@media (prefers-reduced-motion: reduce) { .working { transition: none; } }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <a class="back" href="index.html">&#8592; SL Mentor Guide</a>
+    <button type="button" class="ghost" id="themeBtn"></button>
+  </div>
+  <header>
+    <span class="eyebrow">Second Life mentor tool</span>
+    <h1>Shape <span>Check</span></h1>
+    <p class="lede">Enter a resident's body sliders from Edit Shape and see how their proportions compare with a real person, with exact slider changes to paste into IM.</p>
+  </header>
+
+  <div class="grid">
+    <form class="panel" id="form" novalidate>
+      <div class="field">
+        <span class="eyebrow">1 · The avatar</span>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="sex">Body type</label>
+          <select id="sex">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="viewer">Viewer</label>
+          <select id="viewer">
+            <option value="fs">Firestorm</option>
+            <option value="ll">Second Life viewer</option>
+          </select>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="body">Mesh body</label>
+          <select id="body">
+            <option value="legacylite">Legacy Lite (starter)</option>
+            <option value="senra">Senra (older starter)</option>
+            <option value="legacy">Legacy</option>
+            <option value="belleza">Belleza</option>
+            <option value="maitreya">Maitreya</option>
+            <option value="ebody">eBody</option>
+            <option value="signature">Signature</option>
+            <option value="system">Classic system body</option>
+            <option value="other">Other / don't know</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="head">Mesh head</label>
+          <select id="head">
+            <option value="lelutkalite">LeLutka Lite (starter)</option>
+            <option value="senra">Senra (older starter)</option>
+            <option value="lelutka">LeLutka EvoX</option>
+            <option value="catwa">Catwa</option>
+            <option value="genus">Genus</option>
+            <option value="laq">LAQ</option>
+            <option value="system">Classic system head</option>
+            <option value="other">Other / don't know</option>
+          </select>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="curH">Height shown now (m)</label>
+          <input type="number" id="curH" step="0.01" min="1" max="3" placeholder="optional">
+        </div>
+        <div class="field">
+          <label for="tgtH">Height wanted (m)</label>
+          <input type="number" id="tgtH" step="0.01" min="1" max="3" placeholder="keep current">
+        </div>
+      </div>
+      <p class="hint">Height is optional. Edit Shape shows it at the top of the panel; it's used to catch mistyped sliders.</p>
+
+      <div class="field">
+        <span class="eyebrow">2 · Body sliders</span>
+      </div>
+      <div class="seg" role="group" aria-label="Input method">
+        <button type="button" id="modeQuick" aria-pressed="true">Type sliders</button>
+        <button type="button" id="modeXml" aria-pressed="false">Paste XML export</button>
+      </div>
+
+      <div id="xmlPane" hidden>
+        <div class="field">
+          <label for="xml">Appearance to XML export</label>
+          <textarea id="xml" placeholder="&lt;?xml version=&quot;1.0&quot; ...&gt;&#10;&lt;linden_genepool ...&gt;"></textarea>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+          <button type="button" class="ghost" id="loadXml">Read export</button>
+          <label class="ghost" for="xmlFile" style="cursor:pointer;color:var(--accent)">or choose file</label>
+          <input type="file" id="xmlFile" accept=".xml,text/xml" hidden>
+        </div>
+        <p class="hint">Firestorm: Advanced menu (Ctrl+Alt+D to show it) › Character › Character Tests › Appearance to XML. The file lands in the viewer's logs folder. Reading it fills in the sliders below.</p>
+        <p class="err" id="xmlErr" hidden></p>
+      </div>
+
+      <div id="sliders" style="display:grid;gap:14px"></div>
+
+      <button type="submit" class="primary" id="go">Check shape</button>
+    </form>
+
+    <section class="panel" id="results" aria-live="polite"></section>
+  </div>
+
+  <p class="foot">How it works: the sliders are run through the same skeleton maths the Second Life viewer uses (from Linden Lab's published viewer source), so lengths are real bone lengths. Proportion sliders move the skeleton itself and behave the same on every mesh body. Targets come from adult anthropometric averages; head size is an estimate calibrated on a LeLutka EvoX head, so treat it as rough on other heads. Heights are on Firestorm's scale, which matches measurements against prims.</p>
+</div>
+
+<script>
+const PARAMS={"32":{"name":"Male_Skeleton","min":0.0,"max":1.0,"def":0.0,"bones":{"mNeck":{"s":[0.0,0.0,0.2],"o":[0.0,0.0,0.0]},"mCollarLeft":{"s":[0.0,0.4,0.0],"o":[0.0,0.0,0.0]},"mShoulderLeft":{"s":[0.0,0.35,0.0],"o":[0.0,0.0,0.0]},"mElbowLeft":{"s":[0.0,0.1,0.0],"o":[0.0,0.0,0.0]},"mChest":{"s":[0.05,0.05,0.05],"o":[0.0,0.0,0.0]},"mTorso":{"s":[0.0,0.0,0.05],"o":[0.0,0.0,0.0]},"mHipLeft":{"s":[0.05,0.05,0.0],"o":[0.0,0.0,0.0]},"mKneeLeft":{"s":[0.05,0.05,0.1],"o":[0.0,0.0,0.0]}}},"33":{"name":"Height","min":-2.3,"max":2.0,"def":0.0,"bones":{"mNeck":{"s":[0.0,0.0,0.02],"o":[0.0,0.0,0.0]},"mCollarLeft":{"s":[0.0,0.0,0.0],"o":[0.0,0.0,0.0]},"mShoulderLeft":{"s":[0.0,0.08,0.0],"o":[0.0,0.0,0.0]},"mElbowLeft":{"s":[0.0,0.06,0.0],"o":[0.0,0.0,0.0]},"mChest":{"s":[0.0,0.0,0.05],"o":[0.0,0.0,0.0]},"mTorso":{"s":[0.0,0.0,0.05],"o":[0.0,0.0,0.0]},"mHipLeft":{"s":[0.0,0.0,0.1],"o":[0.0,0.0,0.0]},"mKneeLeft":{"s":[0.0,0.0,0.1],"o":[0.0,0.0,0.0]}}},"34":{"name":"Thickness","min":-0.7,"max":1.5,"def":0.0,"bones":{"mNeck":{"s":[0.1,0.1,0.0],"o":[0.0,0.0,0.0]},"mCollarLeft":{"s":[0.0,0.2,0.0],"o":[0.0,0.0,0.0]},"mShoulderLeft":{"s":[0.1,0.0,0.1],"o":[0.0,0.0,0.0]},"mElbowLeft":{"s":[0.1,0.0,0.1],"o":[0.0,0.0,0.0]},"mChest":{"s":[0.1,0.1,0.0],"o":[0.0,0.0,0.0]},"mTorso":{"s":[0.1,0.1,0.0],"o":[0.0,0.0,0.0]},"mPelvis":{"s":[0.1,0.1,0.0],"o":[0.0,0.0,0.0]},"mHipLeft":{"s":[0.13,0.13,0.0],"o":[0.0,0.0,0.0]},"mKneeLeft":{"s":[0.12,0.12,0.0],"o":[0.0,0.0,0.0]}}},"36":{"name":"Shoulders","min":-1.8,"max":1.4,"def":-0.5,"bones":{"mNeck":{"s":[0.01,0.03,0.0],"o":[0.0,0.0,0.0]},"mCollarLeft":{"s":[0.0,0.0,0.0],"o":[0.0,0.02,0.0]},"mChest":{"s":[0.02,0.08,0.0],"o":[0.0,0.0,0.0]}}},"37":{"name":"Hip Width","min":-3.2,"max":2.8,"def":0.0,"bones":{"mPelvis":{"s":[0.0,0.1,0.0],"o":[0.0,0.0,0.0]},"mHipLeft":{"s":[0.0,0.0,0.0],"o":[0.0,0.004,0.0]}}},"842":{"name":"Hip Length","min":-1.0,"max":1.0,"def":0.0,"bones":{"mPelvis":{"s":[0.0,0.0,0.3],"o":[0.0,0.0,0.0]}}},"38":{"name":"Torso Length","min":-1.0,"max":1.0,"def":0.0,"bones":{"mTorso":{"s":[0.0,0.0,0.3],"o":[0.0,0.0,0.0]},"mPelvis":{"s":[0.0,0.0,0.1],"o":[0.0,0.0,0.0]},"mHipLeft":{"s":[0.0,0.0,-0.1],"o":[0.0,0.0,0.0]},"mKneeLeft":{"s":[0.0,0.0,-0.05],"o":[0.0,0.0,0.0]}}},"655":{"name":"Head Size","min":-0.25,"max":0.1,"def":0.0,"bones":{"mSkull":{"s":[1.0,1.0,1.0],"o":[0.0,0.0,0.1]},"mHead":{"s":[1.0,1.0,1.0],"o":[0.0,0.0,0.0]}}},"675":{"name":"Hand Size","min":-0.3,"max":0.3,"def":0.0,"bones":{"mWristLeft":{"s":[1.0,1.0,1.0],"o":[0.0,0.0,0.0]},"mHandMiddle1Left":{"s":[1.0,1.0,1.0],"o":[0.0,0.0,0.0]},"mHandMiddle2Left":{"s":[1.0,1.0,1.0],"o":[0.0,0.0,0.0]},"mHandMiddle3Left":{"s":[1.0,1.0,1.0],"o":[0.0,0.0,0.0]}}},"683":{"name":"Neck Thickness","min":-0.4,"max":0.2,"def":-0.15,"bones":{"mNeck":{"s":[1.0,1.0,0.0],"o":[0.0,0.0,0.0]}}},"692":{"name":"Leg Length","min":-1.0,"max":1.0,"def":0.0,"bones":{"mHipLeft":{"s":[0.0,0.0,0.2],"o":[0.0,0.0,0.0]},"mKneeLeft":{"s":[0.0,0.0,0.2],"o":[0.0,0.0,0.0]}}},"693":{"name":"Arm Length","min":-1.0,"max":1.0,"def":0.6,"bones":{"mShoulderLeft":{"s":[0.0,0.2,0.0],"o":[0.0,0.0,0.0]},"mElbowLeft":{"s":[0.0,0.3,0.0],"o":[0.0,0.0,0.0]}}},"756":{"name":"Neck Length","min":-1.0,"max":1.0,"def":0.0,"bones":{"mNeck":{"s":[0.0,0.0,0.5],"o":[0.0,0.0,0.0]}}}};
+const SKEL={"mPelvis":{"pos":[0.0,0.0,1.067],"end":[0.0,0.0,0.084],"scale":[1.0,1.0,1.0]},"mTorso":{"pos":[0.0,0.0,0.084],"end":[-0.015,0.0,0.205],"scale":[1.0,1.0,1.0]},"mChest":{"pos":[-0.015,0.0,0.205],"end":[-0.01,0.0,0.25],"scale":[1.0,1.0,1.0]},"mNeck":{"pos":[-0.01,0.0,0.251],"end":[0.0,0.0,0.077],"scale":[1.0,1.0,1.0]},"mHead":{"pos":[0.0,-0.0,0.076],"end":[0.0,0.0,0.079],"scale":[1.0,1.0,1.0]},"mSkull":{"pos":[0.0,0.0,0.079],"end":[0.0,0.0,0.033],"scale":[1.0,1.0,1.0]},"mCollarLeft":{"pos":[-0.021,0.085,0.165],"end":[0.0,0.079,0.0],"scale":[1.0,1.0,1.0]},"mShoulderLeft":{"pos":[0.0,0.079,-0.0],"end":[0.0,0.247,0.0],"scale":[1.0,1.0,1.0]},"mElbowLeft":{"pos":[0.0,0.248,0.0],"end":[0.0,0.205,0.0],"scale":[1.0,1.0,1.0]},"mWristLeft":{"pos":[-0.0,0.205,0.0],"end":[0.0,0.06,0.0],"scale":[1.0,1.0,1.0]},"mHandMiddle1Left":{"pos":[0.013,0.101,0.015],"end":[-0.001,0.04,-0.006],"scale":[1.0,1.0,1.0]},"mHandMiddle2Left":{"pos":[-0.001,0.04,-0.006],"end":[-0.001,0.049,-0.008],"scale":[1.0,1.0,1.0]},"mHandMiddle3Left":{"pos":[-0.001,0.049,-0.008],"end":[-0.002,0.033,-0.006],"scale":[1.0,1.0,1.0]},"mHipLeft":{"pos":[0.034,0.127,-0.041],"end":[-0.001,-0.046,-0.491],"scale":[1.0,1.0,1.0]},"mKneeLeft":{"pos":[-0.001,-0.046,-0.491],"end":[-0.029,0.001,-0.469],"scale":[1.0,1.0,1.0]},"mAnkleLeft":{"pos":[-0.029,0.001,-0.468],"end":[0.112,0.0,-0.061],"scale":[1.0,1.0,1.0]},"mFootLeft":{"pos":[0.112,-0.0,-0.061],"end":[0.105,0.008,0.001],"scale":[1.0,1.0,1.0]}};
+
+// Proportion model: SL shape sliders -> skeleton -> body measurements.
+// Requires PARAMS and SKEL (from data.js).
+
+const SLIDERS = [
+  // key, label, param id, tab in Edit Shape
+  { key: 'height',    label: 'Height',          id: '33',  tab: 'Body' },
+  { key: 'thickness', label: 'Body Thickness',  id: '34',  tab: 'Body' },
+  { key: 'headsize',  label: 'Head Size',       id: '682', tab: 'Head' },
+  { key: 'necklen',   label: 'Neck Length',     id: '756', tab: 'Torso' },
+  { key: 'shoulders', label: 'Shoulders',       id: '36',  tab: 'Torso' },
+  { key: 'armlen',    label: 'Arm Length',      id: '693', tab: 'Torso' },
+  { key: 'handsize',  label: 'Hand Size',       id: '675', tab: 'Torso' },
+  { key: 'torsolen',  label: 'Torso Length',    id: '38',  tab: 'Torso' },
+  { key: 'hipwidth',  label: 'Hip Width',       id: '37',  tab: 'Legs' },
+  { key: 'hiplen',    label: 'Hip Length',      id: '842', tab: 'Legs' },
+  { key: 'leglen',    label: 'Leg Length',      id: '692', tab: 'Legs' },
+];
+
+// Firestorm adds this to the viewer's body size ("measured against prims").
+const FS_FUDGE = 0.195;
+// Ground sits a little below the foot joint (checked against mesh extents).
+const FLOOR = 0.034;
+// Approximate chin-to-crown height of a mesh head at Head Size bone scale 1.0
+// (calibrated on a LeLutka EvoX male head; other heads vary).
+const HEAD_BASE = 0.255;
+
+// Real-world targets (fractions of standing height unless noted).
+const TARGETS = {
+  male: {
+    hipHeight: [0.515, 0.545], hipSpacing: [0.090, 0.115], shoulder: [0.195, 0.220],
+    span: [0.99, 1.05], hand: [0.102, 0.112], headAbs: [0.215, 0.250], headRef: 1.77,
+  },
+  female: {
+    hipHeight: [0.510, 0.540], hipSpacing: [0.100, 0.125], shoulder: [0.180, 0.205],
+    span: [0.97, 1.03], hand: [0.098, 0.108], headAbs: [0.200, 0.235], headRef: 1.63,
+  },
+};
+
+function weightFor(id, slider) {
+  // slider is 0..100 as shown in Edit Shape
+  if (id === '682') {
+    const w = slider / 100; // driver 0..1 -> driven 655 (-0.25..0.10)
+    return { pid: '655', w: -0.25 + w * 0.35 };
+  }
+  const p = PARAMS[id];
+  return { pid: id, w: p.min + (slider / 100) * (p.max - p.min) };
+}
+
+function buildSkeleton(sliders, male) {
+  const bones = {};
+  for (const [name, b] of Object.entries(SKEL)) {
+    bones[name] = { pos: b.pos.slice(), scale: b.scale.slice(), end: b.end.slice() };
+  }
+  const apply = (pid, w) => {
+    const p = PARAMS[pid];
+    if (!p) return;
+    for (const [name, d] of Object.entries(p.bones)) {
+      const b = bones[name];
+      for (let i = 0; i < 3; i++) { b.scale[i] += w * d.s[i]; b.pos[i] += w * d.o[i]; }
+    }
+  };
+  apply('32', male ? 1 : 0);
+  for (const s of SLIDERS) {
+    const v = sliders[s.key];
+    const { pid, w } = weightFor(s.id, v);
+    apply(pid, w);
+  }
+  // Neck Thickness: keep at its default weight (affects width only)
+  apply('683', 0);
+  return bones;
+}
+
+function measure(sliders, male) {
+  const B = buildSkeleton(sliders, male);
+  const z = (n) => Math.abs(B[n].pos[2]);
+  const sc = (n, i) => B[n].scale[i];
+
+  // Leg chain (hip joint -> foot joint)
+  const hipToFoot = z('mKneeLeft') * sc('mHipLeft', 2) + z('mAnkleLeft') * sc('mKneeLeft', 2) + z('mFootLeft') * sc('mAnkleLeft', 2);
+  const hipDrop = z('mHipLeft') * sc('mPelvis', 2);
+
+  // Viewer's own body size (LLAvatarAppearance::computeBodySize)
+  const pelvisToFootLL = -hipDrop + hipToFoot;
+  const upperLL = Math.SQRT2 * (B.mSkull.pos[2] * sc('mHead', 2)) + B.mHead.pos[2] * sc('mNeck', 2)
+    + B.mNeck.pos[2] * sc('mChest', 2) + B.mChest.pos[2] * sc('mTorso', 2) + B.mTorso.pos[2] * sc('mPelvis', 2);
+  const llHeight = pelvisToFootLL + upperLL;
+  const fsHeight = llHeight + FS_FUDGE;
+  const H = fsHeight; // closest to true standing height (prim-checked)
+
+  const hipJointHeight = hipToFoot + FLOOR;
+  const hipSpacing = 2 * B.mHipLeft.pos[1] * sc('mPelvis', 1);
+  const collar = B.mCollarLeft.pos[1] * sc('mChest', 1);
+  const toShoulder = B.mShoulderLeft.pos[1] * sc('mCollarLeft', 1);
+  const shoulderBreadth = 2 * (collar + toShoulder);
+  const upperArm = B.mElbowLeft.pos[1] * sc('mShoulderLeft', 1);
+  const forearm = B.mWristLeft.pos[1] * sc('mElbowLeft', 1);
+  const hand = B.mHandMiddle1Left.pos[1] * sc('mWristLeft', 1)
+    + B.mHandMiddle2Left.pos[1] * sc('mHandMiddle1Left', 1)
+    + B.mHandMiddle3Left.pos[1] * sc('mHandMiddle2Left', 1)
+    + B.mHandMiddle3Left.end[1] * sc('mHandMiddle3Left', 1);
+  const span = 2 * (collar + toShoulder + upperArm + forearm + hand);
+  const head = HEAD_BASE * sc('mHead', 2);
+
+  return {
+    llHeight, fsHeight, H,
+    hipHeight: hipJointHeight / H,
+    hipSpacing: hipSpacing / H, hipSpacingAbs: hipSpacing,
+    shoulder: shoulderBreadth / H, shoulderAbs: shoulderBreadth,
+    span: span / H, spanAbs: span,
+    hand: hand / H, handAbs: hand,
+    headAbs: head, headsTall: H / head,
+    bones: B,
+  };
+}
+
+function headRange(sex, H) {
+  const t = TARGETS[sex];
+  const f = Math.pow(H / t.headRef, 0.3); // heads grow a little with stature
+  return [t.headAbs[0] * f, t.headAbs[1] * f];
+}
+
+const CHECKS = [
+  { key: 'hipHeight', label: 'Leg length', slider: 'leglen', fmt: (v) => (v * 100).toFixed(1) + '% of height', unit: 'pct',
+    explain: { low: 'Legs are short for the body; the hip joint sits low.', high: 'Legs are long for the body; the hip joint sits high.' } },
+  { key: 'hipSpacing', label: 'Hip width', slider: 'hipwidth', fmt: (v) => (v * 100).toFixed(1) + '% of height', unit: 'pct',
+    explain: { low: 'Hips are narrow; the stance will look pinched.', high: 'Hips are wide; thighs and stance spread outward.' } },
+  { key: 'shoulder', label: 'Shoulder width', slider: 'shoulders', fmt: (v) => (v * 100).toFixed(1) + '% of height', unit: 'pct',
+    explain: { low: 'Shoulders are narrow for the frame.', high: 'Shoulders are very broad; can give a coat-hanger look.' } },
+  { key: 'span', label: 'Arm length', slider: 'armlen', fmt: (v) => 'span ' + v.toFixed(2) + ' x height', unit: 'ratio',
+    explain: { low: 'Arms are short; arm span should roughly equal height.', high: 'Arms are long; arm span is well over height.' } },
+  { key: 'hand', label: 'Hand size', slider: 'handsize', fmt: (v) => (v * 100).toFixed(1) + '% of height', unit: 'pct',
+    explain: { low: 'Hands are small for the body.', high: 'Hands are large for the body.' } },
+  { key: 'headAbs', label: 'Head size', slider: 'headsize', fmt: (v) => Math.round(v * 100) + ' cm chin to crown', unit: 'abs', approx: true,
+    explain: { low: 'Head is small; can read as a pinhead at a distance.', high: 'Head is large; can read as a bobblehead.' } },
+];
+
+function rangeFor(check, sex, m) {
+  if (check.key === 'headAbs') return headRange(sex, m.H);
+  return TARGETS[sex][check.key];
+}
+
+function status(v, r) {
+  const w = r[1] - r[0];
+  if (v < r[0] - w * 0.5 || v > r[1] + w * 0.5) return 'bad';
+  if (v < r[0] || v > r[1]) return 'warn';
+  return 'ok';
+}
+
+function evaluate(sliders, sex) {
+  const m = measure(sliders, sex === 'male');
+  const rows = CHECKS.map((c) => {
+    const v = m[c.key];
+    const r = rangeFor(c, sex, m);
+    const st = status(v, r);
+    const dir = v < r[0] ? 'low' : v > r[1] ? 'high' : null;
+    return { check: c, value: v, range: r, status: st, dir };
+  });
+  return { m, rows };
+}
+
+// Find the slider value (0..100 integer) that brings fn(sliders) closest to goal.
+function solve(sliders, key, fn, goal) {
+  let best = sliders[key], bestErr = Infinity;
+  for (let v = 0; v <= 100; v++) {
+    const s = Object.assign({}, sliders, { [key]: v });
+    const err = Math.abs(fn(s) - goal);
+    if (err < bestErr - 1e-9) { bestErr = err; best = v; }
+  }
+  return best;
+}
+
+// Height slider (integer) that best matches a target height, holding the rest.
+function fitHeight(s, male, keepH) {
+  let lo = 0, hi = 100;
+  while (hi - lo > 1) {
+    const mid = (lo + hi) >> 1;
+    if (measure(Object.assign({}, s, { height: mid }), male).H < keepH) lo = mid; else hi = mid;
+  }
+  const a = Math.abs(measure(Object.assign({}, s, { height: lo }), male).H - keepH);
+  const b = Math.abs(measure(Object.assign({}, s, { height: hi }), male).H - keepH);
+  return a <= b ? lo : hi;
+}
+
+function suggest(sliders, sex, targetHeight /* metres on the Firestorm scale; null keeps current */) {
+  const male = sex === 'male';
+  const start = Object.assign({}, sliders);
+  const keepH = targetHeight || measure(sliders, male).H;
+  let s = Object.assign({}, sliders);
+  s.height = fitHeight(s, male, keepH);
+  const notes = [];
+  for (let pass = 0; pass < 3; pass++) {
+    for (const c of CHECKS) {
+      const m = measure(s, male);
+      const r = rangeFor(c, sex, m);
+      const v = m[c.key];
+      if (v >= r[0] && v <= r[1]) continue;
+      // Head size is approximate (heads vary by brand): only act on clear outliers
+      if (c.approx && status(v, r) !== 'bad') continue;
+      const w = r[1] - r[0];
+      const goal = v < r[0] ? r[0] + w * 0.25 : r[1] - w * 0.25;
+      // Try slider values with height re-fitted, so the change holds at the chosen height.
+      // Leg length also gets Torso Length as a partner: the Height slider mostly
+      // lengthens legs, so tall avatars need a longer torso to stay in proportion.
+      const keys = c.key === 'hipHeight' ? [c.slider, 'torsolen'] : [c.slider];
+      let best = null, bestScore = Infinity;
+      const grid = (k) => { const a = []; for (let v = 0; v <= 100; v += keys.length > 1 ? 2 : 1) a.push(v); if (!a.includes(s[k])) a.push(s[k]); return a; };
+      const g0 = grid(keys[0]), g1 = keys[1] ? grid(keys[1]) : [null];
+      for (const v0 of g0) for (const v1 of g1) {
+        const x = Object.assign({}, s, { [keys[0]]: v0 });
+        if (keys[1]) x[keys[1]] = v1;
+        x.height = fitHeight(x, male, keepH);
+        const mm = measure(x, male);
+        const moved = Math.abs(v0 - s[keys[0]]) + (keys[1] ? Math.abs(v1 - s[keys[1]]) : 0);
+        const score = Math.abs(mm[c.key] - goal) / w + Math.abs(mm.H - keepH) * 20 + moved * 0.004;
+        if (score < bestScore) { bestScore = score; best = x; }
+      }
+      s = best;
+    }
+  }
+  const after = evaluate(s, sex);
+  if (Math.abs(after.m.H - keepH) > 0.02) notes.push('The Height slider cannot quite reach the target height with these proportions.');
+  for (const r of after.rows) {
+    if (r.status !== 'ok' && !r.check.approx) {
+      if (s[r.check.slider] === 0 || s[r.check.slider] === 100) notes.push(r.check.label + ' is at the end of its slider range.' + (r.check.key === 'hipHeight' ? ' Try raising Torso Length a little as well.' : ''));
+    }
+  }
+  const changes = SLIDERS.filter((d) => Math.abs(s[d.key] - start[d.key]) >= 2)
+    .map((d) => ({ key: d.key, label: d.label, tab: d.tab, from: start[d.key], to: s[d.key] }));
+  return { sliders: s, changes, after, notes, keepH };
+}
+
+// Parse an "Appearance to XML" export into slider values (0..100).
+function parseExport(text) {
+  const doc = new DOMParser().parseFromString(text, 'text/xml');
+  if (doc.getElementsByTagName('parsererror').length) throw new Error('That does not look like valid XML.');
+  const params = {};
+  for (const el of doc.getElementsByTagName('param')) {
+    params[el.getAttribute('id')] = parseFloat(el.getAttribute('value'));
+  }
+  if (!('33' in params)) throw new Error('No shape data found. Paste the whole Appearance to XML file.');
+  const sliders = {};
+  for (const d of SLIDERS) {
+    const val = params[d.id];
+    if (val === undefined || isNaN(val)) throw new Error('Missing slider: ' + d.label);
+    if (d.id === '682') sliders[d.key] = Math.round(val * 100);
+    else {
+      const p = PARAMS[d.id];
+      sliders[d.key] = Math.round(((val - p.min) / (p.max - p.min)) * 100);
+    }
+  }
+  const sex = params['80'] >= 0.5 ? 'male' : 'female';
+  return { sliders, sex };
+}
+
+if (typeof module !== 'undefined') module.exports = { SLIDERS, measure, evaluate, suggest, parseExport, headRange, TARGETS, CHECKS };
+
+
+const EXAMPLE = { sex: 'male', viewer: 'fs', body: 'legacy', head: 'lelutka', curH: 2.18,
+  sliders: { height: 80, thickness: 45, headsize: 87, necklen: 45, shoulders: 60, armlen: 62, handsize: 50, torsolen: 65, hipwidth: 66, hiplen: 65, leglen: 61 } };
+let isExample = true;
+
+const TABS = ['Body', 'Head', 'Torso', 'Legs'];
+const $ = (id) => document.getElementById(id);
+
+function buildSliderInputs() {
+  const box = $('sliders');
+  box.innerHTML = '';
+  for (const tab of TABS) {
+    const g = document.createElement('div');
+    g.className = 'tabgroup';
+    g.innerHTML = '<span class="eyebrow">' + tab + ' tab</span>';
+    for (const s of SLIDERS.filter((x) => x.tab === tab)) {
+      const r = document.createElement('div');
+      r.className = 'sl';
+      r.innerHTML = '<label for="s_' + s.key + '">' + s.label + '</label><input type="number" id="s_' + s.key + '" min="0" max="100" step="1" inputmode="numeric">';
+      g.appendChild(r);
+    }
+    box.appendChild(g);
+  }
+}
+
+function fill(state) {
+  $('sex').value = state.sex; $('viewer').value = state.viewer;
+  $('body').value = state.body; $('head').value = state.head;
+  $('curH').value = state.curH || '';
+  for (const s of SLIDERS) $('s_' + s.key).value = state.sliders[s.key];
+}
+
+function readSliders() {
+  const out = {}; const bad = [];
+  for (const s of SLIDERS) {
+    const v = parseInt($('s_' + s.key).value, 10);
+    if (isNaN(v) || v < 0 || v > 100) bad.push(s.label); else out[s.key] = v;
+  }
+  return { out, bad };
+}
+
+const FS = 0.195;
+const fmtM = (m) => m.toFixed(2) + ' m';
+const ftIn = (m) => { const t = m / 0.0254; const ft = Math.floor(t / 12); return ft + "'" + Math.round(t - ft * 12) + '"'; };
+const viewerH = (m, viewer) => viewer === 'fs' ? m.fsHeight : m.llHeight;
+
+function brandNotes(sex, body, head) {
+  const n = [];
+  if (body === 'legacylite' && sex === 'female') n.push('Female Legacy Lite: residents have reported Chin Depth and Chin Angle not responding while this body is worn, on any head. If the chin won\'t move, that\'s why.');
+  if (body === 'legacylite' || head === 'lelutkalite') n.push('The Welcome Pack starter body and head have no HUDs, but respond to shape sliders the same as the full Legacy and LeLutka versions.');
+  if (body === 'senra' || head === 'senra') n.push('Senra is the older starter avatar. Sliders work, but very little clothing fits it; the newer Welcome Pack avatars are in the Library.');
+  if (body === 'system') n.push('On the classic system body every slider works, including the ones mesh bodies ignore.');
+  else n.push('Body Fat, Torso Muscles, Leg Muscles, Love Handles, Belly, Butt, Saddle Bags, Breast, Knee Angle and Foot Size only work as far as this body\'s creator rigged them. They affect build, not proportions.');
+  if (head !== 'system') n.push('These face sliders do nothing on mesh heads: Eyelash Length, Eye Pop, Ear Angle, Attached Earlobes, Jowls, Chin Cleft and Upper Chin Cleft. Face numbers aren\'t comparable between head brands.');
+  if (head !== 'lelutka' && head !== 'lelutkalite') n.push('The head size check is calibrated on a LeLutka head, so on this head treat it as a rough guide and trust your eye.');
+  return n;
+}
+
+function gauge(row) {
+  const r = row.range, v = row.value, w = r[1] - r[0];
+  const lo = Math.min(r[0] - w * 1.2, v - w * 0.2), hi = Math.max(r[1] + w * 1.2, v + w * 0.2);
+  const pct = (x) => ((x - lo) / (hi - lo)) * 100;
+  const fmt = row.check.unit === 'pct' ? (x) => (x * 100).toFixed(1) : row.check.unit === 'abs' ? (x) => Math.round(x * 100) + 'cm' : (x) => x.toFixed(2);
+  return '<div class="gauge" aria-hidden="true"><div class="track"></div>'
+    + '<div class="zone" style="left:' + pct(r[0]) + '%;width:' + (pct(r[1]) - pct(r[0])) + '%"></div>'
+    + '<span class="cap" style="left:' + pct(r[0]) + '%">' + fmt(r[0]) + '</span>'
+    + '<span class="cap" style="left:' + pct(r[1]) + '%">' + fmt(r[1]) + '</span>'
+    + '<div class="dot ' + row.status + '" style="left:' + Math.max(2, Math.min(98, pct(v))) + '%"></div></div>';
+}
+
+function chipFor(st) {
+  return st === 'ok' ? '<span class="chip ok">In range</span>' : st === 'warn' ? '<span class="chip warn">Slightly off</span>' : '<span class="chip bad">Needs a change</span>';
+}
+
+function imText(sug, viewer, ev) {
+  const lines = [];
+  if (!sug.changes.length) return 'Your proportions are already in a realistic human range. No slider changes needed.';
+  lines.push('Shape tips (make a copy of your shape first: right-click it in inventory > Copy, then Paste):');
+  for (const tab of TABS) {
+    const cs = sug.changes.filter((c) => c.tab === tab);
+    if (!cs.length) continue;
+    lines.push('');
+    lines.push('Edit Shape > ' + tab + ':');
+    for (const c of cs) lines.push('  ' + c.label + ': ' + c.from + ' -> ' + c.to);
+  }
+  const h = viewerH(sug.after.m, viewer);
+  lines.push('');
+  lines.push('Your height stays about ' + fmtM(h) + ' (' + ftIn(h) + ').');
+  return lines.join('\n');
+}
+
+function render() {
+  const res = $('results');
+  const sex = $('sex').value, viewer = $('viewer').value;
+  const { out: sliders, bad } = readSliders();
+  if (bad.length) {
+    res.innerHTML = '<h2>Check the sliders</h2><p class="err">These need a whole number from 0 to 100: ' + bad.join(', ') + '.</p>';
+    return;
+  }
+  res.classList.add('working');
+  setTimeout(() => {
+    const ev = evaluate(sliders, sex);
+    let tgt = parseFloat($('tgtH').value);
+    let tgtFs = null;
+    if (!isNaN(tgt) && tgt > 1 && tgt < 3) tgtFs = viewer === 'fs' ? tgt : tgt + FS;
+    const sug = suggest(sliders, sex, tgtFs);
+    const m = ev.m;
+    const counts = { ok: 0, warn: 0, bad: 0 };
+    ev.rows.forEach((r) => counts[r.status]++);
+    const overall = counts.bad ? 'bad' : counts.warn ? 'warn' : 'ok';
+    const headline = overall === 'ok' ? 'Realistic proportions' : overall === 'warn' ? 'Close, a few small tweaks' : 'Some proportions are off';
+
+    const hShown = viewerH(m, viewer);
+    const cur = parseFloat($('curH').value);
+    let heightWarn = '';
+    if (!isNaN(cur) && Math.abs(cur - hShown) > 0.03) {
+      const other = viewer === 'fs' ? m.llHeight : m.fsHeight;
+      heightWarn = Math.abs(cur - other) <= 0.03
+        ? '<p class="hint">The height entered matches the ' + (viewer === 'fs' ? 'Second Life viewer' : 'Firestorm') + ' figure. Check the Viewer choice above.</p>'
+        : '<p class="err">These sliders give ' + fmtM(hShown) + ', but ' + fmtM(cur) + ' was entered. One of the slider numbers may be mistyped.</p>';
+    }
+
+    let html = '';
+    if (isExample) html += '<div class="example">Example shape loaded. Replace the sliders with the resident\'s own numbers.</div>';
+    html += '<div class="verdict"><span class="big">' + headline + '</span>' + chipFor(overall) + '</div>';
+    html += '<div class="meta"><span>Height <b>' + fmtM(hShown) + '</b> (' + ftIn(hShown) + ')</span><span>Heads tall <b>' + m.headsTall.toFixed(1) + '</b></span><span>Arm span <b>' + fmtM(m.spanAbs) + '</b></span></div>';
+    html += heightWarn;
+
+    html += '<div class="checks">';
+    for (const r of ev.rows) {
+      const why = r.status === 'ok' ? 'Within the normal human range.' : r.check.explain[r.dir];
+      html += '<div class="check"><div class="stripe ' + r.status + '"></div><div style="min-width:0"><div class="name">' + r.check.label
+        + (r.check.approx ? ' <span class="hint">(estimate)</span>' : '') + '</div><div class="val">' + r.check.fmt(r.value) + '</div><div class="why">' + why + '</div></div>' + gauge(r) + '</div>';
+    }
+    html += '</div>';
+
+    html += '<h2>Suggested changes</h2>';
+    if (sug.changes.length) {
+      html += '<div class="tablewrap"><table class="changes"><thead><tr><th>Tab</th><th>Slider</th><th>Change</th></tr></thead><tbody>';
+      for (const tab of TABS) for (const c of sug.changes.filter((x) => x.tab === tab)) {
+        html += '<tr><td>' + c.tab + '</td><td>' + c.label + '</td><td class="num">' + c.from + '<span class="arrow">→</span><span class="to">' + c.to + '</span></td></tr>';
+      }
+      html += '</tbody></table></div>';
+      const after = sug.after.m;
+      html += '<p class="hint">Height after changes: ' + fmtM(viewerH(after, viewer)) + '. Height is re-balanced so proportion fixes don\'t make the avatar shorter or taller.</p>';
+    } else {
+      html += '<p class="hint">None. Every proportion is in range.</p>';
+    }
+    for (const n of sug.notes) html += '<p class="hint">' + n + '</p>';
+
+    html += '<h2>Copy for IM</h2><pre class="imbox" id="imText"></pre><div><button type="button" class="ghost" id="copyIm">Copy message</button> <span class="hint" id="copied" hidden>Copied</span></div>';
+
+    html += '<h2>Notes for this body and head</h2><ul class="notes">' + brandNotes(sex, $('body').value, $('head').value).map((x) => '<li>' + x + '</li>').join('') + '</ul>';
+
+    res.innerHTML = html;
+    $('imText').textContent = imText(sug, viewer, ev);
+    $('copyIm').addEventListener('click', () => {
+      const t = $('imText').textContent;
+      const done = () => { $('copied').hidden = false; setTimeout(() => { $('copied').hidden = true; }, 1600); };
+      const fallback = () => { const r = document.createRange(); r.selectNodeContents($('imText')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $('copied').textContent = 'Selected, press Ctrl/Cmd+C'; done(); };
+      try { navigator.clipboard.writeText(t).then(done, fallback); } catch (e) { fallback(); }
+    });
+    res.classList.remove('working');
+  }, 20);
+}
+
+function setMode(xml) {
+  $('modeQuick').setAttribute('aria-pressed', String(!xml));
+  $('modeXml').setAttribute('aria-pressed', String(xml));
+  $('xmlPane').hidden = !xml;
+}
+
+function readXml(text) {
+  const e = $('xmlErr');
+  try {
+    const { sliders, sex } = parseExport(text);
+    e.hidden = true;
+    $('sex').value = sex;
+    for (const s of SLIDERS) $('s_' + s.key).value = sliders[s.key];
+    isExample = false;
+    render();
+  } catch (err) {
+    e.textContent = err.message; e.hidden = false;
+  }
+}
+
+function syncThemeBtn() {
+  const light = document.documentElement.getAttribute('data-theme') === 'light';
+  $('themeBtn').textContent = light ? 'Dark theme' : 'Light theme';
+}
+$('themeBtn').addEventListener('click', () => {
+  const light = document.documentElement.getAttribute('data-theme') === 'light';
+  if (light) document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', 'light');
+  try { localStorage.setItem('sl-mentor-theme', light ? 'dark' : 'light'); } catch (e) {}
+  syncThemeBtn();
+});
+syncThemeBtn();
+buildSliderInputs();
+fill(EXAMPLE);
+$('modeQuick').addEventListener('click', () => setMode(false));
+$('modeXml').addEventListener('click', () => setMode(true));
+$('loadXml').addEventListener('click', () => readXml($('xml').value));
+$('xmlFile').addEventListener('change', (ev) => {
+  const f = ev.target.files[0]; if (!f) return;
+  const fr = new FileReader();
+  fr.onload = () => { $('xml').value = fr.result; readXml(fr.result); };
+  fr.readAsText(f);
+});
+$('form').addEventListener('submit', (ev) => { ev.preventDefault(); render(); });
+$('form').addEventListener('input', (ev) => { if (ev.target.id !== 'xml') isExample = false; });
+render();
+</script>
+</body>
+</html>
