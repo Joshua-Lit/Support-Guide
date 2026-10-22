@@ -216,10 +216,11 @@ table.changes td.num { font-family: var(--mono); font-variant-numeric: tabular-n
           <label class="ghost" for="xmlFile" style="cursor:pointer;color:var(--accent)">or choose file</label>
           <input type="file" id="xmlFile" accept=".xml,text/xml" hidden>
         </div>
-        <p class="hint">Firestorm: Advanced menu (Ctrl+Alt+D to show it) › Character › Character Tests › Appearance to XML. The file lands in the viewer's logs folder. Reading it fills in the sliders below.</p>
+        <p class="hint">Develop menu › Avatar › Character Tests › Appearance to XML (in Firestorm, Ctrl+Alt+Q shows the Develop menu). The file lands in the viewer's logs folder. Reading it fills in the sliders below.</p>
         <p class="err" id="xmlErr" hidden></p>
       </div>
 
+      <div class="example" id="exampleNote">Example numbers loaded. Replace them with the avatar's own sliders from Edit Shape.</div>
       <div id="sliders" style="display:grid;gap:14px"></div>
 
       <button type="submit" class="primary" id="go">Check shape</button>
@@ -614,7 +615,6 @@ function render() {
     }
 
     let html = '';
-    if (isExample) html += '<div class="example">Example shape loaded. Replace the sliders with the resident\'s own numbers.</div>';
     html += '<div class="verdict"><span class="big">' + headline + '</span>' + chipFor(overall) + '</div>';
     html += '<div class="meta"><span>Height <b>' + fmtM(hShown) + '</b> (' + ftIn(hShown) + ')</span><span>Heads tall <b>' + m.headsTall.toFixed(1) + '</b></span><span>Arm span <b>' + fmtM(m.spanAbs) + '</b></span></div>';
     html += heightWarn;
@@ -671,6 +671,7 @@ function readXml(text) {
     $('sex').value = sex;
     for (const s of SLIDERS) $('s_' + s.key).value = sliders[s.key];
     isExample = false;
+    $('exampleNote').hidden = true;
     render();
   } catch (err) {
     e.textContent = err.message; e.hidden = false;
@@ -712,7 +713,9 @@ $('xmlFile').addEventListener('change', (ev) => {
   fr.readAsText(f);
 });
 $('form').addEventListener('submit', (ev) => { ev.preventDefault(); render(); });
-$('form').addEventListener('input', (ev) => { if (ev.target.id !== 'xml') isExample = false; });
+$('form').addEventListener('input', (ev) => {
+  if (ev.target.id !== 'xml' && ev.target.id.startsWith('s_')) { isExample = false; $('exampleNote').hidden = true; }
+});
 render();
 </script>
 </body>
