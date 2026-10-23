@@ -134,6 +134,7 @@ table.changes td.num { font-family: var(--mono); font-variant-numeric: tabular-n
     <span class="eyebrow">Second Life mentor tool</span>
     <h1>Shape <span>Check</span></h1>
     <p class="lede">Enter a resident's body sliders from Edit Shape and see how their proportions compare with a real person, with exact slider changes to paste into IM.</p>
+    <p class="hint" style="margin:0">A starting point, not a rule: fantasy, stylised and non-human avatars can happily ignore it.</p>
   </header>
 
   <div class="grid">
@@ -165,7 +166,8 @@ table.changes td.num { font-family: var(--mono); font-variant-numeric: tabular-n
             <option value="senra">Senra (older starter)</option>
             <option value="legacy">Legacy</option>
             <option value="belleza">Belleza</option>
-            <option value="maitreya">Maitreya</option>
+            <option value="maitreya53">Maitreya Lara 5.3</option>
+            <option value="maitreyax">Maitreya LaraX</option>
             <option value="ebody">eBody</option>
             <option value="signature">Signature</option>
             <option value="system">Classic system body</option>
@@ -197,6 +199,13 @@ table.changes td.num { font-family: var(--mono); font-variant-numeric: tabular-n
         </div>
       </div>
       <p class="hint">Height is optional. Edit Shape shows it at the top of the panel; it's used to catch mistyped sliders.</p>
+      <div class="field">
+        <label for="style">Compare against</label>
+        <select id="style">
+          <option value="real">Realistic human</option>
+          <option value="sl">Typical SL fashion (wider ranges)</option>
+        </select>
+      </div>
 
       <div class="field">
         <span class="eyebrow">2 · Body sliders</span>
@@ -273,6 +282,20 @@ const TARGETS = {
     span: [0.97, 1.03], hand: [0.098, 0.108], headAbs: [0.200, 0.235], headRef: 1.63,
   },
 };
+
+// Wider ranges for "Typical SL fashion": what styled SL avatars usually look like.
+const TARGETS_SL = {
+  male: {
+    hipHeight: [0.510, 0.560], hipSpacing: [0.085, 0.130], shoulder: [0.190, 0.235],
+    span: [0.97, 1.06], hand: [0.098, 0.118], headAbs: [0.205, 0.260], headRef: 1.77,
+  },
+  female: {
+    hipHeight: [0.505, 0.560], hipSpacing: [0.095, 0.150], shoulder: [0.165, 0.210],
+    span: [0.95, 1.05], hand: [0.095, 0.120], headAbs: [0.190, 0.245], headRef: 1.63,
+  },
+};
+let STYLE = 'real';
+const targetsFor = (sex) => (STYLE === 'sl' ? TARGETS_SL : TARGETS)[sex];
 
 function weightFor(id, slider) {
   // slider is 0..100 as shown in Edit Shape
@@ -352,7 +375,7 @@ function measure(sliders, male) {
 }
 
 function headRange(sex, H) {
-  const t = TARGETS[sex];
+  const t = targetsFor(sex);
   const f = Math.pow(H / t.headRef, 0.3); // heads grow a little with stature
   return [t.headAbs[0] * f, t.headAbs[1] * f];
 }
@@ -367,14 +390,15 @@ const CHECKS = [
   { key: 'span', label: 'Arm length', slider: 'armlen', fmt: (v) => 'span ' + v.toFixed(2) + ' x height', unit: 'ratio',
     explain: { low: 'Arms are short; arm span should roughly equal height.', high: 'Arms are long; arm span is well over height.' } },
   { key: 'hand', label: 'Hand size', slider: 'handsize', fmt: (v) => (v * 100).toFixed(1) + '% of height', unit: 'pct',
-    explain: { low: 'Hands are small for the body.', high: 'Hands are large for the body.' } },
+    approx: true,
+    explain: { low: 'Hands are small for the body.', high: 'Hands are large for the body. SL hand bones don\'t shrink with Height, so shorter avatars often read large-handed.' } },
   { key: 'headAbs', label: 'Head size', slider: 'headsize', fmt: (v) => Math.round(v * 100) + ' cm chin to crown', unit: 'abs', approx: true,
     explain: { low: 'Head is small; can read as a pinhead at a distance.', high: 'Head is large; can read as a bobblehead.' } },
 ];
 
 function rangeFor(check, sex, m) {
   if (check.key === 'headAbs') return headRange(sex, m.H);
-  return TARGETS[sex][check.key];
+  return targetsFor(sex)[check.key];
 }
 
 function status(v, r) {
@@ -535,11 +559,13 @@ function readSliders() {
 
 const FS = 0.195;
 const fmtM = (m) => m.toFixed(2) + ' m';
-const ftIn = (m) => { const t = m / 0.0254; const ft = Math.floor(t / 12); return ft + "'" + Math.round(t - ft * 12) + '"'; };
+const ftIn = (m) => { const t = Math.round(m / 0.0254); return Math.floor(t / 12) + "'" + (t % 12) + '"'; };
 const viewerH = (m, viewer) => viewer === 'fs' ? m.fsHeight : m.llHeight;
 
 function brandNotes(sex, body, head) {
   const n = [];
+  n.push('Judge the result in a default stand with your AO off, and press Ctrl+9 to reset the camera zoom. Poses and a wide field of view change how proportions look.');
+  if (body === 'ebody') n.push('eBody shapes are especially sensitive to camera angle and pose, so check them in a default stand before changing anything.');
   if (body === 'legacylite' && sex === 'female') n.push('Female Legacy Lite: residents have reported Chin Depth and Chin Angle not responding while this body is worn, on any head. If the chin won\'t move, that\'s why.');
   if (body === 'legacylite' || head === 'lelutkalite') n.push('The Welcome Pack starter body and head have no HUDs, but respond to shape sliders the same as the full Legacy and LeLutka versions.');
   if (body === 'senra' || head === 'senra') n.push('Senra is the older starter avatar. Sliders work, but very little clothing fits it; the newer Welcome Pack avatars are in the Library.');
@@ -563,7 +589,7 @@ function gauge(row) {
 }
 
 function chipFor(st) {
-  return st === 'ok' ? '<span class="chip ok">In range</span>' : st === 'warn' ? '<span class="chip warn">Slightly off</span>' : '<span class="chip bad">Needs a change</span>';
+  return st === 'ok' ? '<span class="chip ok">In range</span>' : st === 'warn' ? '<span class="chip warn">Slightly off</span>' : '<span class="chip bad">Far off</span>';
 }
 
 function imText(sug, viewer, ev) {
@@ -586,6 +612,7 @@ function imText(sug, viewer, ev) {
 function render() {
   const res = $('results');
   const sex = $('sex').value, viewer = $('viewer').value;
+  STYLE = $('style').value;
   const { out: sliders, bad } = readSliders();
   if (bad.length) {
     res.innerHTML = '<h2>Check the sliders</h2><p class="err">These need a whole number from 0 to 100: ' + bad.join(', ') + '.</p>';
@@ -602,7 +629,7 @@ function render() {
     const counts = { ok: 0, warn: 0, bad: 0 };
     ev.rows.forEach((r) => counts[r.status]++);
     const overall = counts.bad ? 'bad' : counts.warn ? 'warn' : 'ok';
-    const headline = overall === 'ok' ? 'Realistic proportions' : overall === 'warn' ? 'Close, a few small tweaks' : 'Some proportions are off';
+    const headline = overall === 'ok' ? (STYLE === 'sl' ? 'Typical SL proportions' : 'Realistic proportions') : overall === 'warn' ? 'Close, a few small tweaks' : (STYLE === 'sl' ? 'Some proportions are unusual, even for SL' : 'Some proportions are far from realistic');
 
     const hShown = viewerH(m, viewer);
     const cur = parseFloat($('curH').value);
@@ -713,6 +740,7 @@ $('xmlFile').addEventListener('change', (ev) => {
   fr.readAsText(f);
 });
 $('form').addEventListener('submit', (ev) => { ev.preventDefault(); render(); });
+$('style').addEventListener('change', () => render());
 $('form').addEventListener('input', (ev) => {
   if (ev.target.id !== 'xml' && ev.target.id.startsWith('s_')) { isExample = false; $('exampleNote').hidden = true; }
 });
