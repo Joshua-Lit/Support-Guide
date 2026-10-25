@@ -367,11 +367,14 @@ function measure(sliders, male) {
   const floorZ = hipDrop * -1 - hipToFoot - FLOOR;
   const shoulderZ = B.mTorso.pos[2] * sc('mPelvis', 2) + B.mChest.pos[2] * sc('mTorso', 2) + B.mCollarLeft.pos[2] * sc('mChest', 2);
   const wristHeight = shoulderZ - floorZ - (upperArm + forearm);
-  const crotchHeight = hipJointHeight * 0.885; // crotch sits about 11% below the hip joint centre
+  const crotchHeight = hipJointHeight * 0.92; // calibrated on a Legacy male screenshot: crotch about 8% below the hip joint centre
   const wristToCrotch = wristHeight - crotchHeight; // + above crotch, - below
+  // Fingertips vs mid-thigh (halfway between crotch and knee)
+  const kneeHeight = z('mAnkleLeft') * sc('mKneeLeft', 2) + z('mFootLeft') * sc('mAnkleLeft', 2) + FLOOR;
+  const fingertipToMidThigh = (wristHeight - hand) - (crotchHeight + kneeHeight) / 2; // + above, - below
 
   return {
-    wristToCrotch, footGuide: 0.15 * H,
+    wristToCrotch, fingertipToMidThigh, footGuide: 0.15 * H,
     llHeight, fsHeight, H,
     hipHeight: hipJointHeight / H,
     hipSpacing: hipSpacing / H, hipSpacingAbs: hipSpacing,
@@ -659,9 +662,10 @@ function render() {
     for (const r of ev.rows) {
       let why = r.status === 'ok' ? (STYLE === 'sl' ? 'Within the typical SL range.' : 'Within the normal human range.') : r.check.explain[r.dir];
       if (r.check.key === 'span') {
-        const cm = Math.round(Math.abs(m.wristToCrotch) * 100);
-        why += cm <= 3 ? ' Rough check: with arms hanging straight, wrists land about level with the crotch, as on a real person.'
-          : ' Rough check: with arms hanging straight, wrists land about ' + cm + ' cm ' + (m.wristToCrotch > 0 ? 'above' : 'below') + ' the crotch. On a real person they sit about level, with fingertips at mid-thigh.' + (m.wristToCrotch > 0 ? ' Raising Arm Length brings them down.' : '');
+        const w = Math.round(Math.abs(m.wristToCrotch) * 100), f = Math.round(Math.abs(m.fingertipToMidThigh) * 100);
+        const place = (cm, d) => cm <= 3 ? 'about level with' : 'about ' + cm + ' cm ' + (d > 0 ? 'above' : 'below');
+        why += ' Rough check with arms hanging straight: wrists sit ' + place(w, m.wristToCrotch) + ' the crotch (aim for level), and fingertips ' + place(f, m.fingertipToMidThigh) + ' mid-thigh, halfway between crotch and knee (aim for level).';
+        if (w > 3 && f <= 3) why += ' The reach is fine, so the arm-to-hand split is what\'s off.';
       }
       html += '<div class="check"><div class="stripe ' + r.status + '"></div><div style="min-width:0"><div class="name">' + r.check.label
         + (r.check.approx ? ' <span class="hint">(estimate)</span>' : '') + '</div><div class="val">' + r.check.fmt(r.value) + '</div><div class="why">' + why + '</div></div>' + gauge(r) + '</div>';
