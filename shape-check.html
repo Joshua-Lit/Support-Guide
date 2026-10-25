@@ -238,7 +238,7 @@ table.changes td.num { font-family: var(--mono); font-variant-numeric: tabular-n
     <section class="panel" id="results" aria-live="polite"></section>
   </div>
 
-  <p class="foot">How it works: the sliders are run through the same skeleton maths the Second Life viewer uses (from Linden Lab's published viewer source), so lengths are real bone lengths. Proportion sliders move the skeleton itself and behave the same on every mesh body. Targets come from adult anthropometric averages; head size is an estimate calibrated on a LeLutka EvoX head, so treat it as rough on other heads. Heights are on Firestorm's scale, which matches measurements against prims.</p>
+  <p class="foot">How it works: the sliders are run through the same skeleton maths the Second Life viewer uses (from Linden Lab's published viewer source), so lengths are real bone lengths. Proportion sliders move the skeleton itself and behave the same on every mesh body. Realistic targets come from adult anthropometric averages, and Typical SL fashion widens them to fit styled SL avatars; head size is an estimate calibrated on a LeLutka EvoX head, so treat it as rough on other heads. Heights are on Firestorm's scale, which matches measurements against prims.</p>
 </div>
 
 <script>
@@ -362,7 +362,16 @@ function measure(sliders, male) {
   const span = 2 * (collar + toShoulder + upperArm + forearm + hand);
   const head = HEAD_BASE * sc('mHead', 2);
 
+  // Arms hanging: where the wrist lands relative to the crotch.
+  // Heights measured from the pelvis joint, then from the floor.
+  const floorZ = hipDrop * -1 - hipToFoot - FLOOR;
+  const shoulderZ = B.mTorso.pos[2] * sc('mPelvis', 2) + B.mChest.pos[2] * sc('mTorso', 2) + B.mCollarLeft.pos[2] * sc('mChest', 2);
+  const wristHeight = shoulderZ - floorZ - (upperArm + forearm);
+  const crotchHeight = hipJointHeight * 0.885; // crotch sits about 11% below the hip joint centre
+  const wristToCrotch = wristHeight - crotchHeight; // + above crotch, - below
+
   return {
+    wristToCrotch, footGuide: 0.15 * H,
     llHeight, fsHeight, H,
     hipHeight: hipJointHeight / H,
     hipSpacing: hipSpacing / H, hipSpacingAbs: hipSpacing,
@@ -648,7 +657,12 @@ function render() {
 
     html += '<div class="checks">';
     for (const r of ev.rows) {
-      const why = r.status === 'ok' ? 'Within the normal human range.' : r.check.explain[r.dir];
+      let why = r.status === 'ok' ? (STYLE === 'sl' ? 'Within the typical SL range.' : 'Within the normal human range.') : r.check.explain[r.dir];
+      if (r.check.key === 'span') {
+        const cm = Math.round(Math.abs(m.wristToCrotch) * 100);
+        why += cm <= 3 ? ' Rough check: with arms hanging straight, wrists land about level with the crotch, as on a real person.'
+          : ' Rough check: with arms hanging straight, wrists land about ' + cm + ' cm ' + (m.wristToCrotch > 0 ? 'above' : 'below') + ' the crotch. On a real person they sit about level, with fingertips at mid-thigh.' + (m.wristToCrotch > 0 ? ' Raising Arm Length brings them down.' : '');
+      }
       html += '<div class="check"><div class="stripe ' + r.status + '"></div><div style="min-width:0"><div class="name">' + r.check.label
         + (r.check.approx ? ' <span class="hint">(estimate)</span>' : '') + '</div><div class="val">' + r.check.fmt(r.value) + '</div><div class="why">' + why + '</div></div>' + gauge(r) + '</div>';
     }
@@ -670,7 +684,9 @@ function render() {
 
     html += '<h2>Copy for IM</h2><pre class="imbox" id="imText"></pre><div><button type="button" class="ghost" id="copyIm">Copy message</button> <span class="hint" id="copied" hidden>Copied</span></div>';
 
-    html += '<h2>Notes for this body and head</h2><ul class="notes">' + brandNotes(sex, $('body').value, $('head').value).map((x) => '<li>' + x + '</li>').join('') + '</ul>';
+    const notes = brandNotes(sex, $('body').value, $('head').value);
+    notes.splice(1, 0, 'Feet: a real foot is about 15% of height, so roughly ' + Math.round(m.footGuide * 100) + ' cm for this avatar. Small feet are common in SL. Foot Size only works as far as the body and shoes allow, so if they look tiny, compare them with a ' + Math.round(m.footGuide * 100) + ' cm cube.');
+    html += '<h2>Notes for this body and head</h2><ul class="notes">' + notes.map((x) => '<li>' + x + '</li>').join('') + '</ul>';
 
     res.innerHTML = html;
     $('imText').textContent = imText(sug, viewer, ev);
