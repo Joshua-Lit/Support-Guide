@@ -581,7 +581,7 @@ function updateThemeToggle() {
     </div>
   </div>
 
-  <div class="qa-card" id="qa-username-dot" data-search="name username display name legacy name dot period full stop separator surname last name first name paid free name change custom last name mid-2010 2010 capitalization capitalisation lowercase account creation date resident since firestorm lit trotter lich">
+  <div class="qa-card" id="qa-username-dot" data-search="name username display name legacy name dot period full stop separator surname last name first name paid free name change custom last name mid-2010 2010 capitalization capitalisation lowercase account creation date resident since firestorm lit trotter">
     <div class="qa-q" onclick="tog(this)">
       <span class="qa-q-text">Why does a resident's name show as firstname.lastname (with a dot)?</span>
       <span class="qa-tag">Account</span>
@@ -590,10 +590,10 @@ function updateThemeToggle() {
     <div class="qa-body">
       <p>Whether a surname shows with a space or a dot depends on <strong>when the avatar was created</strong>, not whether the surname was free or paid.</p>
       <div class="bullets">
-        <div class="bullet"><strong>Before mid-2010:</strong> accounts have a genuine Legacy Name field - First Last, space-separated, proper capitals. Changing the surname, even via the paid Name Change service, just updates that field, so it keeps the space - e.g. "Joshua Trotter" → "Joshua Lit".</div>
-        <div class="bullet"><strong>Mid-2010 onward:</strong> accounts only ever have a Username - always lowercase, always dot-joined. Adding or changing a surname on one of these, free or paid, still comes out dot-joined - e.g. "marry.lich".</div>
-        <div class="bullet"><strong>Display:</strong> the stored username is always lowercase, but the viewer often auto-capitalises the first letter of each part when no Display Name is set, so it may actually show as "Marry.Lich" - the dot itself never goes away that way.</div>
-        <div class="bullet"><strong>Display Name:</strong> can dress a Username-based account up properly (e.g. "Marry Lich"), but it adds a second line rather than replacing the dotted name underneath - the nametag shows the Display Name on top and "(username)" below it.</div>
+        <div class="bullet"><strong style="white-space:nowrap;">Before mid-2010:</strong> accounts have a genuine Legacy Name field - First Last, space-separated, proper capitals. Changing the surname, even via the paid Name Change service, just updates that field, so it keeps the space - e.g. "Joshua Trotter" → "Joshua Lit".</div>
+        <div class="bullet"><strong style="white-space:nowrap;">Mid-2010 onward:</strong> accounts only ever have a Username - always lowercase, always dot-joined. Adding or changing a surname on one of these, free or paid, still comes out dot-joined - e.g. "jane.doe".</div>
+        <div class="bullet"><strong>Display:</strong> the stored username is always lowercase, but the viewer often auto-capitalises the first letter of each part when no Display Name is set, so it may actually show as "Jane.Doe" - the dot itself never goes away that way.</div>
+        <div class="bullet"><strong>Display Name:</strong> can dress a Username-based account up properly (e.g. "Jane Doe"), but it adds a second line rather than replacing the dotted name underneath - the nametag shows the Display Name on top and "(username)" below it.</div>
       </div>
       <div class="tip-box">
         <div class="tip-label">// Mentor Note</div>
