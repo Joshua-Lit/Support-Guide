@@ -396,6 +396,7 @@ function updateThemeToggle() {
       <div class="nav-items">
         <span class="nav-item" onclick="jumpTo(&#39;qa-video-stream&#39;)"><span class="ni-dot"></span>Stream video to SL screen</span>
         <span class="nav-item" onclick="jumpTo(&#39;qa-project-zero&#39;)"><span class="ni-dot"></span>Project Zero (retired)</span>
+        <span class="nav-item" onclick="jumpTo(&#39;qa-username-dot&#39;)"><span class="ni-dot"></span>Name shows as firstname.lastname</span>
         <span class="nav-item" onclick="jumpTo(&#39;qa-lookat&#39;)"><span class="ni-dot"></span>Turn off lookat crosshairs</span>
         <span class="nav-item" onclick="jumpTo(&#39;qa-spam-protection&#39;)"><span class="ni-dot"></span>Spam / griefing protection</span>
         <span class="nav-item" onclick="jumpTo(&#39;qa-pay-confirm&#39;)"><span class="ni-dot"></span>Confirm before paying</span>
@@ -453,7 +454,7 @@ function updateThemeToggle() {
     <div class="header-title">Technical <span>Q&amp;A</span></div>
     <p class="header-sub">Answers to more technical questions from residents - streaming, scripting, media, and more.</p>
     <div class="stat-row">
-      <div class="stat-chip" onclick="document.getElementById(&#39;qa-video-stream&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">16</span><span class="sc-lbl">Q&amp;As</span></div>
+      <div class="stat-chip" onclick="document.getElementById(&#39;qa-video-stream&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Q&amp;As" style="cursor:pointer;"><span class="sc-val">18</span><span class="sc-lbl">Q&amp;As</span></div>
       <div class="stat-chip" onclick="document.getElementById(&#39;sec-flowcharts&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Flowcharts" style="cursor:pointer;"><span class="sc-val">4</span><span class="sc-lbl">Flowcharts</span></div>
       <div class="stat-chip" onclick="document.getElementById(&#39;qa-head-mouse&#39;).scrollIntoView({behavior:&#39;smooth&#39;})" title="Go to Firestorm Settings" style="cursor:pointer;border-color:rgba(255,100,50,0.4);"><span class="sc-val" style="color:var(--c-fs);">7</span><span class="sc-lbl">Firestorm</span></div>
     </div>
@@ -577,6 +578,27 @@ function updateThemeToggle() {
         <p>Why this card is still here: older YouTube videos, forum posts, blog articles and Discord references still mention Project Zero. If a resident or fellow Mentor brings it up, this is the short answer &#8212; it was an experiment, it ran for about 15 months, it's no longer available, and the desktop viewer and the mobile app are unaffected and continue to work normally.</p>
       </div>
       <div class="xref">&#128206; LL announcement: <a class="xref-link" href="https://community.secondlife.com/news/featured-news/ending-support-for-project-zero-and-whats-next-r11271/" target="_blank">Ending Support for Project Zero &mdash; and What&rsquo;s Next &#8599;</a></div>
+    </div>
+  </div>
+
+  <div class="qa-card" id="qa-username-dot" data-search="name username display name legacy name dot period full stop separator surname last name first name paid free name change custom last name mid-2010 2010 capitalization capitalisation lowercase account creation date resident since firestorm lit trotter lich">
+    <div class="qa-q" onclick="tog(this)">
+      <span class="qa-q-text">Why does a resident's name show as firstname.lastname (with a dot)?</span>
+      <span class="qa-tag">Account</span>
+      <span class="qa-tog">+</span>
+    </div>
+    <div class="qa-body">
+      <p>Whether a surname shows with a space or a dot depends on <strong>when the avatar was created</strong>, not whether the surname was free or paid.</p>
+      <div class="bullets">
+        <div class="bullet"><strong>Before mid-2010:</strong> accounts have a genuine Legacy Name field - First Last, space-separated, proper capitals. Changing the surname, even via the paid Name Change service, just updates that field, so it keeps the space - e.g. "Joshua Trotter" → "Joshua Lit".</div>
+        <div class="bullet"><strong>Mid-2010 onward:</strong> accounts only ever have a Username - always lowercase, always dot-joined. Adding or changing a surname on one of these, free or paid, still comes out dot-joined - e.g. "marry.lich".</div>
+        <div class="bullet"><strong>Display:</strong> the stored username is always lowercase, but the viewer often auto-capitalises the first letter of each part when no Display Name is set, so it may actually show as "Marry.Lich" - the dot itself never goes away that way.</div>
+        <div class="bullet"><strong>Display Name:</strong> can dress a Username-based account up properly (e.g. "Marry Lich"), but it adds a second line rather than replacing the dotted name underneath - the nametag shows the Display Name on top and "(username)" below it.</div>
+      </div>
+      <div class="tip-box">
+        <div class="tip-label">// Mentor Note</div>
+        <p>Check the avatar's creation date directly (profile) rather than asking the resident - no need to query anyone's age. Anything from before mid-2010 keeps the classic spaced name on any surname change; anything newer always shows the dot, regardless of whether the surname was free or paid.</p>
+      </div>
     </div>
   </div>
 
